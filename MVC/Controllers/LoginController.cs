@@ -5,7 +5,7 @@ using System.Web;
 
 namespace MVC.Controllers
 {
-    public class Class1
+    public class LoginController
     {
     }
 }
