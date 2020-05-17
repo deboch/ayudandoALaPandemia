@@ -4,25 +4,29 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.WebPages;
 using Servicios;
 
 namespace ayudandoALaPandemia.Controllers
 {
     public class SearchController : Controller
     {
-        private HttpContextBase Context { get; set; }
-        private SearchS
-        public string Index()
-        {
-            return "search";
-        }
-        
+        private Servicios.SearchServicios searchServicios = new SearchServicios();
+
         [HttpGet]
-        public void Search()
+        public ActionResult Search()
         {
-            string userId = this.Context.Session["id"].ToString();
-            string keyword = this.Context.Request["keyword"];
-            string date = this.Context.Request["date"];
+            try
+            {
+                // string userId = Session["id"].ToString();
+                string keyword = Request.QueryString["keyword"];
+                string date = Request.QueryString["date"];
+                return Json(searchServicios.GetAll(), JsonRequestBehavior.AllowGet);
+
+            } catch
+            {
+                return null;
+            }
         }
     }
 }

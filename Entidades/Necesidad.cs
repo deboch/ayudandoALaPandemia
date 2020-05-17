@@ -8,15 +8,14 @@ namespace Entidades
 {
     public class Necesidad
     {
-        private int id;
-        private string name;
-        private string description;
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
 
-        public Necesidad (int id, string name, string description)
-        {
-            this.id = id;
-            this.name = name;
-            this.description = description;
+        public Necesidad (int id, string name, string description) {
+            this.Id = id;
+            this.Name = name;
+            this.Description = description;
         }
     }
 }
