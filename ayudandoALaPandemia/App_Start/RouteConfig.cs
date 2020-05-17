@@ -18,6 +18,11 @@ namespace ayudandoALaPandemia
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+                name: "Search",
+                url: "api/{action}",
+                defaults: new { controller = "Search", action = "Index" }
+            );
         }
     }
 }
