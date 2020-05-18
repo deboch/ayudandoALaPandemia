@@ -7,7 +7,7 @@ using Entidades;
 
 namespace Servicios
 {
-    class SearchService
+    public class SearchServicios
     {
         private List<Necesidad> lista = new List<Necesidad>();
         public List<Necesidad> GetAll()
