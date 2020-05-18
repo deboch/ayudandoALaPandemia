@@ -44,16 +44,49 @@ namespace Entidades
             Token = token;
         }
 
+        public static List<Usuarios> traerTodosLosUsuariosActivos()
+        {
+            List<Usuarios> miListaDeUsuariosActivos = new List<Usuarios>();
+            foreach (var item in miListaDeUsuariosActivos)
+            {
+                if (item.TipoUsuario == "Usuario" && item.Activo == true)
+                {
+                    miListaDeUsuariosActivos.Add(item);
+                }
+            }
+            return miListaDeUsuariosActivos;
+        }
+
+        public static List<Usuarios> traerTodosLosAdministradores()
+        {
+            List<Usuarios> traerTodosLosAdministradores = new List<Usuarios>();
+            foreach (var item in traerTodosLosAdministradores)
+            {
+                if (item.TipoUsuario == "Administrador" && item.Activo == true)
+                {
+                    traerTodosLosAdministradores.Add(item);
+                }
+            }
+            return traerTodosLosAdministradores;
+        }
+
         public class existeUsuario : ValidationAttribute
         {
-            List<Usuarios> misUsuarios = new List<Usuarios>();
-            public override bool IsValid(object value)
+            List<Usuarios> misUsuarios = traerTodosLosUsuariosActivos();
+            public bool IsValid(Usuarios u)
             {
+                bool resultado = true;
 
-                //bool resultado = misUsuarios.Any(c => c.Contains(value.ToString());
-
-               // return;
+                foreach (var item in misUsuarios)
+                {
+                    if (item.Username.Equals(u.Username))
+                    {
+                        return !resultado;
+                    }
+                }
+                return resultado;
             }
         }
+
     }
 }
