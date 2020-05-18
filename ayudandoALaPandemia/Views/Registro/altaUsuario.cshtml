@@ -1,0 +1,35 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>altaUsuario</title>
+</head>
+<body>
+    <form action="/Usuarios/altaUsuario" method="post">
+        <div>
+            UserName: <input type="text" name="UserName" />
+        </div>
+
+        <div>
+            Email: <input type="text" name="Email" />
+        </div>
+
+        <div>
+            Password: <input type="password" name="Password" />
+        </div>
+
+        <div>
+            Confirmar Password: <input type="password" name="ConfirmPass" />
+        </div>
+
+        <div>
+            <input type="submit" name="Crear Usuario" />
+        </div>
+    </form>
+</body>
+</html>
