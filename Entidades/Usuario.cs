@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
-namespace Entidades 
-{ 
+namespace Entidades
+{
     public class Usuario
     {
 	
@@ -13,8 +11,11 @@ namespace Entidades
             public string Nombre { get; set; }
             public string Apellido { get; set; }
             public DateTime FechaNacimiento { get; set; }
+           
             public string UserName { get; set; }
+           
             public string Email { get; set; }
+           
             public string Password { get; set; }
             public string TipoUsuario { get; set; }
             public DateTime FechaCreacion { get; set; }
@@ -34,6 +35,49 @@ namespace Entidades
             FechaCreacion = fechaCreacion;
             Activo = activo;
             Token = token;
+        }
+        public static List<Usuario> traerTodosLosUsuarioActivos()
+        {
+            List<Usuario> miListaDeUsuarioActivos = new List<Usuario>();
+            foreach (var item in miListaDeUsuarioActivos)
+            {
+                if (item.TipoUsuario == "Usuario" && item.Activo == true)
+                {
+                    miListaDeUsuarioActivos.Add(item);
+                }
+            }
+            return miListaDeUsuarioActivos;
+        }
+
+        public static List<Usuario> traerTodosLosAdministradores()
+        {
+            List<Usuario> traerTodosLosAdministradores = new List<Usuario>();
+            foreach (var item in traerTodosLosAdministradores)
+            {
+                if (item.TipoUsuario == "Administrador" && item.Activo == true)
+                {
+                    traerTodosLosAdministradores.Add(item);
+                }
+            }
+            return traerTodosLosAdministradores;
+        }
+
+        public class existeUsuario : ValidationAttribute
+        {
+            List<Usuario> misUsuario = traerTodosLosUsuarioActivos();
+            public bool IsValid(Usuario u)
+            {
+                bool resultado = true;
+
+                foreach (var item in misUsuario)
+                {
+                    if (item.UserName.Equals(u.UserName))
+                    {
+                        return !resultado;
+                    }
+                }
+                return resultado;
+            }
         }
     }
 }

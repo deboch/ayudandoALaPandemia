@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Servicios;
 
 namespace ayudandoALaPandemia.Controllers
 {
@@ -13,28 +14,23 @@ namespace ayudandoALaPandemia.Controllers
         // return "hola";
         //}
 
+
+        private Servicios.HomeServicios searchServicios = new HomeServicios();
+
         [HttpGet]
         public ActionResult Index()
         {
-            Entidades.Necesidad necesidad1 = new Entidades.Necesidad(1, "uno", "", true, 5);
-            Entidades.Necesidad necesidad2 = new Entidades.Necesidad(2, "ds", "", true, 4);
-            Entidades.Necesidad necesidad3 = new Entidades.Necesidad(3, "fdfh", "", true, 2);
-            Entidades.Necesidad necesidad4 = new Entidades.Necesidad(4, "fghfg", "", true, 5);
-            Entidades.Necesidad necesidad5 = new Entidades.Necesidad(5, "ufhghno", "", true, 4);
-            Entidades.Necesidad necesidad6 = new Entidades.Necesidad(6, "fgfj", "", true, 2);
+            try
+            {
+                string keyword = Request.QueryString["keyword"];
+                string date = Request.QueryString["date"];
+                return Json(searchServicios.GetMasValorados(), JsonRequestBehavior.AllowGet);
 
-            List<Entidades.Necesidad> necesidades = new List<Entidades.Necesidad>();
-            List<Entidades.Necesidad> masValoradas = new List<Entidades.Necesidad>();
-            necesidades.Add(necesidad1);
-            necesidades.Add(necesidad2);
-            necesidades.Add(necesidad3);
-            necesidades.Add(necesidad4);
-            necesidades.Add(necesidad5);
-            necesidades.Add(necesidad6);
-
-            var listaOrdenada = necesidades.OrderByDescending(x => x.Valoracion).ToList();
-            
-            return View(listaOrdenada);
+            }
+            catch
+            {
+                return null;
+            }
         }
         
     }

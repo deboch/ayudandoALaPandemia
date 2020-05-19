@@ -204,6 +204,8 @@
     <Content Include="Views\Shared\_NecesidadesLayout.cshtml" />
     <Content Include="Views\Shared\_BaseLayout.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Registro\Save.cshtml" />
+    <Content Include="Views\Registro\altaUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
