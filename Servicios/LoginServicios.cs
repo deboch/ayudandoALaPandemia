@@ -24,5 +24,19 @@ namespace Servicios
             return miListaDeUsuariosActivos;
         }
 
+        public static bool logear(Usuarios u)
+        {
+            List<Usuarios> miListaUsuarios = LoginServicios.traerTodosLosUsuariosActivos();
+            bool logeado = true;
+            foreach (var user in miListaUsuarios)
+            {
+                if ((user.Username == u.Username || user.Email == u.Email) && user.Password == u.Password)
+                {
+                    return logeado;
+                }
+            }
+            return !logeado;
+        }
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using Servicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +12,16 @@ namespace ayudandoALaPandemia.Controllers
     {
         public ActionResult logearse(Usuarios u)
         {
+            bool logeado = LoginServicios.logear(u);
 
-            if ()
+            if (logeado == true)
             {
-
+                return View();
+            }else
+            {
+                return logearse(u);
             }
 
-            return View();
         }
     }
 }
