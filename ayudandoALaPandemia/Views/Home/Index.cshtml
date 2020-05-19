@@ -4,7 +4,20 @@
 @{
     Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
 }
-
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Ayudando a la Pandemia", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Iniciar sesion", "Login", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Registrate", "", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+        </div>
+    </div>
 
 <div class="container">
     <h2>Las 5 principales Necesidades</h2>
@@ -12,22 +25,25 @@
         <tr>
             <th>Fecha Creaci&oacute;n</th>
             <th>Foto</th>
-            <th>Nombre Negocio</th>
+            <th>Descripcion</th>
+            <th>Estado</th>
+            <th>Valoracion</th>
 
         </tr>
         @foreach (Entidades.Necesidad p in Model)
         {
-            <tr>
-                <td>@p.Id</td>
-                <td>@p.Name</td>
-                <td>@p.Description</td>
+    <tr>
+        <td>@p.Id</td>
+        <td>@p.Name</td>
+        <td>@p.Description</td>
+        <td>@p.Estado</td>
+        <td>@p.Valoracion</td>
 
 
 
-            </tr>
+    </tr>
         }
     </table>
 
-    <button>Login</button>
-    <button>Registro</button>
+
 </div>
