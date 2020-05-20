@@ -21,6 +21,8 @@ namespace Servicios
         }
         private static int generaId(Usuarios u)
         {
+            listaUsuarios = LoginServicios.traerTodosLosUsuariosActivos();
+
             int id = 1;
             if (listaUsuarios.Count > 0)
             {
@@ -29,6 +31,55 @@ namespace Servicios
             return id;
         }
 
-       
+        public static List<Usuarios> traerTodosLosUsuariosActivos()
+        {
+            List<Usuarios> miListaDeUsuariosActivos = new List<Usuarios>();
+            foreach (var item in miListaDeUsuariosActivos)
+            {
+                if (item.TipoUsuario == "Usuario" && item.Activo == true)
+                {
+                    miListaDeUsuariosActivos.Add(item);
+                }
+            }
+            return miListaDeUsuariosActivos;
+        }
+
+        public static List<Usuarios> traerTodosLosAdministradores()
+        {
+            List<Usuarios> traerTodosLosAdministradores = new List<Usuarios>();
+            foreach (var item in traerTodosLosAdministradores)
+            {
+                if (item.TipoUsuario == "Administrador" && item.Activo == true)
+                {
+                    traerTodosLosAdministradores.Add(item);
+                }
+            }
+            return traerTodosLosAdministradores;
+        }
+
+
+
+        public static void existeUsuario(bool resultado)
+        {
+            bool isValad = resultado;
+        }
+
+        public static bool IsValid(Usuarios u)
+        {
+            List<Usuarios> misUsuarios = RegistroServicios.traerTodosLosUsuariosActivos();
+            bool resultado = true;
+
+            foreach (var item in misUsuarios)
+            {
+                if (item.Username.Equals(u.Username))
+                {
+                    return !resultado;
+                }
+            }
+            return resultado;
+        }
     }
+
+
+}
 }

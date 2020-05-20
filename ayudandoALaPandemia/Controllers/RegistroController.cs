@@ -14,7 +14,7 @@ namespace ayudandoALaPandemia.Controllers
     {
 
         [HttpGet]
-        public  ActionResult altaUsuario()
+        public ActionResult altaUsuario()
         {
             return View();
         }
@@ -31,4 +31,18 @@ namespace ayudandoALaPandemia.Controllers
         }
 
     }
+    public class existeUsuario : ValidationAttribute
+        {
+ 
+        public static bool validarUsuarioExistente(Usuarios u)
+        {
+            bool resultado;
+
+            resultado = RegistroServicios.IsValid(u);
+
+            return resultado;
+        }
+
+
+        }  
 }
