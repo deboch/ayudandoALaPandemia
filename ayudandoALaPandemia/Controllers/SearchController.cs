@@ -18,12 +18,13 @@ namespace ayudandoALaPandemia.Controllers
         {
             try
             {
-                // string userId = Session["id"].ToString();
+                Session.Add("id", 1);
+                string userId = Session["id"].ToString();
                 string keyword = Request.QueryString["keyword"];
                 string date = Request.QueryString["date"];
-                return Json(searchServicios.GetAll(), JsonRequestBehavior.AllowGet);
-
-            } catch
+                return Json(searchServicios.ObtenerNecesidades(), JsonRequestBehavior.AllowGet);
+            }
+            catch
             {
                 return null;
             }
