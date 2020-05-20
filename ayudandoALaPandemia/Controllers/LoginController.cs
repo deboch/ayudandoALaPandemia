@@ -10,7 +10,7 @@ namespace ayudandoALaPandemia.Controllers
 {
     public class LoginController : Controller
     {
-        private HomeServicios searchServicios = new HomeServicios();
+        private LoginServicios loginServicios = new LoginServicios();
         public ActionResult Login(Usuario u)
         {
             bool logeado = LoginServicios.logear(u);

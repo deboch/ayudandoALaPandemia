@@ -22,8 +22,9 @@ namespace ayudandoALaPandemia.Controllers
         {
             try
             {
-              
-                return Json(HomeServicios.GetMasValorados(), JsonRequestBehavior.AllowGet);
+
+                //return Json(HomeServicios.GetMasValorados(), JsonRequestBehavior.AllowGet);
+                return View(HomeServicios.GetMasValorados());
 
             }
             catch
