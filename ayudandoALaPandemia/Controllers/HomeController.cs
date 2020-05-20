@@ -15,16 +15,15 @@ namespace ayudandoALaPandemia.Controllers
         //}
 
 
-        private Servicios.HomeServicios searchServicios = new HomeServicios();
+        private HomeServicios HomeServicios = new HomeServicios();
 
         [HttpGet]
         public ActionResult Index()
         {
             try
             {
-                string keyword = Request.QueryString["keyword"];
-                string date = Request.QueryString["date"];
-                return Json(searchServicios.GetMasValorados(), JsonRequestBehavior.AllowGet);
+              
+                return Json(HomeServicios.GetMasValorados(), JsonRequestBehavior.AllowGet);
 
             }
             catch

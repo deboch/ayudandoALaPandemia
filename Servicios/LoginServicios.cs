@@ -1,19 +1,18 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Entidades;
 
 namespace Servicios
 {
-    class LoginServicios
+    public class LoginServicios
     {
         private static List<Usuario> listaUsuario = new List<Usuario>();
 
         public static List<Usuario> traerTodosLosUsuarioActivos()
         {
             List<Usuario> miListaDeUsuarioActivos = new List<Usuario>();
+            Usuario usuarioActivo1 = new Usuario(1, "user1", "apellido", "usuarioActivo1", "act@gmail.com", "contraseña","", true, "35656");
+            miListaDeUsuarioActivos.Add(usuarioActivo1);
             foreach (var item in miListaDeUsuarioActivos)
             {
                 if (item.TipoUsuario == "Usuario" && item.Activo == true)
@@ -26,7 +25,7 @@ namespace Servicios
 
         public static bool logear(Usuario u)
         {
-            List<Usuario> miListaUsuario = LoginServicios.traerTodosLosUsuarioActivos();
+            List<Usuario> miListaUsuario = traerTodosLosUsuarioActivos();
             bool logeado = true;
             foreach (var user in miListaUsuario)
             {

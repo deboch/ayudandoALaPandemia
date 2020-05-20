@@ -8,9 +8,10 @@ using System.Web.Mvc;
 
 namespace ayudandoALaPandemia.Controllers
 {
-    public class LoginController 
+    public class LoginController : Controller
     {
-        public ActionResult logearse(Usuario u)
+        private HomeServicios searchServicios = new HomeServicios();
+        public ActionResult Login(Usuario u)
         {
             bool logeado = LoginServicios.logear(u);
 
@@ -20,7 +21,7 @@ namespace ayudandoALaPandemia.Controllers
             }
             else
             {
-                return logearse(u);
+                return RedirectToAction("Login");
             }
 
         }
