@@ -6,12 +6,12 @@ using System.Web.Mvc;
 
 namespace ayudandoALaPandemia.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public string Index()
         {
             return "hola";
         }
-        
+
     }
 }
