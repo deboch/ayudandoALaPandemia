@@ -5,29 +5,30 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.WebPages;
+using Repositorios;
 using Servicios;
+using Newtonsoft.Json;
+
 
 namespace ayudandoALaPandemia.Controllers
 {
-    public class SearchController : Controller
+    public class SearchController : BaseController
     {
-        private Servicios.SearchServicios searchServicios = new SearchServicios();
-
-        [HttpGet]
-        public ActionResult Search()
+        
+        public string Search()
         {
-            try
-            {
-                Session.Add("id", 1);
-                string userId = Session["id"].ToString();
-                string keyword = Request.QueryString["keyword"];
-                string date = Request.QueryString["date"];
-                return Json(searchServicios.ObtenerNecesidades(), JsonRequestBehavior.AllowGet);
-            }
-            catch
-            {
-                return null;
-            }
+
+            Session.Add("id", 1);
+            string userId = Session["id"].ToString();
+            string keyword = Request.QueryString["keyword"];
+            string date = Request.QueryString["date"];
+            List<Repositorios.Necesidades> necesidades = searchServicios.ObtenerNecesidades();
+            return JsonConvert.SerializeObject(necesidades, Formatting.Indented,
+                    new JsonSerializerSettings
+                    {
+                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                    });
+            
         }
     }
 }

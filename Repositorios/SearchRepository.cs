@@ -11,15 +11,13 @@ namespace Repositorios
 {
     public class SearchRepository
     {
-        private NecesidadesContext context;
-
-        public SearchRepository(NecesidadesContext context)
+        Contexts Context;
+        public SearchRepository(Contexts context)
         {
-            this.context = context;
+            this.Context = context;
         }
-
-        public List<Necesidades> ObtenerNecesidades () {
-            return context.necesidades.ToList();
+        public List<Repositorios.Necesidades> ObtenerNecesidades () {
+            return Context.Necesidades.ToList();
         }
     }
 }

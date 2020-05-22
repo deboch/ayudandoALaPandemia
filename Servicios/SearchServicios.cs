@@ -11,13 +11,10 @@ namespace Servicios
 {
     public class SearchServicios
     {
-        private NecesidadesContext context;
-
-        private SearchRepository searchRepository = new SearchRepository(context);
-
-        public List<Necesidades> ObtenerNecesidades()
+        ManagerRepository managerRepository = new ManagerRepository();
+        public List<Repositorios.Necesidades> ObtenerNecesidades()
         {
-            return searchRepository.ObtenerNecesidades();
+            return managerRepository.searchRepository.ObtenerNecesidades();
         }
     }
 }

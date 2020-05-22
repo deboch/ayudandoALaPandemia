@@ -290,7 +290,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="Entities2" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Denuncias" EntityType="Self.Denuncias" />
     <EntitySet Name="DonacionesInsumos" EntityType="Self.DonacionesInsumos" />
     <EntitySet Name="DonacionesMonetarias" EntityType="Self.DonacionesMonetarias" />

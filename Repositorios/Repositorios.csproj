@@ -53,7 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\NecesidadesContext.cs" />
+    <Compile Include="DAL\Contexts.cs" />
     <Compile Include="Denuncias.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -63,6 +63,7 @@
     <Compile Include="DonacionesMonetarias.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="ManagerRepository.cs" />
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
