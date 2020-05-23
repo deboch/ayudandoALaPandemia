@@ -7,7 +7,7 @@ using Servicios;
 
 namespace ayudandoALaPandemia.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         //public string Index()
         //{
@@ -32,6 +32,6 @@ namespace ayudandoALaPandemia.Controllers
                 return null;
             }
         }
-        
+
     }
 }

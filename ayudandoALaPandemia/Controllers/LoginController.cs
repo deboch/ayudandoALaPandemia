@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace ayudandoALaPandemia.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController
     {
         private LoginServicios loginServicios = new LoginServicios();
         public ActionResult Login(Usuario u)

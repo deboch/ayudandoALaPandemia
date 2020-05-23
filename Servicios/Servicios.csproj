@@ -51,6 +51,10 @@
       <Project>{2fd8bff1-52a9-4e49-853b-38511fe32842}</Project>
       <Name>Entidades</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Repositorios\Repositorios.csproj">
+      <Project>{1a1ac94b-2e3f-4039-9f33-57e565216374}</Project>
+      <Name>Repositorios</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
