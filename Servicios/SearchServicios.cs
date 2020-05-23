@@ -4,19 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entidades;
+using Repositorios;
+using Repositorios.DAL;
 
 namespace Servicios
 {
     public class SearchServicios
     {
-        private List<Necesidad> lista = new List<Necesidad>();
-        public List<Necesidad> GetAll()
+        ManagerRepository managerRepository = new ManagerRepository();
+        public List<Repositorios.Necesidades> ObtenerNecesidades()
         {
-            Necesidad necesidad_1 = new Necesidad(1, "necesidad 1", "primera necesidad");
-            Necesidad necesidad_2 = new Necesidad(2, "necesidad 2", "segunda necesidad");
-            lista.Add(necesidad_1);
-            lista.Add(necesidad_2);
-            return lista;
+            return managerRepository.searchRepository.ObtenerNecesidades();
         }
     }
 }

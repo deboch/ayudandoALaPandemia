@@ -1,0 +1,12 @@
+C:\Users\a309580\Projects\ayudandoALaPandemia\Repositorios\obj\Debug\Repositorios.csprojAssemblyReference.cache
+C:\Users\a309580\Projects\ayudandoALaPandemia\Repositorios\obj\Debug\Repositorios.csproj.CoreCompileInputs.cache
+C:\Users\a309580\Projects\ayudandoALaPandemia\Repositorios\bin\Debug\Repositorios.dll.config
+C:\Users\a309580\Projects\ayudandoALaPandemia\Repositorios\bin\Debug\Repositorios.dll
+C:\Users\a309580\Projects\ayudandoALaPandemia\Repositorios\bin\Debug\Repositorios.pdb
+C:\Users\a309580\Projects\ayudandoALaPandemia\Repositorios\bin\Debug\EntityFramework.dll
+C:\Users\a309580\Projects\ayudandoALaPandemia\Repositorios\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\a309580\Projects\ayudandoALaPandemia\Repositorios\bin\Debug\EntityFramework.xml
+C:\Users\a309580\Projects\ayudandoALaPandemia\Repositorios\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\a309580\Projects\ayudandoALaPandemia\Repositorios\obj\Debug\Repositorios.csproj.CopyComplete
+C:\Users\a309580\Projects\ayudandoALaPandemia\Repositorios\obj\Debug\Repositorios.dll
+C:\Users\a309580\Projects\ayudandoALaPandemia\Repositorios\obj\Debug\Repositorios.pdb

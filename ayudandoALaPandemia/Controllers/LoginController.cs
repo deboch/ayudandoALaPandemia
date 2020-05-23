@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ayudandoALaPandemia.Controllers
 {
-    public class LoginController
+    public class LoginController : BaseController
     {
     }
 }
