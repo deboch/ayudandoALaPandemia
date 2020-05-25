@@ -17,9 +17,10 @@ namespace Repositorios
 
         public Repositorios.Usuarios obtenerUsuario (string email)
         {
-            return Context.Usuarios
-                .Where(m => m.Email == email)
-                .SingleOrDefault();
+            var user = Context.Usuarios
+                                .Where(b => (string)b.Email == (string)email)
+                                .FirstOrDefault();                            
+            return user;
         }
     }
 }

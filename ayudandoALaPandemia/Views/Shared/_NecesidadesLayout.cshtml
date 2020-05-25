@@ -37,6 +37,12 @@
                 
                 <!-- task notificatoin end -->
                 <!-- inbox notificatoin start-->
+                <li>
+                    @if (Session["email"] != null)
+                    {
+                        @Session["email"].ToString();
+                    }
+                </li>
                 <li id="mail_notificatoin_bar" class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <i class="icon-envelope-l"></i>
@@ -153,7 +159,9 @@
                         <span class="profile-ava">
                             <img alt="" src="img/avatar1_small.jpg">
                         </span>
-                        <span class="username">Jenifer Smith</span>
+                        <span class="username">
+
+                        </span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">

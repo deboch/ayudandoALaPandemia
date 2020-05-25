@@ -12,25 +12,32 @@ namespace ayudandoALaPandemia.Controllers
     public class LoginController : BaseController
     {
 
-        public ActionResult Login()
+        public ActionResult Index()
         {
-            return View();
+            // carga la vista que esta en la carpeta Home
+            return View("~/Views/Home/Login.cshtml");
         }
-        public ActionResult Login(Usuarios u)
-        {
 
-            Usuarios usuario = loginServicios.logear(u);
+        [HttpPost]
+        public RedirectToRouteResult Success(FormCollection form)
+        {
+            Usuarios user = new Usuarios();
+            user.Email = form["email"];
+            user.Password = form["password"];
+
+            var usuario = loginServicios.logear(user);
 
             if (usuario != null)
             {
                 Session["id"] = usuario.IdUsuario;
-                Session["email"] = usuario.Email;
+                Session["email"] = usuario.Email.ToString();
                 Session["username"] = usuario.UserName;
-                return View();
+                // redirijo a Index de HomeController
+                return RedirectToAction("Index", "Home");
             }
             else
             {
-                return RedirectToAction("Login");
+                return RedirectToAction("Index");
             }
 
         }

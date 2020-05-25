@@ -16,7 +16,6 @@ namespace ayudandoALaPandemia.Controllers
         {
             try
             {
-                //return Json(HomeServicios.GetMasValorados(), JsonRequestBehavior.AllowGet);
                 List<Necesidades> necesidadesMasValoradas = homeServicios.GetMasValorados();
                 ViewBag.Necesidades = necesidadesMasValoradas;
                 return View();
