@@ -20,6 +20,12 @@ namespace ayudandoALaPandemia
             );
 
             routes.MapRoute(
+                name: "Necesidades",
+                url: "necesidades/{action}/{id}",
+                defaults: new { controller = "Necesidades", action = "Home", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

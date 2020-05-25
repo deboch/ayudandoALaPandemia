@@ -14,21 +14,18 @@ namespace ayudandoALaPandemia.Controllers
 {
     public class SearchController : BaseController
     {
-        
         public string Search()
         {
 
             Session.Add("id", 1);
-            string userId = Session["id"].ToString();
+            int userId = ((int)Session["id"]);
             string keyword = Request.QueryString["keyword"];
-            string date = Request.QueryString["date"];
-            List<Repositorios.Necesidades> necesidades = searchServicios.ObtenerNecesidades();
+            List<Necesidades> necesidades = searchServicios.ObtenerNecesidades(userId, keyword);
             return JsonConvert.SerializeObject(necesidades, Formatting.Indented,
                     new JsonSerializerSettings
                     {
                         ReferenceLoopHandling = ReferenceLoopHandling.Ignore
                     });
-            
         }
     }
 }

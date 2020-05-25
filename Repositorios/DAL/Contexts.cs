@@ -1,13 +1,20 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 
 namespace Repositorios.DAL
 {
     public class Contexts : DbContext
     {
-        public Contexts() : base("name=Entities") { }
-        public DbSet<Necesidades> Necesidades { get; set; }
-        public DbSet<Usuarios> Usuarios { get; set; }
+        public Contexts() : base("name=Entities1") { }
+        
+        public virtual DbSet<Necesidades> Necesidades { get; set; }
+        public virtual DbSet<Usuarios> Usuarios { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            throw new UnintentionalCodeFirstException();
+        }
     }
 
 }

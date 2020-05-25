@@ -1,28 +1,31 @@
-﻿using Entidades;
-using Servicios;
+﻿using Servicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using Repositorios;
 
 namespace ayudandoALaPandemia.Controllers
 {
-    public class LoginController :BaseController
+    public class LoginController : BaseController
     {
-        private LoginServicios loginServicios = new LoginServicios();
 
         public ActionResult Login()
         {
             return View();
         }
-        public ActionResult Login(Usuario u)
+        public ActionResult Login(Usuarios u)
         {
-            bool logeado = LoginServicios.logear(u);
 
-            if (logeado == true)
+            Usuarios usuario = loginServicios.logear(u);
+
+            if (usuario != null)
             {
+                Session["id"] = usuario.IdUsuario;
+                Session["email"] = usuario.Email;
+                Session["username"] = usuario.UserName;
                 return View();
             }
             else

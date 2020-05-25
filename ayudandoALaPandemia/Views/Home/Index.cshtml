@@ -1,5 +1,4 @@
-﻿@model List<Entidades.Necesidad>
-@{
+﻿@{
     ViewBag.Title = "Home Page";
 }
 @{
@@ -18,12 +17,12 @@
                 <th>Valoracion</th>
 
             </tr>
-            @foreach (Entidades.Necesidad p in Model)
+            @foreach (var p in ViewBag.Necesidades)
             {
                 <tr>
-                    <td>@p.Id</td>
-                    <td>@p.Name</td>
-                    <td>@p.Description</td>
+                    <td>@p.IdNecesidad</td>
+                    <td>@p.Nombre</td>
+                    <td>@p.Descripcion</td>
                     <td>@p.Estado</td>
                     <td>@p.Valoracion</td>
 
@@ -102,12 +101,12 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                     @foreach (Entidades.Necesidad p in Model)
+                                     @foreach (var p in ViewBag.Necesidades)
                                      {
                                         <tr>
-                                            <td>@p.Id</td>
-                                            <td>@p.Name</td>
-                                            <td>@p.Description</td>
+                                            <td>@p.IdNecesidad</td>
+                                            <td>@p.Nombre</td>
+                                            <td>@p.Descripcion</td>
                                             <td>@p.Estado</td>
                                             <td>@p.Valoracion</td>
                                         </tr>
