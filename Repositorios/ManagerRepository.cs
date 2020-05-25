@@ -16,6 +16,7 @@ namespace Repositorios
         public ManagerRepository()
         {
             this.contexto = new Repositorios.DAL.Contexts();
+            this.contexto.Configuration.LazyLoadingEnabled = false;
             this.searchRepository = new SearchRepository(this.contexto);
         }
     }
