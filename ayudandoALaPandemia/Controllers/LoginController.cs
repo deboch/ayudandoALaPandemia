@@ -1,10 +1,4 @@
-﻿using Servicios;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.UI.WebControls;
+﻿using System.Web.Mvc;
 using Repositorios;
 
 namespace ayudandoALaPandemia.Controllers
@@ -34,7 +28,7 @@ namespace ayudandoALaPandemia.Controllers
                 Session["email"] = usuario.Email.ToString();
                 Session["username"] = usuario.UserName;
                 // redirijo a Index de HomeController
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Home", "Necesidades");
             }
             else
             {

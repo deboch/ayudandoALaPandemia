@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Servicios;
 
 namespace ayudandoALaPandemia.Controllers
@@ -13,8 +9,8 @@ namespace ayudandoALaPandemia.Controllers
         public SearchServicios searchServicios;
         public LoginServicios loginServicios;
         public HomeServicios homeServicios;
-        
-        public BaseController ()
+
+        public BaseController()
         {
             this.searchServicios = new SearchServicios();
             this.loginServicios = new LoginServicios();

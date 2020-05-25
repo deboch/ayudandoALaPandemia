@@ -16,18 +16,20 @@
         <!--logo start-->
         <a href="index.html" class="logo">Ayudando a la <span class="lite">Pandemia</span></a>
         <!--logo end-->
-
-        <div class="nav search-row" id="top_menu">
-            <!--  search form start -->
-            <ul class="nav top-menu">
-                <li>
-                    <form class="navbar-form">
-                        <input class="form-control" placeholder="Search" type="text">
-                    </form>
-                </li>
-            </ul>
-            <!--  search form end -->
-        </div>
+        @if(Session["email"] != null)
+        {
+            <div class="nav search-row" id="top_menu">
+                <!--  search form start -->
+                <ul class="nav top-menu">
+                    <li>
+                        <form class="navbar-form" id="form-search">
+                            <input class="form-control" id="search-field" type="text" placeholder="Busca una necesidad" />
+                        </form>
+                    </li>
+                </ul>
+                <!--  search form end -->
+            </div>
+        }
 
         <div class="top-nav notification-row">
             <!-- notificatoin dropdown start-->
@@ -183,6 +185,6 @@
 
     @RenderBody()
     <div>
-        @Html.Partial("pv_Footer");
+        @Html.Partial("~/Views/Shared/pv_Footer.cshtml");
     </div>
 </body>

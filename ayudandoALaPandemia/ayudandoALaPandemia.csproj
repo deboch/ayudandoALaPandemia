@@ -130,6 +130,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\NecesidadesController.cs" />
     <Compile Include="Controllers\RegistroController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
@@ -307,12 +308,13 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\pv_Footer.cshtml" />
+    <Content Include="Views\Shared\pv_Footer.cshtml" />
     <Content Include="Views\Shared\_NecesidadesLayout.cshtml" />
     <Content Include="Views\Shared\_BaseLayout.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Registro\Save.cshtml" />
     <Content Include="Views\Registro\altaUsuario.cshtml" />
+    <Content Include="Views\Necesidades\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />

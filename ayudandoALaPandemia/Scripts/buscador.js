@@ -1,10 +1,9 @@
 ﻿$(document).ready(function () {
-    getNecesidades();
     $("#form-search").submit(function(event) {
         event.preventDefault();
         const search_field = $('#search-field').val();
         const keyword = 'keyword';
-        window.history.pushState({ keyword: `/necesidades/home?${keyword}=${search_field}` }, 'title', `/necesidades/home?${keyword}=${search_field}`);
+        window.history.pushState({ keyword: `/necesidades?${keyword}=${search_field}` }, 'title', `/necesidades?${keyword}=${search_field}`);
         getNecesidades({ keyword: search_field });
         
     });
@@ -21,8 +20,8 @@ const getNecesidades = async (obj = {}) => {
                 const jsonResponse = JSON.parse(response);
                 if (jsonResponse.length === 0) {
                     const notFound = `<p>No se encontro ninguna necesidad</p>`;
-                    $('.wrapper').empty();
-                    return $(".wrapper").html(notFound);
+                    $('.searched-wrapper').empty();
+                    return $(".searched-wrapper").html(notFound);
                 }
                 const html = jsonResponse.map(function (necesidad) {
                     return (
@@ -33,8 +32,8 @@ const getNecesidades = async (obj = {}) => {
                         </div>`
                     )
                 })
-                $('.wrapper').empty();
-                $(".wrapper").html(html)
+                $('.searched-wrapper').empty();
+                $('.searched-wrapper').html(html)
             }
             })
     )
