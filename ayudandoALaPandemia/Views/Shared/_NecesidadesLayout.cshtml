@@ -37,12 +37,12 @@
                 
                 <!-- task notificatoin end -->
                 <!-- inbox notificatoin start-->
-                <li>
-                    @if (Session["email"] != null)
-                    {
+                @if (Session["email"] != null)
+                {
+                    <li>
                         @Session["email"].ToString();
-                    }
-                </li>
+                    </li>
+                }
                 <li id="mail_notificatoin_bar" class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <i class="icon-envelope-l"></i>

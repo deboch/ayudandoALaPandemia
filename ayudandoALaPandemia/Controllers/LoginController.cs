@@ -29,6 +29,7 @@ namespace ayudandoALaPandemia.Controllers
 
             if (usuario != null)
             {
+                // si esta todo ok grabo en el Session los datos del usuario
                 Session["id"] = usuario.IdUsuario;
                 Session["email"] = usuario.Email.ToString();
                 Session["username"] = usuario.UserName;
