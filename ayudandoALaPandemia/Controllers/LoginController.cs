@@ -9,17 +9,17 @@ namespace ayudandoALaPandemia.Controllers
         public ActionResult Index()
         {
             // carga la vista que esta en la carpeta Home
-            return View("~/Views/Home/Login.cshtml");
+            return View();
         }
 
         [HttpPost]
         public RedirectToRouteResult Success(FormCollection form)
         {
-            Usuarios user = new Usuarios();
+            Repositorios.Usuarios user = new Usuarios();
             user.Email = form["email"];
             user.Password = form["password"];
 
-            var usuario = loginServicios.logear(user);
+            Usuarios usuario = loginServicios.logear(user);
 
             if (usuario != null)
             {

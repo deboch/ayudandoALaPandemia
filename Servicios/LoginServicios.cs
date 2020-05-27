@@ -1,13 +1,12 @@
 ﻿
 using System.Collections.Generic;
-using Entidades;
 using Repositorios;
 
 namespace Servicios
 {
     public class LoginServicios
     {
-        private static List<Usuario> listaUsuario = new List<Usuario>();
+        private static List<Usuarios> listaUsuario = new List<Usuarios>();
         ManagerRepository managerRepository = new ManagerRepository();
 
         /*public static List<Usuario> traerTodosLosUsuarioActivos()
@@ -25,11 +24,11 @@ namespace Servicios
             return miListaDeUsuarioActivos;
         }*/
 
-        public Repositorios.Usuarios logear(Usuarios u)
+        public Usuarios logear(Usuarios u)
         {
             // List<Usuario> miListaUsuario = traerTodosLosUsuarioActivos();
             Usuarios user = managerRepository.usuarioRepository.obtenerUsuario(u.Email);
-            /*bool logeado = true;*/
+            /* bool logeado = true; */
             /*foreach (var user in miListaUsuario)
             {
                 if ((user.Username == u.Username || user.Email == u.Email) && user.Password == u.Password)

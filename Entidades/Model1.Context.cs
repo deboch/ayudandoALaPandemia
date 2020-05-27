@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Repositorios
+namespace Entidades
 {
     using System;
     using System.Data.Entity;

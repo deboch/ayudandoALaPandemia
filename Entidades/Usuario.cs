@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Entidades
 {
-    public class Usuario
+    public partial class Usuarios
     {
 
         public int Id { get; set; }
@@ -29,7 +29,8 @@ namespace Entidades
         public bool Activo { get; set; }
         public string Token { get; set; }
 
-        public Usuario(int id, string nombre, string apellido, DateTime fNacimiento, string userName, string email, string password, string tipoUsuario, DateTime fCreacion, bool activo, string token)
+        /*
+        public Usuarios(int id, string nombre, string apellido, DateTime fNacimiento, string userName, string email, string password, string tipoUsuario, DateTime fCreacion, bool activo, string token)
         {
             Id = id;
             Nombre = nombre;
@@ -43,9 +44,9 @@ namespace Entidades
             Activo = activo;
             Token = token;
         }
-        public static List<Usuario> traerTodosLosUsuarioActivos()
+        public static List<Usuarios> traerTodosLosUsuarioActivos()
         {
-            List<Usuario> miListaDeUsuarioActivos = new List<Usuario>();
+            List<Usuarios> miListaDeUsuarioActivos = new List<Usuarios>();
             foreach (var item in miListaDeUsuarioActivos)
             {
                 if (item.TipoUsuario == "Usuario" && item.Activo == true)
@@ -56,9 +57,9 @@ namespace Entidades
             return miListaDeUsuarioActivos;
         }
 
-        public static List<Usuario> traerTodosLosAdministradores()
+        public static List<Usuarios> traerTodosLosAdministradores()
         {
-            List<Usuario> traerTodosLosAdministradores = new List<Usuario>();
+            List<Usuarios> traerTodosLosAdministradores = new List<Usuarios>();
             foreach (var item in traerTodosLosAdministradores)
             {
                 if (item.TipoUsuario == "Administrador" && item.Activo == true)
@@ -71,7 +72,7 @@ namespace Entidades
 
         public class existeUsuario : ValidationAttribute
         {
-            List<Usuario> misUsuario = traerTodosLosUsuarioActivos();
+            List<Usuarios> misUsuario = traerTodosLosUsuarioActivos();
             public bool IsValid(Usuario u)
             {
                 bool resultado = true;
@@ -86,5 +87,6 @@ namespace Entidades
                 return resultado;
             }
         }
+        */
     }
 }

@@ -134,6 +134,13 @@
     <NavigationProperty Name="Necesidades" Relationship="Self.FK_Necesidades_Usuarios" FromRole="Usuarios" ToRole="Necesidades" />
     <NavigationProperty Name="NecesidadesValoraciones" Relationship="Self.FK_NecesidadesValoraciones_Usuarios" FromRole="Usuarios" ToRole="NecesidadesValoraciones" />
   </EntityType>
+  <EntityType Name="Test">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="id" Type="Int32" Nullable="false" />
+  </EntityType>
   <Association Name="FK_Denuncia_MotivoDenuncia">
     <End Role="MotivoDenuncia" Type="Self.MotivoDenuncia" Multiplicity="1" />
     <End Role="Denuncias" Type="Self.Denuncias" Multiplicity="*" />
@@ -290,7 +297,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="Context" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Denuncias" EntityType="Self.Denuncias" />
     <EntitySet Name="DonacionesInsumos" EntityType="Self.DonacionesInsumos" />
     <EntitySet Name="DonacionesMonetarias" EntityType="Self.DonacionesMonetarias" />
@@ -301,6 +308,7 @@
     <EntitySet Name="NecesidadesReferencias" EntityType="Self.NecesidadesReferencias" />
     <EntitySet Name="NecesidadesValoraciones" EntityType="Self.NecesidadesValoraciones" />
     <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+    <EntitySet Name="Test" EntityType="Self.Test" />
     <AssociationSet Name="FK_Denuncia_MotivoDenuncia" Association="Self.FK_Denuncia_MotivoDenuncia">
       <End Role="MotivoDenuncia" EntitySet="MotivoDenuncia" />
       <End Role="Denuncias" EntitySet="Denuncias" />

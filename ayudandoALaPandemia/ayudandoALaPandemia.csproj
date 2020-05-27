@@ -315,6 +315,8 @@
     <Content Include="Views\Registro\Save.cshtml" />
     <Content Include="Views\Registro\altaUsuario.cshtml" />
     <Content Include="Views\Necesidades\Home.cshtml" />
+    <Content Include="Views\Login__bkp\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />

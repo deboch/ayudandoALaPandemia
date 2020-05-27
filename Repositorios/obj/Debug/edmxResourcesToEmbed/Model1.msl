@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Context">
     <EntitySetMapping Name="Denuncias">
       <EntityTypeMapping TypeName="Model.Denuncias">
         <MappingFragment StoreEntitySet="Denuncias">
@@ -116,6 +116,14 @@
           <ScalarProperty Name="FechaCracion" ColumnName="FechaCracion" />
           <ScalarProperty Name="Activo" ColumnName="Activo" />
           <ScalarProperty Name="Token" ColumnName="Token" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Test">
+      <EntityTypeMapping TypeName="Model.Test">
+        <MappingFragment StoreEntitySet="Test">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

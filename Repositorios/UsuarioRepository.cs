@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Repositorios.DAL;
+using Repositorios;
 
 namespace Repositorios
 {
     public class UsuarioRepository
     {
-        Contexts Context;
-        public UsuarioRepository(Contexts context)
+        Context Context;
+        public UsuarioRepository(Context context)
         {
             this.Context = context;
         }
