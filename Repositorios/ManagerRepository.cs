@@ -9,7 +9,7 @@ namespace Repositorios
 {
     public class ManagerRepository
     {
-        public Context contexto;
+        protected Context contexto;
 
         // Aca cargar todos los repositorios
         public SearchRepository searchRepository;

@@ -6,6 +6,7 @@ namespace ayudandoALaPandemia.Controllers
     public class LoginController : BaseController
     {
 
+        [HttpGet]
         public ActionResult Index()
         {
             // carga la vista que esta en la carpeta Home
@@ -13,26 +14,27 @@ namespace ayudandoALaPandemia.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult Success(FormCollection form)
+        public ActionResult Index(Usuarios user)
         {
-            Repositorios.Usuarios user = new Usuarios();
-            user.Email = form["email"];
-            user.Password = form["password"];
-
-            Usuarios usuario = loginServicios.logear(user);
-
-            if (usuario != null)
+            // esto es feo!!
+            if (ModelState.IsValid)
             {
+                Usuarios usuario = loginServicios.logear(user);
+                if (usuario == null)
+                {
+                    return View(user);
+                }
                 // si esta todo ok grabo en el Session los datos del usuario
                 Session["id"] = usuario.IdUsuario;
                 Session["email"] = usuario.Email.ToString();
                 Session["username"] = usuario.UserName;
                 // redirijo a Index de HomeController
                 return RedirectToAction("Home", "Necesidades");
+                
             }
             else
             {
-                return RedirectToAction("Index");
+                return View(user);
             }
 
         }

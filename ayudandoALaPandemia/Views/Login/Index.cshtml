@@ -5,10 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using (Html.BeginForm("Success", "Login", FormMethod.Post))
+@using (Html.BeginForm("Index", "Login", FormMethod.Post))
 {
 
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
         <div class="col-md-10">
             Email: @Html.EditorFor(m => m.Email)
@@ -18,6 +17,7 @@
             @Html.ValidationMessageFor(m => m.Password)
         </div>
     </div>
+    @Html.ValidationSummary(true, "errors", new { @class = "text-danger" })
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">

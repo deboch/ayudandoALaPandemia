@@ -4,12 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Repositorios;
 
 namespace Repositorios
 {
     [MetadataType(typeof(UsuariosMetadata))]
-    partial class Usuarios
+    public partial class Usuarios
     {
     }
 }

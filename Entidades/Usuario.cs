@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Entidades
 {
-    public partial class Usuarios
+    public class Usuario
     {
 
         public int Id { get; set; }
@@ -17,11 +17,15 @@ namespace Entidades
         public DateTime fechaNacimiento { get; set; }
         [Required(ErrorMessage = "Por favor, elegir nombre para su usuario")]
         public string Username { get; set; }
+        
         [EmailAddress(ErrorMessage = "Ingrese un mail válido")]
+        [Required]
         public string Email { get; set; }
+        
         [Required(ErrorMessage = "Por favor ingrese su clave")]
         [Range(8, 30, ErrorMessage = "Su clave debe ser mayor a 8 y menor a 30")]
         public string Password { get; set; }
+        
         public string ConfirmPass { get; set; }
 
         public string TipoUsuario { get; set; }

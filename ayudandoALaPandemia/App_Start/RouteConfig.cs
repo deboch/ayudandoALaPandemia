@@ -23,7 +23,7 @@ namespace ayudandoALaPandemia
 
             routes.MapRoute(
                 name: "Login",
-                url: "login/{action}/{id}",
+                url: "login/{action}",
                 defaults: new { controller = "Login", action = "Index", id = UrlParameter.Optional }
             );
 
