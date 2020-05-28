@@ -13,10 +13,10 @@ namespace Repositorios
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Entities : DbContext
+    public partial class Context : DbContext
     {
-        public Entities()
-            : base("name=Entities")
+        public Context()
+            : base("name=Context")
         {
         }
     
@@ -35,5 +35,6 @@ namespace Repositorios
         public virtual DbSet<NecesidadesReferencias> NecesidadesReferencias { get; set; }
         public virtual DbSet<NecesidadesValoraciones> NecesidadesValoraciones { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
+        public virtual DbSet<Test> Test { get; set; }
     }
 }

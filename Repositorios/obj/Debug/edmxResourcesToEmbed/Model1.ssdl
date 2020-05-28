@@ -91,6 +91,15 @@
     <Property Name="IdNecesidad" Type="int" Nullable="false" />
     <Property Name="Valoracion" Type="bit" Nullable="false" />
   </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'TP-20201C.dbo.Test' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="Test">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="name" Type="nchar" MaxLength="10" />
+    <Property Name="id" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="Usuarios">
     <Key>
       <PropertyRef Name="IdUsuario" />
@@ -275,6 +284,12 @@
     <EntitySet Name="NecesidadesReferencias" EntityType="Self.NecesidadesReferencias" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NecesidadesValoraciones" EntityType="Self.NecesidadesValoraciones" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Test" EntityType="Self.Test" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Test].[name] AS [name], 
+    [Test].[id] AS [id]
+    FROM [dbo].[Test] AS [Test]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_Denuncia_MotivoDenuncia" Association="Self.FK_Denuncia_MotivoDenuncia">
       <End Role="MotivoDenuncia" EntitySet="MotivoDenuncia" />
       <End Role="Denuncias" EntitySet="Denuncias" />

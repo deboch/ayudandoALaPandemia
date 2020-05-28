@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace ayudandoALaPandemia
@@ -20,7 +16,19 @@ namespace ayudandoALaPandemia
             );
 
             routes.MapRoute(
-                name: "Default",
+                name: "Necesidades",
+                url: "necesidades/{action}/{id}",
+                defaults: new { controller = "Necesidades", action = "Home", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Login",
+                url: "login/{action}",
+                defaults: new { controller = "Login", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Home",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );

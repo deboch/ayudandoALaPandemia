@@ -5,16 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Entidades;
 using Repositorios;
-using Repositorios.DAL;
 
 namespace Servicios
 {
     public class SearchServicios
     {
         ManagerRepository managerRepository = new ManagerRepository();
-        public List<Repositorios.Necesidades> ObtenerNecesidades()
+        public List<Repositorios.Necesidades> ObtenerNecesidades(int userId, string keyword)
         {
-            return managerRepository.searchRepository.ObtenerNecesidades();
+            return managerRepository.searchRepository.ObtenerNecesidades(userId, keyword);
         }
     }
 }
