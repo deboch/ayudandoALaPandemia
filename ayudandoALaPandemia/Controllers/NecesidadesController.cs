@@ -10,7 +10,7 @@ namespace ayudandoALaPandemia.Controllers
     public class NecesidadesController : BaseController
     {
         // GET: Necesidades
-        public ActionResult Home (string keyword)
+        public ActionResult Index (string keyword)
         {
             if (keyword != null)
             {
@@ -18,14 +18,14 @@ namespace ayudandoALaPandemia.Controllers
             }
             if (Session["email"] == null)
             {
-                return RedirectToAction("Index", "Home");
+                return View("Index", "Home");
             }
         }
 
         [HttpGet]
         public ActionResult Crear()
         {
-            return View("Crear", "Necesidades");
+            return View();
         }
 
         [HttpPost]
