@@ -10,9 +10,6 @@ C:\Users\a309580\Projects\ayudandoALaPandemia\Repositorios\bin\Debug\EntityFrame
 C:\Users\a309580\Projects\ayudandoALaPandemia\Repositorios\obj\Debug\Repositorios.csproj.CopyComplete
 C:\Users\a309580\Projects\ayudandoALaPandemia\Repositorios\obj\Debug\Repositorios.dll
 C:\Users\a309580\Projects\ayudandoALaPandemia\Repositorios\obj\Debug\Repositorios.pdb
-C:\Users\a309580\Projects\ayudandoALaPandemia\Repositorios\bin\Debug\Entidades.dll
-C:\Users\a309580\Projects\ayudandoALaPandemia\Repositorios\bin\Debug\Entidades.pdb
-C:\Users\a309580\Projects\ayudandoALaPandemia\Repositorios\bin\Debug\Entidades.dll.config
 C:\Users\Administrator\Desktop\ayudandoALaPandemia\Repositorios\obj\Debug\Repositorios.csprojAssemblyReference.cache
 C:\Users\Administrator\Desktop\ayudandoALaPandemia\Repositorios\obj\Debug\Repositorios.csproj.CoreCompileInputs.cache
 C:\Users\Administrator\Desktop\ayudandoALaPandemia\Repositorios\obj\Debug\Repositorios.dll

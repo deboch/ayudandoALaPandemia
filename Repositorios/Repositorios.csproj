@@ -71,6 +71,7 @@
     <Compile Include="DonacionesMonetarias.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="ICrud.cs" />
     <Compile Include="ManagerRepository.cs" />
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
