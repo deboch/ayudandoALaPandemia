@@ -9,11 +9,17 @@ namespace Repositorios
 {
     public class UsuariosMetadata
     {
-        [Required(ErrorMessage = "Ingrese un mail válido")]
+        [Required]
+        [EmailAddress(ErrorMessage = "Ingrese un mail válido")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Por favor ingrese su clave")]
-        [Range(1, 5, ErrorMessage = "Su clave debe ser mayor a 1 y menor a 5")]
+        [StringLength(8, MinimumLength = 1,ErrorMessage = "japiiiiiiish basura, poné la clave bien.")]
         public string Password { get; set; }
+
+        [Required(ErrorMessage = "Confirm Password is required")]
+        [StringLength(255, ErrorMessage = "japiiiiiiish basura, validá la clave bien", MinimumLength = 5)]
+        [DataType(DataType.Password)]
+        [Compare("Password")]
+        public string ConfirmPassword { get; set; }
     }
 }

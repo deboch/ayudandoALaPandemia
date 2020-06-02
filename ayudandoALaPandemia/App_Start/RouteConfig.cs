@@ -28,10 +28,17 @@ namespace ayudandoALaPandemia
             );
 
             routes.MapRoute(
+               name: "Registro",
+               url: "registro/{action}",
+               defaults: new { controller = "Registro", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "Home",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
 
         }
     }

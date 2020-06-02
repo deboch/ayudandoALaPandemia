@@ -10,12 +10,14 @@ namespace ayudandoALaPandemia.Controllers
         public LoginServicios loginServicios;
         public HomeServicios homeServicios;
         public NecesidadesServicios necesidadesServicios;
+        public RegistroServicios registroServicios;
         public BaseController()
         {
             this.searchServicios = new SearchServicios();
             this.loginServicios = new LoginServicios();
             this.homeServicios = new HomeServicios();
             this.necesidadesServicios = new NecesidadesServicios();
+            this.registroServicios = new RegistroServicios();
         }
     }
 }

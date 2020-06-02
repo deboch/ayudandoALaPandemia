@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Configuration;
 using Repositorios;
-using Entidades;
 using System.Data.SqlClient;
 
 namespace Repositorios
