@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Denuncias">
           <Key>
             <PropertyRef Name="IdDenuncia" />
@@ -95,15 +95,6 @@
           <Property Name="IdUsuario" Type="int" Nullable="false" />
           <Property Name="IdNecesidad" Type="int" Nullable="false" />
           <Property Name="Valoracion" Type="bit" Nullable="false" />
-        </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'TP-20201C.dbo.Test' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
-        <EntityType Name="Test">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="name" Type="nchar" MaxLength="10" />
-          <Property Name="id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -289,12 +280,6 @@ advertencia 6002: La tabla o vista 'TP-20201C.dbo.Test' no tiene definida ningun
           <EntitySet Name="NecesidadesReferencias" EntityType="Self.NecesidadesReferencias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NecesidadesValoraciones" EntityType="Self.NecesidadesValoraciones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Test" EntityType="Self.Test" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Test].[name] AS [name], 
-    [Test].[id] AS [id]
-    FROM [dbo].[Test] AS [Test]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Denuncia_MotivoDenuncia" Association="Self.FK_Denuncia_MotivoDenuncia">
             <End Role="MotivoDenuncia" EntitySet="MotivoDenuncia" />
             <End Role="Denuncias" EntitySet="Denuncias" />
@@ -348,7 +333,8 @@ advertencia 6002: La tabla o vista 'TP-20201C.dbo.Test' no tiene definida ningun
             <End Role="NecesidadesValoraciones" EntitySet="NecesidadesValoraciones" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -485,13 +471,6 @@ advertencia 6002: La tabla o vista 'TP-20201C.dbo.Test' no tiene definida ningun
           <NavigationProperty Name="DonacionesMonetarias" Relationship="Self.FK_DonacionesMonetarias_Usuarios" FromRole="Usuarios" ToRole="DonacionesMonetarias" />
           <NavigationProperty Name="Necesidades" Relationship="Self.FK_Necesidades_Usuarios" FromRole="Usuarios" ToRole="Necesidades" />
           <NavigationProperty Name="NecesidadesValoraciones" Relationship="Self.FK_NecesidadesValoraciones_Usuarios" FromRole="Usuarios" ToRole="NecesidadesValoraciones" />
-        </EntityType>
-        <EntityType Name="Test">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="id" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_Denuncia_MotivoDenuncia">
           <End Role="MotivoDenuncia" Type="Self.MotivoDenuncia" Multiplicity="1" />
@@ -660,7 +639,6 @@ advertencia 6002: La tabla o vista 'TP-20201C.dbo.Test' no tiene definida ningun
           <EntitySet Name="NecesidadesReferencias" EntityType="Self.NecesidadesReferencias" />
           <EntitySet Name="NecesidadesValoraciones" EntityType="Self.NecesidadesValoraciones" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
-          <EntitySet Name="Test" EntityType="Self.Test" />
           <AssociationSet Name="FK_Denuncia_MotivoDenuncia" Association="Self.FK_Denuncia_MotivoDenuncia">
             <End Role="MotivoDenuncia" EntitySet="MotivoDenuncia" />
             <End Role="Denuncias" EntitySet="Denuncias" />
@@ -838,14 +816,6 @@ advertencia 6002: La tabla o vista 'TP-20201C.dbo.Test' no tiene definida ningun
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Test">
-            <EntityTypeMapping TypeName="Model.Test">
-              <MappingFragment StoreEntitySet="Test">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -863,7 +833,7 @@ advertencia 6002: La tabla o vista 'TP-20201C.dbo.Test' no tiene definida ningun
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
