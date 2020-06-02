@@ -24,9 +24,28 @@ namespace Repositorios
             throw new NotImplementedException();
         }
 
-        public int Crear(Usuarios obj)
+        public int Crear(Usuarios u)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Context.Usuarios.Add(u);
+                Context.SaveChanges();
+                return u.IdUsuario;
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
         }
 
         public Usuarios Modificar(Usuarios obj)
