@@ -1,0 +1,92 @@
+﻿@model Repositorios.Necesidades
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
+}
+
+<aside>
+    <div id="sidebar" class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu">
+            <li class="active">
+                <a class="" href="">
+                    <i class="icon_house_alt"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            @if (Session["email"] == null)
+            {
+                <li class="sub-menu">
+                    @Html.ActionLink("Iniciar sesión", "Index", "Login")
+                </li>
+            }
+            <li>
+                @Html.ActionLink("Crear Necesidad", "Login", "Home")
+            </li>
+            <li>
+                @Html.ActionLink("Denuncias", "Login", "Home")
+            </li>
+            <li>
+                @Html.ActionLink("Acerca de", "Login", "Home")
+
+            </li>
+            <li>
+                @Html.ActionLink("Salir", "Login", "Home")
+            </li>
+        </ul>
+        <!-- sidebar menu end-->
+    </div>
+</aside>
+<!--sidebar end-->
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper">
+        <!--overview start-->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header">Bienvenidos</h3>
+                <!-- <ol class="breadcrumb">
+                         <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
+                         <li><i class="fa fa-laptop"></i>Dashboard</li>
+                     </ol>-->
+            </div>
+        </div>
+        <div class="row"></div>
+        <div class="row">
+
+            <div class="col-lg-9 col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2><i class="fa fa-flag-o red"></i><strong>Las necesidades mas valoradas</strong></h2>
+                        <div class="panel-actions">
+                            <a href="index.html#" class="btn-setting"><i class="fa fa-rotate-right"></i></a>
+                            <a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                            <a href="index.html#" class="btn-close"><i class="fa fa-times"></i></a>
+                        </div>
+                    </div>
+                    <div class="searched-wrapper"></div>
+                </div>
+
+            </div>
+            <!--/col-->
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-md-3">
+
+
+            </div>
+            <!--/col-->
+            <div class="col-md-3">
+
+
+
+            </div>
+            <!--/col-->
+
+        </div>
+        <div class="row"></div>
+
+    </section>
+</section>
