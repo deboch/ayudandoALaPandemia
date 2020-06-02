@@ -36,11 +36,13 @@ namespace Servicios
                     return logeado;
                 }
             }*/
-            if ((user.UserName == u.UserName || user.Email == u.Email) && user.Password == u.Password)
+            //    if ((user.UserName == u.UserName || user.Email == u.Email) && user.Password == u.Password)
+            if (user.Email == u.Email && user.Password == u.Password)
             {
                 return user;
             }
-            if ((user.UserName == u.UserName || user.Email == u.Email) && user.Password != u.Password)
+            //if ((user.UserName == u.UserName || user.Email == u.Email) && user.Password != u.Password)
+            if (user.Email == u.Email && user.Password == u.Password)
             {
                 // aca tal vez habria que arrojar una exception, veremos
                 return null;
