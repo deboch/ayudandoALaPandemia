@@ -1,7 +1,7 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿@model Repositorios.Necesidades
+
 @{
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
 }
 
@@ -17,9 +17,9 @@
             </li>
             @if (Session["email"] == null)
             {
-            <li class="sub-menu">
-                @Html.ActionLink("Iniciar sesión", "Index", "Login")
-            </li>
+                <li class="sub-menu">
+                    @Html.ActionLink("Iniciar sesión", "Index", "Login")
+                </li>
             }
             <li>
                 @Html.ActionLink("Crear Necesidad", "Login", "Home")

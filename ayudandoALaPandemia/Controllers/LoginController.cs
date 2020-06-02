@@ -29,7 +29,7 @@ namespace ayudandoALaPandemia.Controllers
                 Session["email"] = usuario.Email.ToString();
                 Session["username"] = usuario.UserName;
                 // redirijo a Index de HomeController
-                return RedirectToAction("Home", "Necesidades");
+                return RedirectToAction("Index", "Necesidades");
                 
             }
             else
