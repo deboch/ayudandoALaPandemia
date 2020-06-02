@@ -52,7 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HomeServicios.cs" />
+    <Compile Include="ICrud.cs" />
     <Compile Include="LoginServicios.cs" />
+    <Compile Include="NecesidadesServicios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegistroServicios.cs" />
     <Compile Include="SearchServicios.cs" />
