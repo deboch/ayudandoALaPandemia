@@ -9,12 +9,18 @@ using System.Threading.Tasks;
 
 namespace Servicios
 {
-    public class RegistroServicios
+    public class RegistroServicios : ICrud<Usuarios>
     {
         private static List<Usuarios> listaUsuario = new List<Usuarios>();
         ManagerRepository managerRepository = new ManagerRepository();
 
-        public void altaUsuario(Usuarios u)
+
+        public int Borrar(Usuarios obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Crear(Usuarios u)
         {
             Usuarios userPrueba = new Usuarios();
             // Valido si ya existe un usuario con ese userName y con ese Mail
@@ -30,7 +36,7 @@ namespace Servicios
                     nulleoLosNotNull(u);
                     u.FechaCracion = DateTime.Now;
                     // Guardo el usuario
-                    managerRepository.usuarioRepository.altaUsuario(u);
+                    return managerRepository.usuarioRepository.Crear(u);
                 }
                 catch (DbEntityValidationException dbEx)
                 {
@@ -59,6 +65,11 @@ namespace Servicios
         return id;
         }
 
+        public Usuarios Modificar(Usuarios obj)
+        {
+            throw new NotImplementedException();
+        }
+
         public void nulleoLosNotNull(Usuarios u)
         {
             u.FechaNacimiento = DateTime.Now;
@@ -66,5 +77,14 @@ namespace Servicios
             u.Token = "abc123";
         }
 
+        public Usuarios ObtenerPorId(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Usuarios> ObtenerTodos()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
