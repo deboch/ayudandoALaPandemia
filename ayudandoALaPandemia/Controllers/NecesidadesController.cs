@@ -33,6 +33,11 @@ namespace ayudandoALaPandemia.Controllers
         [HttpPost]
         public int Crear(Necesidades necesidad)
         {
+            List<Necesidades> necesidadesDelUsuario = necesidadesServicios.ObtenerPorUserId(necesidad.IdUsuarioCreador);
+            if (necesidadesDelUsuario.Count >= 3)
+            {
+                return 0;
+            }
             return necesidadesServicios.Crear(necesidad);
         }
     }
