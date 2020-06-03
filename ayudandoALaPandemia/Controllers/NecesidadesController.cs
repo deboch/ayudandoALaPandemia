@@ -46,5 +46,11 @@ namespace ayudandoALaPandemia.Controllers
             }
             return necesidadesServicios.Crear(necesidad);
         }
+
+        [HttpGet]
+        public ActionResult Detalle(int? id)
+        {
+            return View();
+        }
     }
 }
