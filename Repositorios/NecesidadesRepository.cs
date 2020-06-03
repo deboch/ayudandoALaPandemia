@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data.Entity.Core;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,6 +47,21 @@ namespace Repositorios
         public Necesidades ObtenerPorId(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public List<Necesidades> ObtenerPorUserId(int id)
+        {
+            try
+            {
+                return Context.Necesidades
+                    .Where(b => (int)b.IdUsuarioCreador == (int)id)
+                    .ToList();
+
+            } catch (EntityException)
+            {
+
+                throw new EntityException();
+            }
         }
     }
 }

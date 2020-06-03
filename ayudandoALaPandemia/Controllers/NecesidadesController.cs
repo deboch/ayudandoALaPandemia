@@ -33,7 +33,13 @@ namespace ayudandoALaPandemia.Controllers
         [HttpPost]
         public int Crear(Necesidades necesidad)
         {
+            Usuarios usuarioActual = registroServicios.ObtenerPorId(necesidad.IdUsuarioCreador);
             List<Necesidades> necesidadesDelUsuario = necesidadesServicios.ObtenerPorUserId(necesidad.IdUsuarioCreador);
+            if (usuarioActual.Foto == null)
+            {
+                ViewBag.Incompleto = "Completa tu perfil";
+
+            }
             if (necesidadesDelUsuario.Count >= 3)
             {
                 return 0;
