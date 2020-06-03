@@ -37,11 +37,13 @@ namespace ayudandoALaPandemia.Controllers
             List<Necesidades> necesidadesDelUsuario = necesidadesServicios.ObtenerPorUserId(necesidad.IdUsuarioCreador);
             if (usuarioActual.Foto == null)
             {
-                ViewBag.Incompleto = "Completa tu perfil";
+                ViewBag.Incompleto = "Completa tu perfil antes de crear una necesidad";
+                return 0;
 
             }
             if (necesidadesDelUsuario.Count >= 3)
             {
+                ViewBag.NoPermitir = "Ya posee 3 necesidades abiertas";
                 return 0;
             }
             return necesidadesServicios.Crear(necesidad);
