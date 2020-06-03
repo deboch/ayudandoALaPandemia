@@ -11,7 +11,6 @@ namespace Repositorios
     {
         protected Context contexto;
 
-        // Aca cargar todos los repositorios
         public SearchRepository searchRepository;
         public UsuarioRepository usuarioRepository;
         public NecesidadesRepository necesidadesRepository;

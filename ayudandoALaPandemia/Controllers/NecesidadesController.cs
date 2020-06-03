@@ -33,7 +33,26 @@ namespace ayudandoALaPandemia.Controllers
         [HttpPost]
         public int Crear(Necesidades necesidad)
         {
+            Usuarios usuarioActual = registroServicios.ObtenerPorId(necesidad.IdUsuarioCreador);
+            List<Necesidades> necesidadesDelUsuario = necesidadesServicios.ObtenerPorUserId(necesidad.IdUsuarioCreador);
+            if (usuarioActual.Foto == null)
+            {
+                ViewBag.Incompleto = "Completa tu perfil antes de crear una necesidad";
+                return 0;
+
+            }
+            if (necesidadesDelUsuario.Count >= 3)
+            {
+                ViewBag.NoPermitir = "Ya posee 3 necesidades abiertas";
+                return 0;
+            }
             return necesidadesServicios.Crear(necesidad);
+        }
+
+        [HttpGet]
+        public ActionResult Detalle(int? id)
+        {
+            return View();
         }
     }
 }

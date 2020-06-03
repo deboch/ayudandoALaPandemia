@@ -18,7 +18,7 @@ namespace ayudandoALaPandemia.Controllers
         {
             if(ModelState.IsValid)
             {
-                registroServicios.altaUsuario(u);
+                registroServicios.Crear(u);
                 return RedirectToAction("Home", "Necesidades");
             }
             return View(u);

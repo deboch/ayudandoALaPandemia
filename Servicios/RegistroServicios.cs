@@ -51,6 +51,7 @@ namespace Servicios
                     }
                 }
             }
+            return 0;
         }
 
         public int generaId()
@@ -79,7 +80,7 @@ namespace Servicios
 
         public Usuarios ObtenerPorId(int id)
         {
-            throw new NotImplementedException();
+            return managerRepository.usuarioRepository.ObtenerPorId(id);
         }
 
         public List<Usuarios> ObtenerTodos()
