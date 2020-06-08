@@ -72,7 +72,7 @@ namespace Repositorios
 
         public List<Necesidades> ObtenerTodos()
         {
-            throw new NotImplementedException();
+            return Context.Necesidades.ToList();
         }
 
         public List<Repositorios.Necesidades> obtenerMasValoradas ()
