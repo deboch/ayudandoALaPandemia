@@ -19,7 +19,7 @@ namespace Repositorios
             this.Context = context;
         }
 
-        public int Borrar(Usuarios obj)
+        public int Borrar(int id)
         {
             throw new NotImplementedException();
         }

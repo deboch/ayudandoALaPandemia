@@ -49,6 +49,18 @@ namespace ayudandoALaPandemia.Controllers
             return necesidadesServicios.Crear(necesidad);
         }
 
+        [HttpPost]
+        public int Eliminar(int id)
+        {
+            return necesidadesServicios.Borrar(id);
+        }
+
+        [HttpPost]
+        public Necesidades Modificar(Necesidades necesidad)
+        {
+            return necesidadesServicios.Modificar(necesidad);
+        }
+
         [HttpGet]
         public ActionResult Detalle(int? id)
         {

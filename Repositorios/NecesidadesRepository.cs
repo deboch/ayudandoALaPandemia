@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.Entity.Core;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,9 +18,40 @@ namespace Repositorios
             this.Context = context;
         }
 
-        public int Borrar(Necesidades obj)
+        public int Borrar(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Necesidades necesidad = Context.Necesidades.Find(id);
+                int IdNecesidad = necesidad.IdNecesidad;
+                foreach (var p in necesidad.NecesidadesDonacionesInsumos.Where(s => s.IdNecesidad == IdNecesidad).ToList())
+                {
+                    Context.NecesidadesDonacionesInsumos.Remove(p);
+                }
+                foreach (var p in necesidad.NecesidadesReferencias.Where(s => s.IdNecesidad == IdNecesidad).ToList())
+                {
+                    Context.NecesidadesReferencias.Remove(p);
+                }
+                foreach (var p in necesidad.NecesidadesDonacionesMonetarias.Where(s => s.IdNecesidad == IdNecesidad).ToList())
+                {
+                    Context.NecesidadesDonacionesMonetarias.Remove(p);
+                }
+                foreach (var p in necesidad.NecesidadesValoraciones.Where(s => s.IdNecesidad == IdNecesidad).ToList())
+                {
+                    Context.NecesidadesValoraciones.Remove(p);
+                }
+                foreach (var p in necesidad.Denuncias.Where(s => s.IdNecesidad == IdNecesidad).ToList())
+                {
+                    Context.Denuncias.Remove(p);
+                }
+                Context.Necesidades.Remove(necesidad);
+                Context.SaveChanges();
+                return IdNecesidad;
+            } catch (DbUpdateException)
+            {
+                new DbUpdateException("no se pudo borrar la entidad");
+                throw;
+            }
         }
 
         public int Crear(Necesidades necesidad)
@@ -29,9 +61,13 @@ namespace Repositorios
             return necesidad.IdNecesidad;
         }
 
-        public Necesidades Modificar(Necesidades obj)
+        public Necesidades Modificar(Necesidades necesidadModificada)
         {
-            throw new NotImplementedException();
+            Necesidades necesidadActual = Context.Necesidades.Find(necesidadModificada.IdNecesidad);
+            necesidadActual = necesidadModificada;
+            Context.Necesidades.Add(necesidadActual);
+            Context.SaveChanges();
+            return necesidadModificada;
         }
 
         public List<Necesidades> ObtenerTodos()

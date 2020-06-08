@@ -12,9 +12,9 @@ namespace Servicios
     public class NecesidadesServicios : ICrud<Necesidades>
     {
         ManagerRepository managerRepository = new ManagerRepository();
-        public int Borrar(Necesidades obj)
+        public int Borrar(int id)
         {
-            throw new NotImplementedException();
+            return managerRepository.necesidadesRepository.Borrar(id);
         }
 
         public int Crear(Necesidades necesidad)
@@ -73,9 +73,9 @@ namespace Servicios
             return managerRepository.necesidadesRepository.Crear(nuevaNecesidad);
         }
 
-        public Necesidades Modificar(Necesidades obj)
+        public Necesidades Modificar(Necesidades necesidad)
         {
-            throw new NotImplementedException();
+            return managerRepository.necesidadesRepository.Modificar(necesidad);
         }
 
         public Necesidades ObtenerPorId(int id)
@@ -88,9 +88,9 @@ namespace Servicios
             throw new NotImplementedException();
         }
 
-        public List<Necesidades> ObtenerPorUserId(int id)
+        public List<Necesidades> ObtenerPorUserId(int userId)
         {
-            return managerRepository.necesidadesRepository.ObtenerPorUserId(id);
+            return managerRepository.necesidadesRepository.ObtenerPorUserId(userId);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Servicios
         ManagerRepository managerRepository = new ManagerRepository();
 
 
-        public int Borrar(Usuarios obj)
+        public int Borrar(int id)
         {
             throw new NotImplementedException();
         }
