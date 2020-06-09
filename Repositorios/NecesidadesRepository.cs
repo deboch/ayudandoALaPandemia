@@ -99,11 +99,24 @@ namespace Repositorios
             }
         }
 
+        public List<NecesidadesValoraciones> obtenerTotalValoraciones(int idNecesidad)
+        {
+            try
+            {
+                List<NecesidadesValoraciones> valoraciones = Context.NecesidadesValoraciones.Where(v => v.IdNecesidad == idNecesidad).ToList();
+                return valoraciones;
+            }
+            catch (DbUpdateException)
+            {
+                new DbUpdateException("falló en obtener valoraciones");
+                throw;
+            }
+        }
+
         public bool Valorar(int like, int userId, int idNecesidad)
         {
             try
             {
-                Necesidades necesidad = Context.Necesidades.Find(idNecesidad);
                 NecesidadesValoraciones valoracion = new NecesidadesValoraciones();
                 NecesidadesValoraciones miValoracion = Context.NecesidadesValoraciones.Where(v => v.IdUsuario == userId && v.IdNecesidad == idNecesidad).FirstOrDefault();
                 if (miValoracion != null)
@@ -124,6 +137,17 @@ namespace Repositorios
                 new DbUpdateException("no se pudo agregar la valoracion");
                 throw;
             }
+        }
+
+        public int CalcularPorcentaje (int idNecesidad)
+        {
+            Necesidades necesidad = Context.Necesidades.Find(idNecesidad);
+            int totalLike = Context.NecesidadesValoraciones.Where(v => v.Valoracion == true).ToList().Count();
+            int total = Context.NecesidadesValoraciones.Where(v => v.IdNecesidad == idNecesidad).ToList().Count();
+            int porcentaje = (totalLike / total) * 100;
+            necesidad.Valoracion = porcentaje;
+            Context.SaveChanges();
+            return porcentaje;
         }
     }
 }

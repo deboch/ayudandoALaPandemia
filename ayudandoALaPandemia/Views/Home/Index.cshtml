@@ -111,7 +111,10 @@
                                             <td>@p.Nombre</td>
                                             <td>@p.Descripcion</td>
                                             <td>@p.Estado</td>
-                                            <td>@p.Valoracion</td>
+                                            @if (p.Valoracion != null)
+                                            {
+                                                <td>aceptacion: @p.Valoracion%</td>
+                                            }
                                         </tr>
                                      }
                                     </tbody>

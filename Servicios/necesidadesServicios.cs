@@ -75,7 +75,29 @@ namespace Servicios
 
         public bool Valorar(int like, int userId, int idNecesidad)
         {
-            return managerRepository.necesidadesRepository.Valorar(like, userId, idNecesidad);
+
+            bool valoracion = managerRepository.necesidadesRepository.Valorar(like, userId, idNecesidad);
+            int calcularPorcentaje = managerRepository.necesidadesRepository.CalcularPorcentaje(idNecesidad);
+            return valoracion;
+        }
+
+        public int CalcularPorcentaje (int idNecesidad)
+        {
+            int valoracionesLike =
+                managerRepository
+                .necesidadesRepository
+                .obtenerTotalValoraciones(idNecesidad)
+                .Where(v => v.Valoracion == true)
+                .ToList()
+                .Count;
+            int valoracionesTotal =
+                managerRepository
+                .necesidadesRepository
+                .obtenerTotalValoraciones(idNecesidad)
+                .ToList()
+                .Count;
+            int porcentaje = (valoracionesLike / valoracionesTotal) * 100;
+            return porcentaje;
         }
 
         public Necesidades Modificar(Necesidades necesidad)
