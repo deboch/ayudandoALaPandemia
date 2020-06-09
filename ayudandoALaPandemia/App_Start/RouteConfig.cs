@@ -11,7 +11,7 @@ namespace ayudandoALaPandemia
 
             routes.MapRoute(
                 name: "Search",
-                url: "api/search",
+                url: "api/{action}",
                 defaults: new { controller = "Search", action = "Search" }
             );
 
