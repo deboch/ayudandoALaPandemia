@@ -95,8 +95,34 @@ namespace Repositorios
 
             } catch (EntityException)
             {
-
                 throw new EntityException();
+            }
+        }
+
+        public bool Valorar(int like, int userId, int idNecesidad)
+        {
+            try
+            {
+                Necesidades necesidad = Context.Necesidades.Find(idNecesidad);
+                NecesidadesValoraciones valoracion = new NecesidadesValoraciones();
+                NecesidadesValoraciones miValoracion = Context.NecesidadesValoraciones.Where(v => v.IdUsuario == userId && v.IdNecesidad == idNecesidad).FirstOrDefault();
+                if (miValoracion != null)
+                {
+                    miValoracion.Valoracion = like == 1;
+                    Context.SaveChanges();
+                    return like == 1;
+                }
+                valoracion.IdUsuario = userId;
+                valoracion.IdNecesidad = idNecesidad;
+                valoracion.Valoracion = like == 1;
+                Context.NecesidadesValoraciones.Add(valoracion);
+                Context.SaveChanges();
+                return like == 1;
+            }
+            catch (DbUpdateException)
+            {
+                new DbUpdateException("no se pudo agregar la valoracion");
+                throw;
             }
         }
     }
