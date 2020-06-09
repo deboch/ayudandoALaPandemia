@@ -73,6 +73,11 @@ namespace Servicios
             return managerRepository.necesidadesRepository.Crear(nuevaNecesidad);
         }
 
+        public bool Valorar(int like, int userId, int idNecesidad)
+        {
+            return managerRepository.necesidadesRepository.Valorar(like, userId, idNecesidad);
+        }
+
         public Necesidades Modificar(Necesidades necesidad)
         {
             return managerRepository.necesidadesRepository.Modificar(necesidad);

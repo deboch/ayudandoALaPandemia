@@ -1,4 +1,12 @@
 ﻿$(document).ready(function () {
+    $(".searched-wrapper").on("click", ".like", function (event) {
+        const idNecesidad = $('.idNecesidad').attr('id');
+        onValue(1, idNecesidad);
+    });
+    $(".searched-wrapper").on("click", ".dislike", function (event) {
+        const idNecesidad = $('.idNecesidad').attr('id');
+        onValue(0, idNecesidad);
+    });
     $("#form-search").submit(function(event) {
         event.preventDefault();
         const search_field = $('#search-field').val();
@@ -26,9 +34,13 @@ const getNecesidades = async (obj = {}) => {
                 const html = jsonResponse.map(function (necesidad) {
                     return (
                         `<div class='card'>
-                            <span class='card-title'>${necesidad.IdNecesidad}</span>
-                            <p class='card-text'> ${necesidad.Nombre} </p>
+                            <span id=${necesidad.IdNecesidad} class='idNecesidad card-title'>${necesidad.IdNecesidad}</span>
+                            <p class='card-text'>${necesidad.Nombre}</p>
                             <p>${necesidad.Descripcion}</p>
+                            <div id="values" class="flex">
+                                <button id='like' class='like'>like</button>
+                                <button id='dislike' class='dislike'>dislike</button>
+                            </div>
                         </div>`
                     )
                 })
@@ -37,4 +49,21 @@ const getNecesidades = async (obj = {}) => {
             }
             })
     )
+}
+
+const onValue = async (like, idNecesidad) => {
+    return (
+        await
+            $.ajax({
+                type: 'post',
+                url: `/necesidades/valorar`,
+                data: {
+                    like: like,
+                    idNecesidad: idNecesidad
+                },
+                success: function (response) {
+                    console.log(response)
+                }
+            })
+    );
 }

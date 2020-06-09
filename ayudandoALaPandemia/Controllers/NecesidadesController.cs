@@ -66,5 +66,17 @@ namespace ayudandoALaPandemia.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public bool Valorar(int like, int idNecesidad)
+        {
+            int userId = (int)Session["id"];
+            if(userId == null)
+            {
+                return false;
+            }
+            return necesidadesServicios.Valorar(like, userId, idNecesidad);
+        }
+
     }
 }

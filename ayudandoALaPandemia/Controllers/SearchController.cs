@@ -18,5 +18,6 @@ namespace ayudandoALaPandemia.Controllers
                         ReferenceLoopHandling = ReferenceLoopHandling.Ignore
                     });
         }
+
     }
 }
