@@ -17,6 +17,13 @@ namespace ayudandoALaPandemia.Controllers
             {
                 return RedirectToAction("Index", "Search", new { keyword });
             }*/
+            if (Session != null)
+            {
+                int userId = (int)Session["id"];
+                List<Necesidades> misNecesidades = necesidadesServicios.ObtenerPorUserId(userId);
+                ViewBag.misNecesidades = misNecesidades;
+            }
+
             if (Session["email"] == null)
             {
                 return View("Index", "Home");

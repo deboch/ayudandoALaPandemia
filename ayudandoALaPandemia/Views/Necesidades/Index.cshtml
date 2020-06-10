@@ -65,6 +65,19 @@
                             <a href="index.html#" class="btn-close"><i class="fa fa-times"></i></a>
                         </div>
                     </div>
+                    @if(Session["id"] != null)
+                    {
+                        <div>
+                            <h2>Mis necesidades</h2>
+                            @foreach (var necesidad in ViewBag.misNecesidades){
+                                <div>
+                                    <p>@necesidad.Nombre</p>
+                                    <p>@necesidad.Descripcion</p>
+                                    <p>vence: @necesidad.FechaFin</p>
+                                </div>
+                            }
+                        </div>
+                    }
                     <div class="searched-wrapper"></div>
                 </div>
 

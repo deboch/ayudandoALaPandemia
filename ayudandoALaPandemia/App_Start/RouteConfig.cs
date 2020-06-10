@@ -10,9 +10,9 @@ namespace ayudandoALaPandemia
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Search",
+                name: "ApiNecesidades",
                 url: "api/{action}",
-                defaults: new { controller = "Search", action = "Search" }
+                defaults: new { controller = "ApiNecesidades", action = "necesidades" }
             );
 
             routes.MapRoute(
