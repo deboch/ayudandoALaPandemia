@@ -132,7 +132,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\NecesidadesController.cs" />
     <Compile Include="Controllers\RegistroController.cs" />
-    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\ApiNecesidadesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
