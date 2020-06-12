@@ -9,14 +9,9 @@ namespace ayudandoALaPandemia.Controllers
 {
     public class NecesidadesController : BaseController
     {
-        // GET: Necesidades
         [HttpGet]
-        public ActionResult Index (string keyword)
+        public ActionResult Index ()
         {
-            /*if (keyword != null)
-            {
-                return RedirectToAction("Index", "Search", new { keyword });
-            }*/
             if (Session != null)
             {
                 int userId = (int)Session["id"];
@@ -28,6 +23,19 @@ namespace ayudandoALaPandemia.Controllers
             {
                 return View("Index", "Home");
             }
+
+            return View();
+        }
+
+        public ActionResult Detalle(int id)
+        {
+            return View();
+        }
+
+        // GET: Necesidades
+        [HttpGet]
+        public ActionResult Home (string keyword)
+        {
             return View();
         }
 
@@ -66,12 +74,6 @@ namespace ayudandoALaPandemia.Controllers
         public Necesidades Modificar(Necesidades necesidad)
         {
             return necesidadesServicios.Modificar(necesidad);
-        }
-
-        [HttpGet]
-        public ActionResult Detalle(int? id)
-        {
-            return View();
         }
 
         [HttpPost]

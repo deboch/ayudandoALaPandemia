@@ -313,9 +313,10 @@
     <Content Include="Views\Shared\_BaseLayout.cshtml" />
     <Content Include="Views\Registro_Backup\Save.cshtml" />
     <Content Include="Views\Registro_Backup\altaUsuario.cshtml" />
-    <Content Include="Views\Necesidades\Home.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Registro\Index.cshtml" />
+    <Content Include="Views\Necesidades\Home.cshtml" />
+    <Content Include="Views\Necesidades\Detalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
