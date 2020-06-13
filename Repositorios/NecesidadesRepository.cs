@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data.Entity.Core;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Repositorios;
 
 namespace Repositorios
 {
@@ -47,7 +43,8 @@ namespace Repositorios
                 Context.Necesidades.Remove(necesidad);
                 Context.SaveChanges();
                 return IdNecesidad;
-            } catch (DbUpdateException)
+            }
+            catch (DbUpdateException)
             {
                 new DbUpdateException("no se pudo borrar la entidad");
                 throw;
@@ -75,7 +72,7 @@ namespace Repositorios
             return Context.Necesidades.ToList();
         }
 
-        public List<Repositorios.Necesidades> obtenerMasValoradas ()
+        public List<Repositorios.Necesidades> obtenerMasValoradas()
         {
             return Context.Necesidades.ToList();
         }
@@ -93,10 +90,29 @@ namespace Repositorios
                     .Where(b => (int)b.IdUsuarioCreador == (int)id)
                     .ToList();
 
-            } catch (EntityException)
+            }
+            catch (EntityException)
             {
                 throw new EntityException();
             }
+        }
+
+        public DonacionesInsumos donacionInsumo(DonacionesInsumos donacionesInsumos)
+        {
+            int id = donacionesInsumos.IdNecesidadDonacionInsumo;
+            NecesidadesDonacionesInsumos necesidadInsumo = Context.NecesidadesDonacionesInsumos.Find(id);
+            necesidadInsumo.DonacionesInsumos.Add(donacionesInsumos);
+            Context.SaveChanges();
+            return donacionesInsumos;
+        }
+
+        public DonacionesMonetarias donacionMonetaria(DonacionesMonetarias donacionesMonetarias)
+        {
+            int id = donacionesMonetarias.IdNecesidadDonacionMonetaria;
+            NecesidadesDonacionesMonetarias necesidadMonetaria = Context.NecesidadesDonacionesMonetarias.Find(id);
+            necesidadMonetaria.DonacionesMonetarias.Add(donacionesMonetarias);
+            Context.SaveChanges();
+            return donacionesMonetarias;
         }
 
         public List<NecesidadesValoraciones> obtenerTotalValoraciones(int idNecesidad)
@@ -139,7 +155,7 @@ namespace Repositorios
             }
         }
 
-        public int CalcularPorcentaje (int idNecesidad)
+        public int CalcularPorcentaje(int idNecesidad)
         {
             Necesidades necesidad = Context.Necesidades.Find(idNecesidad);
             int totalLike = Context.NecesidadesValoraciones.Where(v => v.Valoracion == true).ToList().Count();

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using Repositorios;
 
@@ -10,7 +7,7 @@ namespace ayudandoALaPandemia.Controllers
     public class NecesidadesController : BaseController
     {
         [HttpGet]
-        public ActionResult Index ()
+        public ActionResult Index()
         {
             if (Session != null)
             {
@@ -27,14 +24,9 @@ namespace ayudandoALaPandemia.Controllers
             return View();
         }
 
-        public ActionResult Detalle(int id)
-        {
-            return View();
-        }
-
         // GET: Necesidades
         [HttpGet]
-        public ActionResult Home (string keyword)
+        public ActionResult Home(string keyword)
         {
             return View();
         }
@@ -65,25 +57,9 @@ namespace ayudandoALaPandemia.Controllers
         }
 
         [HttpPost]
-        public int Eliminar(int id)
-        {
-            return necesidadesServicios.Borrar(id);
-        }
-
-        [HttpPost]
-        public Necesidades Modificar(Necesidades necesidad)
-        {
-            return necesidadesServicios.Modificar(necesidad);
-        }
-
-        [HttpPost]
         public bool Valorar(int like, int idNecesidad)
         {
-            int userId = (int)Session["id"];
-            if(userId == null)
-            {
-                return false;
-            }
+            var userId = (int)Session["id"];
             return necesidadesServicios.Valorar(like, userId, idNecesidad);
         }
 

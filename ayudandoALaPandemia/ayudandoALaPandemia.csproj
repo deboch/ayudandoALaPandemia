@@ -130,6 +130,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\NecesidadController.cs" />
     <Compile Include="Controllers\NecesidadesController.cs" />
     <Compile Include="Controllers\RegistroController.cs" />
     <Compile Include="Controllers\ApiNecesidadesController.cs" />
@@ -316,11 +317,11 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Registro\Index.cshtml" />
     <Content Include="Views\Necesidades\Home.cshtml" />
-    <Content Include="Views\Necesidades\Detalle.cshtml" />
+    <Content Include="Views\Necesidad\Index.cshtml" />
+    <Content Include="Views\Necesidad\Detalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
-    <Folder Include="App_Data\" />
     <Folder Include="App_Themes\Tema1\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />

@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity.Validation;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using Repositorios;
 
 namespace Repositorios
 {
@@ -79,11 +74,12 @@ namespace Repositorios
                     .FirstOrDefault();
                 return user;
 
-            } catch(DbEntityValidationException e)
+            }
+            catch (DbEntityValidationException e)
             {
-                foreach(var eve in e.EntityValidationErrors)
+                foreach (var eve in e.EntityValidationErrors)
                 {
-                     foreach(var p in eve.ValidationErrors)
+                    foreach (var p in eve.ValidationErrors)
                     {
                         Console.WriteLine(p.GetType().Name);
                         Console.WriteLine(p.ErrorMessage);
@@ -121,9 +117,9 @@ namespace Repositorios
 
         public List<Usuarios> traerUsuariosActivos()
         {
-             List<Usuarios> user = Context.Usuarios
-            .Where(b => b.Activo == true)
-            .ToList();
+            List<Usuarios> user = Context.Usuarios
+           .Where(b => b.Activo == true)
+           .ToList();
             return user;
         }
 
