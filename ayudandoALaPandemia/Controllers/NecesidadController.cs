@@ -23,8 +23,23 @@ namespace ayudandoALaPandemia.Controllers
         }
 
         [HttpGet]
-        public ActionResult Donaciones()
+        public ActionResult donacionMonetaria()
         {
+            int idNecesidad = Int32.Parse(Request.Url.Segments[2].Remove(Request.Url.Segments[2].Length - 1));
+            NecesidadesDonacionesMonetarias donacion = donacionesMonetariasServicios.ObtenerPorNecesidadId(idNecesidad);
+            decimal donacionesMonetarias = donacionesMonetariasServicios.ObtenerTodasLasDonaciones(donacion);
+            ViewBag.TotalRestante = donacionesMonetarias;
+            ViewBag.Total = donacion.Dinero;
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult donacionInsumos()
+        {
+            int idNecesidad = Int32.Parse(Request.Url.Segments[2].Remove(Request.Url.Segments[2].Length - 1));
+            List<NecesidadesDonacionesInsumos> donacion = donacionesInsumosServicios.ObtenerPorNecesidadId(idNecesidad);
+            ViewBag.Cantidades = donacionesInsumosServicios.obtenerCantidadesRestantes(donacion);
+            ViewBag.TotalInsumos = donacion;
             return View();
         }
 

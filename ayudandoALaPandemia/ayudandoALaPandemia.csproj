@@ -319,6 +319,8 @@
     <Content Include="Views\Necesidades\Home.cshtml" />
     <Content Include="Views\Necesidad\Index.cshtml" />
     <Content Include="Views\Necesidad\Detalle.cshtml" />
+    <Content Include="Views\Necesidad\donacionMonetaria.cshtml" />
+    <Content Include="Views\Necesidad\donacionInsumos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
