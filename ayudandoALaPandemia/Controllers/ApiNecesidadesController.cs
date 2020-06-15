@@ -5,9 +5,9 @@ using Repositorios;
 
 namespace ayudandoALaPandemia.Controllers
 {
-    public class SearchController : BaseController
+    public class ApiNecesidadesController : BaseController
     {
-        public string Search(string k)
+        public string necesidades(string k)
         {
             int userId = ((int)Session["id"]);
             string keyword = Request.QueryString["keyword"];

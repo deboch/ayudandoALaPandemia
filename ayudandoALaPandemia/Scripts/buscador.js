@@ -22,7 +22,7 @@ const getNecesidades = async (obj = {}) => {
         await
             $.ajax({
             type: 'get',
-            url: `/api/search`,
+            url: `/api/necesidades`,
             data: obj,
             success: function (response) {
                 const jsonResponse = JSON.parse(response);
