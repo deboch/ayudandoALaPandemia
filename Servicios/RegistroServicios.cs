@@ -1,11 +1,8 @@
-﻿using Repositorios;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Repositorios;
 
 namespace Servicios
 {
@@ -56,14 +53,14 @@ namespace Servicios
 
         public int generaId()
         {
-        List<Usuarios> listaUsuarios = managerRepository.usuarioRepository.traerTodosLosUsuarios();
+            List<Usuarios> listaUsuarios = managerRepository.usuarioRepository.traerTodosLosUsuarios();
 
-        int id = 1;
-        if (listaUsuarios.Count > 0)
-        {
-            id = listaUsuarios.Count + 1;
-        }
-        return id;
+            int id = 1;
+            if (listaUsuarios.Count > 0)
+            {
+                id = listaUsuarios.Count + 1;
+            }
+            return id;
         }
 
         public Usuarios Modificar(Usuarios obj)

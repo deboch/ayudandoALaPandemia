@@ -30,7 +30,7 @@ namespace ayudandoALaPandemia.Controllers
                 Session["username"] = usuario.UserName;
                 // redirijo a Index de HomeController
                 return RedirectToAction("Index", "Necesidades");
-                
+
             }
             else
             {

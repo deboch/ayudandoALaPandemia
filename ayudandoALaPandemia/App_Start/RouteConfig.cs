@@ -17,8 +17,14 @@ namespace ayudandoALaPandemia
 
             routes.MapRoute(
                 name: "Necesidades",
-                url: "necesidades/{action}/{id}",
+                url: "necesidades/{action}/{id}/",
                 defaults: new { controller = "Necesidades", action = "Index", id = UrlParameter.Optional }
+            );
+            
+            routes.MapRoute(
+                name: "Necesidad",
+                url: "necesidad/{id}/{action}",
+                defaults: new { controller = "Necesidad", action = "Index", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
