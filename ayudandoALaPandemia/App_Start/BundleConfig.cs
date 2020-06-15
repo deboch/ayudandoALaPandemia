@@ -35,9 +35,13 @@ namespace ayudandoALaPandemia
 
             bundles.Add(new StyleBundle("~/Content/template_css").Include(
                       "~/Content/Template/vendor/bootstrap/css/bootstrap.min.css",
-                      "~/Content/Template/css/modern-business.css"));
+                      "~/Content/Template/css/modern-business.css",
+                      "~/Content/Template/css/main.css",
+                      "~/Content/Template/css/util.css"));
+            bundles.Add(new StyleBundle("~/Content/fonts").Include(
+                "~/Content/Template/fonts"));
 
-            
+
         }
     }
 }
