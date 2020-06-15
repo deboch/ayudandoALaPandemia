@@ -35,7 +35,8 @@ namespace ayudandoALaPandemia
 
             bundles.Add(new StyleBundle("~/Content/template_css").Include(
                       "~/Content/Template/vendor/bootstrap/css/bootstrap.min.css",
-                      "~/Content/Template/css/modern-business.css"));
+                      "~/Content/Template/css/modern-business.css",
+                      "~/Content/Template/css/style.css"));
 
             
         }
