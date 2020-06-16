@@ -24,3 +24,67 @@
         </div>
     }
 </div>
+<div class="row">
+    <div class="col-lg-8 mb-4">
+        <h3>Registrar donación</h3>
+        <form name="sentMessage" id="contactForm" novalidate>
+            
+            <div class="row" id="insumos" name="insumos">
+                <div class="col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <h3 class="card-header">Insumo</h3>
+                        <div class="card-body">
+                            <div class="display-4">#</div>
+                            <div class="font-italic">cantidad restante</div>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <a href="#" class="btn btn-primary">Agregar</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                @foreach (var p in ViewBag.TotalInsumos)
+                {
+                    <div class="col-lg-4 mb-4">
+                        <div class="card h-100">
+                            <h3 class="card-header">@p.Nombre</h3>
+                            <div class="card-body">
+                                <div class="display-4">@p.Cantidad</div>
+                                <div class="font-italic">cantidad restante</div>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <a href="#" class="btn btn-primary">Agregar</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                }
+                
+            </div>
+            <table class="table table-hover" id="insumos" name="insumos">
+                <thead>
+                    <tr>
+                        <th>Insumo</th>
+                        <th>Cantidad a donar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Insumo</td>
+                        <td><input class="form-control-plaintext" type="number" name=""></td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+            <div id="success"></div>
+            <!-- For success/fail messages -->
+            <button type="submit" class="btn btn-primary" id="sendMessageButton">Crear donación</button>
+        </form>
+    </div>
+
+</div>
+<!-- /.row -->

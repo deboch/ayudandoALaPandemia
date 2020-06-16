@@ -1,73 +1,71 @@
-﻿
+﻿@model Repositorios.Usuarios
+
 @{
-    ViewBag.Title = "miPerfil";
-}
-@{
-    Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="container">
 
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">
+        Mi perfil
+    </h1>
+    <!-- /.row -->
+    <!-- Contact Form -->
+    <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
+    <div class="row">
+        <div class="col-lg-8 mb-4">
 
-    <div class="container">
+            <form name="sentMessage" id="contactForm">
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Usuario:</label>
+                        <input type="email" class="form-control" id="userName" value="username" readonly>
+                        <p class="help-block"></p>
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Email:</label>
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control"})
+                        <input type="text" class="form-control" id="nombre" value="pepe@gmail.com" readonly>
+                        <p class="help-block"></p>
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Nombre:</label>
+                        <input type="text" class="form-control" id="nombre" readonly>
+                        <p class="help-block"></p>
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Apellido:</label>
+                        <input type="tel" class="form-control" id="apellido" readonly>
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Fecha de nacimiento:</label>
+                        <input type="date" class="form-control" id="fechaDeNacimiento" readonly>
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Foto:</label>
 
-        <!-- Page Heading/Breadcrumbs -->
-        <h1 class="mt-4 mb-3">
-            Mi perfil
-        </h1>
-        <!-- /.row -->
-        <!-- Contact Form -->
-        <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
-        <div class="row">
-            <div class="col-lg-8 mb-4">
-
-                <form name="sentMessage" id="contactForm">
-                    <div class="control-group form-group">
-                        <div class="controls">
-                            <label>Usuario:</label>
-                            <input type="email" class="form-control" id="userName" value="username" readonly>
-                            <p class="help-block"></p>
-                        </div>
                     </div>
-                    <div class="control-group form-group">
-                        <div class="controls">
-                            <label>Email:</label>
-                            <input type="text" class="form-control" id="nombre" value="pepe@gmail.com" readonly>
-                            <p class="help-block"></p>
-                        </div>
-                    </div>
-                    <div class="control-group form-group">
-                        <div class="controls">
-                            <label>Nombre:</label>
-                            <input type="text" class="form-control" id="nombre" readonly>
-                            <p class="help-block"></p>
-                        </div>
-                    </div>
-                    <div class="control-group form-group">
-                        <div class="controls">
-                            <label>Apellido:</label>
-                            <input type="tel" class="form-control" id="apellido" readonly>
-                        </div>
-                    </div>
-                    <div class="control-group form-group">
-                        <div class="controls">
-                            <label>Fecha de nacimiento:</label>
-                            <input type="date" class="form-control" id="fechaDeNacimiento" readonly>
-                        </div>
-                    </div>
-                    <div class="control-group form-group">
-                        <div class="controls">
-                            <label>Foto:</label>
-
-                        </div>
-                    </div>
-                    <div id="success"></div>
-                    <!-- For success/fail messages -->
-                    <button type="submit" class="btn btn-primary" id="sendMessageButton">Modificar</button>
-                </form>
-            </div>
-
+                </div>
+                <div id="success"></div>
+                <!-- For success/fail messages -->
+                <button type="submit" class="btn btn-primary" id="sendMessageButton">Modificar</button>
+            </form>
         </div>
-        <!-- /.row -->
 
     </div>
-    <!-- /.container -->
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
