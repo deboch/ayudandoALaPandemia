@@ -5,6 +5,32 @@
     Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
 }
 
-<h1>Total: @ViewBag.Total</h1>
-<h1>Total restante: @ViewBag.TotalRestante</h1>
+<!--h1>Total: @ViewBag.Total</!-h1>
+<h1>Total restante: @ViewBag.TotalRestante</h1-->
 
+<form name="sentMessage" id="contactForm" novalidate>
+    <div class="control-group form-group" id="monetarias">
+        <div class="controls">
+            <label>Total requerido:</label>
+            <input class="form-control" type="text" name="" value="@ViewBag.Total">
+        </div>
+    </div>
+    <div class="control-group form-group" id="monetarias">
+        <div class="controls">
+            <label>Total restante:</label>
+            <input class="form-control" type="text" name="" value="@ViewBag.TotalRestante">
+        </div>
+    </div>
+    <div class="control-group form-group" id="monetarias">
+        <div class="controls">
+            <label>Total a donar ($):</label>
+            <input class="form-control" type="text" name="">
+        </div>
+    </div>
+    <div class="control-group form-group" id="monetarias">
+        <div class="controls">
+            <label for="ejemplo_archivo_1">Adjuntar comprobante de transferencia o depósito:</label>
+            <input class="form-control-file" type="file" id="ejemplo_archivo_1">
+        </div>
+    </div>
+ </form>

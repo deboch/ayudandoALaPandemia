@@ -5,66 +5,8 @@
     Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
 }
 
-<!--
-    <div class="container">
-        <h2>Las 5 principales Necesidades</h2>
-        <table class="table table-dark table-bordered">
-            <tr>
-                <th>Fecha Creaci&oacute;n</th>
-                <th>Foto</th>
-                <th>Descripcion</th>
-                <th>Estado</th>
-                <th>Valoracion</th>
 
-            </tr>
-            @foreach (var p in ViewBag.Necesidades)
-            {
-                <tr>
-                    <td>@p.IdNecesidad</td>
-                    <td>@p.Nombre</td>
-                    <td>@p.Descripcion</td>
-                    <td>@p.Estado</td>
-                    <td>@p.Valoracion</td>
-                    <div class="star-ratings-sprite">
-                        <span style="width:52%" class="star-ratings-sprite-rating"></span>
-                    </div>
-                </tr>
-            }
-        </table>
-    </div>-->
-<aside>
-    <div id="sidebar" class="nav-collapse ">
-        <!-- sidebar menu start-->
-        <ul class="sidebar-menu">
-            <li class="active">
-                <a class="" href="">
-                    <i class="icon_house_alt"></i>
-                    <span>Home</span>
-                </a>
-            </li>
-            @if (Session["email"] == null)
-            {
-                <li class="sub-menu">
-                    @Html.ActionLink("Iniciar sesión", "Index", "Login")
-                </li>
-            }
-            <li>
-                @Html.ActionLink("Crear Necesidad", "Login", "Home")
-            </li>
-            <li>
-                @Html.ActionLink("Denuncias", "Login", "Home")
-            </li>
-            <li>
-                @Html.ActionLink("Acerca de", "Login", "Home")
 
-            </li>
-            <li>
-                @Html.ActionLink("Salir", "Login", "Home")
-            </li>
-        </ul>
-        <!-- sidebar menu end-->
-    </div>
-</aside>
 <!--sidebar end-->
 <!--main content start-->
 <section id="main-content">
