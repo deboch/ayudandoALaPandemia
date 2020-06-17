@@ -128,6 +128,7 @@
     <Property Name="FechaCracion" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="Activo" Type="Boolean" Nullable="false" />
     <Property Name="Token" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ConfirmPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Denuncias" Relationship="Self.FK_Denuncias_Usuarios" FromRole="Usuarios" ToRole="Denuncias" />
     <NavigationProperty Name="DonacionesInsumos" Relationship="Self.FK_DonacionesInsumos_Usuarios" FromRole="Usuarios" ToRole="DonacionesInsumos" />
     <NavigationProperty Name="DonacionesMonetarias" Relationship="Self.FK_DonacionesMonetarias_Usuarios" FromRole="Usuarios" ToRole="DonacionesMonetarias" />

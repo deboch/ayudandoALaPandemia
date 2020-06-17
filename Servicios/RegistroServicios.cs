@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
+using System.Security.Cryptography;
+using System.Text;
 using Repositorios;
+
 
 namespace Servicios
 {
@@ -17,39 +20,58 @@ namespace Servicios
             throw new NotImplementedException();
         }
 
+        public bool validoUsuarioNoExistente(Usuarios u)
+        {
+            var validoSiUserExiste = managerRepository.usuarioRepository.obtenerUsuario(u.Email);
+
+            if(validoSiUserExiste == null)
+            {
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
         public int Crear(Usuarios u)
         {
-            Usuarios userPrueba = new Usuarios();
-            // Valido si ya existe un usuario con ese userName y con ese Mail
-            var validoUser = managerRepository.usuarioRepository.obtenerUsuario(u.Email);
-            //     u = managerRepository.usuarioRepository.obtenerUsuarioPorUserName(u.UserName);
-
-            //     if(u.UserName == null && u.Email == null)
-            if (validoUser == null)
+            try
             {
-                try
+                seteoLosNotNull(u);
+                // metodo que envia token por email
+                // serviceEmail.enviarToken();
+                // Guardo el usuario
+                int userId = managerRepository.usuarioRepository.Crear(u);
+                // hasheo password
+                managerRepository.usuarioRepository.MD5Hash(u);
+
+                return userId;
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
                 {
-                    u.IdUsuario = generaId();
-                    nulleoLosNotNull(u);
-                    u.FechaCracion = DateTime.Now;
-                    // Guardo el usuario
-                    return managerRepository.usuarioRepository.Crear(u);
-                }
-                catch (DbEntityValidationException dbEx)
-                {
-                    foreach (var validationErrors in dbEx.EntityValidationErrors)
+                    foreach (var validationError in validationErrors.ValidationErrors)
                     {
-                        foreach (var validationError in validationErrors.ValidationErrors)
-                        {
-                            Trace.TraceInformation("Property: {0} Error: {1}",
-                                validationError.PropertyName,
-                                validationError.ErrorMessage);
-                        }
+                        Trace.TraceInformation("Property: {0} Error: {1}",
+                            validationError.PropertyName,
+                            validationError.ErrorMessage);
                     }
                 }
+                return 0;
             }
-            return 0;
-        }
+        }     
+
+        /* public int generaId()
+         {
+         List<Usuarios> listaUsuarios = managerRepository.usuarioRepository.traerTodosLosUsuarios();
+
+         int id = 1;
+         if (listaUsuarios.Count > 0)
+         {
+             id = listaUsuarios.Count + 1;
+         }
+         return id;
+         }*/
 
         public int generaId()
         {
@@ -63,16 +85,19 @@ namespace Servicios
             return id;
         }
 
+
         public Usuarios Modificar(Usuarios obj)
         {
             throw new NotImplementedException();
         }
 
-        public void nulleoLosNotNull(Usuarios u)
+        public void seteoLosNotNull(Usuarios u)
         {
+            u.FechaCracion = DateTime.Now;
             u.FechaNacimiento = DateTime.Now;
             u.TipoUsuario = 1;
-            u.Token = "abc123";
+            u.Token = generoToken();
+            //u.Password = MD5Hash(u.Password);
         }
 
         public Usuarios ObtenerPorId(int id)
@@ -84,5 +109,22 @@ namespace Servicios
         {
             throw new NotImplementedException();
         }
+
+
+        public string generoToken()
+        {
+            Random random = new Random();
+            string characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+            StringBuilder result = new StringBuilder(6);
+            for (int i = 0; i < 6; i++)
+            {
+                result.Append(characters[random.Next(characters.Length)]);
+            }
+            return result.ToString();
+        }
+
+       
+
+
     }
 }

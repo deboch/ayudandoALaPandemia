@@ -13,13 +13,14 @@ namespace Repositorios
         [EmailAddress(ErrorMessage = "Ingrese un mail válido")]
         public string Email { get; set; }
 
-        [StringLength(8, MinimumLength = 1,ErrorMessage = "japiiiiiiish basura, poné la clave bien.")]
+        /*[Required]
+        [StringLength(50, MinimumLength = 1,ErrorMessage = "japiiiiiiish basura, poné la clave bien.")]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Confirm Password is required")]
-        [StringLength(255, ErrorMessage = "japiiiiiiish basura, validá la clave bien", MinimumLength = 5)]
+        [StringLength(50, ErrorMessage = "japiiiiiiish basura, validá la clave bien", MinimumLength = 1)]
         [DataType(DataType.Password)]
         [Compare("Password")]
-        public string ConfirmPassword { get; set; }
+        public string ConfirmPassword { get; set; }*/
     }
 }

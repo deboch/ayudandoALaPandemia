@@ -36,6 +36,7 @@ namespace Repositorios
         public System.DateTime FechaCracion { get; set; }
         public bool Activo { get; set; }
         public string Token { get; set; }
+        public string ConfirmPassword { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Denuncias> Denuncias { get; set; }
