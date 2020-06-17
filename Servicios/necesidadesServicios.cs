@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Repositorios;
-using System.Web;
-using System.Net.Http;
 
 namespace Servicios
 {
@@ -34,7 +30,7 @@ namespace Servicios
             nuevaNecesidad.Foto = necesidad.Foto;
             nuevaNecesidad.Denuncias = necesidad.Denuncias;
             nuevaNecesidad.Valoracion = nuevaNecesidad.Valoracion;
-            
+
             if (necesidad.NecesidadesDonacionesMonetarias.Count > 0)
             {
                 foreach (var p in necesidad.NecesidadesDonacionesMonetarias)
@@ -73,6 +69,16 @@ namespace Servicios
             return managerRepository.necesidadesRepository.Crear(nuevaNecesidad);
         }
 
+        public DonacionesInsumos donacionInsumo(DonacionesInsumos donacionesInsumos)
+        {
+            return managerRepository.necesidadesRepository.donacionInsumo(donacionesInsumos);
+        }
+
+        public DonacionesMonetarias donacionMonetaria(DonacionesMonetarias donacionesMonetarias)
+        {
+            return managerRepository.necesidadesRepository.donacionMonetaria(donacionesMonetarias);
+        }
+
         public bool Valorar(int like, int userId, int idNecesidad)
         {
 
@@ -81,7 +87,7 @@ namespace Servicios
             return valoracion;
         }
 
-        public int CalcularPorcentaje (int idNecesidad)
+        public int CalcularPorcentaje(int idNecesidad)
         {
             int valoracionesLike =
                 managerRepository

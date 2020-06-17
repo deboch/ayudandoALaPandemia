@@ -1,7 +1,5 @@
-﻿using Antlr.Runtime.Misc;
+﻿using System.Web.Mvc;
 using Repositorios;
-using Servicios;
-using System.Web.Mvc;
 
 namespace ayudandoALaPandemia.Controllers
 {
@@ -16,7 +14,7 @@ namespace ayudandoALaPandemia.Controllers
         [HttpPost]
         public ActionResult Index(Usuarios u)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 bool validoEmailYUserName = registroServicios.validoUsuarioNoExistente(u);
 

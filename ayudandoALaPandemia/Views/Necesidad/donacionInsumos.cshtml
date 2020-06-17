@@ -1,0 +1,26 @@
+﻿@model Repositorios.DonacionesInsumos
+
+@{
+    ViewBag.Title = "donacionInsumos";
+    Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
+}
+
+<h2>donacionInsumos - Total de lo que necesito</h2>
+<div>
+    @foreach (var p in ViewBag.TotalInsumos)
+    {
+        <div>
+            <p>@p.Nombre: @p.Cantidad</p>
+        </div>
+    }
+</div>
+
+<h2>donacionInsumos - Restantes</h2>
+<div>
+    @foreach (var p in ViewBag.Cantidades)
+    {
+        <div>
+            <p>@p.Key: @p.Value</p>
+        </div>
+    }
+</div>

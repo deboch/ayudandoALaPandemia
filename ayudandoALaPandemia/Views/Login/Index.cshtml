@@ -8,13 +8,14 @@
 @using (Html.BeginForm("Index", "Login", FormMethod.Post))
 {
 
-    <div class="form-group">
-        <div class="col-md-10">
+    <div class="control-group form-group">
+        <div class="controls">
             Email:
             @Html.LabelFor(m => m.Email)
             @Html.EditorFor(m => m.Email)
             @Html.ValidationMessageFor(m => m.Email)
-
+        </div>
+        <div class="controls">
             Password:
             @Html.LabelFor(m => m.Password)
             @Html.EditorFor(m => m.Password)
@@ -23,9 +24,9 @@
     </div>
     @Html.ValidationSummary(true, "Clave o email incorrecto", new { @class = "text-danger" })
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+    <div class="">
+        <div class="">
+            <input type="submit" value="Create" class="btn btn-primary" />
         </div>
     </div>
 
