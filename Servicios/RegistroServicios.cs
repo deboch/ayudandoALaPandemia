@@ -19,52 +19,46 @@ namespace Servicios
             throw new NotImplementedException();
         }
 
-        public int validoUsuario(Usuarios u)
+        public bool validoUsuarioNoExistente(Usuarios u)
         {
-            var validoUser = managerRepository.usuarioRepository.obtenerUsuario(u.Email);
+            var validoSiUserExiste = managerRepository.usuarioRepository.obtenerUsuario(u.Email);
 
-            if(validoUser == null)
+            if(validoSiUserExiste == null)
             {
-                return 1;
+                return true;
             }
-            else
-            {
-                return 0;
+            else{
+                return false;
             }
         }
         public int Crear(Usuarios u)
         {
-
-        try
-        {
-            //u.IdUsuario = generaId();
-            seteoLosNotNull(u);
-            //hasheo clave
-            //MD5Hash(u);
-            // metodo que envia token por email
-            int userId = managerRepository.usuarioRepository.Crear(u);
-            // Guardo el usuario
-            //u.Password = MD5Hash(u.Password);
-            return userId;
-        }
-        catch (DbEntityValidationException dbEx)
-        {
-            foreach (var validationErrors in dbEx.EntityValidationErrors)
+            try
             {
-                foreach (var validationError in validationErrors.ValidationErrors)
-                {
-                    Trace.TraceInformation("Property: {0} Error: {1}",
-                        validationError.PropertyName,
-                        validationError.ErrorMessage);
-                }
-            }
-        }
+                seteoLosNotNull(u);
+                // metodo que envia token por email
+                // serviceEmail.enviarToken();
+                // Guardo el usuario
+                int userId = managerRepository.usuarioRepository.Crear(u);
+                // hasheo password
+                managerRepository.usuarioRepository.MD5Hash(u);
 
-            {// el mail ya existe
+                return userId;
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        Trace.TraceInformation("Property: {0} Error: {1}",
+                            validationError.PropertyName,
+                            validationError.ErrorMessage);
+                    }
+                }
                 return 0;
             }
-            return 0;
-        }
+        }     
 
         /* public int generaId()
          {
@@ -115,19 +109,7 @@ namespace Servicios
             return result.ToString();
         }
 
-        public string MD5Hash(string poronga)
-        {
-            StringBuilder hash = new StringBuilder();
-            MD5CryptoServiceProvider md5provider = new MD5CryptoServiceProvider();
-            byte[] bytes = md5provider.ComputeHash(new UTF8Encoding().GetBytes(poronga));
-
-            for (int i = 0; i < bytes.Length; i++)
-            {
-                hash.Append(bytes[i].ToString("x2"));
-            }
-
-            return hash.ToString();
-        }
+       
 
 
     }

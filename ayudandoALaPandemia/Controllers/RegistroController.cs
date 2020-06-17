@@ -18,15 +18,14 @@ namespace ayudandoALaPandemia.Controllers
         {
             if(ModelState.IsValid)
             {
-                int variable = registroServicios.validoUsuario(u);
+                bool validoEmailYUserName = registroServicios.validoUsuarioNoExistente(u);
 
-                if(variable != 0)
+                if(validoEmailYUserName == true)
                 {
                     registroServicios.Crear(u);
-                    //registroServicios.MD5Hash(u);
                     return RedirectToAction("Index", "Home");
                 }
-                else if(variable == 0)
+                else if(validoEmailYUserName == false)
                 {
                     ViewData["mailExiste"] = "Email o Usuario ya existe";
                     return View(u);
