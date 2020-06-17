@@ -107,6 +107,7 @@
     <Property Name="FechaCracion" Type="datetime" Nullable="false" />
     <Property Name="Activo" Type="bit" Nullable="false" />
     <Property Name="Token" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ConfirmPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <Association Name="FK_Denuncia_MotivoDenuncia">
     <End Role="MotivoDenuncia" Type="Self.MotivoDenuncia" Multiplicity="1" />

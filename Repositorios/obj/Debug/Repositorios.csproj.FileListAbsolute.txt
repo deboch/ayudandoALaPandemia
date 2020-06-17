@@ -28,3 +28,15 @@ C:\Users\Administrator\Desktop\ayudandoALaPandemia\Repositorios\bin\Debug\xunit.
 C:\Users\Administrator\Desktop\ayudandoALaPandemia\Repositorios\bin\Debug\xunit.abstractions.xml
 C:\Users\Administrator\Desktop\ayudandoALaPandemia\Repositorios\bin\Debug\xunit.core.xml
 C:\Users\Administrator\Desktop\ayudandoALaPandemia\Repositorios\bin\Debug\xunit.execution.desktop.xml
+C:\Users\Administrator\Desktop\Pandemia\Repositorios\bin\Debug\Repositorios.dll.config
+C:\Users\Administrator\Desktop\Pandemia\Repositorios\bin\Debug\Repositorios.dll
+C:\Users\Administrator\Desktop\Pandemia\Repositorios\bin\Debug\Repositorios.pdb
+C:\Users\Administrator\Desktop\Pandemia\Repositorios\bin\Debug\EntityFramework.dll
+C:\Users\Administrator\Desktop\Pandemia\Repositorios\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Administrator\Desktop\Pandemia\Repositorios\bin\Debug\EntityFramework.xml
+C:\Users\Administrator\Desktop\Pandemia\Repositorios\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Administrator\Desktop\Pandemia\Repositorios\obj\Debug\Repositorios.csprojAssemblyReference.cache
+C:\Users\Administrator\Desktop\Pandemia\Repositorios\obj\Debug\Repositorios.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\Pandemia\Repositorios\obj\Debug\Repositorios.csproj.CopyComplete
+C:\Users\Administrator\Desktop\Pandemia\Repositorios\obj\Debug\Repositorios.dll
+C:\Users\Administrator\Desktop\Pandemia\Repositorios\obj\Debug\Repositorios.pdb

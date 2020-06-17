@@ -116,6 +116,7 @@
           <ScalarProperty Name="FechaCracion" ColumnName="FechaCracion" />
           <ScalarProperty Name="Activo" ColumnName="Activo" />
           <ScalarProperty Name="Token" ColumnName="Token" />
+          <ScalarProperty Name="ConfirmPassword" ColumnName="ConfirmPassword" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
