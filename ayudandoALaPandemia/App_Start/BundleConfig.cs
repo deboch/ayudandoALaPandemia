@@ -24,8 +24,6 @@ namespace ayudandoALaPandemia
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-           
-
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
@@ -37,10 +35,11 @@ namespace ayudandoALaPandemia
                       "~/Content/Template/vendor/bootstrap/css/bootstrap.min.css",
                       "~/Content/Template/css/modern-business.css",
                       "~/Content/Template/css/main.css",
-                      "~/Content/Template/css/util.css"));
+                      "~/Content/Template/css/util.css",
+                      "~/Content/Template/css/style.css"));
+
             bundles.Add(new StyleBundle("~/Content/fonts").Include(
                 "~/Content/Template/fonts"));
-
 
         }
     }
