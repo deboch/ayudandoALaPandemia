@@ -16,9 +16,15 @@ namespace ayudandoALaPandemia.Controllers
         {
             if (ModelState.IsValid)
             {
-                registroServicios.Crear(u);
-                return RedirectToAction("Home", "Necesidades");
+                bool validoEmailYUserName = registroServicios.validoUsuarioNoExistente(u);
+
+                if(validoEmailYUserName)
+                {
+                    registroServicios.Crear(u);
+                    return RedirectToAction("Index", "Home");
+                }  
             }
+            ViewData["mailExiste"] = "Email o Usuario ya existe";
             return View(u);
         }
     }
