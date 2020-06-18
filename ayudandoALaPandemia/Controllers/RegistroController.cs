@@ -18,18 +18,13 @@ namespace ayudandoALaPandemia.Controllers
             {
                 bool validoEmailYUserName = registroServicios.validoUsuarioNoExistente(u);
 
-                if(validoEmailYUserName == true)
+                if(validoEmailYUserName)
                 {
                     registroServicios.Crear(u);
                     return RedirectToAction("Index", "Home");
-                }
-                else if(validoEmailYUserName == false)
-                {
-                    ViewData["mailExiste"] = "Email o Usuario ya existe";
-                    return View(u);
-                }
-                
+                }  
             }
+            ViewData["mailExiste"] = "Email o Usuario ya existe";
             return View(u);
         }
     }
