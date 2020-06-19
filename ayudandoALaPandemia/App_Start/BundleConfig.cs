@@ -13,9 +13,6 @@ namespace ayudandoALaPandemia
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Content/Template/js/jquery-{version}.js"));
-
             //bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                        // "~/Template/js/jquery.validate*"));
 

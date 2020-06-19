@@ -4,46 +4,29 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
 }
-
-<aside>
-    <div id="sidebar" class="nav-collapse ">
-        <!-- sidebar menu start-->
-        <ul class="sidebar-menu">
-            <li class="active">
-                <a class="" href="">
-                    <i class="icon_house_alt"></i>
-                    <span>Home</span>
-                </a>
-            </li>
-            @if (Session["email"] == null)
-            {
-                <li class="sub-menu">
-                    @Html.ActionLink("Iniciar sesión", "Index", "Login")
-                </li>
-            }
-            <li>
-                @Html.ActionLink("Crear Necesidad", "Login", "Home")
-            </li>
-            <li>
-                @Html.ActionLink("Denuncias", "Login", "Home")
-            </li>
-            <li>
-                @Html.ActionLink("Acerca de", "Login", "Home")
-
-            </li>
-            <li>
-                @Html.ActionLink("Salir", "Login", "Home")
-            </li>
-        </ul>
-        <!-- sidebar menu end-->
-    </div>
-</aside>
-<!--sidebar end-->
 <!--main content start-->
-<section id="main-content">
-    <section class="wrapper">
-        <!--overview start-->
-        <p>aca tendria que mostrar todas las necesidades menos las mias</p>
-
+    <section id="main-content">
+        <section class="container">
+            <h2><i class="fa fa-flag-o red"></i><strong>Las necesidades mas valoradas</strong></h2>
+            <div class="row">
+                @foreach (var p in ViewBag.misNecesidades)
+                {
+                <div class="col-lg-4 mb-4">
+                    <a href="/necesidad/@p.IdNecesidad/detalle" class="card h-100">
+                        <h4 class="card-header">@p.Nombre</h4>
+                        <div class="card-body">
+                            <p class="card-text">@p.Descripcion</p>
+                            <p class="card-text">@p.Estado</p>
+                        </div>
+                        @if (p.Valoracion != null)
+                        {
+                        <div class="star-ratings-sprite">
+                            <span style="width:@p.Valoracion%" class="star-ratings-sprite-rating"></span>
+                        </div>
+                        }
+                    </a>
+                </div>
+                }
+            </div>
+        </section>
     </section>
-</section>

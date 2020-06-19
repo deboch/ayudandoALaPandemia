@@ -10,42 +10,56 @@
     <body>
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="index.html">Ayudando a la pandemia</a>
+                @Html.ActionLink("Ayudando a la pandemia", "Index", "Necesidades", null, new { @class = "navbar-brand" })
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                
+
 
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">          
-                            <form class="input-group" id="form-search">
-                                <input class="form-control" id="search-field" type="text" placeholder="Busca una necesidad" />
-                            </form>
-                        </li>
-                       
+                        @if (Session["email"] != null)
+                        {
+                            <li class="nav-item">
+                                <form class="input-group" id="form-search">
+                                    <input class="form-control" id="search-field" type="text" placeholder="Busca una necesidad" />
+                                </form>
+                            </li>
+                        }
+
                         @if (Session["email"] == null)
                         {
                             <li class="nav-item">
-                                @Html.ActionLink("Iniciar sesión", "Index", "Login", new { @class = "nav-link" })
+                                @Html.ActionLink("Iniciar sesión", "Index", "Login", null, new { @class = "nav-link" })
                             </li>
                         }
+                        @if (Session["email"] != null)
+                        {
+                            <li class="nav-item">
+                                @Html.ActionLink("Crear Necesidad", "Crear", "Necesidades", null, new { @class = "nav-link" })
+                            </li>
+                        }
+                        @if (Session["email"] != null)
+                        {
+                            <li class="nav-item">
+                                @Html.ActionLink("Denuncias", "Login", "Home", null, new { @class = "nav-link" })
+                            </li>
+                        }
+
                         <li class="nav-item">
-                            @Html.ActionLink("Crear Necesidad", "Login", "Home", new { @class = "nav-link" })
-                        </li>
-                        <li class="nav-item">
-                            @Html.ActionLink("Denuncias", "Login", "Home", new { @class = "nav-link" })
-                        </li>
-                        <li class="nav-item">
-                            @Html.ActionLink("Acerca de", "Login", "Home", new { @class = "nav-link" })
-                        </li>
-                        <li class="nav-item">
-                            @Html.ActionLink("Salir", "Login", "Home", new { @class = "nav-link" })
+                            @Html.ActionLink("Acerca de", "Login", "Home", null, new { @class = "nav-link" })
                         </li>
                         @if (Session["email"] != null)
                         {
-                            <li>
-                                @Session["email"].ToString();
+                            <li class="nav-item">
+                                @Html.ActionLink("Mi perfil", "Index", "Perfil", null, new { @class = "nav-link" })
+                            </li>
+                        }
+
+                        @if (Session["email"] != null)
+                        {
+                            <li class="nav-item">
+                                @Html.ActionLink("Salir", "Login", "Home", null, new { @class = "nav-link" })
                             </li>
                         }
 
