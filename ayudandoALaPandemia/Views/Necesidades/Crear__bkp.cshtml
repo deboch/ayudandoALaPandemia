@@ -1,10 +1,9 @@
-﻿@model ayudandoALaPandemia.ViewModels.NecesidadDto
+﻿@model Repositorios.Necesidades
 
 @{
     ViewBag.Title = "Crear";
     Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
 }
-
 <!-- Page Content -->
 <div class="container">
 
@@ -27,84 +26,83 @@
     <div class="row">
         <div class="col-lg-8 mb-4">
             <h3>Crear Necesidad</h3>
-            @using (Html.BeginForm("Crear", "Necesidades", FormMethod.Post))
+            @using (Html.BeginForm("Index", "Login", FormMethod.Post))
             {
-                <div class="control-group form-group" id="monetarias">
-                    <div class="controls">
-                        <label>Nombre de la necesidad:</label>
-                        @Html.TextBoxFor(m => m.nombre, new { @class = "form-control", placeholder = "Nombre" })
-                        @Html.ValidationMessageFor(m => m.nombre)
-                    </div>
-                </div>
+            <form name="sentMessage" id="contactForm" novalidate>
+
                 <div class="control-group form-group" id="monetarias">
                     <div class="controls">
                         <label>Descripción de la necesidad:</label>
-                        @Html.TextBoxFor(m => m.descripcion, new { @class = "form-control", placeholder = "Descripcion" })
-                        @Html.ValidationMessageFor(m => m.descripcion)
+                        <input class="form-control" type="" name="">
                     </div>
                 </div>
                 <div class="control-group form-group" id="monetarias">
                     <div class="controls">
                         <label>Fecha fin:</label>
-                        @Html.TextBoxFor(m => m.fechaFin, new { type = "date", @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.fechaFin)
+                        <input class="form-control" type="date" name="">
                     </div>
                 </div>
                 <div class="control-group form-group" id="monetarias">
                     <div class="controls">
                         <label>Teléfono de contacto:</label>
-                        @Html.TextBoxFor(m => m.telefono, new { @class = "form-control", placeholder = "Telefono" })
+                        <input class="form-control" type="text" name="">
                     </div>
                 </div>
                 <div class="control-group form-group">
                     <div class="controls">
                         <label>Tipo:</label>
-                        @Html.DropDownListFor(m => m.tipoDonacion, new SelectList(new string[] { "Monetaria", "Insumos" }), htmlAttributes: new { @class = "form-control" })
+                        <select class="form-control" id="tipoDonacion" name="tipoDonacion">
+                            <option value="monetaria">Monetaria</option>
+                            <option value="insumo">Insumos</option>
+                        </select>
                         <p class="help-block"></p>
                     </div>
                 </div>
                 <div class="control-group form-group" id="monetarias">
                     <div class="controls">
                         <label>Cantidad necesitada ($):</label>
-                        @Html.TextBoxFor(m => m.dinero, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.dinero)
+                        <input class="form-control" type="text" name="">
                     </div>
                 </div>
                 <div class="control-group form-group" id="monetarias">
                     <div class="controls">
                         <label>CBU/Alias</label>
-                        @Html.TextBoxFor(m => m.cbu, new { @class = "form-control" })
+                        <input class="form-control" type="text" name="">
                     </div>
                 </div>
                 <div class="control-group form-group" id="monetarias">
                     <div class="controls">
                         <label for="ejemplo_archivo_1">Foto</label>
-                        @Html.TextBoxFor(m => m.foto, new { type = "file", @class = "form-control" })
+                        <input class="form-control-file" type="file" id="ejemplo_archivo_1">
                     </div>
                 </div>
                 <div class="control-group form-group" id="monetarias">
                     <div class="controls">
                         <label class="col-md-12">Referencia 1:</label>
                         <label>Nombre:</label>
-                        @Html.TextBoxFor(m => m.referencia1Nombre, new { @class = "form-control" })
+                        <input class="form-control" type="text" name="">
                         <label>Teléfono:</label>
-                        @Html.TextBoxFor(m => m.referencia1Telefono, new { @class = "form-control" })
+                        <input class="form-control" type="text" name="">
                     </div>
-                </div>
-                <div class="control-group form-group" id="monetarias">
+                </div><div class="control-group form-group" id="monetarias">
                     <div class="controls">
                         <label class="col-md-12">Referencia 2:</label>
                         <label>Nombre:</label>
-                        @Html.TextBoxFor(m => m.referencia2Nombre, new { @class = "form-control" })
+                        <input class="form-control" type="text" name="">
                         <label>Teléfono:</label>
-                        @Html.TextBoxFor(m => m.referencia2Telefono, new { @class = "form-control" })
+                        <input class="form-control" type="text" name="">
                     </div>
                 </div>
+
+
+
+
                 <div id="success"></div>
                 <!-- For success/fail messages -->
                 <button type="submit" class="btn btn-primary" id="sendMessageButton">Crear necesidad</button>
+            </form>
             }
-
+            
         </div>
 
     </div>

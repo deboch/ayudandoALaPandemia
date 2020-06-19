@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace ayudandoALaPandemia.Controllers
 {
-    public class PerfilController : Controller
+    public class PerfilController : BaseController
     {
         // GET: Perfil
         public ActionResult Index(Usuarios user)

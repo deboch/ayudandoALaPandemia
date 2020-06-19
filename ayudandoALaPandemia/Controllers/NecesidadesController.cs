@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
+using ayudandoALaPandemia.Builder;
+using ayudandoALaPandemia.ViewModels;
 using Repositorios;
 
 namespace ayudandoALaPandemia.Controllers
@@ -38,22 +41,30 @@ namespace ayudandoALaPandemia.Controllers
         }
 
         [HttpPost]
-        public int Crear(Necesidades necesidad)
+        public ActionResult Crear(NecesidadDto necesidadDto)
         {
-            Usuarios usuarioActual = registroServicios.ObtenerPorId(necesidad.IdUsuarioCreador);
-            List<Necesidades> necesidadesDelUsuario = necesidadesServicios.ObtenerPorUserId(necesidad.IdUsuarioCreador);
+            int userId = (int)Session["id"];
+            Usuarios usuarioActual = registroServicios.ObtenerPorId(userId);
+            List<Necesidades> necesidadesDelUsuario = necesidadesServicios.ObtenerPorUserId(userId);
             if (usuarioActual.Foto == null)
             {
                 ViewBag.Incompleto = "Completa tu perfil antes de crear una necesidad";
-                return 0;
+                return View();
 
             }
-            if (necesidadesDelUsuario.Count >= 3)
+            if (necesidadesDelUsuario.Count >= 5)
             {
                 ViewBag.NoPermitir = "Ya posee 3 necesidades abiertas";
-                return 0;
+                return View();
             }
-            return necesidadesServicios.Crear(necesidad);
+            if (!ModelState.IsValid)
+                return View();
+
+            NecesidadBuilder builder = new NecesidadBuilder();
+            Necesidades nuevaNecesidad = builder.toNecesidadesEntity(necesidadDto, userId);
+            necesidadesServicios.Crear(nuevaNecesidad);
+            
+            return RedirectToAction("Index");
         }
 
         [HttpPost]

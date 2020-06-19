@@ -18,8 +18,8 @@ namespace Servicios
             Necesidades nuevaNecesidad = new Necesidades();
 
             Usuarios usuario = managerRepository.usuarioRepository.ObtenerPorId(necesidad.IdUsuarioCreador);
-
-            nuevaNecesidad.Usuarios = usuario;
+            necesidad.Usuarios = usuario;
+            /*nuevaNecesidad.Usuarios = usuario;
             nuevaNecesidad.Nombre = necesidad.Nombre;
             nuevaNecesidad.Descripcion = necesidad.Descripcion;
             nuevaNecesidad.FechaCreacion = Convert.ToDateTime(DateTime.Now.ToString("dd-MMM-yyyy"));
@@ -64,9 +64,9 @@ namespace Servicios
                 }
             }
 
-            nuevaNecesidad.NecesidadesValoraciones = necesidad.NecesidadesValoraciones;
+            nuevaNecesidad.NecesidadesValoraciones = necesidad.NecesidadesValoraciones;*/
 
-            return managerRepository.necesidadesRepository.Crear(nuevaNecesidad);
+            return managerRepository.necesidadesRepository.Crear(necesidad);
         }
 
         public DonacionesInsumos donacionInsumo(DonacionesInsumos donacionesInsumos)
