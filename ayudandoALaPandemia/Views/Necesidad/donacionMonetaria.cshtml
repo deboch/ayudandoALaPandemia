@@ -4,33 +4,39 @@
     ViewBag.Title = "donacionMonetaria";
     Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
 }
+<section class="container">
+    <div class="row">
+        @using (Html.BeginForm("donacionMonetaria", "Necesidad", FormMethod.Post))
+        {
+            <div class="control-group form-group" id="monetarias">
+                <div class="controls">
+                    <label>Total requerido:</label>
+                    <input class="form-control" type="text" name="" disabled value="@ViewBag.Total">
+                </div>
+            </div>
+            <div class="control-group form-group" id="monetarias">
+                <div class="controls">
+                    <label>Total restante:</label>
+                    <input class="form-control" type="text" name="" disabled value="@ViewBag.TotalRestante">
+                </div>
+            </div>
+            <div class="control-group form-group" id="monetarias">
+                <div class="controls">
+                    <label>Total a donar ($):</label>
+                    @Html.TextBoxFor(m => m.Dinero, new { type = "text", @class = "form-control" })
+                </div>
+            </div>
+            
+            @Html.TextBoxFor(m => m.IdUsuario, new { @Value = @ViewBag.userId, type = "hidden", @class = "form-control" })
+            @Html.TextBoxFor(m => m.IdNecesidadDonacionMonetaria, new { @Value = @ViewBag.IdNecesidadMonetaria, type = "hidden", @class = "form-control" })
 
-<!--h1>Total: @ViewBag.Total</!-h1>
-<h1>Total restante: @ViewBag.TotalRestante</h1-->
-
-<form name="sentMessage" id="contactForm" novalidate>
-    <div class="control-group form-group" id="monetarias">
-        <div class="controls">
-            <label>Total requerido:</label>
-            <input class="form-control" type="text" name="" value="@ViewBag.Total">
-        </div>
+            <div class="control-group form-group" id="monetarias">
+                <div class="controls">
+                    <label for="ejemplo_archivo_1">Adjuntar comprobante de transferencia o depósito:</label>
+                    @Html.TextBoxFor(m => m.ArchivoTransferencia, new { type = "file", @class = "form-control" })
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary" id="sendMessageButton">Donar</button>
+        }
     </div>
-    <div class="control-group form-group" id="monetarias">
-        <div class="controls">
-            <label>Total restante:</label>
-            <input class="form-control" type="text" name="" value="@ViewBag.TotalRestante">
-        </div>
-    </div>
-    <div class="control-group form-group" id="monetarias">
-        <div class="controls">
-            <label>Total a donar ($):</label>
-            <input class="form-control" type="text" name="">
-        </div>
-    </div>
-    <div class="control-group form-group" id="monetarias">
-        <div class="controls">
-            <label for="ejemplo_archivo_1">Adjuntar comprobante de transferencia o depósito:</label>
-            <input class="form-control-file" type="file" id="ejemplo_archivo_1">
-        </div>
-    </div>
- </form>
+</section>

@@ -76,6 +76,7 @@ namespace Servicios
 
         public DonacionesMonetarias donacionMonetaria(DonacionesMonetarias donacionesMonetarias)
         {
+            donacionesMonetarias.FechaCreacion = Convert.ToDateTime(DateTime.Now.ToString("dd-MMM-yyyy"));
             return managerRepository.necesidadesRepository.donacionMonetaria(donacionesMonetarias);
         }
 
@@ -113,7 +114,7 @@ namespace Servicios
 
         public Necesidades ObtenerPorId(int id)
         {
-            throw new NotImplementedException();
+            return managerRepository.necesidadesRepository.ObtenerPorId(id);
         }
 
         public List<Necesidades> ObtenerTodos()

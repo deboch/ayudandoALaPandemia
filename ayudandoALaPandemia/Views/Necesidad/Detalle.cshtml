@@ -37,7 +37,7 @@
             <ul>
                 <li>Fecha de Fin </li>
                 <li>Teléfono de Contacto</li>
-                <li>Tipo de Donación</li>
+                <li>Tipo de Donación: @ViewBag.Necesidad.TipoDonacion</li>
                 <li>Referencias</li>
                 <li>Referencias</li>
             </ul>
@@ -73,7 +73,12 @@
                         <a class="btn btn-md btn-secondary btn-block" href="#">Denunciar</a>
                     </div>
                     <div class="col-lg-4">
-                        <a class="btn btn-md btn-secondary btn-block" href="#">Donar</a>
+                        <a class="btn btn-md btn-secondary btn-block" 
+                           href="
+                            @(ViewBag.Necesidad.TipoDonacion == 1 ? "/necesidad/" + ViewBag.Necesidad.IdNecesidad + "/donacionMonetaria" 
+                            :  "/necesidad/" + ViewBag.Necesidad.IdNecesidad + "/donacionInsumos")">
+                            Donar
+                        </a>
                     </div>
                 </div>
             </div>

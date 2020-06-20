@@ -79,7 +79,7 @@ namespace Repositorios
 
         public Necesidades ObtenerPorId(int id)
         {
-            throw new NotImplementedException();
+            return Context.Necesidades.Where(v => v.IdNecesidad == id).FirstOrDefault();
         }
 
         public List<Necesidades> ObtenerPorUserId(int id)

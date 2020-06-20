@@ -7,6 +7,9 @@
 <!--main content start-->
     <section id="main-content">
         <section class="container">
+            @if(@TempData["exito"] != null){
+                <h4>@TempData["exito"]</h4>
+            }
             <h2><i class="fa fa-flag-o red"></i><strong>Las necesidades mas valoradas</strong></h2>
             <div class="row">
                 @foreach (var p in ViewBag.misNecesidades)
