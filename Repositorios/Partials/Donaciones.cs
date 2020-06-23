@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Repositorios
+namespace Repositorios.Partials
 {
-    [MetadataType(typeof(UsuariosMetadata))]
-    public partial class Usuarios
-    {
-    }
-    
+    [MetadataType(typeof(DonacionesMetadata))]
+        public partial class NecesidadesDonacionesMonetarias
+        {
+        }
+
 }

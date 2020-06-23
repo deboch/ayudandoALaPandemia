@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ayudandoALaPandemia.Builder;
+using ayudandoALaPandemia.ViewModels;
 using Repositorios;
 
 namespace ayudandoALaPandemia.Controllers
@@ -12,7 +14,16 @@ namespace ayudandoALaPandemia.Controllers
         // GET: NecesidadAction
         public ActionResult Index()
         {
-            return View();
+            try
+            {
+                List<Necesidades> necesidades = necesidadesServicios.GetNecesidades();
+                ViewBag.Necesidades = necesidades;
+                return View();
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         // necesidad/{id}/detalle
@@ -83,6 +94,25 @@ namespace ayudandoALaPandemia.Controllers
         public Necesidades Modificar(Necesidades necesidad)
         {
             return necesidadesServicios.Modificar(necesidad);
+        }
+
+        [HttpGet]
+        public ActionResult Denuncia()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Denuncia(DenunciaDto denunciaDto)
+        {
+            int userId = (int)Session["id"];
+            DenunciaBuilder builder = new DenunciaBuilder();
+            Denuncias nuevaDenuncia = builder.toDenunciasEntity(denunciaDto, userId);
+            necesidadesServicios.CrearDenuncia(nuevaDenuncia);
+
+            
+            TempData["exito"] = "La denuncia se ha hecho correctamente!";
+            return RedirectToAction("Index", "Necesidades");
         }
 
     }

@@ -54,6 +54,7 @@
                     <div class="controls">
                         <label>Teléfono de contacto:</label>
                         @Html.TextBoxFor(m => m.telefono, new { @class = "form-control", placeholder = "Telefono" })
+                        @Html.ValidationMessageFor(m => m.telefono)
                     </div>
                 </div>
                 <div class="control-group form-group">
@@ -80,6 +81,7 @@
                     <div class="controls">
                         <label for="ejemplo_archivo_1">Foto</label>
                         @Html.TextBoxFor(m => m.foto, new { type = "file", @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.foto)
                     </div>
                 </div>
                 <div class="control-group form-group" id="monetarias">
@@ -87,8 +89,11 @@
                         <label class="col-md-12">Referencia 1:</label>
                         <label>Nombre:</label>
                         @Html.TextBoxFor(m => m.referencia1Nombre, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.referencia1Nombre)
                         <label>Teléfono:</label>
                         @Html.TextBoxFor(m => m.referencia1Telefono, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.referencia1Telefono)
+
                     </div>
                 </div>
                 <div class="control-group form-group" id="monetarias">
@@ -96,8 +101,11 @@
                         <label class="col-md-12">Referencia 2:</label>
                         <label>Nombre:</label>
                         @Html.TextBoxFor(m => m.referencia2Nombre, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.referencia2Nombre)
                         <label>Teléfono:</label>
                         @Html.TextBoxFor(m => m.referencia2Telefono, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.referencia2Telefono)
+
                     </div>
                 </div>
                 <div id="success"></div>
