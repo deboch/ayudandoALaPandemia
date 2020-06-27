@@ -1,4 +1,4 @@
-﻿using Repositorios.Partials;
+﻿using Repositorios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,7 +11,7 @@ namespace ayudandoALaPandemia.ViewModels
     {
         [Key]
         public int Id { get; set; }
-        public L MotivoDenuncia { get; set; }
+        public MotivoDenuncia MotivoDenuncia { get; set; }
         public string Comentarios { get; set; }
         public int Estado { get; set; }
     }

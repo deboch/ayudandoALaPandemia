@@ -15,8 +15,7 @@ namespace ayudandoALaPandemia.Builder
             Denuncias nuevaDenuncia = new Denuncias();
             //nuevaDenuncia.IdNecesidad = necesidadId;
             MotivoDenuncia motivo = new MotivoDenuncia();
-            motivo.IdMotivoDenuncia = denunciaDto.MotivoDenuncia;
-            nuevaDenuncia.MotivoDenuncias.Add(motivo);
+            motivo.IdMotivoDenuncia = denunciaDto.MotivoDenuncia.IdMotivoDenuncia;
             nuevaDenuncia.Comentarios = denunciaDto.Comentarios;
             nuevaDenuncia.IdUsuario = userId;
             nuevaDenuncia.FechaCreacion = Convert.ToDateTime(DateTime.Now.ToString("dd-MMM-yyyy"));
