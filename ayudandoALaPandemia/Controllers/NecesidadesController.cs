@@ -12,7 +12,7 @@ namespace ayudandoALaPandemia.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            if (Session["email"] != null)
+            if (Session != null)
             {
                 int userId = (int)Session["id"];
                 List<Necesidades> misNecesidades = necesidadesServicios.ObtenerPorUserId(userId);
@@ -31,18 +31,6 @@ namespace ayudandoALaPandemia.Controllers
         [HttpGet]
         public ActionResult Home(string keyword)
         {
-            if (Session != null)
-            {
-                int userId = (int)Session["id"];
-                List<Necesidades> misNecesidades = necesidadesServicios.ObtenerPorUserId(userId);
-                ViewBag.misNecesidades = misNecesidades;
-            }
-
-            if (Session["email"] == null)
-            {
-                return View("Index", "Home");
-            }
-
             return View();
         }
 

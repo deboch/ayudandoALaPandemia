@@ -128,6 +128,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Builder\DenunciaBuilder.cs" />
     <Compile Include="Builder\NecesidadBuilder.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -140,7 +141,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+<<<<<<< HEAD
     <Compile Include="ViewModels\InsumosDto.cs" />
+=======
+    <Compile Include="ViewModels\DenunciaDto.cs" />
+>>>>>>> 9d7b6cc86f3dbb9b3c8cb1873e9b2c13b86f7996
     <Compile Include="ViewModels\NecesidadDto.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -236,6 +241,42 @@
     <Content Include="Content\ionicons.css" />
     <Content Include="Content\ionicons.min.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\Template\css\main.css" />
+    <Content Include="Content\Template\css\modern-business.css" />
+    <Content Include="Content\Template\css\style.css" />
+    <Content Include="Content\Template\css\util.css" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\css\font-awesome.css" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\css\font-awesome.min.css" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\HELP-US-OUT.txt" />
+    <Content Include="Content\Template\fonts\iconic\css\material-design-iconic-font.css" />
+    <Content Include="Content\Template\fonts\iconic\css\material-design-iconic-font.min.css" />
+    <Content Include="Content\Template\fonts\iconic\fonts\Material-Design-Iconic-Font.svg" />
+    <Content Include="Content\Template\fonts\JosefinSans\OFL.txt" />
+    <Content Include="Content\Template\fonts\source-sans-pro\OFL.txt" />
+    <Content Include="Content\Template\fonts\ubuntu\UFL.txt" />
+    <Content Include="Content\Template\img\img1.jpg" />
+    <Content Include="Content\Template\img\img2.jpg" />
+    <Content Include="Content\Template\img\img3.jpg" />
+    <Content Include="Content\Template\img\img4.jpg" />
+    <Content Include="Content\Template\img\img5.jpg" />
+    <Content Include="Content\Template\js\contact_me.js" />
+    <Content Include="Content\Template\js\jqBootstrapValidation.js" />
+    <Content Include="Content\Template\mail\contact_me.php" />
+    <Content Include="Content\Template\vendor\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="Content\Template\vendor\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="Content\Template\vendor\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="Content\Template\vendor\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="Content\Template\vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\Template\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\Template\vendor\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="Content\Template\vendor\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="Content\Template\vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\Template\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\Template\vendor\jquery\jquery.js" />
+    <Content Include="Content\Template\vendor\jquery\jquery.min.js" />
+    <Content Include="Content\Template\vendor\jquery\jquery.slim.js" />
+    <Content Include="Content\Template\vendor\jquery\jquery.slim.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -282,6 +323,85 @@
     <Content Include="assets\vendor\jquery\jquery.min.map" />
     <Content Include="assets\vendor\owl.carousel\LICENSE" />
     <Content Include="assets\vendor\owl.carousel\README.md" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\fonts\FontAwesome.otf" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\less\animated.less" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\less\bordered-pulled.less" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\less\core.less" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\less\fixed-width.less" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\less\font-awesome.less" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\less\icons.less" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\less\larger.less" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\less\list.less" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\less\mixins.less" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\less\path.less" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\less\rotated-flipped.less" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\less\screen-reader.less" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\less\stacked.less" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\less\variables.less" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\scss\font-awesome.scss" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\scss\_animated.scss" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\scss\_bordered-pulled.scss" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\scss\_core.scss" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\scss\_fixed-width.scss" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\scss\_icons.scss" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\scss\_larger.scss" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\scss\_list.scss" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\scss\_mixins.scss" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\scss\_path.scss" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\scss\_rotated-flipped.scss" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\scss\_screen-reader.scss" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\scss\_stacked.scss" />
+    <Content Include="Content\Template\fonts\font-awesome-4.7.0\scss\_variables.scss" />
+    <Content Include="Content\Template\fonts\iconic\fonts\Material-Design-Iconic-Font.eot" />
+    <Content Include="Content\Template\fonts\iconic\fonts\Material-Design-Iconic-Font.ttf" />
+    <Content Include="Content\Template\fonts\iconic\fonts\Material-Design-Iconic-Font.woff" />
+    <Content Include="Content\Template\fonts\iconic\fonts\Material-Design-Iconic-Font.woff2" />
+    <Content Include="Content\Template\fonts\JosefinSans\JosefinSans-Bold.ttf" />
+    <Content Include="Content\Template\fonts\JosefinSans\JosefinSans-BoldItalic.ttf" />
+    <Content Include="Content\Template\fonts\JosefinSans\JosefinSans-Italic.ttf" />
+    <Content Include="Content\Template\fonts\JosefinSans\JosefinSans-Light.ttf" />
+    <Content Include="Content\Template\fonts\JosefinSans\JosefinSans-LightItalic.ttf" />
+    <Content Include="Content\Template\fonts\JosefinSans\JosefinSans-Regular.ttf" />
+    <Content Include="Content\Template\fonts\JosefinSans\JosefinSans-SemiBold.ttf" />
+    <Content Include="Content\Template\fonts\JosefinSans\JosefinSans-SemiBoldItalic.ttf" />
+    <Content Include="Content\Template\fonts\JosefinSans\JosefinSans-Thin.ttf" />
+    <Content Include="Content\Template\fonts\JosefinSans\JosefinSans-ThinItalic.ttf" />
+    <Content Include="Content\Template\fonts\source-sans-pro\SourceSansPro-Black.ttf" />
+    <Content Include="Content\Template\fonts\source-sans-pro\SourceSansPro-BlackItalic.ttf" />
+    <Content Include="Content\Template\fonts\source-sans-pro\SourceSansPro-Bold.ttf" />
+    <Content Include="Content\Template\fonts\source-sans-pro\SourceSansPro-BoldItalic.ttf" />
+    <Content Include="Content\Template\fonts\source-sans-pro\SourceSansPro-ExtraLight.ttf" />
+    <Content Include="Content\Template\fonts\source-sans-pro\SourceSansPro-ExtraLightItalic.ttf" />
+    <Content Include="Content\Template\fonts\source-sans-pro\SourceSansPro-Italic.ttf" />
+    <Content Include="Content\Template\fonts\source-sans-pro\SourceSansPro-Light.ttf" />
+    <Content Include="Content\Template\fonts\source-sans-pro\SourceSansPro-LightItalic.ttf" />
+    <Content Include="Content\Template\fonts\source-sans-pro\SourceSansPro-Regular.ttf" />
+    <Content Include="Content\Template\fonts\source-sans-pro\SourceSansPro-SemiBold.ttf" />
+    <Content Include="Content\Template\fonts\source-sans-pro\SourceSansPro-SemiBoldItalic.ttf" />
+    <Content Include="Content\Template\fonts\ubuntu\Ubuntu-Bold.ttf" />
+    <Content Include="Content\Template\fonts\ubuntu\Ubuntu-BoldItalic.ttf" />
+    <Content Include="Content\Template\fonts\ubuntu\Ubuntu-Italic.ttf" />
+    <Content Include="Content\Template\fonts\ubuntu\Ubuntu-Light.ttf" />
+    <Content Include="Content\Template\fonts\ubuntu\Ubuntu-LightItalic.ttf" />
+    <Content Include="Content\Template\fonts\ubuntu\Ubuntu-Medium.ttf" />
+    <Content Include="Content\Template\fonts\ubuntu\Ubuntu-MediumItalic.ttf" />
+    <Content Include="Content\Template\fonts\ubuntu\Ubuntu-Regular.ttf" />
+    <Content Include="Content\Template\vendor\bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="Content\Template\vendor\bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="Content\Template\vendor\bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="Content\Template\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\Template\vendor\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Content\Template\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Content\Template\vendor\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="Content\Template\vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Content\Template\vendor\bootstrap\js\bootstrap.js.map" />
+    <Content Include="Content\Template\vendor\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="Content\Template\vendor\jquery\jquery.min.map" />
+    <Content Include="Content\Template\vendor\jquery\jquery.slim.min.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\hoverIntent.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -326,12 +446,14 @@
     <Content Include="Views\Necesidad\donacionMonetaria.cshtml" />
     <Content Include="Views\Necesidad\donacionInsumos.cshtml" />
     <Content Include="Views\Necesidades\Crear.cshtml" />
+    <Content Include="Views\Denuncia\altaDenuncia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
     <Folder Include="App_Themes\Tema1\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Donacion\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

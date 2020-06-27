@@ -126,5 +126,17 @@ namespace Servicios
         {
             return managerRepository.necesidadesRepository.ObtenerPorUserId(userId);
         }
+        public List<Necesidades> GetNecesidades()
+        {
+            var listaOrdenada = managerRepository.necesidadesRepository
+                .ObtenerTodos()
+                .ToList();
+
+            return listaOrdenada;
+        }
+        public int CrearDenuncia(Denuncias denuncia)
+        {
+            return managerRepository.necesidadesRepository.CrearDenuncia(denuncia);
+        }
     }
 }

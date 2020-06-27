@@ -11,4 +11,5 @@ namespace Repositorios
     public partial class Usuarios
     {
     }
+    
 }

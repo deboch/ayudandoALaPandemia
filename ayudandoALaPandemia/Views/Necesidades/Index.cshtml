@@ -4,6 +4,41 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
 }
+
+<aside>
+    <div id="sidebar" class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu">
+            <li class="active">
+                <a class="" href="">
+                    <i class="icon_house_alt"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            @if (Session["email"] == null)
+            {
+                <li class="sub-menu">
+                    @Html.ActionLink("Iniciar sesión", "Index", "Login")
+                </li>
+            }
+            <li>
+                @Html.ActionLink("Crear Necesidad", "Login", "Home")
+            </li>
+            <li>
+                @Html.ActionLink("Denuncias", "Login", "Home")
+            </li>
+            <li>
+                @Html.ActionLink("Acerca de", "Login", "Home")
+
+            </li>
+            <li>
+                @Html.ActionLink("Salir", "Login", "Home")
+            </li>
+        </ul>
+        <!-- sidebar menu end-->
+    </div>
+</aside>
+<!--sidebar end-->
 <!--main content start-->
     <section id="main-content">
         <section class="container">
@@ -33,3 +68,4 @@
             </div>
         </section>
     </section>
+</section>

@@ -1,4 +1,6 @@
-﻿
+﻿@model Repositorios.Denuncias
+
+
 @{
     ViewBag.Title = "altaDenuncia";
 }
@@ -29,20 +31,25 @@
                 <div class="control-group form-group">
                     <div class="controls">
                         <label>Motivo:</label>
-                        <select class="form-control">
-                            <option>Fraude</option>
-                            <option>Indebida</option>
-                            <option>Violación de derechos</option>
-                            <option>Contiene información política</option>
-                        </select>
+                        @Html.LabelFor(m => m.IdMotivo)
+                        @Html.DropDownListFor(m => m.IdMotivo,
+                    new SelectList(Enum.GetValues(typeof(Repositorios.MotivoDenuncia))),
+                    "Selecciona motivo")
+                        <!--select class="form-control">
+        <option>Fraude</option>
+        <option>Indebida</option>
+        <option>Violación de derechos</option>
+        <option>Contiene información política</option>
+    </!-select-->
                         <p class="help-block"></p>
                     </div>
                 </div>
 
                 <div class="control-group form-group">
                     <div class="controls">
-                        <label>Comentario:</label>
-                        <textarea rows="10" cols="100" class="form-control" id="message" maxlength="999" style="resize:none"></textarea>
+                        @Html.LabelFor(m => m.Comentarios)
+                        @Html.TextAreaFor(m => m.Comentarios, new { @class = "form-control" })
+                        <!--textarea rows="10" cols="100" class="form-control" id="message" maxlength="999" style="resize:none"></!-textarea-->
                     </div>
                 </div>
                 <div id="success"></div>
