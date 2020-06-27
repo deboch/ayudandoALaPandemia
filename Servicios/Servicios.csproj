@@ -62,17 +62,17 @@
     <Compile Include="SearchServicios.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Repositorios\Repositorios.csproj">
-      <Project>{1a1ac94b-2e3f-4039-9f33-57e565216374}</Project>
-      <Name>Repositorios</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include=".gitignore" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Repositorios\Repositorios.csproj">
+      <Project>{1a1ac94b-2e3f-4039-9f33-57e565216374}</Project>
+      <Name>Repositorios</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

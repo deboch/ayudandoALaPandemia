@@ -31,3 +31,17 @@
     height: 21px;
     display: block;
 }
+
+.home h2 {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.home .card {
+    padding-bottom: 25px;
+}
+
+.badge {
+    color: white;
+    background-color: red;
+}

@@ -23,7 +23,7 @@ namespace ayudandoALaPandemia.ViewModels
         public string foto { get; set; }
         public decimal dinero { get; set; }
         public string cbu { get; set; }
-
+        public List<InsumosDto> insumos { get; set; }
         public string referencia1Nombre { get; set; }
         public string referencia2Nombre { get; set; }
         public string referencia1Telefono { get; set; }

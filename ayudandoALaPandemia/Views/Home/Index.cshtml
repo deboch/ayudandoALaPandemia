@@ -9,18 +9,28 @@
 
 <!--sidebar end-->
 <!--main content start-->
-<section id="main-content">
+<section class="home" id="main-content">
     <section class="container">
-        <h2><i class="fa fa-flag-o red"></i><strong>Las necesidades mas valoradas</strong></h2>
+        <h2><i class="fa fa-flag-o red"></i><strong>TU DONACIÓN CONSTRUYE</strong></h2>
+        <h2 class="">
+            <small>
+                Lo recaudado será destinado para las zonas más
+                afectadas y prioritarias del país, para construir más viviendas de emergencia y para financiar proyectos
+                vinculados al acceso al agua cuando retome el trabajo en los territorios.
+            </small>
+        </h2>
         <div class="row">
             @foreach (var p in ViewBag.Necesidades)
             {
                 <div class="col-lg-4 mb-4">
                     <a href="/necesidad/@p.IdNecesidad/detalle" class="card h-100">
                         <h4 class="card-header">@p.Nombre</h4>
+                        <img src="../../Content/Template/img/@p.Foto" width="100%" height="auto" />
                         <div class="card-body">
                             <p class="card-text">@p.Descripcion</p>
-                            <p class="card-text">@p.Estado</p>
+                            <span class="badge">
+                              @(p.TipoDonacion == 1 ? "Monetaria" : "Insumos")
+                            </span>
                         </div>
                         @if (p.Valoracion != null)
                         {
@@ -31,6 +41,25 @@
                     </a>
                 </div>
             }
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <h2>Necesidad de la semana</h2>
+                <p>Urgencia en Lanus</p>
+                <ul>
+                    <li>
+                        <strong>Barrio con 120 contagiados y estan sin gas y con frio</strong>
+                    </li>
+                    <li>Garrafas</li>
+                    <li>Frazadas</li>
+                    <li>Colchas</li>
+                </ul>
+                <p>Para mas informacion entre al detalle de la necesidad para saber que cantidades necesita</p>
+                <a href="" title="necesidad" class="btn btn-primary">Ver</a>
+            </div>
+            <div class="col-lg-6">
+                <img class="img-fluid rounded" src="../../Content/Template/img/img2.jpg" width="100%" height="auto" />
+            </div>
         </div>
     </section>
 </section>
