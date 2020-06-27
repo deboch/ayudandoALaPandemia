@@ -141,11 +141,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-<<<<<<< HEAD
     <Compile Include="ViewModels\InsumosDto.cs" />
-=======
     <Compile Include="ViewModels\DenunciaDto.cs" />
->>>>>>> 9d7b6cc86f3dbb9b3c8cb1873e9b2c13b86f7996
     <Compile Include="ViewModels\NecesidadDto.cs" />
   </ItemGroup>
   <ItemGroup>
