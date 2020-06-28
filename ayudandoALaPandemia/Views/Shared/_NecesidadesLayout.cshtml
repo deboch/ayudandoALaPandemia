@@ -16,11 +16,14 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
+                        @if (Session["email"] != null)
+                        {
                         <li class="nav-item">
                             <form class="input-group" id="form-search">
                                 <input class="form-control" id="search-field" type="text" placeholder="Busca una necesidad" />
                             </form>
                         </li>
+                        }
                         @if (Session["email"] != null)
                         { 
                             <li class="nav-item">
