@@ -16,7 +16,7 @@
                 @foreach (var p in ViewBag.misNecesidades)
                 {
                 <div class="col-lg-4 mb-4">
-                    <a href="@(Session[" email"] !=null ? "/necesidad/@p.IdNecesidad/detalle" : "/login" )" class="card h-100">
+                    <a href="@(Session["email"] != null ? "/necesidad/" + @p.IdNecesidad + "/detalle" : "/login" )" class="card h-100">
                         <h4 class="card-header">@p.Nombre</h4>
                         <img src="../../Content/Template/img/@p.Foto" width="100%" height="auto" />
                         <div class="card-body">

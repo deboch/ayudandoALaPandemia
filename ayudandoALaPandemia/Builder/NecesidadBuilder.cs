@@ -17,13 +17,27 @@ namespace ayudandoALaPandemia.Builder
             nuevaNecesidad.FechaFin = necesidadDto.fechaFin;
             nuevaNecesidad.TelefonoContacto = necesidadDto.telefono;
             nuevaNecesidad.TipoDonacion = necesidadDto.tipoDonacion == "Monetaria" ? 1 : 0;
-            nuevaNecesidad.Foto = necesidadDto.foto;
+            nuevaNecesidad.Foto = "abc.jpg";
             nuevaNecesidad.IdUsuarioCreador = userId;
             nuevaNecesidad.FechaCreacion = Convert.ToDateTime(DateTime.Now.ToString("dd-MMM-yyyy"));
-            NecesidadesDonacionesMonetarias necesidadMonetaria = new NecesidadesDonacionesMonetarias();
-            necesidadMonetaria.CBU = necesidadDto.cbu;
-            necesidadMonetaria.Dinero = necesidadDto.dinero;
-            nuevaNecesidad.NecesidadesDonacionesMonetarias.Add(necesidadMonetaria);
+            
+            if (necesidadDto.tipoDonacion == "Monetaria")
+            {
+                NecesidadesDonacionesMonetarias necesidadMonetaria = new NecesidadesDonacionesMonetarias();
+                necesidadMonetaria.CBU = necesidadDto.cbu;
+                necesidadMonetaria.Dinero = necesidadDto.dinero;
+                nuevaNecesidad.NecesidadesDonacionesMonetarias.Add(necesidadMonetaria);
+            }
+            if (necesidadDto.insumos.Count > 0)
+            {
+                foreach (var p in necesidadDto.insumos)
+                {
+                    NecesidadesDonacionesInsumos necesidadDeInsumos = new NecesidadesDonacionesInsumos();
+                    necesidadDeInsumos.Nombre = p.nombre;
+                    necesidadDeInsumos.Cantidad = p.cantidad;
+                    nuevaNecesidad.NecesidadesDonacionesInsumos.Add(necesidadDeInsumos);
+                }
+            }
 
             NecesidadesReferencias necesidadReferencia1 = new NecesidadesReferencias();
             NecesidadesReferencias necesidadReferencia2 = new NecesidadesReferencias();

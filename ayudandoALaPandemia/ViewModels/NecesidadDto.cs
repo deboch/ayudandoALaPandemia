@@ -8,11 +8,16 @@ namespace ayudandoALaPandemia.ViewModels
 {
     public class NecesidadDto
     {
+        public NecesidadDto()
+        {
+            this.insumos = new List<InsumosDto>();
+        }
+
         [Key]
         public int Id { get; set; }
 
         [Required]
-        [StringLength(10)]
+        [StringLength(200)]
         public string nombre { get; set; }
 
         [Required]

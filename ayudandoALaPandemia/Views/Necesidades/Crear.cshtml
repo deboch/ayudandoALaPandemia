@@ -10,8 +10,7 @@
 
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-4 mb-3">
-        Necesidad
-
+        Crea una necesidad
     </h1>
 
     <ol class="breadcrumb">
@@ -27,30 +26,38 @@
     <div class="row">
         <div class="col-lg-8 mb-4">
             <h3>Crear Necesidad</h3>
+            @if (ViewBag.Incompleto != null)
+            {
+                <p class="text-danger">@ViewBag.Incompleto</p>
+            }
+            @if (ViewBag.NoPermitir != null)
+            {
+                <p class="text-danger">@ViewBag.NoPermitir</p>
+            }
             @using (Html.BeginForm("Crear", "Necesidades", FormMethod.Post))
             {
-                <div class="control-group form-group" id="monetarias">
+                <div class="control-group form-group">
                     <div class="controls">
                         <label>Nombre de la necesidad:</label>
                         @Html.TextBoxFor(m => m.nombre, new { @class = "form-control", placeholder = "Nombre" })
                         @Html.ValidationMessageFor(m => m.nombre)
                     </div>
                 </div>
-                <div class="control-group form-group" id="monetarias">
+                <div class="control-group form-group">
                     <div class="controls">
                         <label>Descripción de la necesidad:</label>
                         @Html.TextBoxFor(m => m.descripcion, new { @class = "form-control", placeholder = "Descripcion" })
                         @Html.ValidationMessageFor(m => m.descripcion)
                     </div>
                 </div>
-                <div class="control-group form-group" id="monetarias">
+                <div class="control-group form-group">
                     <div class="controls">
                         <label>Fecha fin:</label>
                         @Html.TextBoxFor(m => m.fechaFin, new { type = "date", @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.fechaFin)
                     </div>
                 </div>
-                <div class="control-group form-group" id="monetarias">
+                <div class="control-group form-group">
                     <div class="controls">
                         <label>Teléfono de contacto:</label>
                         @Html.TextBoxFor(m => m.telefono, new { @class = "form-control", placeholder = "Telefono" })
@@ -60,31 +67,53 @@
                 <div class="control-group form-group">
                     <div class="controls">
                         <label>Tipo:</label>
-                        @Html.DropDownListFor(m => m.tipoDonacion, new SelectList(new string[] { "Monetaria", "Insumos" }), htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownListFor(m => m.tipoDonacion, new List<SelectListItem>() { new SelectListItem { Text = "Monetaria", Value = "monetaria" }, new SelectListItem { Text = "Insumos", Value = "insumos" } }, htmlAttributes: new { id = "tipoDonacion", @class = "form-control" })
                         <p class="help-block"></p>
                     </div>
                 </div>
-                <div class="control-group form-group" id="monetarias">
-                    <div class="controls">
-                        <label>Cantidad necesitada ($):</label>
-                        @Html.TextBoxFor(m => m.dinero, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.dinero)
+                <div id="monetaria">
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label>Cantidad necesitada ($):</label>
+                            @Html.TextBoxFor(m => m.dinero, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.dinero)
+                        </div>
+                    </div>
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label>CBU/Alias</label>
+                            @Html.TextBoxFor(m => m.cbu, new { @class = "form-control", placeholder = "Cbu" })
+                        </div>
+                    </div>
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label for="ejemplo_archivo_1">Foto</label>
+                            @Html.TextBoxFor(m => m.foto, new { type = "file", @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.foto)
+                        </div>
                     </div>
                 </div>
-                <div class="control-group form-group" id="monetarias">
-                    <div class="controls">
-                        <label>CBU/Alias</label>
-                        @Html.TextBoxFor(m => m.cbu, new { @class = "form-control" })
-                    </div>
+                <div id="insumos">
+                    <label for="Insumo">Ingrese insumos</label>
+                    @{int i = 0;}
+                    @foreach (var p in Model.insumos)
+                    {
+
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                @Html.TextBoxFor(m => m.insumos[i].nombre, new { type = "text", @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                @Html.TextBoxFor(m => m.insumos[i].cantidad, new { type = "text", @class = "form-control" })
+                            </div>
+                        </div>
+                        
+                        @(i++)
+                    }
                 </div>
-                <div class="control-group form-group" id="monetarias">
-                    <div class="controls">
-                        <label for="ejemplo_archivo_1">Foto</label>
-                        @Html.TextBoxFor(m => m.foto, new { type = "file", @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.foto)
-                    </div>
-                </div>
-                <div class="control-group form-group" id="monetarias">
+                <div class="control-group form-group">
                     <div class="controls">
                         <label class="col-md-12">Referencia 1:</label>
                         <label>Nombre:</label>
@@ -96,7 +125,7 @@
 
                     </div>
                 </div>
-                <div class="control-group form-group" id="monetarias">
+                <div class="control-group form-group">
                     <div class="controls">
                         <label class="col-md-12">Referencia 2:</label>
                         <label>Nombre:</label>

@@ -37,7 +37,14 @@ namespace ayudandoALaPandemia.Controllers
         [HttpGet]
         public ActionResult Crear()
         {
-            return View();
+            if (Session["email"] == null)
+            {
+                return RedirectToAction("Index");
+            }
+            var model = new NecesidadDto();
+            InsumosDto insumoDto = new InsumosDto();
+            model.insumos.Add(insumoDto);
+            return View(model);
         }
 
         [HttpPost]
@@ -49,16 +56,17 @@ namespace ayudandoALaPandemia.Controllers
             if (usuarioActual.Foto == null)
             {
                 ViewBag.Incompleto = "Completa tu perfil antes de crear una necesidad";
-                return View();
+                return View(necesidadDto);
 
             }
-            if (necesidadesDelUsuario.Count >= 5)
+            if (necesidadesDelUsuario.Count >= 10)
             {
                 ViewBag.NoPermitir = "Ya posee 3 necesidades abiertas";
-                return View();
+                return View(necesidadDto);
             }
+
             if (!ModelState.IsValid)
-                return View();
+                return View(necesidadDto);
 
             NecesidadBuilder builder = new NecesidadBuilder();
             Necesidades nuevaNecesidad = builder.toNecesidadesEntity(necesidadDto, userId);
