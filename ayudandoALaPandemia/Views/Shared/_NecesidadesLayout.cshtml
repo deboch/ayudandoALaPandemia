@@ -14,8 +14,6 @@
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
-
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
@@ -23,30 +21,25 @@
                                 <input class="form-control" id="search-field" type="text" placeholder="Busca una necesidad" />
                             </form>
                         </li>
-
-
+                        @if (Session["email"] != null)
+                        { 
+                            <li class="nav-item">
+                                @Html.ActionLink("Crear Necesidad", "Index", "Login", null, new { @class = "nav-link" })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Denuncias", "Login", "Home", null, new { @class = "nav-link" })
+                            </li>
+                        }
                         <li class="nav-item">
-                            @Html.ActionLink("Crear Necesidad", "Login", "Home", new { @class = "nav-link" })
-                        </li>
-                        <li class="nav-item">
-                            @Html.ActionLink("Denuncias", "Login", "Home", new { @class = "nav-link" })
-                        </li>
-                        <li class="nav-item">
-                            @Html.ActionLink("Acerca de", "Login", "Home", new { @class = "nav-link" })
+                            @Html.ActionLink("Acerca de", "Login", "Home", null, new { @class = "nav-link" })
                         </li>
                         @if (Session["email"] == null)
                         {
                             <li class="nav-item">
-                                @Html.ActionLink("Iniciar sesión", "Index", "Login", new { @class = "nav-link" })
+                                @Html.ActionLink("Iniciar sesión", "Index", "Login", null, new { @class = "nav-link" })
                             </li>
                         }
-                        <!--@if (Session["email"] != null)
-                        {
-                            <li>
-                                @Session["email"].ToString();
-                            </li>
-                        }
-                        -->
+                            
                         @if (Session["email"] != null)
                         {
                             <li class="nav-item dropdown-toggle">
@@ -62,7 +55,7 @@
                             </li>
                         }
                     </ul>
-            </div>
+                </div>
             </div>
         </nav>
         <header>

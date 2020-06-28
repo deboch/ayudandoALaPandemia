@@ -12,7 +12,7 @@ namespace ayudandoALaPandemia.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            if (Session != null)
+            if (Session["email"] != null)
             {
                 int userId = (int)Session["id"];
                 List<Necesidades> misNecesidades = necesidadesServicios.ObtenerPorUserId(userId);

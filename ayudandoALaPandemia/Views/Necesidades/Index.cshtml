@@ -5,40 +5,6 @@
     Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
 }
 
-<aside>
-    <div id="sidebar" class="nav-collapse ">
-        <!-- sidebar menu start-->
-        <ul class="sidebar-menu">
-            <li class="active">
-                <a class="" href="">
-                    <i class="icon_house_alt"></i>
-                    <span>Home</span>
-                </a>
-            </li>
-            @if (Session["email"] == null)
-            {
-                <li class="sub-menu">
-                    @Html.ActionLink("Iniciar sesión", "Index", "Login")
-                </li>
-            }
-            <li>
-                @Html.ActionLink("Crear Necesidad", "Login", "Home")
-            </li>
-            <li>
-                @Html.ActionLink("Denuncias", "Login", "Home")
-            </li>
-            <li>
-                @Html.ActionLink("Acerca de", "Login", "Home")
-
-            </li>
-            <li>
-                @Html.ActionLink("Salir", "Login", "Home")
-            </li>
-        </ul>
-        <!-- sidebar menu end-->
-    </div>
-</aside>
-<!--sidebar end-->
 <!--main content start-->
     <section id="main-content">
         <section class="container">
@@ -50,11 +16,14 @@
                 @foreach (var p in ViewBag.misNecesidades)
                 {
                 <div class="col-lg-4 mb-4">
-                    <a href="/necesidad/@p.IdNecesidad/detalle" class="card h-100">
+                    <a href="@(Session[" email"] !=null ? "/necesidad/@p.IdNecesidad/detalle" : "/login" )" class="card h-100">
                         <h4 class="card-header">@p.Nombre</h4>
+                        <img src="../../Content/Template/img/@p.Foto" width="100%" height="auto" />
                         <div class="card-body">
                             <p class="card-text">@p.Descripcion</p>
-                            <p class="card-text">@p.Estado</p>
+                            <span class="badge">
+                                @(p.TipoDonacion == 1 ? "Monetaria" : "Insumos")
+                            </span>
                         </div>
                         @if (p.Valoracion != null)
                         {
