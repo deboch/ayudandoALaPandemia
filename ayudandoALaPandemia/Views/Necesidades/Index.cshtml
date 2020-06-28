@@ -7,34 +7,35 @@
 
 <!--main content start-->
     <section id="main-content">
-        <section class="container">
+        <div class="container">
             @if(@TempData["exito"] != null){
                 <h4>@TempData["exito"]</h4>
             }
             <h2><i class="fa fa-flag-o red"></i><strong>Las necesidades mas valoradas</strong></h2>
-            <div class="row">
-                @foreach (var p in ViewBag.misNecesidades)
-                {
-                <div class="col-lg-4 mb-4">
-                    <a href="@(Session["email"] != null ? "/necesidad/" + @p.IdNecesidad + "/detalle" : "/login" )" class="card h-100">
-                        <h4 class="card-header">@p.Nombre</h4>
-                        <img src="../../Content/Template/img/@p.Foto" width="100%" height="auto" />
-                        <div class="card-body">
-                            <p class="card-text">@p.Descripcion</p>
-                            <span class="badge">
-                                @(p.TipoDonacion == 1 ? "Monetaria" : "Insumos")
-                            </span>
+            <div class="searched-wrapper">
+                <div class="row">
+                    @foreach (var p in ViewBag.misNecesidades)
+                    {
+                        <div class="col-lg-4 mb-4">
+                            <a href="@(Session["email"] != null ? "/necesidad/" + @p.IdNecesidad + "/detalle" : "/login" )" class="card h-100">
+                                <h4 class="card-header">@p.Nombre</h4>
+                                <img src="../../Content/Template/img/@p.Foto" width="100%" height="auto" />
+                                <div class="card-body">
+                                    <p class="card-text">@p.Descripcion</p>
+                                    <span class="badge">
+                                        @(p.TipoDonacion == 1 ? "Monetaria" : "Insumos")
+                                    </span>
+                                </div>
+                                @if (p.Valoracion != null)
+                                {
+                                    <div class="star-ratings-sprite">
+                                        <span style="width:@p.Valoracion%" class="star-ratings-sprite-rating"></span>
+                                    </div>
+                                }
+                            </a>
                         </div>
-                        @if (p.Valoracion != null)
-                        {
-                        <div class="star-ratings-sprite">
-                            <span style="width:@p.Valoracion%" class="star-ratings-sprite-rating"></span>
-                        </div>
-                        }
-                    </a>
+                    }
                 </div>
-                }
             </div>
-        </section>
+        </div>
     </section>
-</section>
