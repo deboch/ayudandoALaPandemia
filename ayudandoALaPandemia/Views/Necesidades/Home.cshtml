@@ -18,11 +18,14 @@
             @foreach (var p in ViewBag.misNecesidades)
             {
                 <div class="col-lg-4 mb-4">
-                    <a class="card h-100">
+                    <a href="@(Session["email"] != null ? "/necesidad/@p.IdNecesidad/detalle" : "/login" )" class="card h-100">
                         <h4 class="card-header">@p.Nombre</h4>
+                        <img src="../../Content/Template/img/@p.Foto" width="100%" height="auto" />
                         <div class="card-body">
                             <p class="card-text">@p.Descripcion</p>
-                            <p class="card-text">@p.Estado</p>
+                            <span class="badge">
+                                @(p.TipoDonacion == 1 ? "Monetaria" : "Insumos")
+                            </span>
                         </div>
                         @if (p.Valoracion != null)
                         {
