@@ -23,7 +23,7 @@ namespace ayudandoALaPandemia.Controllers
                 if (validoEmailYUserName)
                 {
                     registroServicios.Crear(u);
-                    emailServicios.sendEmail();
+                    emailServicios.sendEmail(u.Token);
                     return RedirectToAction("Index", "Home");
                 }
                 else{
@@ -32,6 +32,16 @@ namespace ayudandoALaPandemia.Controllers
                 }
             }
             return View(u);
+        }
+
+        [HttpGet]
+        public ActionResult activoUsuario(string token)
+        {
+            Usuarios user = new Usuarios();
+            user = registroServicios.obtenerPorToken(token);
+            registroServicios.activoToken(user);
+
+            return View();
         }
     }
 }

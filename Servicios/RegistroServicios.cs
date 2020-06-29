@@ -59,7 +59,12 @@ namespace Servicios
                 }
                 return 0;
             }
-        }     
+        }
+
+        public void activoToken(Usuarios user)
+        {
+            managerRepository.usuarioRepository.activoToken(user);
+        }
 
         /* public int generaId()
          {
@@ -97,6 +102,7 @@ namespace Servicios
             u.FechaNacimiento = DateTime.Now;
             u.TipoUsuario = 1;
             u.Token = generoToken();
+            u.Activo = false;
             //u.Password = MD5Hash(u.Password);
         }
 
@@ -110,13 +116,18 @@ namespace Servicios
             throw new NotImplementedException();
         }
 
+        public Usuarios obtenerPorToken(string token)
+        {
+            return managerRepository.usuarioRepository.obtenerPorToken(token);
+        }
+
 
         public string generoToken()
         {
             Random random = new Random();
-            string characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-            StringBuilder result = new StringBuilder(6);
-            for (int i = 0; i < 6; i++)
+            string characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            StringBuilder result = new StringBuilder(10);
+            for (int i = 0; i < 10; i++)
             {
                 result.Append(characters[random.Next(characters.Length)]);
             }
