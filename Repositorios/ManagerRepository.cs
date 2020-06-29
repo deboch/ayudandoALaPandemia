@@ -1,4 +1,6 @@
-﻿namespace Repositorios
+﻿using System;
+
+namespace Repositorios
 {
     public class ManagerRepository
     {
@@ -19,6 +21,11 @@
             this.necesidadesRepository = new NecesidadesRepository(this.contexto);
             this.donacionesMonetariasRepository = new DonacionesMonetariasRepository(this.contexto);
             this.donacionesInsumosRepository = new DonacionesInsumosRepository(this.contexto);
+        }
+
+        public bool verificoActivo(bool activo)
+        {
+            throw new NotImplementedException();
         }
     }
 }

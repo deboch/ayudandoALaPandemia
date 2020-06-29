@@ -32,6 +32,12 @@ namespace Servicios
                 return false;
             }
         }
+
+        public void generoTokenNuevo(Usuarios user)
+        {
+            managerRepository.usuarioRepository.generoTokenNuevo(user);
+        }
+
         public int Crear(Usuarios u)
         {
             try
@@ -66,19 +72,7 @@ namespace Servicios
             managerRepository.usuarioRepository.activoToken(user);
         }
 
-        /* public int generaId()
-         {
-         List<Usuarios> listaUsuarios = managerRepository.usuarioRepository.traerTodosLosUsuarios();
-
-         int id = 1;
-         if (listaUsuarios.Count > 0)
-         {
-             id = listaUsuarios.Count + 1;
-         }
-         return id;
-         }*/
-
-        public int generaId()
+         public int generaId()
         {
             List<Usuarios> listaUsuarios = managerRepository.usuarioRepository.traerTodosLosUsuarios();
 

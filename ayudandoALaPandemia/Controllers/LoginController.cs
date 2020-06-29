@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Antlr.Runtime.Misc;
 using Repositorios;
 
 namespace ayudandoALaPandemia.Controllers
@@ -24,19 +25,27 @@ namespace ayudandoALaPandemia.Controllers
                 {
                     return View(user);
                 }
-                // si esta todo ok grabo en el Session los datos del usuario
-                Session["id"] = usuario.IdUsuario;
-                Session["email"] = usuario.Email.ToString();
-                Session["username"] = usuario.UserName;
-                // redirijo a Index de HomeController
-                return RedirectToAction("Index", "Necesidades");
-
+                else if (user.Activo == false)
+                {
+                    user.Token = registroServicios.generoToken();
+                    registroServicios.generoTokenNuevo(user);
+                    emailServicios.sendEmail(user.Token);
+                    return (RedirectToAction("activarUsuario", "Login", user.Email));
+                }
+                    Session["id"] = usuario.IdUsuario;
+                    Session["email"] = usuario.Email.ToString();
+                    Session["username"] = usuario.UserName;
+                    // redirijo a Index de HomeController
+                    return RedirectToAction("Index", "Necesidades");
             }
-            else
-            {
-                return View(user);
-            }
-
+            return View(user);
+        }
+    
+        [HttpPost]
+        public ActionResult activarUsuario(string email)
+        {
+            ViewBag.email = email;
+            return View();
         }
     }
 }
