@@ -25,7 +25,7 @@ namespace Servicios
             {
                 From = new MailAddress("ayudandoalapandemia.19@gmail.com"),
                 Subject = "Validación de cuenta",
-                Body = $"<a href='https://localhost:44306/Registro/activoUsuario?token={token}'>https://localhost:44306/Registro/activoUsuario?token={token}</a>",
+                Body = $"<h4>Por favor, clickear en el siguiente link, para poder validar su cuenta. <br/>Gracias. <br/><a href ='https://localhost:44306/Registro/activoUsuario?token={token}'> https://localhost:44306/Registro/activoUsuario?token={token} <h4/></a>",
                 IsBodyHtml = true,
             };
              mailMessage.To.Add("gagustin.sk@gmail.com"); // Para testear 
