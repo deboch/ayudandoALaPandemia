@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="DonacionesInsumosServicios.cs" />
     <Compile Include="DonacionesMonetariasServicios.cs" />
+    <Compile Include="EmailServicios.cs" />
     <Compile Include="HomeServicios.cs" />
     <Compile Include="ICrud.cs" />
     <Compile Include="LoginServicios.cs" />
