@@ -15,8 +15,11 @@ namespace ayudandoALaPandemia.Controllers
             if (Session["email"] != null)
             {
                 int userId = (int)Session["id"];
+                List<Necesidades> otrasNecesidades = necesidadesServicios.ObtenerTodasMenosPorUserId(userId);
                 List<Necesidades> misNecesidades = necesidadesServicios.ObtenerPorUserId(userId);
-                ViewBag.misNecesidades = misNecesidades;
+                ViewBag.misNecesidades = misNecesidades.Count > 0 ? misNecesidades : null;
+                ViewBag.otrasNecesidades = otrasNecesidades.Count > 0 ? otrasNecesidades : null;
+                return View();
             }
 
             if (Session["email"] == null)
@@ -80,6 +83,12 @@ namespace ayudandoALaPandemia.Controllers
         {
             var userId = (int)Session["id"];
             return necesidadesServicios.Valorar(like, userId, idNecesidad);
+        }
+
+        [HttpPost]
+        public void ActualizarEstado(NecesidadDto necesidad)
+        {
+
         }
 
     }

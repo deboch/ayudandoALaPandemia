@@ -28,24 +28,34 @@ const getNecesidades = async (obj = {}) => {
                 const jsonResponse = JSON.parse(response);
                 if (jsonResponse.length === 0) {
                     const notFound = `<p>No se encontro ninguna necesidad</p>`;
-                    $('.searched-wrapper').empty();
-                    return $(".searched-wrapper").html(notFound);
+                    $('.searched-wrapper .row').empty();
+                    return $(".searched-wrapper .row").html(notFound);
                 }
+                
                 const html = jsonResponse.map(function (necesidad) {
                     return (
-                        `<div class='card'>
-                            <span id=${necesidad.IdNecesidad} class='idNecesidad card-title'>${necesidad.IdNecesidad}</span>
-                            <p class='card-text'>${necesidad.Nombre}</p>
-                            <p>${necesidad.Descripcion}</p>
-                            <div id="values" class="flex">
-                                <button id='like' class='like'>like</button>
-                                <button id='dislike' class='dislike'>dislike</button>
-                            </div>
+                        `<div class='col-lg-4 mb-4' >
+                            <a href='/necesidad/' + ${ necesidad.IdNecesidad } + '/detalle' class='card h-100' >
+                                <h4 class='card-header'>${necesidad.Nombre}</h4>
+                                <img src='../../Content/Template/img/${necesidad.Foto}' width='100%' height='auto' />
+                                <div class='card-body'>
+                                    <p class='card-text'>${necesidad.Descripcion}</p>
+                                    <span class='badge'>
+                                        ${necesidad.TipoDonacion == 1 ? 'Monetaria' : 'Insumos'}
+                                    </span>
+                                </div>
+                                ${necesidad.Valoracion != null ?
+                                `<div class='star-ratings-sprite'>
+                                        <span style='width:${necesidad.Valoracion}%' class='star-ratings-sprite-rating'></span>
+                                    </div>`
+                                : null
+                            }
+                            </a>
                         </div>`
                     )
                 })
-                $('.searched-wrapper').empty();
-                $('.searched-wrapper').html(html)
+                $('.searched-wrapper .row').empty();
+                $('.searched-wrapper .row').html(html)
             }
             })
     )
