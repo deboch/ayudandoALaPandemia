@@ -1,6 +1,4 @@
-﻿@model Repositorios.Necesidades;
-
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
 }
@@ -20,6 +18,8 @@
                 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                     Mis necesidades
                 </button>
+                <input type="checkbox" />
+                <p>Mostrar solo activas</p>
             </p>
             <div class="collapse" id="collapseExample">
                 <div class="card card-body">
@@ -43,10 +43,6 @@
                                 <span class="badge">
                                     @(p.TipoDonacion == 1 ? "Monetaria" : "Insumos")
                                 </span>
-                                @using (Html.BeginForm("ActualizarEstado", "Necesidades", FormMethod.Post))
-                                {
-                                    @Html.CheckBoxFor(m => m.estado == 1 ? true : false, new { onclick = "this.form.submit();" })
-                                }
 
                                 <a class="btn btn-primary" href="#">
                                     Ver
@@ -89,3 +85,4 @@
         </div>
     </div>
 </section>
+
