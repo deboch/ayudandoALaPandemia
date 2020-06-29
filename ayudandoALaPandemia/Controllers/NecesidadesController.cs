@@ -19,6 +19,7 @@ namespace ayudandoALaPandemia.Controllers
                 List<Necesidades> misNecesidades = necesidadesServicios.ObtenerPorUserId(userId);
                 ViewBag.misNecesidades = misNecesidades.Count > 0 ? misNecesidades : null;
                 ViewBag.otrasNecesidades = otrasNecesidades.Count > 0 ? otrasNecesidades : null;
+                return View();
             }
 
             if (Session["email"] == null)
@@ -82,6 +83,12 @@ namespace ayudandoALaPandemia.Controllers
         {
             var userId = (int)Session["id"];
             return necesidadesServicios.Valorar(like, userId, idNecesidad);
+        }
+
+        [HttpPost]
+        public void ActualizarEstado(NecesidadDto necesidad)
+        {
+
         }
 
     }
