@@ -14,5 +14,13 @@ namespace ayudandoALaPandemia.Controllers
         {
             return View(user);
         }
+        public ActionResult MisDenuncias(Usuarios user)
+        {
+            return View(user);
+        }
+        public ActionResult MisDonaciones(Usuarios user)
+        {
+            return View(user);
+        }
     }
 }

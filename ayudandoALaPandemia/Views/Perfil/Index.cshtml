@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
 }
 
 <div class="container">
@@ -17,52 +17,61 @@
     <div class="row">
         <div class="col-lg-8 mb-4">
 
-            <form name="sentMessage" id="contactForm">
-                <div class="control-group form-group">
-                    <div class="controls">
-                        <label>Usuario:</label>
-                        <input type="email" class="form-control" id="userName" value="username" readonly>
-                        <p class="help-block"></p>
+            @using (Html.BeginForm("Modificar", "Perfil", FormMethod.Post))
+            {
+                
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label>Usuario:</label>
+                            <input type="email" class="form-control" id="userName" value="@Session["userName"]" readonly>
+                            <p class="help-block"></p>
+                        </div>
                     </div>
-                </div>
-                <div class="control-group form-group">
-                    <div class="controls">
-                        <label>Email:</label>
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control"})
-                        <input type="text" class="form-control" id="nombre" value="pepe@gmail.com" readonly>
-                        <p class="help-block"></p>
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label>Email:</label> 
+                            <input type="text" class="form-control" id="nombre" value="@Session["email"]" readonly>
+                            <p class="help-block"></p>
+                        </div>
                     </div>
-                </div>
-                <div class="control-group form-group">
-                    <div class="controls">
-                        <label>Nombre:</label>
-                        <input type="text" class="form-control" id="nombre" readonly>
-                        <p class="help-block"></p>
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label>Nombre:</label>
+                            <input type="text" class="form-control" id="nombre" value="@Session["nombre"]" readonly>
+                            <p class="help-block"></p>
+                        </div>
                     </div>
-                </div>
-                <div class="control-group form-group">
-                    <div class="controls">
-                        <label>Apellido:</label>
-                        <input type="tel" class="form-control" id="apellido" readonly>
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label>Apellido:</label>
+                            <input type="tel" class="form-control" id="apellido" value="@Session["apellido"]" readonly>
+                        </div>
                     </div>
-                </div>
-                <div class="control-group form-group">
-                    <div class="controls">
-                        <label>Fecha de nacimiento:</label>
-                        <input type="date" class="form-control" id="fechaDeNacimiento" readonly>
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label>Fecha de nacimiento:</label>
+                            <input type="date" class="form-control" id="fechaDeNacimiento" value="@Session["fechaNacimiento"]" readonly>
+                        </div>
                     </div>
-                </div>
-                <div class="control-group form-group">
-                    <div class="controls">
-                        <label>Foto:</label>
-
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label>Foto:</label>
+                            @if (@Session["foto"] == null)
+                            {
+                                <input type="file" name="file" id="file" value="" style="width: 100%;" />
+                            }
+                            else
+                            {
+                                <img src="../../Content/Template/img/@Session["foto"]" width="100%" height="auto" />
+                            }
+                        </div>
                     </div>
-                </div>
-                <div id="success"></div>
-                <!-- For success/fail messages -->
-                <button type="submit" class="btn btn-primary" id="sendMessageButton">Modificar</button>
-            </form>
-        </div>
+                
+                    <div id="success"></div>
+                    <!-- For success/fail messages -->
+                    <button type="submit" class="btn btn-primary" id="sendMessageButton">Modificar</button>
+                }
+            </div>
 
     </div>
     <!-- /.row -->
