@@ -25,23 +25,27 @@ namespace ayudandoALaPandemia.Controllers
                 {
                     return View(user);
                 }
-                else if (user.Activo == false)
+                else if (usuario.Activo == false)
                 {
-                    user.Token = registroServicios.generoToken();
-                    registroServicios.generoTokenNuevo(user);
-                    emailServicios.sendEmail(user.Token);
-                    return (RedirectToAction("activarUsuario", "Login", user.Email));
+                    Usuarios nuevoUsuarios = loginServicios.obtenerPorMail(usuario.Email);
+                    nuevoUsuarios.Token = registroServicios.generoToken();
+                    registroServicios.generoTokenNuevo(nuevoUsuarios, nuevoUsuarios.Token);
+                    emailServicios.sendEmail(nuevoUsuarios.Token, nuevoUsuarios.Email);
+                    return (RedirectToAction("activarUsuario","Login", new {email = nuevoUsuarios.Email }));
                 }
+                else
+                {
                     Session["id"] = usuario.IdUsuario;
                     Session["email"] = usuario.Email.ToString();
                     Session["username"] = usuario.UserName;
-                    // redirijo a Index de HomeController
                     return RedirectToAction("Index", "Necesidades");
+                }
+
             }
             return View(user);
         }
     
-        [HttpPost]
+        [HttpGet]
         public ActionResult activarUsuario(string email)
         {
             ViewBag.email = email;

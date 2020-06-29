@@ -23,8 +23,8 @@ namespace Servicios
         public bool validoUsuarioNoExistente(Usuarios u)
         {
             var validoSiUserExiste = managerRepository.usuarioRepository.obtenerUsuario(u.Email);
-
-            if(validoSiUserExiste == null)
+            var validoUserNameExistente = managerRepository.usuarioRepository.obtenerUsuarioPorUserName(u.UserName);
+            if(validoSiUserExiste == null && validoUserNameExistente == null)
             {
                 return true;
             }
@@ -33,9 +33,9 @@ namespace Servicios
             }
         }
 
-        public void generoTokenNuevo(Usuarios user)
+        public void generoTokenNuevo(Usuarios user, string token)
         {
-            managerRepository.usuarioRepository.generoTokenNuevo(user);
+            managerRepository.usuarioRepository.generoTokenNuevo(user,token);
         }
 
         public int Crear(Usuarios u)

@@ -13,9 +13,9 @@ namespace Servicios
         ManagerRepository managerRepository = new ManagerRepository();
 
 
-        public void crearNuevoToken(string token)
+        public Usuarios obtenerPorMail(string email)
         {
-                
+            return managerRepository.usuarioRepository.obtenerUsuario(email);
         }
 
         /*public static List<Usuario> traerTodosLosUsuarioActivos()
@@ -39,7 +39,7 @@ namespace Servicios
   
             Usuarios user = managerRepository.usuarioRepository.obtenerUsuario(u.Email);
 
-            if ((user.Email == u.Email && user.Password == u.Password) || (user.UserName == u.UserName && user.Password == u.Password))
+            if(user.Email == u.Email && user.Password == u.Password) 
             {
                 return user;
             }

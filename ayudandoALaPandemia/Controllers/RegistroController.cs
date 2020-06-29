@@ -23,7 +23,7 @@ namespace ayudandoALaPandemia.Controllers
                 if (validoEmailYUserName)
                 {
                     registroServicios.Crear(u);
-                    emailServicios.sendEmail(u.Token);
+                    emailServicios.sendEmail(u.Token,u.Email);
                     return RedirectToAction("Index", "Home");
                 }
                 else{

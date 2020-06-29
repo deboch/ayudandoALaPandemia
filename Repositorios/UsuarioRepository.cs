@@ -45,6 +45,13 @@ namespace Repositorios
             }
         }
 
+        public void generoTokenNuevo(Usuarios user, string token)
+        {
+            Usuarios myUser = Context.Usuarios.Find(user.IdUsuario);
+            myUser.Token = token;
+            Context.SaveChanges();
+        }
+
         public Usuarios Modificar(Usuarios obj)
         {
             throw new NotImplementedException();
@@ -94,8 +101,9 @@ namespace Repositorios
 
         public void activoToken(Usuarios user)
         {
-            user.Activo = true;
-            Context.SaveChanges();
+                user.Activo = true;
+                user.Token = "000000000";
+                Context.SaveChanges();
         }
 
         public Usuarios obtenerUsuarioPorUserName(string userName)
