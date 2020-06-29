@@ -10,13 +10,13 @@ namespace Repositorios
         {
             this.Context = context;
         }
-        public List<Repositorios.Necesidades> ObtenerNecesidades(int userId, string keyword)
+        public List<Necesidades> ObtenerNecesidades(int userId, string keyword)
         {
             try
             {
                 return Context.Necesidades.Where(
                     v => v.Nombre.Contains(keyword) && !(v.IdUsuarioCreador == userId)
-                ).ToList();
+                ).OrderByDescending(v => v.FechaFin).ThenByDescending(v => v.Valoracion).ToList();
             }
             catch (System.Data.Entity.Infrastructure.DbUpdateException exception)
             {
