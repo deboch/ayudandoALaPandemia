@@ -14,6 +14,7 @@ namespace ayudandoALaPandemia.Controllers
         public RegistroServicios registroServicios;
         public DonacionesMonetariasServicios donacionesMonetariasServicios;
         public DonacionesInsumosServicios donacionesInsumosServicios;
+        public EmailServicios emailServicios;
 
         public BaseController()
         {
@@ -24,6 +25,7 @@ namespace ayudandoALaPandemia.Controllers
             this.registroServicios = new RegistroServicios();
             this.donacionesMonetariasServicios = new DonacionesMonetariasServicios();
             this.donacionesInsumosServicios = new DonacionesInsumosServicios();
+            this.emailServicios = new EmailServicios();
         }
     }
 }

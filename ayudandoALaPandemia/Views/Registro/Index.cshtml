@@ -14,50 +14,33 @@
                     <span class="login100-form-title">
                         Registrar
                     </span>
+                    User:
+                    @Html.EditorFor(m => m.UserName)
+                    @Html.ValidationMessageFor(m => m.UserName)
+                    <br />
+                    Mail:
+                    @Html.EditorFor(m => m.Email)
+                    @Html.ValidationMessageFor(m => m.Email)
 
-                    <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "input100", placeholder = "Usuario" })
-                        @Html.ValidationMessageFor(m => m.Email)
+                    @if (ViewData["mailExiste"] != null)
+                    {
+                        @ViewData["mailExiste"];
+                    }
+                    <br />
+                    Pass:
+                    @Html.EditorFor(m => m.Password)
+                    @Html.ValidationMessageFor(m => m.Password)
+                    <br />
+                    ConfirmPass:
+                    @Html.EditorFor(m => m.ConfirmPassword)
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword)
 
-                        @if (ViewData["mailExiste"] != null)
-                        {
-                            @ViewData["mailExiste"];
-                        }
-                        <span class="focus-input100"></span>
-                    </div>
-
-                    <div class="wrap-input100 validate-input" data-validate="Please enter password">
-                        @Html.TextBoxFor(m => m.Password, new { @class = "input100", placeholder = "Contraseña" })
-                        @Html.EditorFor(m => m.Password)
-                        @Html.ValidationMessageFor(m => m.Password)
-                        <span class="focus-input100"></span>
-                    </div>
-                    <div class="wrap-input100 validate-input" data-validate="Please enter password">
-                        @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "input100", placeholder = "Confirmar contraseña" })
-                        @Html.EditorFor(m => m.ConfirmPassword)
-                        @Html.ValidationMessageFor(m => m.ConfirmPassword)
-                    </div>
-                    <!--Fecha de nacimiento-->
-                    <div class="wrap-input100 validate-input" data-validate="Please enter date">
-                        @Html.TextBoxFor(m => m.FechaNacimiento, "{0:dd-MM-yyyy}", new { @class = "input100", placeholder = "Fecha de nacimiento" })
-                        @Html.EditorFor(m => m.FechaNacimiento)
-                        @Html.ValidationMessageFor(m => m.FechaNacimiento)
-
-                    </div>
-
-                        @Html.ValidationSummary(true, "errors", new { @class = "text-danger" })
-                        
-
-                        <div class="container-login100-form-btn">
-                            <button class="login100-form-btn" type="submit">
-                                Crear
-                            </button>
-                        </div>
-
-                        
+                    <button class="login100-form-btn" type="submit">
+                        Crear
+                    </button>
                 </form>
+
             </div>
         </div>
     </div>
-    
 }

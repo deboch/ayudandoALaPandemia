@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using Repositorios;
+using Servicios;
 
 namespace ayudandoALaPandemia.Controllers
 {
@@ -11,6 +12,7 @@ namespace ayudandoALaPandemia.Controllers
             return View();
         }
 
+
         [HttpPost]
         public ActionResult Index(Usuarios u)
         {
@@ -18,13 +20,17 @@ namespace ayudandoALaPandemia.Controllers
             {
                 bool validoEmailYUserName = registroServicios.validoUsuarioNoExistente(u);
 
-                if(validoEmailYUserName)
+                if (validoEmailYUserName)
                 {
                     registroServicios.Crear(u);
+                    emailServicios.sendEmail();
                     return RedirectToAction("Index", "Home");
-                }  
+                }
+                else{
+                    ViewData["mailExiste"] = "Email o Usuario ya existe";
+                    return View(u);
+                }
             }
-            ViewData["mailExiste"] = "Email o Usuario ya existe";
             return View(u);
         }
     }
