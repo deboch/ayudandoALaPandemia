@@ -1,23 +1,58 @@
-﻿@model Repositorios.Necesidades
-
+﻿
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
 }
 
 <!--main content start-->
-    <section id="main-content">
-        <div class="container">
-            @if(@TempData["exito"] != null){
-                <h4>@TempData["exito"]</h4>
-            }
-            <h2><i class="fa fa-flag-o red"></i><strong>Las necesidades mas valoradas</strong></h2>
-            <div class="searched-wrapper">
+<section id="main-content">
+
+    <div class="container">
+        @if (@TempData["exito"] != null)
+        {
+            <h4>@TempData["exito"]</h4>
+        }
+        @if (ViewBag.misNecesidades != null)
+        {
+            <h2><i class="fa fa-flag-o red"></i><strong>Mis necesidades</strong></h2>
+
+            foreach (var p in ViewBag.misNecesidades)
+            {
                 <div class="row">
-                    @foreach (var p in ViewBag.misNecesidades)
+                    <div class="col-md-3">
+                        <a href="#">
+                            <img class="img-fluid rounded mb-3 mb-md-0" src="../../Content/Template/img/@p.Foto" alt="">
+                        </a>
+                    </div>
+                    <div class="col-md-5">
+                        <h3>@p.Nombre</h3>
+                        <p>@p.Descripcion</p>
+                        @if (p.Valoracion != null)
+                        {
+                            <div class="star-ratings-sprite">
+                                <span style="width:@p.Valoracion%" class="star-ratings-sprite-rating"></span>
+                            </div>
+                        }
+                        <span class="badge">
+                            @(p.TipoDonacion == 1 ? "Monetaria" : "Insumos")
+                        </span>
+                        <a class="btn btn-primary" href="#">
+                            Ver
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                    </div>
+                </div>
+            }
+        }
+        <h2><i class="fa fa-flag-o red"></i><strong>Las necesidades mas valoradas</strong></h2>
+        <div class="searched-wrapper">
+            <div class="row">
+                @if (ViewBag.otrasNecesidades != null)
+                {
+                    foreach (var p in ViewBag.otrasNecesidades)
                     {
                         <div class="col-lg-4 mb-4">
-                            <a href="@(Session["email"] != null ? "/necesidad/" + @p.IdNecesidad + "/detalle" : "/login" )" class="card h-100">
+                            <a href="@(Session[" email"] !=null ? "/necesidad/" + @p.IdNecesidad + "/detalle" : "/login" )" class="card h-100">
                                 <h4 class="card-header">@p.Nombre</h4>
                                 <img src="../../Content/Template/img/@p.Foto" width="100%" height="auto" />
                                 <div class="card-body">
@@ -35,7 +70,8 @@
                             </a>
                         </div>
                     }
-                </div>
+                }
             </div>
         </div>
-    </section>
+    </div>
+</section>

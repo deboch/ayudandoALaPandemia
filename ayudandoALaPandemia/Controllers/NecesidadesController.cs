@@ -15,8 +15,10 @@ namespace ayudandoALaPandemia.Controllers
             if (Session["email"] != null)
             {
                 int userId = (int)Session["id"];
+                List<Necesidades> otrasNecesidades = necesidadesServicios.ObtenerTodasMenosPorUserId(userId);
                 List<Necesidades> misNecesidades = necesidadesServicios.ObtenerPorUserId(userId);
-                ViewBag.misNecesidades = misNecesidades;
+                ViewBag.misNecesidades = misNecesidades.Count > 0 ? misNecesidades : null;
+                ViewBag.otrasNecesidades = otrasNecesidades.Count > 0 ? otrasNecesidades : null;
             }
 
             if (Session["email"] == null)

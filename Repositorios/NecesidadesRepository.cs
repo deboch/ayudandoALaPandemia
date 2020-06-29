@@ -72,9 +72,9 @@ namespace Repositorios
             return Context.Necesidades.ToList();
         }
 
-        public List<Repositorios.Necesidades> obtenerMasValoradas()
+        public List<Necesidades> obtenerMasValoradas()
         {
-            return Context.Necesidades.ToList();
+            return Context.Necesidades.OrderByDescending(v => v.Valoracion).ToList();
         }
 
         public Necesidades ObtenerPorId(int id)
@@ -95,6 +95,11 @@ namespace Repositorios
             {
                 throw new EntityException();
             }
+        }
+
+        public List<Necesidades> ObtenerTodasMenosPorUserId(int userId)
+        {
+            return Context.Necesidades.Where(v => (int)v.IdUsuarioCreador != (int)userId).ToList();
         }
 
         public DonacionesInsumos donacionInsumo(DonacionesInsumos donacionesInsumos)

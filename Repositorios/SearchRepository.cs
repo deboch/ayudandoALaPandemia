@@ -10,7 +10,7 @@ namespace Repositorios
         {
             this.Context = context;
         }
-        public List<Repositorios.Necesidades> ObtenerNecesidades(int userId, string keyword)
+        public List<Necesidades> ObtenerNecesidades(int userId, string keyword)
         {
             try
             {
