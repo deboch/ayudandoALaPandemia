@@ -1,4 +1,4 @@
-﻿@model Repositorios.Necesidades
+﻿@model ayudandoALaPandemia.ViewModels.NecesidadDto
 
 @{
     ViewBag.Title = "Detalle";
@@ -37,9 +37,6 @@
             <ul>
                 <li>Fecha de Fin </li>
                 <li>Teléfono de Contacto</li>
-                <li>Tipo de Donación: @ViewBag.Necesidad.TipoDonacion</li>
-                <li>Referencias</li>
-                <li>Referencias</li>
             </ul>
         </div>
 
@@ -66,17 +63,23 @@
         <div class="col-lg-4 mb-4 mt-4 card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-lg-4">
-                        <a class="btn btn-md btn-secondary btn-block" href="#">Me gusta</a>
+                    <div id="@ViewBag.Necesidad.Id" class="idNecesidad" style="display: none"></div>
+                    <div class="col-lg-4 searched-wrapper">
+                        <div class="like @(ViewBag.Necesidad.valoracion ? "active" : "not")"></div>
+                        <a class="btn btn-md btn-secondary btn-block btn-like" href="#">Me gusta</a>
+                    </div>
+                    <div class="col-lg-4 searched-wrapper">
+                        <div class="dislike @(!ViewBag.Necesidad.valoracion ? "active" : "not")"></div>
+                        <a class="btn btn-md btn-secondary btn-block btn-dislike" href="#">No me gusta</a>
                     </div>
                     <div class="col-lg-4">
-                        <a class="btn btn-md btn-secondary btn-block" href="@(ViewBag.Necesidad.IdNecesidad + "/altaDenuncia")">Denunciar</a>
+                        <a class="btn btn-md btn-secondary btn-block" href="@(ViewBag.Necesidad.Id + "/altaDenuncia")">Denunciar</a>
                     </div>
                     <div class="col-lg-4">
-                        <a class="btn btn-md btn-secondary btn-block" 
+                        <a class="btn btn-md btn-secondary btn-block"
                            href="
-                            @(ViewBag.Necesidad.TipoDonacion == 1 ? "/necesidad/" + ViewBag.Necesidad.IdNecesidad + "/donacionMonetaria" 
-                            :  "/necesidad/" + ViewBag.Necesidad.IdNecesidad + "/donacionInsumos")">
+                            @(ViewBag.Necesidad.tipoDonacion == 1 ? "/necesidad/" + ViewBag.Necesidad.Id + "/donacionMonetaria"
+                            :  "/necesidad/" + ViewBag.Necesidad.Id + "/donacionInsumos")">
                             Donar
                         </a>
                     </div>
@@ -84,10 +87,6 @@
             </div>
         </div>
         <!-- Related Projects Row -->
-
-
-
-
-        </div>
     </div>
-    <!-- /.container -->
+</div>
+<!-- /.container -->
