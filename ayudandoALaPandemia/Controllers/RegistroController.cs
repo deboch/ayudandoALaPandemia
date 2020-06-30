@@ -60,7 +60,6 @@ namespace ayudandoALaPandemia.Controllers
             Usuarios user = new Usuarios();
             user = registroServicios.obtenerPorToken(token);
             registroServicios.activoToken(user);
-
             return View();
         }
     }

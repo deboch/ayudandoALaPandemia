@@ -33,7 +33,7 @@
                     }
                     <div class="control-group form-group">
                         <div class="controls">
-                            @Html.TextBoxFor(m => m.Password, new { @class = "form-control", placeholder = "Clave" })
+                            @Html.TextBoxFor(m => m.Password, new { type = "password", @class = "form-control", placeholder = "Clave" })
                             @Html.ValidationMessageFor(m => m.Password)
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                     }
                     <div class="control-group form-group">
                         <div class="controls">
-                            @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirmar Clave  " })
+                            @Html.TextBoxFor(m => m.ConfirmPassword, new { type= "password", @class = "form-control", placeholder = "Confirmar Clave  " })
                             @Html.ValidationMessageFor(m => m.ConfirmPassword)
                         </div>
                     </div>

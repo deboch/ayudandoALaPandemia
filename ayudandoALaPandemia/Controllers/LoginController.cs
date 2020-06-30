@@ -38,6 +38,7 @@ namespace ayudandoALaPandemia.Controllers
                     Session["id"] = usuario.IdUsuario;
                     Session["email"] = usuario.Email.ToString();
                     Session["username"] = usuario.UserName;
+                    Session["tipo"] = usuario.TipoUsuario;
                     return RedirectToAction("Index", "Necesidades");
                 }
             /* }
