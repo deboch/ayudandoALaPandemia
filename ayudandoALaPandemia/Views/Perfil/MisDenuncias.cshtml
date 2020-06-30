@@ -5,4 +5,30 @@
 }
 
 <h2>MisDenuncias</h2>
+<section id="main-content">
+    <section class="container">
+        
+            <div class="row">
+                @if (ViewBag.MisDenuncias != null)
+                {
+
+                    foreach (var p in ViewBag.MisDenuncias)
+                    {
+                        <div class="col-lg-4 mb-4">
+                            
+                                <h4 class="card-header">@p.IdDenuncia</h4>
+                                <div class="card-body">
+                                    <p class="card-text">@p.Comentarios</p>  
+                                </div>
+                                <div class="card-footer">
+                                    <p class="card-text">@p.Estado</p>
+                                </div>
+                           
+                        </div>
+                    }
+                }
+            </div>
+ 
+    </section>
+</section>
 

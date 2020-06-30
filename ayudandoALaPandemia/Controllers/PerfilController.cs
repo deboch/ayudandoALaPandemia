@@ -20,13 +20,22 @@ namespace ayudandoALaPandemia.Controllers
         [HttpGet]
         public ActionResult MisDenuncias(Usuarios user)
         {
-            return View(user);
+            int userId = (int)Session["id"];
+            List<Denuncias> misDenuncias = necesidadesServicios.ObtenerDenunciasPorUserId(userId);
+            ViewBag.MisDenuncias = misDenuncias;
+            return View();
+
         }
 
         [HttpGet]
         public ActionResult MisDonaciones(Usuarios user)
         {
-            return View(user);
+            int userId = (int)Session["id"];
+            List<DonacionesInsumos> misDonacionesInsumos = necesidadesServicios.ObtenerDonacionesInsumosPorUserId(userId);
+            ViewBag.MisDonacionesInsumos = misDonacionesInsumos;
+            List<DonacionesMonetarias> misDonacionesMonetaria = necesidadesServicios.ObtenerDonacionesMonetariasPorUserId(userId);
+            ViewBag.MisDonacionesMonetaria = misDonacionesMonetaria;
+            return View();
         }
 
         [HttpGet]
@@ -53,6 +62,26 @@ namespace ayudandoALaPandemia.Controllers
             Session["fechaNacimiento"] = usuarioModificado2.FechaNacimiento;
 
             TempData["exito"] = "Guardaste con exito!!";
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult MisNecesidades(checkboxDto checkboxDto)
+        {
+            int userId = (int)Session["id"];
+            Usuarios usuarioActual = registroServicios.ObtenerPorId(userId);
+            if(checkboxDto.activo == true)
+            {
+                bool estado =checkboxDto.activo;
+                List<Necesidades> misNecesidadesActivas = necesidadesServicios.ObtenerNecesidadesSegunActivacion(estado,userId);
+                ViewBag.Necesidades = misNecesidadesActivas;
+            }
+            else
+            {
+                List<Necesidades> misNecesidades = necesidadesServicios.ObtenerPorUserId(userId);
+                ViewBag.NecesidadesActivas = misNecesidades;
+            }
+            
             return View();
         }
     }
