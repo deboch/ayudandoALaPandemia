@@ -93,11 +93,9 @@ namespace Servicios
         public void seteoLosNotNull(Usuarios u)
         {
             u.FechaCracion = DateTime.Now;
-            u.FechaNacimiento = DateTime.Now;
             u.TipoUsuario = 1;
             u.Token = generoToken();
             u.Activo = false;
-            //u.Password = MD5Hash(u.Password);
         }
 
         public Usuarios ObtenerPorId(int id)
@@ -128,7 +126,13 @@ namespace Servicios
             return result.ToString();
         }
 
-       
+        public bool mas18(DateTime dateEnviado)
+        {
+            var bday = dateEnviado;
+            var resta = DateTime.Today - bday;
+            var año = DateTime.MinValue.Add(resta).Year - 1;
+            return año >= 18;
+        }
 
 
     }

@@ -19,16 +19,26 @@ namespace ayudandoALaPandemia.Controllers
             if (ModelState.IsValid)
             {
                 bool validoEmailYUserName = registroServicios.validoUsuarioNoExistente(u);
+                bool validoMas18 = registroServicios.mas18(u.FechaNacimiento);
 
-                if (validoEmailYUserName)
+                if (validoEmailYUserName && validoMas18)
                 {
                     registroServicios.Crear(u);
                     emailServicios.sendEmail(u.Token,u.Email);
                     return RedirectToAction("Index", "Home");
                 }
                 else{
-                    ViewData["mailExiste"] = "Email o Usuario ya existe";
-                    return View(u);
+                    if(validoEmailYUserName == false)
+                    {
+                        ViewData["mailExiste"] = "Email o Usuario ya existe";
+                        return View(u);
+                    }
+                    else
+                    {
+                        ViewData["menor"] = "Tenés que ser mayor de 18 años";
+                        return View(u);
+                    }
+                    
                 }
             }
             return View(u);

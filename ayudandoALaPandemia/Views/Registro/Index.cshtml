@@ -34,7 +34,15 @@
                     ConfirmPass:
                     @Html.EditorFor(m => m.ConfirmPassword)
                     @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                    <br />
+                    DD/MM/YYYY:
+                    @Html.EditorFor(m => m.FechaNacimiento)
+                    @Html.ValidationMessageFor(m => m.FechaNacimiento)
 
+                    @if (ViewData["menor"] != null)
+                    {
+                        @ViewData["menor"];
+                    }
                     <button class="login100-form-btn" type="submit">
                         Crear
                     </button>
