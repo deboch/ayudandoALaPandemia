@@ -1,11 +1,19 @@
 ﻿$(document).ready(function () {
-    $(".searched-wrapper").on("click", ".like", function (event) {
-        const idNecesidad = $('.idNecesidad').attr('id');
-        onValue(1, idNecesidad);
+    $(".searched-wrapper").on("click", ".btn-like", function (event) {
+        event.preventDefault();
+        const isLike = $(".searched-wrapper").find(".like").hasClass(".active");
+        if (!isLike) {
+            const idNecesidad = $('.idNecesidad').attr('id');
+            onValue(1, idNecesidad);
+        }
     });
-    $(".searched-wrapper").on("click", ".dislike", function (event) {
-        const idNecesidad = $('.idNecesidad').attr('id');
-        onValue(0, idNecesidad);
+    $(".searched-wrapper").on("click", ".btn-dislike", function (event) {
+        event.preventDefault();
+        const isDislike = $(".searched-wrapper").find(".dislike").hasClass(".active");
+        if (!isDislike) {
+            const idNecesidad = $('.idNecesidad').attr('id');
+            onValue(0, idNecesidad);
+        }
     });
     $("#form-search").submit(function(event) {
         event.preventDefault();
@@ -72,7 +80,13 @@ const onValue = async (like, idNecesidad) => {
                     idNecesidad: idNecesidad
                 },
                 success: function (response) {
-                    console.log(response)
+                    if (response == "True") {
+                        $(".searched-wrapper").find(".dislike").removeClass("active");
+                        $(".searched-wrapper").find(".like").addClass("active");
+                    } else {
+                        $(".searched-wrapper").find(".like").removeClass("active");
+                        $(".searched-wrapper").find(".dislike").addClass("active");
+                    }
                 }
             })
     );
