@@ -1,6 +1,4 @@
-﻿@model Repositorios.Necesidades;
-
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
 }
@@ -17,9 +15,13 @@
         {
             <p>
                 <h2><i class="fa fa-flag-o red"></i><strong>Mis necesidades</strong></h2>
-                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    Mis necesidades
-                </button>
+                <div class="d-flex align-items-start justify-content-center">
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        Mis necesidades
+                    </button>
+                    <input id="active" class="activarNecesidades" type="checkbox" />
+                    <p>Mostrar solo activas</p>
+                </div>
             </p>
             <div class="collapse" id="collapseExample">
                 <div class="card card-body">
@@ -43,10 +45,6 @@
                                 <span class="badge">
                                     @(p.TipoDonacion == 1 ? "Monetaria" : "Insumos")
                                 </span>
-                                @using (Html.BeginForm("ActualizarEstado", "Necesidades", FormMethod.Post))
-                                {
-                                    @Html.CheckBoxFor(m => m.estado == 1 ? true : false, new { onclick = "this.form.submit();" })
-                                }
 
                                 <a class="btn btn-primary" href="#">
                                     Ver
@@ -66,7 +64,7 @@
                     foreach (var p in ViewBag.otrasNecesidades)
                     {
                         <div class="col-lg-4 mb-4">
-                            <a href="@(Session[" email"] !=null ? "/necesidad/" + @p.IdNecesidad + "/detalle" : "/login" )" class="card h-100">
+                            <a href=@(Session["email"] != null ? "/necesidad/" + @p.IdNecesidad + "/detalle" : "/login" ) class="card h-100">
                                 <h4 class="card-header">@p.Nombre</h4>
                                 <img src="../../Content/Template/img/@p.Foto" width="100%" height="auto" />
                                 <div class="card-body">
@@ -89,3 +87,4 @@
         </div>
     </div>
 </section>
+

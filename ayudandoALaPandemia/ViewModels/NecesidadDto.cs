@@ -24,7 +24,6 @@ namespace ayudandoALaPandemia.ViewModels
         public string descripcion { get; set; }
         public DateTime fechaFin { get; set; }
         public string telefono { get; set; }
-        public bool estado { get; set; }
         public string tipoDonacion { get; set; }
         public string foto { get; set; }
         public decimal dinero { get; set; }
@@ -34,6 +33,9 @@ namespace ayudandoALaPandemia.ViewModels
         public string referencia2Nombre { get; set; }
         public string referencia1Telefono { get; set; }
         public string referencia2Telefono { get; set; }
+        public string NombreUsuario { get; set; }
+        public string ApellidoUsuario { get; set; }
+        public bool valoracion { get; set; }
 
     }
 }
