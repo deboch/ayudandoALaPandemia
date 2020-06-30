@@ -51,5 +51,24 @@ namespace ayudandoALaPandemia.Builder
             nuevaNecesidad.NecesidadesReferencias.Add(necesidadReferencia2);
             return nuevaNecesidad;
         }
+
+        internal NecesidadDto necesidadDtoParaDetalle(Necesidades necesidad, Usuarios usuario, NecesidadesValoraciones valoracion)
+        {
+            NecesidadDto necesidadDto = new NecesidadDto();
+            
+            necesidadDto.ApellidoUsuario = usuario.Apellido;
+            necesidadDto.NombreUsuario = usuario.Nombre;
+            
+            necesidadDto.Id = necesidad.IdNecesidad;
+            necesidadDto.nombre = necesidad.Nombre;
+            necesidadDto.descripcion = necesidad.Descripcion;
+            necesidadDto.fechaFin = necesidad.FechaFin;
+            necesidadDto.telefono = necesidad.TelefonoContacto;
+            necesidadDto.tipoDonacion = null;
+            necesidadDto.foto = necesidad.Foto;
+
+            necesidadDto.valoracion = valoracion.Valoracion;
+            return necesidadDto;
+        }
     }
 }
