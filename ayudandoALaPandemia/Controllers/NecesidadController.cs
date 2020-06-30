@@ -64,11 +64,23 @@ namespace ayudandoALaPandemia.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
+            
             int idNecesidad = Int32.Parse(Request.Url.Segments[2].Remove(Request.Url.Segments[2].Length - 1));
             List<NecesidadesDonacionesInsumos> donacion = donacionesInsumosServicios.ObtenerPorNecesidadId(idNecesidad);
+            int cant = donacion.Count;
+            NecesidadDto model = new NecesidadDto();
+
+            for (int i = 0; i < cant; i++)
+            {
+                InsumosDto insumoDto = new InsumosDto();
+                model.insumos.Add(insumoDto);
+            }
+            
             ViewBag.Cantidades = donacionesInsumosServicios.obtenerCantidadesRestantes(donacion);
             ViewBag.TotalInsumos = donacion;
-            return View();
+            ViewBag.userId = (int)Session["id"];
+
+            return View(model);
         }
 
 
@@ -81,9 +93,11 @@ namespace ayudandoALaPandemia.Controllers
         }
 
         [HttpPost]
-        public ActionResult donacionInsumos(DonacionesInsumos donacionesInsumos)
+        public ActionResult donacionInsumos(NecesidadDto necesidadDto)
         {
-            necesidadesServicios.donacionInsumo(donacionesInsumos);
+            NecesidadBuilder builder = new NecesidadBuilder();
+            List<DonacionesInsumos> lista = builder.transformarADonacionesInsumos(necesidadDto);
+            necesidadesServicios.donacionInsumo(lista);
             TempData["exito"] = "Donaste con exito!!";
             return RedirectToAction("Index", "Necesidades");
         }

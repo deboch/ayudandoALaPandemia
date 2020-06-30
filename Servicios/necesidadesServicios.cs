@@ -84,7 +84,7 @@ namespace Servicios
             return managerRepository.necesidadesRepository.ObtenerTodasMenosPorUserId(userId);
         }
 
-        public DonacionesInsumos donacionInsumo(DonacionesInsumos donacionesInsumos)
+        public List<DonacionesInsumos> donacionInsumo(List<DonacionesInsumos> donacionesInsumos)
         {
             return managerRepository.necesidadesRepository.donacionInsumo(donacionesInsumos);
         }
