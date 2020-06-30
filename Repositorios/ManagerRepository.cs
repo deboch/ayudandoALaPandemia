@@ -22,10 +22,5 @@ namespace Repositorios
             this.donacionesMonetariasRepository = new DonacionesMonetariasRepository(this.contexto);
             this.donacionesInsumosRepository = new DonacionesInsumosRepository(this.contexto);
         }
-
-        public bool verificoActivo(bool activo)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
