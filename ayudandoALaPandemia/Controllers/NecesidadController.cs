@@ -32,11 +32,7 @@ namespace ayudandoALaPandemia.Controllers
         {
             int idNecesidad = Int32.Parse(Request.Url.Segments[2].Remove(Request.Url.Segments[2].Length - 1));
             Necesidades necesidad = necesidadesServicios.ObtenerPorId(idNecesidad);
-            Usuarios usuario = registroServicios.ObtenerPorId(necesidad.IdUsuarioCreador);
-            NecesidadesValoraciones valoracion = necesidadesServicios.ObtenerValoracionPorUsuarioNecesidad(usuario.IdUsuario, necesidad.IdNecesidad);
-            NecesidadBuilder builder = new NecesidadBuilder();
-            NecesidadDto necesidadDto = builder.necesidadDtoParaDetalle(necesidad, usuario, valoracion);
-            ViewBag.Necesidad = necesidadDto;
+            ViewBag.Necesidad = necesidad;
             return View();
         }
 

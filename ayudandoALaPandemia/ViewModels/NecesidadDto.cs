@@ -33,9 +33,6 @@ namespace ayudandoALaPandemia.ViewModels
         public string referencia2Nombre { get; set; }
         public string referencia1Telefono { get; set; }
         public string referencia2Telefono { get; set; }
-        public string NombreUsuario { get; set; }
-        public string ApellidoUsuario { get; set; }
-        public bool valoracion { get; set; }
 
     }
 }
