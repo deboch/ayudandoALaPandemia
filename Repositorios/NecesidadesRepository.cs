@@ -97,6 +97,12 @@ namespace Repositorios
             }
         }
 
+        public List<Necesidades> ObtenerNecesidadesSegunActivacion(bool isActive, int userId)
+        {
+            int estado = isActive ? 1 : 0;
+            return Context.Necesidades.Where(v => v.Estado == estado && v.IdUsuarioCreador == userId).ToList();
+        }
+
         public List<Necesidades> ObtenerTodasMenosPorUserId(int userId)
         {
             return Context.Necesidades.Where(v => (int)v.IdUsuarioCreador != (int)userId).ToList();

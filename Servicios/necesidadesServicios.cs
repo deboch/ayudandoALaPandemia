@@ -69,6 +69,11 @@ namespace Servicios
             return managerRepository.necesidadesRepository.Crear(necesidad);
         }
 
+        public List<Necesidades> ObtenerNecesidadesSegunActivacion(bool isActive, int userId)
+        {
+            return managerRepository.necesidadesRepository.ObtenerNecesidadesSegunActivacion(isActive, userId);
+        }
+
         public List<Necesidades> ObtenerTodasMenosPorUserId(int userId)
         {
             return managerRepository.necesidadesRepository.ObtenerTodasMenosPorUserId(userId);

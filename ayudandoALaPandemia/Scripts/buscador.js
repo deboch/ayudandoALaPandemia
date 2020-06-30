@@ -49,7 +49,7 @@ const getNecesidades = async (obj = {}) => {
                                         <span style='width:${necesidad.Valoracion}%' class='star-ratings-sprite-rating'></span>
                                     </div>`
                                 : null
-                            }
+                                }
                             </a>
                         </div>`
                     )
