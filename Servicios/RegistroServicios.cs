@@ -4,6 +4,7 @@ using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using Repositorios;
 
 
@@ -23,8 +24,8 @@ namespace Servicios
         public bool validoUsuarioNoExistente(Usuarios u)
         {
             var validoSiUserExiste = managerRepository.usuarioRepository.obtenerUsuario(u.Email);
-
-            if(validoSiUserExiste == null)
+            var validoUserNameExistente = managerRepository.usuarioRepository.obtenerUsuarioPorUserName(u.UserName);
+            if(validoSiUserExiste == null && validoUserNameExistente == null)
             {
                 return true;
             }
@@ -32,18 +33,32 @@ namespace Servicios
                 return false;
             }
         }
+
+        public bool matcheoClaves(string password, string confirm)
+        {
+            if (password == confirm)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
+
+        public void generoTokenNuevo(Usuarios user, string token)
+        {
+            managerRepository.usuarioRepository.generoTokenNuevo(user,token);
+        }
+
         public int Crear(Usuarios u)
         {
             try
             {
                 seteoLosNotNull(u);
-                // metodo que envia token por email
-                // serviceEmail.enviarToken();
-                // Guardo el usuario
                 int userId = managerRepository.usuarioRepository.Crear(u);
-                // hasheo password
                 managerRepository.usuarioRepository.MD5Hash(u);
-
                 return userId;
             }
             catch (DbEntityValidationException dbEx)
@@ -59,21 +74,14 @@ namespace Servicios
                 }
                 return 0;
             }
-        }     
+        }
 
-        /* public int generaId()
-         {
-         List<Usuarios> listaUsuarios = managerRepository.usuarioRepository.traerTodosLosUsuarios();
+        public void activoToken(Usuarios user)
+        {
+            managerRepository.usuarioRepository.activoToken(user);
+        }
 
-         int id = 1;
-         if (listaUsuarios.Count > 0)
-         {
-             id = listaUsuarios.Count + 1;
-         }
-         return id;
-         }*/
-
-        public int generaId()
+         public int generaId()
         {
             List<Usuarios> listaUsuarios = managerRepository.usuarioRepository.traerTodosLosUsuarios();
 
@@ -94,10 +102,9 @@ namespace Servicios
         public void seteoLosNotNull(Usuarios u)
         {
             u.FechaCracion = DateTime.Now;
-            u.FechaNacimiento = DateTime.Now;
             u.TipoUsuario = 1;
             u.Token = generoToken();
-            //u.Password = MD5Hash(u.Password);
+            u.Activo = false;
         }
 
         public Usuarios ObtenerPorId(int id)
@@ -110,21 +117,50 @@ namespace Servicios
             throw new NotImplementedException();
         }
 
+        public Usuarios obtenerPorToken(string token)
+        {
+            return managerRepository.usuarioRepository.obtenerPorToken(token);
+        }
+
 
         public string generoToken()
         {
             Random random = new Random();
-            string characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-            StringBuilder result = new StringBuilder(6);
-            for (int i = 0; i < 6; i++)
+            string characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            StringBuilder result = new StringBuilder(10);
+            for (int i = 0; i < 10; i++)
             {
                 result.Append(characters[random.Next(characters.Length)]);
             }
             return result.ToString();
         }
 
-       
+        public bool mas18(DateTime dateEnviado)
+        {
+            var bday = dateEnviado;
+            var resta = DateTime.Today - bday;
+            var año = DateTime.MinValue.Add(resta).Year - 1;
+            return año >= 18;
+        }
 
-
+        public bool validoClave(string password)
+        {
+            if (string.IsNullOrEmpty(password) ||
+                password.Length > 50 ||
+                password.Length < 8)
+            {
+                return false;
+            }
+            else if (!Regex.IsMatch(password, "[A-Z]") ||
+                !Regex.IsMatch(password, "[a-z]") ||
+                !Regex.IsMatch(password, "[0-9]"))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }

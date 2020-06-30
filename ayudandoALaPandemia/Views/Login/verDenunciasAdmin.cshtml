@@ -1,0 +1,44 @@
+﻿@model List<Repositorios.Denuncias>
+@{
+    ViewBag.Title = "verDenunciasAdmin";
+    Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
+
+    int i = 0;
+}
+    <br />
+<h3 class="text-center">Denuncias</h3>
+
+<br />
+<br />
+<div class="container-fluid">
+    <table class="table text-center">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Motivo</th>
+                <th scope="col">Link</th>
+                <th scope="col">Comentarios</th>
+                <th scope="col">Desestimar</th>
+                <th scope="col">Aceptar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                @foreach (var item in Model)
+                {
+                    <td>@i++</td>
+                    <td>@item.FechaCreacion</td>
+                    <td>@item.MotivoDenuncia</td>
+                    <td>link</td>
+                    <td>@item.Comentarios</td>
+                    <td>desestimar</td>
+                    <td>aceptar</td>
+                }
+            </tr>
+        </tbody>
+    </table>
+</div>
+<br />
+<br />

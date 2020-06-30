@@ -45,6 +45,13 @@ namespace Repositorios
             }
         }
 
+        public void generoTokenNuevo(Usuarios user, string token)
+        {
+            Usuarios myUser = Context.Usuarios.Find(user.IdUsuario);
+            myUser.Token = token;
+            Context.SaveChanges();
+        }
+
         public Usuarios Modificar(Usuarios obj)
         {
             throw new NotImplementedException();
@@ -92,6 +99,13 @@ namespace Repositorios
             return null;
         }
 
+        public void activoToken(Usuarios user)
+        {
+                user.Activo = true;
+                user.Token = "000000000";
+                Context.SaveChanges();
+        }
+
         public Usuarios obtenerUsuarioPorUserName(string userName)
         {
             try
@@ -115,6 +129,21 @@ namespace Repositorios
                 }
             }
             return null;
+        }
+
+        public Usuarios obtenerPorToken(string token)
+        {
+            try
+            {
+                var user = Context.Usuarios
+                .Where(b => (string)b.Token == (string)token)
+                .FirstOrDefault();
+                return user;
+            }
+            catch (Exception)
+            {
+                return default;
+            }
         }
 
         public List<Usuarios> traerUsuariosActivos()
@@ -144,6 +173,7 @@ namespace Repositorios
             }
 
             u.Password = hash.ToString();
+            u.ConfirmPassword = "0";
             Context.SaveChanges();
             
         }

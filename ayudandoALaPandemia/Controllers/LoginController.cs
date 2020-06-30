@@ -1,4 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
+using Antlr.Runtime.Misc;
 using Repositorios;
 
 namespace ayudandoALaPandemia.Controllers
@@ -17,26 +20,46 @@ namespace ayudandoALaPandemia.Controllers
         public ActionResult Index(Usuarios user)
         {
             // esto es feo!!
-            if (ModelState.IsValid)
-            {
+            /*if (ModelState.IsValid)
+            {*/
                 Usuarios usuario = loginServicios.logear(user);
                 if (usuario == null)
                 {
                     return View(user);
                 }
-                // si esta todo ok grabo en el Session los datos del usuario
-                Session["id"] = usuario.IdUsuario;
-                Session["email"] = usuario.Email.ToString();
-                Session["username"] = usuario.UserName;
-                // redirijo a Index de HomeController
-                return RedirectToAction("Index", "Necesidades");
+                else if (usuario.Activo == false)
+                {
+                    Usuarios nuevoUsuarios = loginServicios.obtenerPorMail(usuario.Email);
+                    nuevoUsuarios.Token = registroServicios.generoToken();
+                    registroServicios.generoTokenNuevo(nuevoUsuarios, nuevoUsuarios.Token);
+                    emailServicios.sendEmail(nuevoUsuarios.Token, nuevoUsuarios.Email);
+                    return (RedirectToAction("activarUsuario","Login", new {email = nuevoUsuarios.Email }));
+                }
+                else
+                {
+                    Session["id"] = usuario.IdUsuario;
+                    Session["email"] = usuario.Email.ToString();
+                    Session["username"] = usuario.UserName;
+                    Session["tipo"] = usuario.TipoUsuario;
+                    return RedirectToAction("Index", "Necesidades");
+                }
+            /* }
+                 return View(user);*/
+        }
 
-            }
-            else
-            {
-                return View(user);
-            }
+        [HttpGet]
+        public ActionResult activarUsuario(string email)
+        {
+            ViewBag.email = email;
+            return View();
+        }
 
+        [HttpGet]
+        public ActionResult verDenunciasAdmin()
+        {
+            List<Denuncias> listDenuncias = denunciasServicio.listaDenuncias();
+
+            return View(listDenuncias);
         }
     }
 }

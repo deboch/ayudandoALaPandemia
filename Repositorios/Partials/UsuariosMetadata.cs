@@ -10,25 +10,28 @@ namespace Repositorios
 {
     public class UsuariosMetadata
     {
-        [Required]
+        [Required(ErrorMessage = "El nombre de usuario es requerido")]
+        public string UserName { get; set; }
+
+        [Required(ErrorMessage = "El email es requerido")]
         [EmailAddress(ErrorMessage = "Ingrese un mail válido")]
         public string Email { get; set; }
 
-        /*[Required]
-        [StringLength(50, MinimumLength = 1,ErrorMessage = "japiiiiiiish basura, poné la clave bien.")]
+        /*[Required(ErrorMessage = "La clave es requerido")]
+        [StringLength(50, MinimumLength = 1,ErrorMessage = "Minimo 1 máximo 8")]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "Confirm Password is required")]
-        [StringLength(50, ErrorMessage = "japiiiiiiish basura, validá la clave bien", MinimumLength = 1)]
+        [Required(ErrorMessage = "Confirmar la clave, por favor")]
+        [StringLength(50, MinimumLength = 1, ErrorMessage = "Las claves no coinciden")]
         [DataType(DataType.Password)]
         [Compare("Password")]
-        public string ConfirmPassword { get; set; }
+        public string ConfirmPassword { get; set; }*/
 
-        [Required]
-        [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
-        public System.DateTime FechaNacimiento { get; set; }*/
-          
+        [Required(ErrorMessage = "La fecha es requerida")]
+        /*[DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]*/
+        public System.DateTime FechaNacimiento { get; set; }
+
 
     }
 
