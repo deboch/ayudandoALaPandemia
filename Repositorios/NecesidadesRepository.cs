@@ -97,6 +97,12 @@ namespace Repositorios
             }
         }
 
+        public List<Necesidades> ObtenerNecesidadesSegunActivacion(bool isActive, int userId)
+        {
+            int estado = isActive ? 1 : 0;
+            return Context.Necesidades.Where(v => v.Estado == estado && v.IdUsuarioCreador == userId).ToList();
+        }
+
         public List<Necesidades> ObtenerTodasMenosPorUserId(int userId)
         {
             return Context.Necesidades.Where(v => (int)v.IdUsuarioCreador != (int)userId).ToList();
@@ -134,12 +140,19 @@ namespace Repositorios
             }
         }
 
+        public NecesidadesValoraciones ObtenerValoracionPorUsuarioNecesidad (int userId, int idNecesidad)
+        {
+
+            NecesidadesValoraciones miValoracion = Context.NecesidadesValoraciones.Where(v => (v.IdUsuario == (int)userId && v.IdNecesidad == (int)idNecesidad)).SingleOrDefault();
+            return miValoracion;
+        }
+
         public bool Valorar(int like, int userId, int idNecesidad)
         {
             try
             {
                 NecesidadesValoraciones valoracion = new NecesidadesValoraciones();
-                NecesidadesValoraciones miValoracion = Context.NecesidadesValoraciones.Where(v => v.IdUsuario == userId && v.IdNecesidad == idNecesidad).FirstOrDefault();
+                NecesidadesValoraciones miValoracion = this.ObtenerValoracionPorUsuarioNecesidad(userId, idNecesidad);
                 if (miValoracion != null)
                 {
                     miValoracion.Valoracion = like == 1;

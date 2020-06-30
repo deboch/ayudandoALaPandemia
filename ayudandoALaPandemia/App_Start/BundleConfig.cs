@@ -31,7 +31,7 @@ namespace ayudandoALaPandemia
                       "~/Template/js/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/template_css").Include(
-                      "~/Content/Template/vendor/bootstrap/css/bootstrap.min.css",
+                      "~/Content/bootstrap.min.css",
                       "~/Content/Template/css/modern-business.css",
                       "~/Content/Template/css/main.css",
                       "~/Content/Template/css/util.css",

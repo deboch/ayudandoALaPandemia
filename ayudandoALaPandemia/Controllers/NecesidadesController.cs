@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using ayudandoALaPandemia.Builder;
 using ayudandoALaPandemia.ViewModels;
+using Newtonsoft.Json;
 using Repositorios;
 
 namespace ayudandoALaPandemia.Controllers
@@ -86,9 +87,15 @@ namespace ayudandoALaPandemia.Controllers
         }
 
         [HttpPost]
-        public void ActualizarEstado(NecesidadDto necesidad)
+        public string ActualizarEstado(bool isActive)
         {
-
+            var userId = (int)Session["id"];
+            List<Necesidades> necesidades = necesidadesServicios.ObtenerNecesidadesSegunActivacion(isActive, userId);
+            return JsonConvert.SerializeObject(necesidades, Formatting.Indented,
+                new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
         }
 
     }
