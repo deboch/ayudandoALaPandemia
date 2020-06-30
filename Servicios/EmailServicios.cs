@@ -28,7 +28,7 @@ namespace Servicios
                 Body = $"<h4>Por favor, clickear en el siguiente link, para poder validar su cuenta. <br/>Gracias. <br/><a href ='https://localhost:44306/Registro/activoUsuario?token={token}'> https://localhost:44306/Registro/activoUsuario?token={token} <h4/></a>",
                 IsBodyHtml = true,
             };
-             mailMessage.To.Add("gagustin.sk@gmail.com"); // Para testear 
+             mailMessage.To.Add(email); // Para testear 
              //mailMessage.To.Add(email); // Productivo
 
             smtpClient.Send(mailMessage);

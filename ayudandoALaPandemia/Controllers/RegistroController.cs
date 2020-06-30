@@ -37,8 +37,7 @@ namespace ayudandoALaPandemia.Controllers
         [HttpGet]
         public ActionResult activoUsuario(string token)
         {
-            Usuarios user = new Usuarios();
-            user = registroServicios.obtenerPorToken(token);
+            Usuarios user = registroServicios.obtenerPorToken(token);
             registroServicios.activoToken(user);
 
             return View();

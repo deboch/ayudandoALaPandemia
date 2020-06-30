@@ -1,10 +1,8 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "activoUsuario";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Usuario Activado!</h2>
-
-<a href="Home/Index">Home</a>
+@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })
 
