@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DenunciasServicios.cs" />
     <Compile Include="DonacionesInsumosServicios.cs" />
     <Compile Include="DonacionesMonetariasServicios.cs" />
     <Compile Include="EmailServicios.cs" />

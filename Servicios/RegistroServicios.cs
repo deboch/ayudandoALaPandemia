@@ -4,6 +4,7 @@ using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using Repositorios;
 
 
@@ -33,6 +34,19 @@ namespace Servicios
             }
         }
 
+        public bool matcheoClaves(string password, string confirm)
+        {
+            if (password == confirm)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
+
         public void generoTokenNuevo(Usuarios user, string token)
         {
             managerRepository.usuarioRepository.generoTokenNuevo(user,token);
@@ -43,13 +57,8 @@ namespace Servicios
             try
             {
                 seteoLosNotNull(u);
-                // metodo que envia token por email
-                // serviceEmail.enviarToken();
-                // Guardo el usuario
                 int userId = managerRepository.usuarioRepository.Crear(u);
-                // hasheo password
                 managerRepository.usuarioRepository.MD5Hash(u);
-
                 return userId;
             }
             catch (DbEntityValidationException dbEx)
@@ -93,11 +102,9 @@ namespace Servicios
         public void seteoLosNotNull(Usuarios u)
         {
             u.FechaCracion = DateTime.Now;
-            u.FechaNacimiento = DateTime.Now;
             u.TipoUsuario = 1;
             u.Token = generoToken();
             u.Activo = false;
-            //u.Password = MD5Hash(u.Password);
         }
 
         public Usuarios ObtenerPorId(int id)
@@ -128,8 +135,32 @@ namespace Servicios
             return result.ToString();
         }
 
-       
+        public bool mas18(DateTime dateEnviado)
+        {
+            var bday = dateEnviado;
+            var resta = DateTime.Today - bday;
+            var año = DateTime.MinValue.Add(resta).Year - 1;
+            return año >= 18;
+        }
 
-
+        public bool validoClave(string password)
+        {
+            if (string.IsNullOrEmpty(password) ||
+                password.Length > 50 ||
+                password.Length < 8)
+            {
+                return false;
+            }
+            else if (!Regex.IsMatch(password, "[A-Z]") ||
+                !Regex.IsMatch(password, "[a-z]") ||
+                !Regex.IsMatch(password, "[0-9]"))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }

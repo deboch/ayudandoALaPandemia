@@ -173,6 +173,7 @@ namespace Repositorios
             }
 
             u.Password = hash.ToString();
+            u.ConfirmPassword = "0";
             Context.SaveChanges();
             
         }

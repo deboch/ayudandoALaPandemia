@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
 using Antlr.Runtime.Misc;
 using Repositorios;
 
@@ -18,8 +20,8 @@ namespace ayudandoALaPandemia.Controllers
         public ActionResult Index(Usuarios user)
         {
             // esto es feo!!
-            if (ModelState.IsValid)
-            {
+            /*if (ModelState.IsValid)
+            {*/
                 Usuarios usuario = loginServicios.logear(user);
                 if (usuario == null)
                 {
@@ -38,18 +40,26 @@ namespace ayudandoALaPandemia.Controllers
                     Session["id"] = usuario.IdUsuario;
                     Session["email"] = usuario.Email.ToString();
                     Session["username"] = usuario.UserName;
+                    Session["tipo"] = usuario.TipoUsuario;
                     return RedirectToAction("Index", "Necesidades");
                 }
-
-            }
-            return View(user);
+            /* }
+                 return View(user);*/
         }
-    
+
         [HttpGet]
         public ActionResult activarUsuario(string email)
         {
             ViewBag.email = email;
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult verDenunciasAdmin()
+        {
+            List<Denuncias> listDenuncias = denunciasServicio.listaDenuncias();
+
+            return View(listDenuncias);
         }
     }
 }

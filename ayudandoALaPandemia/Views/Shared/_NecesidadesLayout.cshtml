@@ -18,19 +18,28 @@
                     <ul class="navbar-nav ml-auto">
                         @if (Session["email"] != null)
                         {
-                        <li class="nav-item">
-                            <form class="input-group" id="form-search">
-                                <input class="form-control" id="search-field" type="text" placeholder="Busca una necesidad" />
-                            </form>
-                        </li>
+                            <li class="nav-item">
+                                <form class="input-group" id="form-search">
+                                    <input class="form-control" id="search-field" type="text" placeholder="Busca una necesidad" />
+                                </form>
+                            </li>
                         }
-                        @if (Session["email"] != null)
-                        { 
+                        @if (Session["email"] != null && (int)Session["tipo"] == 1)
+                        {
                             <li class="nav-item">
                                 @Html.ActionLink("Crear Necesidad", "Crear", "Necesidades", null, new { @class = "nav-link" })
                             </li>
                             <li class="nav-item">
-                                @Html.ActionLink("Denuncias", "Login", "Home", null, new { @class = "nav-link" })
+                                @Html.ActionLink("Denuncias", "Login", "Denuncias", null, new { @class = "nav-link" })
+                            </li>
+                        }
+                        @if (Session["email"] != null && (int)Session["tipo"] == 0)
+                        {
+                            <li class="nav-item">
+                                @Html.ActionLink("Crear Necesidad", "Crear", "Necesidades", null, new { @class = "nav-link" })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Gestionar Denuncias", "Login", "verDenunciasAdmin", null, new { @class = "nav-link" })
                             </li>
                         }
                         <li class="nav-item">
@@ -42,7 +51,7 @@
                                 @Html.ActionLink("Iniciar sesión", "Index", "Login", null, new { @class = "nav-link" })
                             </li>
                         }
-                            
+
                         @if (Session["email"] != null)
                         {
                             <li class="nav-item dropdown-toggle">

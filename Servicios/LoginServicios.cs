@@ -35,15 +35,14 @@ namespace Servicios
 
         public Usuarios logear(Usuarios u)
         {
-            u.Password = hasheoParaLogear(u.Password);
-  
-            Usuarios user = managerRepository.usuarioRepository.obtenerUsuario(u.Email);
+            u.Password = hasheoParaLogear(u.Password);  
 
-            if(user.Email == u.Email && user.Password == u.Password) 
+            Usuarios userMail = managerRepository.usuarioRepository.obtenerUsuario(u.Email);
+
+            if(userMail.Email == u.Email && userMail.Password == u.Password) 
             {
-                return user;
-            }
-            else
+                return userMail;
+            }else
             {
                 return null;
             }

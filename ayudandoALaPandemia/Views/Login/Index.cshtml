@@ -25,7 +25,7 @@
                     <div class="wrap-input100 validate-input" data-validate="Please enter password">
                         <!--input class="input100" type="password" name="pass" placeholder="Contraseña"-->
                        
-                        @Html.TextBoxFor(m => m.Password, new { @class = "input100", placeholder = "Contraseña" })
+                        @Html.TextBoxFor(m => m.Password, new { type = "password", @class = "input100", placeholder = "Contraseña" })
                         <!--@Html.EditorFor(m => m.Password)
                         @Html.ValidationMessageFor(m => m.Password)-->
                         <span class="focus-input100"></span>
