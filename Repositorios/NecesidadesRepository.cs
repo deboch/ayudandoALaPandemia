@@ -108,11 +108,12 @@ namespace Repositorios
             return Context.Necesidades.Where(v => (int)v.IdUsuarioCreador != (int)userId).ToList();
         }
 
-        public DonacionesInsumos donacionInsumo(DonacionesInsumos donacionesInsumos)
+        public List<DonacionesInsumos> donacionInsumo(List<DonacionesInsumos> donacionesInsumos)
         {
-            int id = donacionesInsumos.IdNecesidadDonacionInsumo;
-            NecesidadesDonacionesInsumos necesidadInsumo = Context.NecesidadesDonacionesInsumos.Find(id);
-            necesidadInsumo.DonacionesInsumos.Add(donacionesInsumos);
+            foreach (var p in donacionesInsumos)
+            {
+                Context.DonacionesInsumos.Add(p);
+            }
             Context.SaveChanges();
             return donacionesInsumos;
         }
