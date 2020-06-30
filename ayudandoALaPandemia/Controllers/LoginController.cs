@@ -18,8 +18,8 @@ namespace ayudandoALaPandemia.Controllers
         public ActionResult Index(Usuarios user)
         {
             // esto es feo!!
-            if (ModelState.IsValid)
-            {
+            /*if (ModelState.IsValid)
+            {*/
                 Usuarios usuario = loginServicios.logear(user);
                 if (usuario == null)
                 {
@@ -40,11 +40,10 @@ namespace ayudandoALaPandemia.Controllers
                     Session["username"] = usuario.UserName;
                     return RedirectToAction("Index", "Necesidades");
                 }
-
-            }
-            return View(user);
+            /* }
+                 return View(user);*/
         }
-    
+
         [HttpGet]
         public ActionResult activarUsuario(string email)
         {

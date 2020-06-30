@@ -20,25 +20,35 @@ namespace ayudandoALaPandemia.Controllers
             {
                 bool validoEmailYUserName = registroServicios.validoUsuarioNoExistente(u);
                 bool validoMas18 = registroServicios.mas18(u.FechaNacimiento);
+                bool pass = registroServicios.validoClave(u.Password);
+                bool confirm = registroServicios.matcheoClaves(u.Password, u.ConfirmPassword);
 
-                if (validoEmailYUserName && validoMas18)
+                if (validoEmailYUserName && validoMas18 && pass && confirm)
                 {
                     registroServicios.Crear(u);
                     emailServicios.sendEmail(u.Token,u.Email);
                     return RedirectToAction("Index", "Home");
                 }
                 else{
-                    if(validoEmailYUserName == false)
+                    if(!validoEmailYUserName)
                     {
                         ViewData["mailExiste"] = "Email o Usuario ya existe";
                         return View(u);
                     }
-                    else
+                    else if(!validoMas18)
                     {
                         ViewData["menor"] = "Tenés que ser mayor de 18 años";
                         return View(u);
                     }
-                    
+                    else if(!pass)
+                    {
+                        ViewData["pass"] = "La clave debe tener una mayus, un número y mayor a 8";
+                        return View(u);
+                    }else if (!confirm)
+                    {
+                        ViewData["confirm"] = "Las claves no coinciden. Verificar por favor.";
+                        return View(u);
+                    }
                 }
             }
             return View(u);
