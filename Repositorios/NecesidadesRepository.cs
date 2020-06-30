@@ -140,19 +140,12 @@ namespace Repositorios
             }
         }
 
-        public NecesidadesValoraciones ObtenerValoracionPorUsuarioNecesidad (int userId, int idNecesidad)
-        {
-
-            NecesidadesValoraciones miValoracion = Context.NecesidadesValoraciones.Where(v => (v.IdUsuario == (int)userId && v.IdNecesidad == (int)idNecesidad)).SingleOrDefault();
-            return miValoracion;
-        }
-
         public bool Valorar(int like, int userId, int idNecesidad)
         {
             try
             {
                 NecesidadesValoraciones valoracion = new NecesidadesValoraciones();
-                NecesidadesValoraciones miValoracion = this.ObtenerValoracionPorUsuarioNecesidad(userId, idNecesidad);
+                NecesidadesValoraciones miValoracion = Context.NecesidadesValoraciones.Where(v => v.IdUsuario == userId && v.IdNecesidad == idNecesidad).FirstOrDefault();
                 if (miValoracion != null)
                 {
                     miValoracion.Valoracion = like == 1;

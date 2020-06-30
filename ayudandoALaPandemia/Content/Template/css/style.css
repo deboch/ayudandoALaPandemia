@@ -10,14 +10,6 @@
     border: 2px solid red;
 }
 
-.like.active {
-    background-color: green;
-}
-
-.dislike.active {
-    background-color: red;
-}
-
 .star-ratings-sprite {
     padding: 0 !important;
     display: block;
