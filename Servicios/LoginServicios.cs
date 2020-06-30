@@ -37,6 +37,7 @@ namespace Servicios
             var usuarioModificado = managerRepository.usuarioRepository.Modificar(user);
             return usuarioModificado;
         }
+
         public Usuarios logear(Usuarios u)
         {
             u.Password = hasheoParaLogear(u.Password);  
