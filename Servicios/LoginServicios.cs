@@ -1,5 +1,8 @@
 ﻿
+using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using System.Text;
 using Repositorios;
 
 namespace Servicios
@@ -8,6 +11,12 @@ namespace Servicios
     {
         private static List<Usuarios> listaUsuario = new List<Usuarios>();
         ManagerRepository managerRepository = new ManagerRepository();
+
+
+        public Usuarios obtenerPorMail(string email)
+        {
+            return managerRepository.usuarioRepository.obtenerUsuario(email);
+        }
 
         /*public static List<Usuario> traerTodosLosUsuarioActivos()
         {
@@ -23,35 +32,38 @@ namespace Servicios
             }
             return miListaDeUsuarioActivos;
         }*/
+
         public Usuarios Modificar(Usuarios user) {
             var usuarioModificado = managerRepository.usuarioRepository.Modificar(user);
             return usuarioModificado;
         }
         public Usuarios logear(Usuarios u)
         {
-            // List<Usuario> miListaUsuario = traerTodosLosUsuarioActivos();
-            Usuarios user = managerRepository.usuarioRepository.obtenerUsuario(u.Email);
-            /* bool logeado = true; */
-            /*foreach (var user in miListaUsuario)
+            u.Password = hasheoParaLogear(u.Password);  
+
+            Usuarios userMail = managerRepository.usuarioRepository.obtenerUsuario(u.Email);
+
+            if(userMail.Email == u.Email && userMail.Password == u.Password) 
             {
-                if ((user.Username == u.Username || user.Email == u.Email) && user.Password == u.Password)
-                {
-                    return logeado;
-                }
-            }*/
-            //    if ((user.UserName == u.UserName || user.Email == u.Email) && user.Password == u.Password)
-            if (user.Email == u.Email && user.Password == u.Password)
+                return userMail;
+            }else
             {
-                return user;
-            }
-            //if ((user.UserName == u.UserName || user.Email == u.Email) && user.Password != u.Password)
-            if (user.Email == u.Email && user.Password == u.Password)
-            {
-                // aca tal vez habria que arrojar una exception, veremos
                 return null;
             }
-            return null;
         }
-        
+
+        public string hasheoParaLogear(string password)
+        {
+            StringBuilder hash = new StringBuilder();
+            MD5CryptoServiceProvider md5provider = new MD5CryptoServiceProvider();
+            byte[] bytes = md5provider.ComputeHash(new UTF8Encoding().GetBytes(password));
+
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                hash.Append(bytes[i].ToString("x2"));
+            }
+
+            return password = hash.ToString();
+        }
     }
 }

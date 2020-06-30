@@ -14,50 +14,59 @@
                     <span class="login100-form-title">
                         Registrar
                     </span>
-
-                    <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "input100", placeholder = "Usuario" })
-                        @Html.ValidationMessageFor(m => m.Email)
-
-                        @if (ViewData["mailExiste"] != null)
-                        {
-                            @ViewData["mailExiste"];
-                        }
-                        <span class="focus-input100"></span>
-                    </div>
-
-                    <div class="wrap-input100 validate-input" data-validate="Please enter password">
-                        @Html.TextBoxFor(m => m.Password, new { @class = "input100", placeholder = "Contraseña" })
-                        @Html.EditorFor(m => m.Password)
-                        @Html.ValidationMessageFor(m => m.Password)
-                        <span class="focus-input100"></span>
-                    </div>
-                    <div class="wrap-input100 validate-input" data-validate="Please enter password">
-                        @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "input100", placeholder = "Confirmar contraseña" })
-                        @Html.EditorFor(m => m.ConfirmPassword)
-                        @Html.ValidationMessageFor(m => m.ConfirmPassword)
-                    </div>
-                    <!--Fecha de nacimiento-->
-                    <div class="wrap-input100 validate-input" data-validate="Please enter date">
-                        @Html.TextBoxFor(m => m.FechaNacimiento, "{0:dd-MM-yyyy}", new { @class = "input100", placeholder = "Fecha de nacimiento" })
-                        @Html.EditorFor(m => m.FechaNacimiento)
-                        @Html.ValidationMessageFor(m => m.FechaNacimiento)
-
-                    </div>
-
-                        @Html.ValidationSummary(true, "errors", new { @class = "text-danger" })
-                        
-
-                        <div class="container-login100-form-btn">
-                            <button class="login100-form-btn" type="submit">
-                                Crear
-                            </button>
+                    <br />
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Usuario" })
+                            @Html.ValidationMessageFor(m => m.UserName)
                         </div>
-
-                        
+                    </div>
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email" })
+                            @Html.ValidationMessageFor(m => m.Email)
+                        </div>
+                    </div>
+                    @if (ViewData["mailExiste"] != null)
+                    {
+                        @ViewData["mailExiste"];
+                    }
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.Password, new { type = "password", @class = "form-control", placeholder = "Clave" })
+                            @Html.ValidationMessageFor(m => m.Password)
+                        </div>
+                    </div>
+                    @if (ViewData["pass"] != null)
+                    {
+                        @ViewData["pass"];
+                    }
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.ConfirmPassword, new { type= "password", @class = "form-control", placeholder = "Confirmar Clave  " })
+                            @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                        </div>
+                    </div>
+                    @if (ViewData["confirm"] != null)
+                    {
+                        @ViewData["confirm"];
+                    }
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.FechaNacimiento, new { type = "date", @class = "form-control", placeholder = "DD/MM/AAAA" })
+                            @Html.ValidationMessageFor(m => m.FechaNacimiento)
+                        </div>
+                    </div>
+                    @if (ViewData["menor"] != null)
+                    {
+                        @ViewData["menor"];
+                    }
+                    <button class="login100-form-btn" type="submit">
+                        Crear
+                    </button>
                 </form>
+
             </div>
         </div>
     </div>
-    
 }

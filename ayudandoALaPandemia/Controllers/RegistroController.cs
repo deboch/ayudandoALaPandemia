@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using Repositorios;
+using Servicios;
 
 namespace ayudandoALaPandemia.Controllers
 {
@@ -11,21 +12,54 @@ namespace ayudandoALaPandemia.Controllers
             return View();
         }
 
+
         [HttpPost]
         public ActionResult Index(Usuarios u)
         {
             if (ModelState.IsValid)
             {
                 bool validoEmailYUserName = registroServicios.validoUsuarioNoExistente(u);
+                bool validoMas18 = registroServicios.mas18(u.FechaNacimiento);
+                bool pass = registroServicios.validoClave(u.Password);
+                bool confirm = registroServicios.matcheoClaves(u.Password, u.ConfirmPassword);
 
-                if(validoEmailYUserName)
+                if (validoEmailYUserName && validoMas18 && pass && confirm)
                 {
                     registroServicios.Crear(u);
+                    emailServicios.sendEmail(u.Token,u.Email);
                     return RedirectToAction("Index", "Home");
-                }  
+                }
+                else{
+                    if(!validoEmailYUserName)
+                    {
+                        ViewData["mailExiste"] = "Email o Usuario ya existe";
+                        return View(u);
+                    }
+                    else if(!validoMas18)
+                    {
+                        ViewData["menor"] = "Tenés que ser mayor de 18 años";
+                        return View(u);
+                    }
+                    else if(!pass)
+                    {
+                        ViewData["pass"] = "La clave debe tener una mayus, un número y mayor a 8";
+                        return View(u);
+                    }else if (!confirm)
+                    {
+                        ViewData["confirm"] = "Las claves no coinciden. Verificar por favor.";
+                        return View(u);
+                    }
+                }
             }
-            ViewData["mailExiste"] = "Email o Usuario ya existe";
             return View(u);
+        }
+
+        [HttpGet]
+        public ActionResult activoUsuario(string token)
+        {
+            Usuarios user = registroServicios.obtenerPorToken(token);
+            registroServicios.activoToken(user);
+            return View();
         }
     }
 }
