@@ -1,90 +1,89 @@
-﻿@model Repositorios.DonacionesInsumos
+﻿@model ayudandoALaPandemia.ViewModels.NecesidadDto
 
 @{
     ViewBag.Title = "donacionInsumos";
     Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
 }
 
-<h2>donacionInsumos - Total de lo que necesito</h2>
-<div>
-    @foreach (var p in ViewBag.TotalInsumos)
-    {
-        <div>
-            <p>@p.Nombre: @p.Cantidad</p>
-        </div>
-    }
-</div>
-
-<h2>donacionInsumos - Restantes</h2>
-<div>
-    @foreach (var p in ViewBag.Cantidades)
-    {
-        <div>
-            <p>@p.Key: @p.Value</p>
-        </div>
-    }
-</div>
-<div class="row">
-    <div class="col-lg-8 mb-4">
-        <h3>Registrar donación</h3>
-        <form name="sentMessage" id="contactForm" novalidate>
-            
-            <div class="row" id="insumos" name="insumos">
-                <div class="col-lg-4 mb-4">
-                    <div class="card h-100">
-                        <h3 class="card-header">Insumo</h3>
-                        <div class="card-body">
-                            <div class="display-4">#</div>
-                            <div class="font-italic">cantidad restante</div>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <a href="#" class="btn btn-primary">Agregar</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+<section class="container">
+    <h2>Total de lo que necesito</h2>
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre de insumo</th>
+                    <th scope="col">Cantidad</th>
+                </tr>
+            </thead>
+            <tbody>
                 @foreach (var p in ViewBag.TotalInsumos)
                 {
-                    <div class="col-lg-4 mb-4">
-                        <div class="card h-100">
-                            <h3 class="card-header">@p.Nombre</h3>
-                            <div class="card-body">
-                                <div class="display-4">@p.Cantidad</div>
-                                <div class="font-italic">cantidad restante</div>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">
-                                    <a href="#" class="btn btn-primary">Agregar</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    <tr>
+                        <td>@p.IdNecesidadDonacionInsumo</td>
+                        <td>@p.Nombre</td>
+                        <td>@p.Cantidad</td>
+                    </tr>
                 }
-                
-            </div>
-            <table class="table table-hover" id="insumos" name="insumos">
-                <thead>
-                    <tr>
-                        <th>Insumo</th>
-                        <th>Cantidad a donar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Insumo</td>
-                        <td><input class="form-control-plaintext" type="number" name=""></td>
-                    </tr>
-                </tbody>
-            </table>
-
-
-
-            <div id="success"></div>
-            <!-- For success/fail messages -->
-            <button type="submit" class="btn btn-primary" id="sendMessageButton">Crear donación</button>
-        </form>
+            </tbody>
+        </table>
     </div>
 
-</div>
+    <div class="row">
+        <div class="col-lg-8 mb-4">
+            @using (Html.BeginForm("donacionInsumos", "Necesidad", FormMethod.Post))
+            {
+                <div class="row">
+                    @foreach (var p in ViewBag.Cantidades)
+                    {
+                        <div class="col-lg-4 mb-4">
+                            <div class="card h-100">
+                                <h3 class="card-header">@p.Key</h3>
+                                <div class="card-body">
+                                    <div class="display-4">@p.Value</div>
+                                    <div class="font-italic">cantidad restante</div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+                @Html.TextBoxFor(m => m.idUsuario, new { @Value = @ViewBag.userId, type = "hidden", @class = "form-control" })
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Insumo</th>
+                            <th>Cantidad a donar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{int i = 0;}
+                        @foreach (var p in ViewBag.TotalInsumos)
+                        {
+                        <tr>
+                            <td style="display: none">
+                                @Html.TextBoxFor(m => m.Id, new { @Value = @p.IdNecesidad, type = "hidden", @class = "form-control" })
+                            </td>
+                            <td style="display: none">
+                                @Html.TextBoxFor(m => m.insumos[i].id, new { @Value = @p.IdNecesidadDonacionInsumo, type = "hidden", @class = "form-control" })
+                            </td>
+                            <td>@p.Nombre</td>
+                            <td>
+                                @Html.TextBoxFor(m => m.insumos[i].cantidad, new { @class = "form-control", placeholder = "Cantidad" })
+                            </td>
+                        </tr>
+                            @(i++)
+                        }
+                    </tbody>
+                </table>
+
+
+
+                <div id="success"></div>
+                <!-- For success/fail messages -->
+                <button type="submit" class="btn btn-primary" id="sendMessageButton">Crear donación</button>
+            }
+        </div>
+    </div>
+</section>
 <!-- /.row -->

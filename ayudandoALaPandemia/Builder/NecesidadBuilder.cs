@@ -70,5 +70,22 @@ namespace ayudandoALaPandemia.Builder
             necesidadDto.valoracion = valoracion.Valoracion;
             return necesidadDto;
         }
+
+        internal List<DonacionesInsumos> transformarADonacionesInsumos (NecesidadDto necesidadDto)
+        {
+            List<DonacionesInsumos> lista = new List<DonacionesInsumos>();
+            foreach (var p in necesidadDto.insumos)
+            {
+                if (p.cantidad > 0)
+                {
+                    DonacionesInsumos donacion = new DonacionesInsumos();
+                    donacion.IdNecesidadDonacionInsumo = p.id;
+                    donacion.IdUsuario = necesidadDto.idUsuario;
+                    donacion.Cantidad = p.cantidad;
+                    lista.Add(donacion);
+                }
+            }
+            return lista;
+        }
     }
 }
