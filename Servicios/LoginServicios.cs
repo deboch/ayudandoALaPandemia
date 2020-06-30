@@ -23,7 +23,10 @@ namespace Servicios
             }
             return miListaDeUsuarioActivos;
         }*/
-
+        public Usuarios Modificar(Usuarios user) {
+            var usuarioModificado = managerRepository.usuarioRepository.Modificar(user);
+            return usuarioModificado;
+        }
         public Usuarios logear(Usuarios u)
         {
             // List<Usuario> miListaUsuario = traerTodosLosUsuarioActivos();
@@ -49,5 +52,6 @@ namespace Servicios
             }
             return null;
         }
+        
     }
 }

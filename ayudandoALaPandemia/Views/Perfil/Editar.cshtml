@@ -1,0 +1,74 @@
+﻿@model Repositorios.Usuarios
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
+}
+
+    <div class="container">
+        @using (Html.BeginForm("Editar", "Perfil", FormMethod.Post))
+        {
+            <!-- Page Heading/Breadcrumbs -->
+            <h1 class="mt-4 mb-3">
+                Editar mi perfil
+            </h1>
+            <!-- /.row -->
+            <!-- Contact Form -->
+            <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
+            <div class="row">
+                <div class="col-lg-8 mb-4">
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label>Usuario:</label>
+                            <input type="text" class="form-control" id="userName" value="@Session["userName"]" readonly>
+                            <p class="help-block"></p>
+                        </div>
+                    </div>
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label>Email:</label>
+                            <input type="email" class="form-control" id="email" value="@Session["email"]" readonly>
+                            <p class="help-block"></p>
+                        </div>
+                    </div>
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label>Nombre:</label>
+                            @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control" })
+                            <p class="help-block"></p>
+                        </div>
+                    </div>
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label>Apellido:</label>
+                            @Html.TextBoxFor(m => m.Apellido, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label>Fecha de nacimiento:</label>
+                            @Html.TextBoxFor(m => m.FechaNacimiento, new { type = "date", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label>Foto:</label>
+                            @Html.TextBoxFor(m => m.Foto, new { type = "file", @class = "input-file" })
+                        </div>
+                    </div>
+
+                    <div id="success"></div>
+                    <!-- For success/fail messages -->
+                    <!--a class="btn btn-md btn-secondary"
+                       href="index">
+                        Guardar
+                    </!-a-->
+                    <button type="submit" class="btn btn-md btn-secondary" id="sendEdicion">Guardar</button>
+
+                </div>
+
+            </div>
+            <!-- /.row -->
+        }
+        </div>
+<!-- /.container -->

@@ -86,9 +86,13 @@ namespace Servicios
         }
 
 
-        public Usuarios Modificar(Usuarios obj)
+        public Usuarios Modificar(Usuarios user)
         {
+            //return managerRepository.usuarioRepository.Modificar(usuarioDto);
             throw new NotImplementedException();
+        }
+        public Usuarios Editar(Usuarios user, int id) {
+            return managerRepository.usuarioRepository.Editar(user, id);
         }
 
         public void seteoLosNotNull(Usuarios u)

@@ -49,17 +49,17 @@
                                 @Session["email"].ToString()
                             </li>
                             <li class="nav-item">
-                                @Html.ActionLink("Mi Perfil", "Index", "Perfil", new { @class = "nav-link" })
+                                @Html.ActionLink("Mi Perfil", "Index", "Perfil",null,  new { @class = "nav-link" })
                             </li>
                             <li class="nav-item">
 
-                                @Html.ActionLink("Mis Denuncias", "MisDenuncias", "Perfil", new { @class = "nav-link" })
+                                @Html.ActionLink("Mis Denuncias", "MisDenuncias", "Perfil",null, new { @class = "nav-link" })
                             </li>
                             <li class="nav-item">
-                                @Html.ActionLink("Mis Donaciones", "MisDonaciones", "Perfil", new { @class = "nav-link" })
+                                @Html.ActionLink("Mis Donaciones", "MisDonaciones", "Perfil",null, new { @class = "nav-link" })
                             </li>
                             <li class="nav-item">
-                                @Html.ActionLink("Salir", "Login", "Home", new { @class = "nav-link" })
+                                @Html.ActionLink("Salir", "Logout", "Login", null, new { @class = "nav-link" })
                             </li>
                          }
 

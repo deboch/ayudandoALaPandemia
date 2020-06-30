@@ -28,14 +28,25 @@ namespace ayudandoALaPandemia.Controllers
                 Session["id"] = usuario.IdUsuario;
                 Session["email"] = usuario.Email.ToString();
                 Session["username"] = usuario.UserName;
+                Session["nombre"] = usuario.Nombre;
+                Session["apellido"] = usuario.Apellido;
+                Session["fechaNacimiento"] = usuario.FechaNacimiento;
+                Session["foto"] = usuario.Foto;
                 // redirijo a Index de HomeController
-                return RedirectToAction("Index", "Necesidades");
+                return RedirectToAction("Index", "Perfil");
 
             }
             else
             {
                 return View(user);
             }
+
+        }
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Index", "Home");
 
         }
     }
