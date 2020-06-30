@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using Antlr.Runtime.Misc;
 using Repositorios;
@@ -51,6 +52,14 @@ namespace ayudandoALaPandemia.Controllers
         {
             ViewBag.email = email;
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult verDenunciasAdmin()
+        {
+            List<Denuncias> listDenuncias = denunciasServicio.listaDenuncias();
+
+            return View(listDenuncias);
         }
     }
 }

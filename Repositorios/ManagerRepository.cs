@@ -11,6 +11,7 @@ namespace Repositorios
         public NecesidadesRepository necesidadesRepository;
         public DonacionesMonetariasRepository donacionesMonetariasRepository;
         public DonacionesInsumosRepository donacionesInsumosRepository;
+        public DenunciasRepository denunciasRepository;
 
         public ManagerRepository()
         {
@@ -21,6 +22,7 @@ namespace Repositorios
             this.necesidadesRepository = new NecesidadesRepository(this.contexto);
             this.donacionesMonetariasRepository = new DonacionesMonetariasRepository(this.contexto);
             this.donacionesInsumosRepository = new DonacionesInsumosRepository(this.contexto);
+            this.denunciasRepository = new DenunciasRepository(this.contexto);
         }
     }
 }
