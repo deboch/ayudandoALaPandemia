@@ -45,7 +45,7 @@ const getNecesidades = async (obj = {}) => {
                         `<div class='col-lg-4 mb-4' >
                             <a href='/necesidad/' + ${ necesidad.IdNecesidad } + '/detalle' class='card h-100' >
                                 <h4 class='card-header'>${necesidad.Nombre}</h4>
-                                <img src='../../Content/Template/img/${necesidad.Foto}' width='100%' height='auto' />
+                                <img src='../..${necesidad.Foto}' width='100%' height='auto' />
                                 <div class='card-body'>
                                     <p class='card-text'>${necesidad.Descripcion}</p>
                                     <span class='badge'>

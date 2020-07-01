@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using ayudandoALaPandemia.Builder;
+using ayudandoALaPandemia.Utilities;
 using ayudandoALaPandemia.ViewModels;
 using Newtonsoft.Json;
 using Repositorios;
@@ -57,16 +58,27 @@ namespace ayudandoALaPandemia.Controllers
             int userId = (int)Session["id"];
             Usuarios usuarioActual = registroServicios.ObtenerPorId(userId);
             List<Necesidades> necesidadesDelUsuario = necesidadesServicios.ObtenerPorUserId(userId);
+            
             if (usuarioActual.Foto == null)
             {
                 ViewBag.Incompleto = "Completa tu perfil antes de crear una necesidad";
                 return View(necesidadDto);
 
             }
-            if (necesidadesDelUsuario.Count >= 10)
+            if (necesidadesDelUsuario.Count >= 3)
             {
                 ViewBag.NoPermitir = "Ya posee 3 necesidades abiertas";
                 return View(necesidadDto);
+            }
+
+            if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
+            {
+                //TODO: Agregar validacion para confirmar que el archivo es una imagen
+                //creo un nombre significativo en este caso apellidonombre pero solo un caracter del nombre, ejemplo BatistutaG
+                string nombreSignificativo = necesidadDto.NombreSignificativoImagen;
+                //Guardar Imagen
+                string pathRelativoImagen = ImagenesUtility.Guardar(Request.Files[0], nombreSignificativo);
+                necesidadDto.foto = pathRelativoImagen;
             }
 
             if (!ModelState.IsValid)

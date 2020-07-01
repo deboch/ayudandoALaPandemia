@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ayudandoALaPandemia.Builder;
+using ayudandoALaPandemia.Utilities;
 using ayudandoALaPandemia.ViewModels;
 using Repositorios;
 
@@ -108,10 +110,52 @@ namespace ayudandoALaPandemia.Controllers
             return necesidadesServicios.Borrar(id);
         }
 
-        [HttpPost]
-        public Necesidades Modificar(Necesidades necesidad)
+        [HttpGet]
+        public ActionResult Modificar()
         {
-            return necesidadesServicios.Modificar(necesidad);
+            int idNecesidad = Int32.Parse(Request.Url.Segments[2].Remove(Request.Url.Segments[2].Length - 1));
+            Necesidades necesidad = necesidadesServicios.ObtenerPorId(idNecesidad);
+
+            NecesidadDto necesidadDto = new NecesidadDto();
+            if (necesidad.NecesidadesDonacionesInsumos.Count > 0)
+            {
+                for (int i = 0; i < necesidad.NecesidadesDonacionesInsumos.Count; i++)
+                {
+                    InsumosDto insumoDto = new InsumosDto();
+                    necesidadDto.insumos.Add(insumoDto);
+                }
+            }
+            
+            ViewBag.Necesidad = necesidad;
+            return View(necesidadDto);
+        }
+        
+        [HttpPost]
+        public ActionResult Modificar(NecesidadDto necesidadDto)
+        {
+            int userId = (int)Session["id"];
+            NecesidadBuilder builder = new NecesidadBuilder();
+            if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
+            {
+                //TODO: Agregar validacion para confirmar que el archivo es una imagen
+                //creo un nombre significativo en este caso apellidonombre pero solo un caracter del nombre, ejemplo BatistutaG
+                string nombreSignificativo = necesidadDto.NombreSignificativoImagen;
+                //Guardar Imagen
+                string pathRelativoImagen = ImagenesUtility.Guardar(Request.Files[0], nombreSignificativo);
+                necesidadDto.foto = pathRelativoImagen;
+            }
+
+            if (necesidadDto.insumos.Count == 0)
+            {
+                necesidadDto.insumos = new List<InsumosDto>();
+                InsumosDto n = new InsumosDto();
+                n.nombre = null;
+                necesidadDto.insumos.Add(n);
+            }
+
+            Necesidades necesidad = builder.toNecesidadesEntity(necesidadDto, userId);
+            necesidadesServicios.Modificar(necesidad);
+            return RedirectToAction("MisNecesidades", "Perfil");
         }
 
         [HttpGet]

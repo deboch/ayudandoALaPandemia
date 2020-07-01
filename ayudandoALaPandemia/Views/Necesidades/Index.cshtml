@@ -30,7 +30,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <a href="#">
-                                    <img class="img-fluid rounded mb-3 mb-md-0" src="../../Content/Template/img/@p.Foto" alt="">
+                                    <img class="img-fluid rounded mb-3 mb-md-0" src="../..@p.Foto" alt="">
                                 </a>
                             </div>
                             <div class="col-md-5">
@@ -66,7 +66,7 @@
                         <div class="col-lg-4 mb-4">
                             <a href=@(Session["email"] != null ? "/necesidad/" + @p.IdNecesidad + "/detalle" : "/login" ) class="card h-100">
                                 <h4 class="card-header">@p.Nombre</h4>
-                                <img src="../../Content/Template/img/@p.Foto" width="100%" height="auto" />
+                                <img src="../..@p.Foto" width="100%" height="auto" />
                                 <div class="card-body">
                                     <p class="card-text">@p.Descripcion</p>
                                     <span class="badge">

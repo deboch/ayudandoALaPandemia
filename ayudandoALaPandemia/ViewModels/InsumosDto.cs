@@ -13,10 +13,8 @@ namespace ayudandoALaPandemia.ViewModels
 
         public int idNecesidad { get; set; }
 
-        [Required]
         public string nombre { get; set; }
 
-        [Required]
         public int cantidad { get; set; }
     }
 }
