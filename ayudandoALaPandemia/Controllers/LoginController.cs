@@ -20,34 +20,32 @@ namespace ayudandoALaPandemia.Controllers
         public ActionResult Index(Usuarios user)
         {
             // esto es feo!!
-            if (ModelState.IsValid)
+   
+            Usuarios usuario = loginServicios.logear(user);
+            if (usuario == null)
             {
-                Usuarios usuario = loginServicios.logear(user);
-                if (usuario == null)
-                {
-                    return View(user);
-                }
-                else if (!usuario.Activo)
-                {
-                    Usuarios nuevoUsuarios = loginServicios.obtenerPorMail(usuario.Email);
-                    nuevoUsuarios.Token = registroServicios.generoToken();
-                    registroServicios.generoTokenNuevo(nuevoUsuarios, nuevoUsuarios.Token);
-                    emailServicios.sendEmail(nuevoUsuarios.Token, nuevoUsuarios.Email);
-                    return (RedirectToAction("activarUsuario","Login", new {email = nuevoUsuarios.Email }));
-                }
-                else
-                {
-                    Session["id"] = usuario.IdUsuario;
-                    Session["email"] = usuario.Email.ToString();
-                    Session["username"] = usuario.UserName;
-                    Session["nombre"] = usuario.Nombre;
-                    Session["apellido"] = usuario.Apellido;
-                    Session["fechaNacimiento"] = usuario.FechaNacimiento;
-                    Session["foto"] = usuario.Foto;
-                    return RedirectToAction("Index", "Necesidades");
-                }
+                return View(user);
             }
-            return View(user);
+            else if (!usuario.Activo)
+            {
+                Usuarios nuevoUsuarios = loginServicios.obtenerPorMail(usuario.Email);
+                nuevoUsuarios.Token = registroServicios.generoToken();
+                registroServicios.generoTokenNuevo(nuevoUsuarios, nuevoUsuarios.Token);
+                emailServicios.sendEmail(nuevoUsuarios.Token, nuevoUsuarios.Email);
+                return (RedirectToAction("activarUsuario","Login", new {email = nuevoUsuarios.Email }));
+            }
+            else
+            {
+                Session["id"] = usuario.IdUsuario;
+                Session["email"] = usuario.Email.ToString();
+                Session["username"] = usuario.UserName;
+                Session["nombre"] = usuario.Nombre;
+                Session["apellido"] = usuario.Apellido;
+                Session["fechaNacimiento"] = usuario.FechaNacimiento;
+                Session["foto"] = usuario.Foto;
+                Session["tipo"] = usuario.TipoUsuario;
+                return RedirectToAction("Index", "Necesidades");
+            }
         }
 
         [HttpGet]
