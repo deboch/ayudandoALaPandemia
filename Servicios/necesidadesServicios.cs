@@ -11,7 +11,10 @@ namespace Servicios
     {
         ManagerRepository managerRepository = new ManagerRepository();
         NecesidadesRepository necesidadesRepository;
-
+        public NecesidadesServicios()
+        {
+            
+        }
         public NecesidadesServicios(Context context)
         {
           necesidadesRepository = new NecesidadesRepository(context);
