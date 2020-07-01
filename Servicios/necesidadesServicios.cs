@@ -1,13 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using Repositorios;
+using Context = Repositorios.Context;
 
 namespace Servicios
 {
     public class NecesidadesServicios : ICrud<Necesidades>
     {
         ManagerRepository managerRepository = new ManagerRepository();
+        NecesidadesRepository necesidadesRepository;
+
+        public NecesidadesServicios(Context context)
+        {
+          necesidadesRepository = new NecesidadesRepository(context);
+        }
         public int Borrar(int id)
         {
             return managerRepository.necesidadesRepository.Borrar(id);
