@@ -174,6 +174,11 @@ namespace Repositorios
             }
         }
 
+        public List<Denuncias> ObtenerDenunciasPorUserId(int userId)
+        {
+            return Context.Denuncias.Where(v => v.IdUsuario == userId).ToList();
+        }
+
         public int CalcularPorcentaje(int idNecesidad)
         {
             Necesidades necesidad = Context.Necesidades.Find(idNecesidad);

@@ -41,5 +41,10 @@ namespace Repositorios
                 throw;
             }
         }
+
+        public List<DonacionesInsumos> ObtenerDonacionesInsumosPorUserId(int userId)
+        {
+            return Context.DonacionesInsumos.Where(v => v.IdUsuario == userId).ToList();
+        }
     }
 }

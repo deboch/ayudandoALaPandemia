@@ -157,10 +157,12 @@ namespace Servicios
         {
             return managerRepository.necesidadesRepository.ObtenerDenunciasPorUserId(userId);
         }
+
         public List<DonacionesInsumos> ObtenerDonacionesInsumosPorUserId(int userId)
         {
             return managerRepository.donacionesInsumosRepository.ObtenerDonacionesInsumosPorUserId(userId);
         }
+
         public List<DonacionesMonetarias> ObtenerDonacionesMonetariasPorUserId(int userId)
         {
             return managerRepository.donacionesMonetariasRepository.ObtenerDonacionesMonetariasUserPorId(userId);

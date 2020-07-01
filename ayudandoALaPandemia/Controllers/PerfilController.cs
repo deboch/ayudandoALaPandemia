@@ -39,14 +39,12 @@ namespace ayudandoALaPandemia.Controllers
         }
 
         [HttpGet]
-
         public ActionResult Editar()
         {
             return View();
         }
 
         [HttpPost]
-
         public ActionResult Editar(UsuarioDto usuarioDto)
         {
             int userId = (int)Session["id"];

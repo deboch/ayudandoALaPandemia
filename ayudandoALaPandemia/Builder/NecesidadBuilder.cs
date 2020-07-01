@@ -56,8 +56,8 @@ namespace ayudandoALaPandemia.Builder
         {
             NecesidadDto necesidadDto = new NecesidadDto();
             
-            necesidadDto.apellidoUsuario = usuario.Apellido;
-            necesidadDto.nombreUsuario = usuario.Nombre;
+            necesidadDto.ApellidoUsuario = usuario.Apellido;
+            necesidadDto.NombreUsuario = usuario.Nombre;
             
             necesidadDto.Id = necesidad.IdNecesidad;
             necesidadDto.nombre = necesidad.Nombre;
