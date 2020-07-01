@@ -81,7 +81,7 @@ namespace ServicioWeb.Models
                 NecesidadDto.Add(new NecesidadDto(prodEF));
             }
 
-            return productosDTO;
+            return NecesidadDto;
         }
     }
     
