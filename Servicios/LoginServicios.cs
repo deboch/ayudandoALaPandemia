@@ -33,6 +33,11 @@ namespace Servicios
             return miListaDeUsuarioActivos;
         }*/
 
+        public Usuarios Modificar(Usuarios user) {
+            var usuarioModificado = managerRepository.usuarioRepository.Modificar(user);
+            return usuarioModificado;
+        }
+
         public Usuarios logear(Usuarios u)
         {
             u.Password = hasheoParaLogear(u.Password);  
@@ -61,6 +66,5 @@ namespace Servicios
 
             return password = hash.ToString();
         }
-
     }
 }

@@ -131,6 +131,18 @@ namespace Repositorios
             return null;
         }
 
+        public Usuarios Editar(Usuarios user, int id)
+        {
+            Usuarios usuario = Context.Usuarios.Where(v => v.IdUsuario == id).FirstOrDefault();
+            usuario.Email = user.Email;
+            usuario.UserName = user.UserName;
+            usuario.Nombre = user.Nombre;
+            usuario.Apellido = user.Apellido;
+            usuario.FechaNacimiento = user.FechaNacimiento;
+            Context.SaveChanges();
+            return user;
+        }
+
         public Usuarios obtenerPorToken(string token)
         {
             try

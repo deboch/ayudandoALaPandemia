@@ -43,7 +43,7 @@
                             </li>
                         }
                         <li class="nav-item">
-                            @Html.ActionLink("Acerca de", "Login", "Home", null, new { @class = "nav-link" })
+                            @Html.ActionLink("Acerca de", "About", "Home", null, new { @class = "nav-link" })
                         </li>
                         @if (Session["email"] == null)
                         {
@@ -54,18 +54,34 @@
 
                         @if (Session["email"] != null)
                         {
-                            <li class="nav-item dropdown-toggle">
+                            <li>
+                                <ul class="dropdown">
+                                    <li class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <button class="btn btn-secondary" type="button">
+                                            @Session["email"].ToString()
+                                        </button>
+                                    </li>
+                                    <li class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <ul>
+                                            <li class="nav-item">
+                                                @Html.ActionLink("Mi Perfil", "Index", "Perfil", null, new { @class = "nav-link" })
+                                            </li>
+                                            <li class="nav-item">
 
-                                @Session["email"].ToString();
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                                    @Html.ActionLink("Mi Perfil", "Perfil", "Home", new { @class = "dropdown-item" })
-                                    @Html.ActionLink("Mis Denuncias", "Perfil", "Home", new { @class = "dropdown-item" })
-                                    @Html.ActionLink("Mis Donaciones", "Perfil", "Home", new { @class = "dropdown-item" })
-                                    @Html.ActionLink("Salir", "Login", "Home", new { @class = "dropdown-item" })
-                                </div>
-
+                                                @Html.ActionLink("Mis Denuncias", "MisDenuncias", "Perfil", null, new { @class = "nav-link" })
+                                            </li>
+                                            <li class="nav-item">
+                                                @Html.ActionLink("Mis Donaciones", "MisDonaciones", "Perfil", null, new { @class = "nav-link" })
+                                            </li>
+                                            <li class="nav-item">
+                                                @Html.ActionLink("Salir", "Logout", "Login", null, new { @class = "nav-link" })
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
                             </li>
                         }
+
                     </ul>
                 </div>
             </div>

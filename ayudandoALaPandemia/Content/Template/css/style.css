@@ -54,3 +54,7 @@
     background-color: red;
 }
 
+.navbar-dark.bg-dark .navbar-nav .dropdown-menu .nav-link {
+    color: #000;
+}
+

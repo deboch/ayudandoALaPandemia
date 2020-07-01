@@ -15,7 +15,6 @@ namespace Servicios
         private static List<Usuarios> listaUsuario = new List<Usuarios>();
         ManagerRepository managerRepository = new ManagerRepository();
 
-
         public int Borrar(int id)
         {
             throw new NotImplementedException();
@@ -33,7 +32,6 @@ namespace Servicios
                 return false;
             }
         }
-
         public bool matcheoClaves(string password, string confirm)
         {
             if (password == confirm)
@@ -93,10 +91,14 @@ namespace Servicios
             return id;
         }
 
-
-        public Usuarios Modificar(Usuarios obj)
+        public Usuarios Modificar(Usuarios user)
         {
+            //return managerRepository.usuarioRepository.Modificar(usuarioDto);
             throw new NotImplementedException();
+        }
+
+        public Usuarios Editar(Usuarios user, int id) {
+            return managerRepository.usuarioRepository.Editar(user, id);
         }
 
         public void seteoLosNotNull(Usuarios u)
