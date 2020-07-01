@@ -16,19 +16,19 @@ namespace ayudandoALaPandemia.Builder
             nuevaNecesidad.Descripcion = necesidadDto.descripcion;
             nuevaNecesidad.FechaFin = necesidadDto.fechaFin;
             nuevaNecesidad.TelefonoContacto = necesidadDto.telefono;
-            nuevaNecesidad.TipoDonacion = necesidadDto.tipoDonacion == "Monetaria" ? 1 : 0;
-            nuevaNecesidad.Foto = "abc.jpg";
+            nuevaNecesidad.TipoDonacion = necesidadDto.tipoDonacion == "monetaria" ? 1 : 0;
+            nuevaNecesidad.Foto = necesidadDto.foto;
             nuevaNecesidad.IdUsuarioCreador = userId;
             nuevaNecesidad.FechaCreacion = Convert.ToDateTime(DateTime.Now.ToString("dd-MMM-yyyy"));
-            
-            if (necesidadDto.tipoDonacion == "Monetaria")
+
+            if (necesidadDto.tipoDonacion == "monetaria")
             {
                 NecesidadesDonacionesMonetarias necesidadMonetaria = new NecesidadesDonacionesMonetarias();
                 necesidadMonetaria.CBU = necesidadDto.cbu;
                 necesidadMonetaria.Dinero = necesidadDto.dinero;
                 nuevaNecesidad.NecesidadesDonacionesMonetarias.Add(necesidadMonetaria);
             }
-            if (necesidadDto.insumos.Count > 0)
+            if (necesidadDto.insumos[0].nombre != null && necesidadDto.insumos.Count > 0)
             {
                 foreach (var p in necesidadDto.insumos)
                 {

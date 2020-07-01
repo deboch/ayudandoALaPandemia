@@ -34,7 +34,7 @@
             {
                 <p class="text-danger">@ViewBag.NoPermitir</p>
             }
-            @using (Html.BeginForm("Crear", "Necesidades", FormMethod.Post))
+            @using (Html.BeginForm("Crear", "Necesidades", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 <div class="control-group form-group">
                     <div class="controls">

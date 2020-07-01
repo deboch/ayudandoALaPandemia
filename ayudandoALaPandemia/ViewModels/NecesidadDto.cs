@@ -16,11 +16,11 @@ namespace ayudandoALaPandemia.ViewModels
         [Key]
         public int Id { get; set; }
 
-        /*[Required]
-        [StringLength(200)]*/
+        [Required]
+        [StringLength(200)]
         public string nombre { get; set; }
 
-        /*[Required]*/
+        [Required]
         public string descripcion { get; set; }
         public DateTime fechaFin { get; set; }
         public string telefono { get; set; }
@@ -37,6 +37,12 @@ namespace ayudandoALaPandemia.ViewModels
         public string NombreUsuario { get; set; }
         public string ApellidoUsuario { get; set; }
         public bool valoracion { get; set; }
-
+        public string NombreSignificativoImagen
+        {
+            get
+            {
+                return string.Format("{0}{1}", this.nombre.Replace(" ", "_") ?? "Nombre", this.tipoDonacion ?? "Dombre");
+            }
+        }
     }
 }
