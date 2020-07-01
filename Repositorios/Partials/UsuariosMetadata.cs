@@ -32,7 +32,6 @@ namespace Repositorios
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]*/
         public System.DateTime FechaNacimiento { get; set; }
 
-
     }
 
 }

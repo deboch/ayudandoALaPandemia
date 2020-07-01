@@ -37,6 +37,7 @@ namespace ayudandoALaPandemia.ViewModels
         public string NombreUsuario { get; set; }
         public string ApellidoUsuario { get; set; }
         public bool valoracion { get; set; }
+       
 
     }
 }
