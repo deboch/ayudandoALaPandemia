@@ -9,6 +9,7 @@
 *.user
 *.sln.docstates
 *.cache
+ayudandoALaPandemia/Content/Upload/*
 
 # Build results
 [Dd]ebug/
