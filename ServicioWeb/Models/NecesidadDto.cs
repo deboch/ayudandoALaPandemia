@@ -74,7 +74,7 @@ namespace ServicioWeb.Models
         }
         public static List<NecesidadDto> MapearListaEF(List<Necesidades> NecesidadEF)
         {
-            List<NecesidadDto> productosDTO = new List<NecesidadDto>();
+            List<NecesidadDto> NecesidadDto = new List<NecesidadDto>();
 
             foreach (var prodEF in NecesidadEF)
             {
