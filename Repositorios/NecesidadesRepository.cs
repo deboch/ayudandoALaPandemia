@@ -195,5 +195,20 @@ namespace Repositorios
             Context.SaveChanges();
             return denuncia.IdDenuncia;
         }
+        public List<Denuncias> ObtenerDenunciasPorUserId(int id)
+        {
+            try
+            {
+                return Context.Denuncias
+
+                    .Where(b => (int)b.Usuarios.IdUsuario == (int)id)
+                    .ToList();
+
+            }
+            catch (EntityException)
+            {
+                throw new EntityException();
+            }
+        }
     }
 }

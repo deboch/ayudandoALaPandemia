@@ -52,9 +52,56 @@ namespace Repositorios
             Context.SaveChanges();
         }
 
-        public Usuarios Modificar(Usuarios obj)
+        public Usuarios Editar(Usuarios u, int id)
         {
-            throw new NotImplementedException();
+            
+                Usuarios user = Context.Usuarios.Find(id);
+                user.Nombre = u.Nombre;
+                user.Apellido = u.Apellido;
+                user.FechaNacimiento = u.FechaNacimiento;
+                user.Foto = u.Foto;
+                int cont = 0;
+
+                if (user.UserName == null)
+                { //verifico xq en el login no se carga el ombre ni el apellido por lo tanto es probable q una vez este nulo
+                    string usuarioPosible = u.Nombre + u.Apellido;
+                    string nombreUsuarioPosible = "";
+                    Usuarios user2 = new Usuarios();
+                    user2 = Context.Usuarios.Where(p => (string)p.UserName == usuarioPosible).FirstOrDefault();
+                    if (user2 != null)
+                    {
+                        do
+                        {
+
+                            cont = cont + 1;
+                            nombreUsuarioPosible = usuarioPosible + Convert.ToString(cont);
+                            user2 = Context.Usuarios.Where(p => (string)p.UserName == nombreUsuarioPosible).FirstOrDefault();
+
+
+                        } while (user2 != null);
+
+                        user.UserName = nombreUsuarioPosible;
+                        Context.SaveChanges();
+                        return user;
+
+                    }
+                    else
+                    {
+                        user.UserName = usuarioPosible;
+                        Context.SaveChanges();
+                        return user;
+
+                    }
+
+
+                }
+                else {
+                    Context.SaveChanges();
+                    return user;
+                }
+                
+                
+            
         }
 
         public Usuarios ObtenerPorId(int id)
@@ -68,7 +115,11 @@ namespace Repositorios
                 return default;
             }
         }
-
+        public Usuarios Modificar(Usuarios user)
+        {
+            //return managerRepository.usuarioRepository.Modificar(usuarioDto);
+            throw new NotImplementedException();
+        }
         public List<Usuarios> ObtenerTodos()
         {
             throw new NotImplementedException();

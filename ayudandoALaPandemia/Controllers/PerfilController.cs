@@ -33,10 +33,10 @@ namespace ayudandoALaPandemia.Controllers
         public ActionResult MisDonaciones(Usuarios user)
         {
             int userId = (int)Session["id"];
-            List<DonacionesInsumos> misDonacionesInsumos = necesidadesServicios.ObtenerDonacionesInsumosPorUserId(userId);
-            ViewBag.MisDonacionesInsumos = misDonacionesInsumos;
-            List<DonacionesMonetarias> misDonacionesMonetaria = necesidadesServicios.ObtenerDonacionesMonetariasPorUserId(userId);
-            ViewBag.MisDonacionesMonetaria = misDonacionesMonetaria;
+            List<DonacionesInsumos> necesidadInsumos = necesidadesServicios.ObtenerDonacionesInsumosPorUserId(userId);
+            ViewBag.NecesidadInsumos = necesidadInsumos;
+            List<DonacionesMonetarias> necesidadMonetaria = necesidadesServicios.ObtenerDonacionesMonetariasPorUserId(userId);
+            ViewBag.NecesidadMonetaria = necesidadMonetaria;
             return View();
         }
 
