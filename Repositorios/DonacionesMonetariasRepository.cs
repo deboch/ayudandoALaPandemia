@@ -37,7 +37,7 @@ namespace Repositorios
 
         public List<DonacionesMonetarias> ObtenerDonacionesMonetariasUserPorId(int userId)
         {
-            throw new NotImplementedException();
+            return Context.DonacionesMonetarias.Where(v => v.IdUsuario == userId).ToList();
         }
     }
 }
