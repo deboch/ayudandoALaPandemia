@@ -1,5 +1,7 @@
 ﻿using ayudandoALaPandemia.Builder;
+using ayudandoALaPandemia.Utilities;
 using ayudandoALaPandemia.ViewModels;
+using System.IO;
 using Repositorios;
 using System;
 using System.Collections.Generic;
@@ -47,13 +49,22 @@ namespace ayudandoALaPandemia.Controllers
         [HttpPost]
         public ActionResult Editar(UsuarioDto usuarioDto)
         {
+            if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
+            {
+                //TODO: Agregar validacion para confirmar que el archivo es una imagen
+                //creo un nombre significativo en este caso apellidonombre pero solo un caracter del nombre, ejemplo BatistutaG
+                string nombreSignificativo = usuarioDto.NombreSignificativoImagen;
+                //Guardar Imagen
+                string pathRelativoImagen = ImagenesUtility.Guardar(Request.Files[0], nombreSignificativo);
+                usuarioDto.foto = pathRelativoImagen;
+            }
+
             int userId = (int)Session["id"];
             UsuarioBuilder builder = new UsuarioBuilder();
             Usuarios usuarioModificado = builder.toUsuariosEntity(usuarioDto);
             Usuarios usuarioModificado2 =  registroServicios.Editar(usuarioModificado, userId);
 
             Session["id"] = usuarioModificado2.IdUsuario;
-            Session["email"] = usuarioModificado2.Email.ToString();
             Session["username"] = usuarioModificado2.UserName;
             Session["nombre"] = usuarioModificado2.Nombre;
             Session["apellido"] = usuarioModificado2.Apellido;

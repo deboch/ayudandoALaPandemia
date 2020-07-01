@@ -1,4 +1,4 @@
-﻿@model Repositorios.Usuarios
+﻿@model ayudandoALaPandemia.ViewModels.UsuarioDto
 
 @{
     ViewBag.Title = "Editar";
@@ -6,7 +6,7 @@
 }
 
     <div class="container">
-        @using (Html.BeginForm("Editar", "Perfil", FormMethod.Post))
+        @using (Html.BeginForm("Editar", "Perfil", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             <!-- Page Heading/Breadcrumbs -->
             <h1 class="mt-4 mb-3">
@@ -34,26 +34,26 @@
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>Nombre:</label>
-                            @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.nombre, new { @class = "form-control" })
                             <p class="help-block"></p>
                         </div>
                     </div>
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>Apellido:</label>
-                            @Html.TextBoxFor(m => m.Apellido, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.apellido, new { @class = "form-control" })
                         </div>
                     </div>
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>Fecha de nacimiento:</label>
-                            @Html.TextBoxFor(m => m.FechaNacimiento, new { type = "date", @class = "form-control" })
+                            @Html.TextBoxFor(m => m.fechaNacimiento, new { type = "date", @class = "form-control" })
                         </div>
                     </div>
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>Foto:</label>
-                            @Html.TextBoxFor(m => m.Foto, new { type = "file", @class = "input-file" })
+                            @Html.TextBoxFor(m => m.foto, new { type = "file", @class = "input-file" })
                         </div>
                     </div>
 

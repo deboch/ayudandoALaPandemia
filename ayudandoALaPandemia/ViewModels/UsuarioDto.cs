@@ -27,7 +27,13 @@ namespace ayudandoALaPandemia.ViewModels
         public DateTime fechaCreacion { get; set; }
         public bool activo { get; set; }
 
-
+        public string NombreSignificativoImagen
+        {
+            get
+            {
+                return string.Format("{0}{1}", this.apellido ?? "Apellido", this.nombre ?? "Nombre");
+            }
+        }
 
     }
 }
