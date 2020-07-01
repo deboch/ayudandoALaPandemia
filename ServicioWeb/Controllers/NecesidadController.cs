@@ -21,7 +21,7 @@ namespace ServicioWeb.Controllers
 
             public List<NecesidadDto> Get()
             {
-                List<Necesidades> necesidadesEF = necesidadesServicios.ObtenerTodos();
+                List<Necesidades> necesidadesEF = necesidadesServicios.GetNecesidades();
 
                 return NecesidadDto.MapearListaEF(necesidadesEF);
             }

@@ -8,57 +8,58 @@ namespace ServicioWeb.Models
 {
     public class NecesidadDto
     {
-        public int idNecesidad { get; set; }
-        public string nombre { get; set; }
-        public string descripcion { get; set; }
-
-        public DateTime fechaCreacion { get; set; }
-        public DateTime fechaFin { get; set; }
-        public string telefono { get; set; }
-        public int tipoDonacion { get; set; }
-        public string foto { get; set; }
-        public decimal dinero { get; set; }
-        public string cbu { get; set; }
-        public List<InsumosDto> insumos { get; set; }
-        public string referencia1Nombre { get; set; }
-        public string referencia2Nombre { get; set; }
-        public string referencia1Telefono { get; set; }
-        public string referencia2Telefono { get; set; }
-        public int idUsuario { get; set; }
-        public string NombreUsuario { get; set; }
-        public string ApellidoUsuario { get; set; }
-        public decimal valoracion { get; set; }
+        public int IdNecesidad { get; set; }
+        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
+        public System.DateTime FechaCreacion { get; set; }
+        public System.DateTime FechaFin { get; set; }
+        public string TelefonoContacto { get; set; }
+        public int TipoDonacion { get; set; }
+        public string Foto { get; set; }
+        public int IdUsuarioCreador { get; set; }
+        public int Estado { get; set; }
+        public Nullable<decimal> Valoracion { get; set; }
         public NecesidadDto()
         {
 
         }
         public NecesidadDto(Necesidades necesidadEntidad)
         {
-            this.idNecesidad = necesidadEntidad.IdNecesidad;
-            this.nombre = necesidadEntidad.Nombre;
-            this.idUsuario = necesidadEntidad.IdUsuarioCreador;
-            this.descripcion = necesidadEntidad.Descripcion;
-            this.fechaFin = necesidadEntidad.FechaFin;
-            this.fechaCreacion = necesidadEntidad.FechaCreacion;
-            this.telefono = necesidadEntidad.TelefonoContacto;
-            this.tipoDonacion = necesidadEntidad.TipoDonacion;
-            this.foto = necesidadEntidad.Foto;
-            this.valoracion = (decimal)necesidadEntidad.Valoracion;
+            this.IdNecesidad = necesidadEntidad.IdNecesidad;
+            this.Nombre = necesidadEntidad.Nombre;
+            this.IdUsuarioCreador = necesidadEntidad.IdUsuarioCreador;
+            this.Descripcion = necesidadEntidad.Descripcion;
+            this.FechaFin = necesidadEntidad.FechaFin;
+            this.FechaCreacion = necesidadEntidad.FechaCreacion;
+            this.TelefonoContacto = necesidadEntidad.TelefonoContacto;
+            this.TipoDonacion = necesidadEntidad.TipoDonacion;
+            this.Foto = necesidadEntidad.Foto;
+            this.Estado = necesidadEntidad.Estado;
+            if(necesidadEntidad.Valoracion == null)
+            {
+                this.Valoracion = 0 ;
+            }
+            else
+            {
+                this.Valoracion = necesidadEntidad.Valoracion;
+            }
+            
             
         }
         public Necesidades MapearEF()
         {
             Necesidades p = new Necesidades();
-            p.IdNecesidad = this.idNecesidad;
-            p.Descripcion = this.descripcion;
-            p.IdUsuarioCreador = this.idUsuario;
-            p.Nombre = this.nombre;
-            p.TipoDonacion = this.tipoDonacion;
-            p.Foto = this.foto;
-            p.FechaCreacion = this.fechaCreacion;
-            p.FechaFin = this.fechaFin;
-            p.Valoracion = this.valoracion;
-            p.TelefonoContacto = this.telefono;
+            p.IdNecesidad = this.IdNecesidad;
+            p.Descripcion = this.Descripcion;
+            p.IdUsuarioCreador = this.IdUsuarioCreador;
+            p.Nombre = this.Nombre;
+            p.TipoDonacion = this.TipoDonacion;
+            p.Foto = this.Foto;
+            p.FechaCreacion = this.FechaCreacion;
+            p.FechaFin = this.FechaFin;
+            p.Valoracion = this.Valoracion;
+            p.TelefonoContacto = this.TelefonoContacto;
+            p.Estado = this.Estado;
             return p;
         }
         public static List<Necesidades> MapearListaDTO(List<NecesidadDto> necesidadDTO)
