@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 namespace Repositorios
 {
     [MetadataType(typeof(UsuariosMetadata))]
-    public partial class Usuarios { }
-
-    
-
+    public partial class Usuarios
+    {
+    }
     
 }
