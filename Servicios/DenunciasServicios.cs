@@ -15,5 +15,20 @@ namespace Servicios
         {
             return managerRepository.denunciasRepository.traerDenuncias().ToList();
         }
+
+        public Denuncias buscarPorId(int id)
+        {
+            return managerRepository.denunciasRepository.buscarPorId(id);
+        }
+
+        public void desestimarDenuncia(Denuncias miDenuncia)
+        {
+            managerRepository.denunciasRepository.desestimarDenuncia(miDenuncia);
+        }
+
+        public void aceptarDenuncia(Denuncias miDenuncia)
+        {
+            managerRepository.denunciasRepository.aceptarDenuncia(miDenuncia);
+        }
     }
 }

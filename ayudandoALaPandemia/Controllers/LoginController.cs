@@ -56,14 +56,6 @@ namespace ayudandoALaPandemia.Controllers
         }
 
         [HttpGet]
-        public ActionResult verDenunciasAdmin()
-        {
-            List<Denuncias> listDenuncias = denunciasServicio.listaDenuncias();
-
-            return View(listDenuncias);
-        }
-
-        [HttpGet]
         public ActionResult Logout()
         {
             Session.Clear();

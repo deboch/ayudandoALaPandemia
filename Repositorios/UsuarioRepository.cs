@@ -98,10 +98,7 @@ namespace Repositorios
                 else {
                     Context.SaveChanges();
                     return user;
-                }
-                
-                
-            
+                }  
         }
 
         public Usuarios ObtenerPorId(int id)
