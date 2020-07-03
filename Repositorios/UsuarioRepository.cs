@@ -131,6 +131,11 @@ namespace Repositorios
             return null;
         }
 
+        public Usuarios Editar(Usuarios user, int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Usuarios obtenerPorToken(string token)
         {
             try

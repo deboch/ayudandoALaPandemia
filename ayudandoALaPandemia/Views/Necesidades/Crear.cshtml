@@ -67,7 +67,7 @@
                 <div class="control-group form-group">
                     <div class="controls">
                         <label>Tipo:</label>
-                        @Html.DropDownListFor(m => m.tipoDonacion, new List<SelectListItem>() { new SelectListItem { Text = "Monetaria", Value = "monetaria" }, new SelectListItem { Text = "Insumos", Value = "insumos" } }, htmlAttributes: new { id = "tipoDonacion", @class = "form-control" })
+                        @Html.DropDownListFor(m => m.tipoDonacion, new List<SelectListItem>() { new SelectListItem { Text = "Monetaria", Value = "1" }, new SelectListItem { Text = "Insumos", Value = "0" } }, htmlAttributes: new { id = "tipoDonacion", @class = "form-control" })
                         <p class="help-block"></p>
                     </div>
                 </div>
@@ -85,62 +85,66 @@
                             @Html.TextBoxFor(m => m.cbu, new { @class = "form-control", placeholder = "Cbu" })
                         </div>
                     </div>
-                    <div class="control-group form-group">
-                        <div class="controls">
-                            <label for="ejemplo_archivo_1">Foto</label>
-                            @Html.TextBoxFor(m => m.foto, new { type = "file", @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.foto)
-                        </div>
-                    </div>
                 </div>
                 <div id="insumos">
                     <label for="Insumo">Ingrese insumos</label>
                     @{int i = 0;}
-                    @foreach (var p in Model.insumos)
+                    @if (Model.insumos == null)
+                    {
+                        <p>Haga click para agregar insumos</p>
+                    }
+                    else
                     {
 
-                        <div class="control-group form-group">
-                            <div class="controls">
-                                @Html.TextBoxFor(m => m.insumos[i].nombre, new { type = "text", @class = "form-control" })
+                        foreach (var p in Model.insumos)
+                        {
+                            <p>Complete el insumo</p>
+
+                            <div class="control-group form-group">
+                                <div class="controls">
+                                    @Html.TextBoxFor(m => m.insumos[i].nombre, new { type = "text", @class = "form-control", placeholder = "nombre" })
+                                </div>
                             </div>
-                        </div>
-                        <div class="control-group form-group">
-                            <div class="controls">
-                                @Html.TextBoxFor(m => m.insumos[i].cantidad, new { type = "text", @class = "form-control" })
+                            <div class="control-group form-group">
+                                <div class="controls">
+                                    @Html.TextBoxFor(m => m.insumos[i].cantidad, new { type = "text", @class = "form-control", placeholder = "cantidad" })
+                                </div>
                             </div>
-                        </div>
-                        
-                        @(i++)
+                            i = i + 1;
+                        }
                     }
+
+                    <a href="@(Model.insumos != null ? "/necesidades/Crear?countInsumos=" + (Model.insumos.Count + 1) :  "/necesidades/Crear?countInsumos=1")" class="btn btn-primary">Agregar</a>
+
                 </div>
                 <div class="control-group form-group">
                     <div class="controls">
-                        <label class="col-md-12">Referencia 1:</label>
-                        <label>Nombre:</label>
-                        @Html.TextBoxFor(m => m.referencia1Nombre, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.referencia1Nombre)
-                        <label>Teléfono:</label>
-                        @Html.TextBoxFor(m => m.referencia1Telefono, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.referencia1Telefono)
-
+                        <label>Foto:</label>
+                        @Html.TextBoxFor(m => m.foto, new { type = "file", @class = "input-file" })
                     </div>
                 </div>
                 <div class="control-group form-group">
                     <div class="controls">
-                        <label class="col-md-12">Referencia 2:</label>
-                        <label>Nombre:</label>
-                        @Html.TextBoxFor(m => m.referencia2Nombre, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.referencia2Nombre)
-                        <label>Teléfono:</label>
-                        @Html.TextBoxFor(m => m.referencia2Telefono, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.referencia2Telefono)
+                        @{int d = 0;}
+                        @foreach (var p in Model.referencias)
+                        {
+
+                            <label class="col-md-12">Referencia:</label>
+                            <label>Nombre:</label>
+                            @Html.TextBoxFor(m => m.referencias[d].nombre, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.referencias[d].nombre)
+                            <label>Teléfono:</label>
+                            @Html.TextBoxFor(m => m.referencias[d].telefono, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.referencias[d].telefono)
+                            d = d + 1;
+                        }
 
                     </div>
                 </div>
                 <div id="success"></div>
                 <!-- For success/fail messages -->
                 <button type="submit" class="btn btn-primary" id="sendMessageButton">Crear necesidad</button>
-            }
+              }
 
         </div>
 

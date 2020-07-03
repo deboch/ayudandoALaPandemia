@@ -115,18 +115,10 @@ namespace ayudandoALaPandemia.Controllers
         {
             int idNecesidad = Int32.Parse(Request.Url.Segments[2].Remove(Request.Url.Segments[2].Length - 1));
             Necesidades necesidad = necesidadesServicios.ObtenerPorId(idNecesidad);
+            NecesidadBuilder builder = new NecesidadBuilder();
+            NecesidadDto necesidadDto = builder.trasnformarNecesidadANecesidadDto(necesidad);
 
-            NecesidadDto necesidadDto = new NecesidadDto();
-            if (necesidad.NecesidadesDonacionesInsumos.Count > 0)
-            {
-                for (int i = 0; i < necesidad.NecesidadesDonacionesInsumos.Count; i++)
-                {
-                    InsumosDto insumoDto = new InsumosDto();
-                    necesidadDto.insumos.Add(insumoDto);
-                }
-            }
-            
-            ViewBag.Necesidad = necesidad;
+            ViewBag.necesidadDto = necesidadDto;
             return View(necesidadDto);
         }
         
@@ -145,13 +137,13 @@ namespace ayudandoALaPandemia.Controllers
                 necesidadDto.foto = pathRelativoImagen;
             }
 
-            if (necesidadDto.insumos.Count == 0)
+            /*if (necesidadDto.insumos.Count == 0)
             {
                 necesidadDto.insumos = new List<InsumosDto>();
                 InsumosDto n = new InsumosDto();
                 n.nombre = null;
                 necesidadDto.insumos.Add(n);
-            }
+            }*/
 
             Necesidades necesidad = builder.toNecesidadesEntity(necesidadDto, userId);
             necesidadesServicios.Modificar(necesidad);
