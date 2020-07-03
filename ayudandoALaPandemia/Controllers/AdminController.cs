@@ -37,12 +37,29 @@ namespace ayudandoALaPandemia.Controllers
         }
 
 
-        // **************************************** HACER VISTA ****************************** //
+        // **************************************** HACER VISTA ************************************ //
         [HttpGet]
         public ActionResult linkDenucia(int id)
         {
             Denuncias miDenuncia = denunciasServicio.buscarPorId(id);
             return View(miDenuncia);
+        }
+
+        [HttpGet]
+        public ActionResult DarAdminPermisos()
+        {
+            List<Usuarios> misUsuarios = registroServicios.obtengoUsuariosTipo1();
+            return View(misUsuarios);
+        }
+
+
+        [HttpGet]
+        public ActionResult hacerAdmin(int id)
+        {
+            Usuarios miUser = registroServicios.ObtenerPorId(id);
+            registroServicios.hacerAdmin(id);
+
+            return RedirectToAction("darAdminPermisos", "Admin");
         }
 
 
