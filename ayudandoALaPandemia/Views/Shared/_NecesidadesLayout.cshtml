@@ -10,6 +10,14 @@
     <body>
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container">
+                @if (Session["email"] != null)
+                {
+                    @Html.ActionLink("Ayudando a la pandemia", "Index", "Necesidades", null, new { @class = "navbar-brand" })
+                }
+                else
+                {
+                    @Html.ActionLink("Ayudando a la pandemia", "Index", "Home", null, new { @class = "navbar-brand" })
+                }
                 <a class="navbar-brand" href="index.html">Ayudando a la pandemia</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -18,12 +26,12 @@
                     <ul class="navbar-nav ml-auto">
                         @if (Session["email"] != null)
                         {
-                        <li class="nav-item">
-                            @using (Html.BeginForm("Index", "Necesidades", FormMethod.Get))
-                            {
-                                @Html.TextBox("keyword", null, new { @class = "form-control", placeholder = "Buscar necesidades" })
-                            }
-                        </li>
+                            <li class="nav-item">
+                                @using (Html.BeginForm("Index", "Necesidades", FormMethod.Get))
+                                {
+                                    @Html.TextBox("keyword", null, new { @class = "form-control", placeholder = "Buscar necesidades" })
+                                }
+                            </li>
                         }
                         @if (Session["email"] != null && (int)Session["tipo"] == 1)
                         {
