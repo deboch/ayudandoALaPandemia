@@ -51,7 +51,7 @@ namespace ayudandoALaPandemia.ViewModels
         public int idUsuario { get; set; }
         public string NombreUsuario { get; set; }
         public string ApellidoUsuario { get; set; }
-        public bool valoracion { get; set; }
+        public dynamic valoracion { get; set; }
         public string NombreSignificativoImagen
         {
             get

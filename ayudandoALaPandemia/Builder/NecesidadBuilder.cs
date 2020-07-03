@@ -75,8 +75,10 @@ namespace ayudandoALaPandemia.Builder
             necesidadDto.telefono = necesidad.TelefonoContacto;
             necesidadDto.tipoDonacion = null;
             necesidadDto.foto = necesidad.Foto;
-
-            necesidadDto.valoracion = valoracion.Valoracion;
+            if (valoracion != null)
+            {
+                necesidadDto.valoracion = valoracion.Valoracion;
+            }
             return necesidadDto;
         }
 

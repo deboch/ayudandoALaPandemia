@@ -32,9 +32,10 @@ namespace ayudandoALaPandemia.Controllers
         [HttpGet]
         public ActionResult Detalle()
         {
+            int userId = (int)Session["id"];
             int idNecesidad = Int32.Parse(Request.Url.Segments[2].Remove(Request.Url.Segments[2].Length - 1));
             Necesidades necesidad = necesidadesServicios.ObtenerPorId(idNecesidad);
-            Usuarios usuario = registroServicios.ObtenerPorId(necesidad.IdUsuarioCreador);
+            Usuarios usuario = registroServicios.ObtenerPorId(userId);
             NecesidadesValoraciones valoracion = necesidadesServicios.ObtenerValoracionPorUsuarioNecesidad(usuario.IdUsuario, necesidad.IdNecesidad);
             NecesidadBuilder builder = new NecesidadBuilder();
             NecesidadDto necesidadDto = builder.necesidadDtoParaDetalle(necesidad, usuario, valoracion);

@@ -173,9 +173,10 @@ namespace Repositorios
 
         public NecesidadesValoraciones ObtenerValoracionPorUsuarioNecesidad (int userId, int idNecesidad)
         {
-
-            NecesidadesValoraciones miValoracion = Context.NecesidadesValoraciones.Where(v => (v.IdUsuario == (int)userId && v.IdNecesidad == (int)idNecesidad)).SingleOrDefault();
-            return miValoracion;
+            return Context.NecesidadesValoraciones
+                .Where(v => v.IdUsuario == (int)userId)
+                .Where(v => v.IdNecesidad == (int)idNecesidad)
+                .FirstOrDefault();
         }
 
         public bool Valorar(int like, int userId, int idNecesidad)
