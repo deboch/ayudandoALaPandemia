@@ -22,5 +22,10 @@ namespace ayudandoALaPandemia.Controllers
             }
         }
 
+        [ActionName("acerca-de")]
+        public ActionResult AcercaDe() {
+            return View();
+        }
+
     }
 }

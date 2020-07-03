@@ -460,6 +460,7 @@
     <Content Include="Views\Perfil\MisNecesidades.cshtml" />
     <Content Include="Views\Necesidades\Index.cshtml" />
     <Content Include="Views\Necesidad\Modificar.cshtml" />
+    <Content Include="Views\Home\acerca-de.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />

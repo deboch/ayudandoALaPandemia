@@ -12,6 +12,7 @@ namespace ayudandoALaPandemia.Builder
         public Usuarios toUsuariosEntity(UsuarioDto usuarioDto)
         {
             Usuarios usuarioModificado = new Usuarios();
+            usuarioModificado.IdUsuario = usuarioDto.idUsuario;
             usuarioModificado.Nombre = usuarioDto.nombre;
             usuarioModificado.Apellido = usuarioDto.apellido;
             usuarioModificado.FechaNacimiento = usuarioDto.fechaNacimiento;
