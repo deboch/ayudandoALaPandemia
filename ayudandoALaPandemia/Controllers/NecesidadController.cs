@@ -90,6 +90,15 @@ namespace ayudandoALaPandemia.Controllers
         [HttpPost]
         public ActionResult donacionMonetaria(DonacionesMonetarias donacionesMonetarias)
         {
+            if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
+            {
+                //TODO: Agregar validacion para confirmar que el archivo es una imagen
+                //creo un nombre significativo en este caso apellidonombre pero solo un caracter del nombre, ejemplo BatistutaG
+                string nombreSignificativo = donacionesMonetarias.ArchivoTransferencia;
+                //Guardar Imagen
+                string pathRelativoImagen = ImagenesUtility.Guardar(Request.Files[0], nombreSignificativo);
+                donacionesMonetarias.ArchivoTransferencia = pathRelativoImagen;
+            }
             necesidadesServicios.donacionMonetaria(donacionesMonetarias);
             TempData["exito"] = "Donaste con exito!!";
             return RedirectToAction("Index", "Necesidades");

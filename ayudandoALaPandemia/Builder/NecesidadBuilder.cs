@@ -73,7 +73,7 @@ namespace ayudandoALaPandemia.Builder
             necesidadDto.descripcion = necesidad.Descripcion;
             necesidadDto.fechaFin = necesidad.FechaFin;
             necesidadDto.telefono = necesidad.TelefonoContacto;
-            necesidadDto.tipoDonacion = null;
+            necesidadDto.tipoDonacion = necesidad.TipoDonacion.ToString();
             necesidadDto.foto = necesidad.Foto;
             if (valoracion != null)
             {
