@@ -12,43 +12,52 @@ namespace ayudandoALaPandemia.Builder
         public Necesidades toNecesidadesEntity(NecesidadDto necesidadDto, int userId)
         {
             Necesidades nuevaNecesidad = new Necesidades();
+            nuevaNecesidad.IdNecesidad = necesidadDto.Id;
             nuevaNecesidad.Nombre = necesidadDto.nombre;
             nuevaNecesidad.Descripcion = necesidadDto.descripcion;
             nuevaNecesidad.FechaFin = necesidadDto.fechaFin;
             nuevaNecesidad.TelefonoContacto = necesidadDto.telefono;
-            nuevaNecesidad.TipoDonacion = necesidadDto.tipoDonacion == "monetaria" ? 1 : 0;
+            nuevaNecesidad.TipoDonacion = necesidadDto.tipoDonacion == "1" ? 1 : 0;
             nuevaNecesidad.Foto = necesidadDto.foto;
             nuevaNecesidad.IdUsuarioCreador = userId;
             nuevaNecesidad.FechaCreacion = Convert.ToDateTime(DateTime.Now.ToString("dd-MMM-yyyy"));
+            nuevaNecesidad.Estado = 1;
 
-            if (necesidadDto.tipoDonacion == "monetaria")
+            if (nuevaNecesidad.TipoDonacion == 1)
             {
                 NecesidadesDonacionesMonetarias necesidadMonetaria = new NecesidadesDonacionesMonetarias();
+                necesidadMonetaria.IdNecesidadDonacionMonetaria = necesidadDto.idMonetaria;
                 necesidadMonetaria.CBU = necesidadDto.cbu;
                 necesidadMonetaria.Dinero = necesidadDto.dinero;
                 nuevaNecesidad.NecesidadesDonacionesMonetarias.Add(necesidadMonetaria);
-            }
-            if (necesidadDto.insumos[0].nombre != null && necesidadDto.insumos.Count > 0)
+            } else
             {
-                foreach (var p in necesidadDto.insumos)
+                if (necesidadDto.dinero == 0 && necesidadDto.insumos.Count > 0)
                 {
-                    NecesidadesDonacionesInsumos necesidadDeInsumos = new NecesidadesDonacionesInsumos();
-                    necesidadDeInsumos.Nombre = p.nombre;
-                    necesidadDeInsumos.Cantidad = p.cantidad;
-                    nuevaNecesidad.NecesidadesDonacionesInsumos.Add(necesidadDeInsumos);
+                    foreach (var p in necesidadDto.insumos)
+                    {
+                        NecesidadesDonacionesInsumos necesidadDeInsumos = new NecesidadesDonacionesInsumos();
+                        necesidadDeInsumos.IdNecesidadDonacionInsumo = p.id;
+                        necesidadDeInsumos.Nombre = p.nombre;
+                        necesidadDeInsumos.Cantidad = p.cantidad;
+                        nuevaNecesidad.NecesidadesDonacionesInsumos.Add(necesidadDeInsumos);
+                    }
                 }
             }
 
-            NecesidadesReferencias necesidadReferencia1 = new NecesidadesReferencias();
-            NecesidadesReferencias necesidadReferencia2 = new NecesidadesReferencias();
+            if (necesidadDto.referencias.Count > 0)
+            {
+                necesidadDto.referencias.RemoveAll(v => v.nombre == null);
+                foreach (var p in necesidadDto.referencias)
+                {
+                    NecesidadesReferencias necesidadReferencias = new NecesidadesReferencias();
+                    necesidadReferencias.IdReferencia = p.id;
+                    necesidadReferencias.Nombre = p.nombre;
+                    necesidadReferencias.Telefono = p.telefono;
+                    nuevaNecesidad.NecesidadesReferencias.Add(necesidadReferencias);
+                }
+            }
 
-            necesidadReferencia1.Nombre = necesidadDto.referencia1Nombre;
-            necesidadReferencia1.Telefono = necesidadDto.referencia1Telefono;
-
-            necesidadReferencia2.Nombre = necesidadDto.referencia2Nombre;
-            necesidadReferencia2.Telefono = necesidadDto.referencia2Telefono;
-            nuevaNecesidad.NecesidadesReferencias.Add(necesidadReferencia1);
-            nuevaNecesidad.NecesidadesReferencias.Add(necesidadReferencia2);
             return nuevaNecesidad;
         }
 
@@ -86,6 +95,52 @@ namespace ayudandoALaPandemia.Builder
                 }
             }
             return lista;
+        }
+
+        internal NecesidadDto trasnformarNecesidadANecesidadDto(Necesidades necesidad)
+        {
+            NecesidadDto necesidadDto = new NecesidadDto();
+            necesidadDto.Id = necesidad.IdNecesidad;
+            necesidadDto.nombre = necesidad.Nombre;
+            necesidadDto.descripcion = necesidad.Descripcion;
+            necesidadDto.fechaFin = necesidad.FechaFin;
+            necesidadDto.telefono = necesidad.TelefonoContacto;
+            necesidadDto.tipoDonacion = necesidad.TipoDonacion == 1 ? "1" : "0";
+            necesidadDto.foto = necesidad.Foto;
+
+            if (necesidadDto.tipoDonacion == "1")
+            {
+                foreach (var p in necesidad.NecesidadesDonacionesMonetarias)
+                {
+                    necesidadDto.idMonetaria = p.IdNecesidadDonacionMonetaria;
+                    necesidadDto.cbu = p.CBU;
+                    necesidadDto.dinero = p.Dinero;
+                }
+            } else
+            {
+                if (necesidad.NecesidadesDonacionesInsumos.Count > 0)
+                {
+                    foreach (var p in necesidad.NecesidadesDonacionesInsumos)
+                    {
+                        InsumosDto insumoDto = new InsumosDto();
+                        insumoDto.id = p.IdNecesidadDonacionInsumo;
+                        insumoDto.nombre = p.Nombre;
+                        insumoDto.cantidad = p.Cantidad;
+                        necesidadDto.insumos.Add(insumoDto);
+                    }
+                }
+            }
+
+            necesidadDto.referencias.RemoveAll(v => v.nombre == null);
+            foreach (var p in necesidad.NecesidadesReferencias)
+            {
+                ReferenciaDto referenciaDto = new ReferenciaDto();
+                referenciaDto.id = p.IdReferencia;
+                referenciaDto.nombre = p.Nombre;
+                referenciaDto.telefono = p.Telefono;
+                necesidadDto.referencias.Add(referenciaDto);
+            }
+            return necesidadDto;
         }
     }
 }

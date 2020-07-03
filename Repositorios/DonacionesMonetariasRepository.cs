@@ -34,6 +34,7 @@ namespace Repositorios
             List<DonacionesMonetarias> donaciones = Context.DonacionesMonetarias.Where(v => v.IdNecesidadDonacionMonetaria == idNecesidadDonacionMonetaria).ToList();
             return donaciones.Sum(v => v.Dinero);
         }
+
         public List<DonacionesMonetarias> ObtenerDonacionesMonetariasUserPorId(int userId)
         {
             return Context.DonacionesMonetarias.Where(v => v.IdUsuario == userId).ToList();

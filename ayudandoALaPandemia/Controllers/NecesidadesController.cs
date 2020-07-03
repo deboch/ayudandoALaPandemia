@@ -40,15 +40,23 @@ namespace ayudandoALaPandemia.Controllers
         }
 
         [HttpGet]
-        public ActionResult Crear()
+        public ActionResult Crear(int? countInsumos)
         {
             if (Session["email"] == null)
             {
                 return RedirectToAction("Index");
             }
-            var model = new NecesidadDto();
-            InsumosDto insumoDto = new InsumosDto();
-            model.insumos.Add(insumoDto);
+            NecesidadDto model = new NecesidadDto();
+
+            if (countInsumos != null)
+            {
+                for (var i = 0; i < countInsumos; i++)
+                {
+                    InsumosDto insumoDto = new InsumosDto();
+                    model.insumos.Add(insumoDto);
+                }
+
+            }
             return View(model);
         }
 
@@ -65,7 +73,7 @@ namespace ayudandoALaPandemia.Controllers
                 return View(necesidadDto);
 
             }
-            if (necesidadesDelUsuario.Count >= 3)
+            if (necesidadesDelUsuario.Count >= 10)
             {
                 ViewBag.NoPermitir = "Ya posee 3 necesidades abiertas";
                 return View(necesidadDto);

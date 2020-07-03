@@ -52,8 +52,9 @@ namespace Repositorios
             Context.SaveChanges();
         }
 
-        public Usuarios Editar(Usuarios u, int id)
+        public Usuarios Modificar(Usuarios obj)
         {
+
             
                 Usuarios user = Context.Usuarios.Find(id);
                 user.Nombre = u.Nombre;
@@ -111,6 +112,7 @@ namespace Repositorios
         public List<Usuarios> obtengoUsuariosTipo1()
         {
             return Context.Usuarios.Where(o => o.TipoUsuario == 1).ToList();
+
         }
 
         public Usuarios ObtenerPorId(int id)
@@ -124,11 +126,7 @@ namespace Repositorios
                 return default;
             }
         }
-        public Usuarios Modificar(Usuarios user)
-        {
-            //return managerRepository.usuarioRepository.Modificar(usuarioDto);
-            throw new NotImplementedException();
-        }
+
         public List<Usuarios> ObtenerTodos()
         {
             throw new NotImplementedException();
@@ -189,6 +187,11 @@ namespace Repositorios
                 }
             }
             return null;
+        }
+
+        public Usuarios Editar(Usuarios user, int id)
+        {
+            throw new NotImplementedException();
         }
 
         public Usuarios obtenerPorToken(string token)
