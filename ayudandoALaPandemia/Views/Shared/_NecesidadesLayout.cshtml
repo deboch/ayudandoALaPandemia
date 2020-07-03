@@ -18,11 +18,12 @@
                     <ul class="navbar-nav ml-auto">
                         @if (Session["email"] != null)
                         {
-                            <li class="nav-item">
-                                <form class="input-group" id="form-search">
-                                    <input class="form-control" id="search-field" type="text" placeholder="Busca una necesidad" />
-                                </form>
-                            </li>
+                        <li class="nav-item">
+                            @using (Html.BeginForm("Index", "Necesidades", FormMethod.Get))
+                            {
+                                @Html.TextBox("keyword", null, new { @class = "form-control", placeholder = "Buscar necesidades" })
+                            }
+                        </li>
                         }
                         @if (Session["email"] != null && (int)Session["tipo"] == 1)
                         {
