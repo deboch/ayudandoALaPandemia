@@ -26,13 +26,18 @@ namespace ayudandoALaPandemia.Controllers
             {
                 return View(user);
             }
+            else if (usuario.TipoUsuario == 0) 
+            {
+                return RedirectToAction("Administrador", "Login");
+                
+            }
             else if (!usuario.Activo)
             {
                 Usuarios nuevoUsuarios = loginServicios.obtenerPorMail(usuario.Email);
                 nuevoUsuarios.Token = registroServicios.generoToken();
                 registroServicios.generoTokenNuevo(nuevoUsuarios, nuevoUsuarios.Token);
                 emailServicios.sendEmail(nuevoUsuarios.Token, nuevoUsuarios.Email);
-                return (RedirectToAction("activarUsuario","Login", new {email = nuevoUsuarios.Email }));
+                return (RedirectToAction("activarUsuario", "Login", new { email = nuevoUsuarios.Email }));
             }
             else
             {
@@ -52,6 +57,12 @@ namespace ayudandoALaPandemia.Controllers
         public ActionResult activarUsuario(string email)
         {
             ViewBag.email = email;
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Administrador(string email)
+        {   
             return View();
         }
 
