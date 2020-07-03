@@ -137,6 +137,7 @@ namespace ayudandoALaPandemia.Controllers
         {
             int userId = (int)Session["id"];
             NecesidadBuilder builder = new NecesidadBuilder();
+            
             if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
             {
                 //TODO: Agregar validacion para confirmar que el archivo es una imagen
@@ -147,13 +148,8 @@ namespace ayudandoALaPandemia.Controllers
                 necesidadDto.foto = pathRelativoImagen;
             }
 
-            /*if (necesidadDto.insumos.Count == 0)
-            {
-                necesidadDto.insumos = new List<InsumosDto>();
-                InsumosDto n = new InsumosDto();
-                n.nombre = null;
-                necesidadDto.insumos.Add(n);
-            }*/
+            if (!ModelState.IsValid)
+                return View(necesidadDto);
 
             Necesidades necesidad = builder.toNecesidadesEntity(necesidadDto, userId);
             necesidadesServicios.Modificar(necesidad);

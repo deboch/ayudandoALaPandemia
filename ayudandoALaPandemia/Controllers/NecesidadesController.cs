@@ -81,8 +81,8 @@ namespace ayudandoALaPandemia.Controllers
             {
                 ViewBag.Incompleto = "Completa tu perfil antes de crear una necesidad";
                 return View(necesidadDto);
-
             }
+
             if (necesidadesDelUsuario.Count >= 10)
             {
                 ViewBag.NoPermitir = "Ya posee 3 necesidades abiertas";
