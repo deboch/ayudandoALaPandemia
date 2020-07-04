@@ -79,6 +79,18 @@ namespace ayudandoALaPandemia.Builder
             {
                 necesidadDto.valoracion = valoracion.Valoracion;
             }
+            else
+            {
+                necesidadDto.valoracion = 0;
+            }
+
+            if (necesidad.TipoDonacion == 1)
+            {
+                necesidadDto.tipoDonacion = "Monetaria";
+            }
+            else {
+                necesidadDto.tipoDonacion = "Insumo";
+            }
             return necesidadDto;
         }
 
