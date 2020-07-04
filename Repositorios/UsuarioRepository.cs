@@ -55,6 +55,7 @@ namespace Repositorios
 
         public Usuarios Modificar(Usuarios u)
         {
+ 
             Usuarios user = Context.Usuarios.Find(u.IdUsuario);
             user.Nombre = u.Nombre;
             user.Apellido = u.Apellido;
@@ -72,25 +73,27 @@ namespace Repositorios
                 {
                     do
                     {
-
                         cont = cont + 1;
                         nombreUsuarioPosible = usuarioPosible + Convert.ToString(cont);
                         user2 = Context.Usuarios.Where(p => (string)p.UserName == nombreUsuarioPosible).FirstOrDefault();
-
-
                     } while (user2 != null);
 
                     user.UserName = nombreUsuarioPosible;
                     Context.SaveChanges();
                     return user;
-
                 }
                 else
                 {
                     user.UserName = usuarioPosible;
                     Context.SaveChanges();
                     return user;
-                }  
+                }
+            }
+            else
+            {
+                Context.SaveChanges();
+                return user;
+            }
         }
 
         public void hacerAdmin(int id)
@@ -103,14 +106,6 @@ namespace Repositorios
         public List<Usuarios> obtengoUsuariosTipo1()
         {
             return Context.Usuarios.Where(o => o.TipoUsuario == 1).ToList();
-                }
-
-            }
-            else
-            {
-                Context.SaveChanges();
-                return user;
-            }
         }
 
         public Usuarios ObtenerPorId(int id)
@@ -138,7 +133,6 @@ namespace Repositorios
                     .Where(b => (string)b.Email == (string)email)
                     .FirstOrDefault();
                 return user;
-
             }
             catch (DbEntityValidationException e)
             {
@@ -232,11 +226,9 @@ namespace Repositorios
             {
                 hash.Append(bytes[i].ToString("x2"));
             }
-
             u.Password = hash.ToString();
             u.ConfirmPassword = "0";
-            Context.SaveChanges();
-            
+            Context.SaveChanges();      
         }
 
     }

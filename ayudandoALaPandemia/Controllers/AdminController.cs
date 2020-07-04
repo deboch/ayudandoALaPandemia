@@ -37,7 +37,6 @@ namespace ayudandoALaPandemia.Controllers
         }
 
 
-        // **************************************** HACER VISTA ************************************ //
         [HttpGet]
         public ActionResult linkDenucia(int id)
         {
