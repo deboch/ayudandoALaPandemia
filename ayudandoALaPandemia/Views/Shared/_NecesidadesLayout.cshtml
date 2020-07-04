@@ -47,9 +47,12 @@
                                 @Html.ActionLink("Crear Necesidad", "Crear", "Necesidades", null, new { @class = "nav-link" })
                             </li>
                             <li class="nav-item">
-                                @Html.ActionLink("Gestionar Denuncias", "Login", "verDenunciasAdmin", null, new { @class = "nav-link" })
+                                @Html.ActionLink("Gest. Denuncias", "verDenuncias", "Admin", null, new { @class = "nav-link" })
                             </li>
-                        }
+                            <li class="nav-item">
+                                @Html.ActionLink("Usuarios", "darAdminPermisos", "Admin", null, new { @class = "nav-link" })
+                            </li>
+                }
                         <li class="nav-item">
                             @Html.ActionLink("Acerca de", "acerca-de", "Home", null, new { @class = "nav-link" })
                         </li>
@@ -91,7 +94,6 @@
                                 </ul>
                             </li>
                         }
-
                     </ul>
                 </div>
             </div>

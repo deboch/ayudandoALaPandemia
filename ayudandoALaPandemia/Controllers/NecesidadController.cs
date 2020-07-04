@@ -157,19 +157,36 @@ namespace ayudandoALaPandemia.Controllers
         }
 
         [HttpGet]
-        public ActionResult Denuncia()
+        public ActionResult Denunciar()
         {
-            return View();
+            int userId = (int)Session["id"];
+            List<MotivoDenuncia> lista = denunciasServicio.obtenerTodosLosMotivos();
+            
+            ViewBag.Motivos = denunciasServicio.obtenerTodosLosMotivos().Select(v => new SelectListItem()
+            {
+                Text = v.Descripcion,
+                Value = v.IdMotivoDenuncia.ToString()
+            });
+
+            DenunciaNecesidadDto denunciaDto = new DenunciaNecesidadDto();
+            denunciaDto.usuarioId = userId;
+            return View(denunciaDto);
         }
 
         [HttpPost]
-        public ActionResult Denuncia(DenunciaDto denunciaDto)
+        public ActionResult Denunciar(DenunciaNecesidadDto denunciaDto)
         {
-            int userId = (int)Session["id"];
-            DenunciaBuilder builder = new DenunciaBuilder();
-            Denuncias nuevaDenuncia = builder.toDenunciasEntity(denunciaDto, userId);
-            necesidadesServicios.CrearDenuncia(nuevaDenuncia);
+            if (!ModelState.IsValid)
+            {
+                return View(denunciaDto);
+            }
 
+            int userId = (int)Session["id"];
+            int idNecesidad = Int32.Parse(Request.Url.Segments[2].Remove(Request.Url.Segments[2].Length - 1));
+            denunciaDto.necesidadId = idNecesidad;
+            DenunciaBuilder builder = new DenunciaBuilder();
+            Denuncias nuevaDenuncia = builder.toDenunciasEntity(denunciaDto);
+            necesidadesServicios.CrearDenuncia(nuevaDenuncia);
             
             TempData["exito"] = "La denuncia se ha hecho correctamente!";
             return RedirectToAction("Index", "Necesidades");

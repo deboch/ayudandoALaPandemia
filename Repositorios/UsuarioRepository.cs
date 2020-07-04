@@ -54,6 +54,7 @@ namespace Repositorios
 
         public Usuarios Modificar(Usuarios u)
         {
+ 
             Usuarios user = Context.Usuarios.Find(u.IdUsuario);
             user.Nombre = u.Nombre;
             user.Apellido = u.Apellido;
@@ -92,12 +93,24 @@ namespace Repositorios
 
                 }
 
+
             }
-            else
-            {
+            else {
                 Context.SaveChanges();
                 return user;
-            }
+            }  
+        }
+
+        public void hacerAdmin(int id)
+        {
+            Usuarios user = Context.Usuarios.Where(o => o.IdUsuario == id).First();
+            user.TipoUsuario = 0;
+            Context.SaveChanges();
+        }
+
+        public List<Usuarios> obtengoUsuariosTipo1()
+        {
+            return Context.Usuarios.Where(o => o.TipoUsuario == 1).ToList();
         }
 
         public Usuarios ObtenerPorId(int id)
