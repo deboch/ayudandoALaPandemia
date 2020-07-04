@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Repositorios;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity.Validation;
@@ -72,33 +73,27 @@ namespace Repositorios
                 {
                     do
                     {
-
                         cont = cont + 1;
                         nombreUsuarioPosible = usuarioPosible + Convert.ToString(cont);
                         user2 = Context.Usuarios.Where(p => (string)p.UserName == nombreUsuarioPosible).FirstOrDefault();
-
-
                     } while (user2 != null);
 
                     user.UserName = nombreUsuarioPosible;
                     Context.SaveChanges();
                     return user;
-
                 }
                 else
                 {
                     user.UserName = usuarioPosible;
                     Context.SaveChanges();
                     return user;
-
                 }
-
-
             }
-            else {
+            else
+            {
                 Context.SaveChanges();
                 return user;
-            }  
+            }
         }
 
         public void hacerAdmin(int id)
@@ -138,7 +133,6 @@ namespace Repositorios
                     .Where(b => (string)b.Email == (string)email)
                     .FirstOrDefault();
                 return user;
-
             }
             catch (DbEntityValidationException e)
             {
@@ -238,11 +232,9 @@ namespace Repositorios
             {
                 hash.Append(bytes[i].ToString("x2"));
             }
-
             u.Password = hash.ToString();
             u.ConfirmPassword = "0";
-            Context.SaveChanges();
-            
+            Context.SaveChanges();      
         }
 
     }

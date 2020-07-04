@@ -1,0 +1,31 @@
+﻿@model Repositorios.Denuncias
+
+@{
+    ViewBag.Title = "linkDenucia";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalle Denuncia:</h2>
+
+
+<div class="container-fluid">
+    <table class="table text-center">
+        <thead>
+            <tr>
+                <th scope="col">ID Denuncia</th>
+                <th scope="col">Fecha Creación</th>
+                <th scope="col">Motivo Denuncia</th>
+                <th scope="col">Comentario</th>
+                <th scope="col">User</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.IdDenuncia</td>
+                <td>@Model.FechaCreacion</td>
+                <td>@Model.MotivoDenuncia</td>
+                <td>@Model.Comentarios</td>
+                <td>@Model.Usuarios.UserName</td>
+</tbody>
+    </table>
+</div>

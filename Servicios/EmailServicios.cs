@@ -28,11 +28,33 @@ namespace Servicios
                 Body = $"<h4>Por favor, clickear en el siguiente link, para poder validar su cuenta. <br/>Gracias. <br/><a href ='https://localhost:44306/Registro/activoUsuario?token={token}'> https://localhost:44306/Registro/activoUsuario?token={token} <h4/></a>",
                 IsBodyHtml = true,
             };
-             mailMessage.To.Add(email); // Para testear 
-             //mailMessage.To.Add(email); // Productivo
-
+             mailMessage.To.Add(email); 
             smtpClient.Send(mailMessage);
 
+        }
+
+        public void denunciaAceptada(string email, string descripcion, string username)
+        {
+            var smtpClient = new SmtpClient("smtp.gmail.com")
+            {
+                Port = 587,
+                Credentials = new NetworkCredential("ayudandoalapandemia.19@gmail.com", "covid2020"),
+                EnableSsl = true,
+            };
+            var mailMessage = new MailMessage
+            {
+                From = new MailAddress("ayudandoalapandemia.19@gmail.com"),
+                Subject = "Necesidad denunciada",
+                Body = $"<h4>Usuario {username}: <br/>Su necesidad:<br/>{descripcion}. <br/>Ha sido denunciadada. Si necesita ayuda puede contestar este mail. <br/> Saludos cordiaes.<h4/>",
+                IsBodyHtml = true,
+            };
+            mailMessage.To.Add(email); // Para testear 
+            smtpClient.Send(mailMessage);
+        }
+
+        public void denunciaAceptada(string email)
+        {
+            throw new NotImplementedException();
         }
     }
 }
