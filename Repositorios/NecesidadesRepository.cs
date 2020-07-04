@@ -132,7 +132,22 @@ namespace Repositorios
         {
             return Context.Necesidades.Where(v => (int)v.IdUsuarioCreador != (int)userId).ToList();
         }
-
+        public List<DonacionesInsumos> ObtenerDonacionesInsumosPorUserId(int userId)
+        {
+            return Context.DonacionesInsumos.Where(v => (int)v.IdUsuario == (int)userId).ToList();
+        }
+        public List<DonacionesInsumos> ObtenerDonacionesInsumos()
+        {
+            return Context.DonacionesInsumos.ToList();
+        }
+        public List<DonacionesMonetarias> ObtenerDonacionesMonetariaPorUserId(int userId)
+        {
+            return Context.DonacionesMonetarias.Where(v => (int)v.IdUsuario == (int)userId).ToList();
+        }
+        public List<DonacionesMonetarias> ObtenerDonacionesMonetaria()
+        {
+            return Context.DonacionesMonetarias.ToList();
+        }
         public List<DonacionesInsumos> donacionInsumo(List<DonacionesInsumos> donacionesInsumos)
         {
             foreach (var p in donacionesInsumos)

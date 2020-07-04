@@ -10,16 +10,16 @@ using System.Web.Mvc;
 
 namespace ServicioWeb.Controllers
 {
-    public class NecesidadController : ApiController
+    public class MonetariaController : ApiController
     {
         ManagerRepository managerRepository;
-
-        public NecesidadController()
+        
+        public MonetariaController()
         {
             this.managerRepository = new ManagerRepository();
         }
 
-        public List<NecesidadDto> Get()
+        /*public List<NecesidadDto> Get()
         {
             List<Necesidades> necesidadesEF = managerRepository.necesidadesRepository.ObtenerTodos();
             return NecesidadDto.MapearListaEF(necesidadesEF);
@@ -29,6 +29,15 @@ namespace ServicioWeb.Controllers
         {
             Necesidades necesidadEF = managerRepository.necesidadesRepository.ObtenerPorId(id);
             return new NecesidadDto(necesidadEF);
+        }*/
+        public List<InsumosDto> Get() {
+            List<DonacionesInsumos> donacionesInsumosEF = managerRepository.necesidadesRepository.ObtenerDonacionesInsumos();
+            return InsumosDto.MapearListaEF(donacionesInsumosEF);
+        }
+        public List<InsumosDto> Get(int idUsuario)
+        {
+            List<DonacionesInsumos> donacionesInsumosEF = managerRepository.necesidadesRepository.ObtenerDonacionesInsumosPorUserId(idUsuario);
+            return InsumosDto.MapearListaEF(donacionesInsumosEF);
         }
     }
 }
