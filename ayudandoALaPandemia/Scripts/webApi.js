@@ -3,7 +3,7 @@
         await
             $.ajax({
                 type: 'get',
-                url: `/api/necesidad`,
+                url: `/api/insumos`,
                 data: "{}",
                 success: function (response) {
                     const jsonResponse = JSON.parse(response);
@@ -28,7 +28,7 @@
                     })
                     $('.searched-wrapper .row').empty();
                     $('.searched-wrapper .row').html(html)
-                }/* falta ponernombre de usuario y de la necesidad*/
+                }/* falta ponernombre de usuario y de la necesidad, falta probar y agregar monetaria*/
             })
     )
 }
