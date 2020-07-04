@@ -32,12 +32,12 @@ namespace ayudandoALaPandemia.Controllers
         {
             Denuncias miDenuncia = denunciasServicio.buscarPorId(id);
             denunciasServicio.aceptarDenuncia(miDenuncia);
+            emailServicios.denunciaAceptada(miDenuncia.Usuarios.Email, miDenuncia.Necesidades.Descripcion, miDenuncia.Usuarios.UserName);
 
             return RedirectToAction("verDenuncias", "Admin");
         }
 
 
-        // **************************************** HACER VISTA ************************************ //
         [HttpGet]
         public ActionResult linkDenucia(int id)
         {
