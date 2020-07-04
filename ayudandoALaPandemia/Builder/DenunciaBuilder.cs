@@ -10,16 +10,15 @@ namespace ayudandoALaPandemia.Builder
 {
     public class DenunciaBuilder
     {
-        public Denuncias toDenunciasEntity(DenunciaDto denunciaDto, int userId)
+        public Denuncias toDenunciasEntity(DenunciaNecesidadDto denunciaDto)
         {
             Denuncias nuevaDenuncia = new Denuncias();
-            //nuevaDenuncia.IdNecesidad = necesidadId;
-            MotivoDenuncia motivo = new MotivoDenuncia();
-            motivo.IdMotivoDenuncia = denunciaDto.MotivoDenuncia.IdMotivoDenuncia;
-            nuevaDenuncia.Comentarios = denunciaDto.Comentarios;
-            nuevaDenuncia.IdUsuario = userId;
+            nuevaDenuncia.Comentarios = denunciaDto.comentarios;
+            nuevaDenuncia.IdNecesidad = denunciaDto.necesidadId;
+            nuevaDenuncia.IdMotivo = denunciaDto.motivoDenunciaId;
+            nuevaDenuncia.IdUsuario = denunciaDto.usuarioId;
             nuevaDenuncia.FechaCreacion = Convert.ToDateTime(DateTime.Now.ToString("dd-MMM-yyyy"));
-            nuevaDenuncia.Estado = denunciaDto.Estado;
+            nuevaDenuncia.Estado = 0;
             return nuevaDenuncia;
         }
     }

@@ -30,5 +30,10 @@ namespace Servicios
         {
             managerRepository.denunciasRepository.aceptarDenuncia(miDenuncia);
         }
+
+        public List<MotivoDenuncia> obtenerTodosLosMotivos()
+        {
+            return managerRepository.denunciasRepository.obtenerTodosLosMotivos();
+        }
     }
 }
