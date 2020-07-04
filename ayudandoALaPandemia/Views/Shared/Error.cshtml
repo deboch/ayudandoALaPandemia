@@ -14,7 +14,10 @@
         <p class="text-404">404</p>
 
         <h2>Aww Snap!</h2>
-        <p>Something went wrong or that page doesn’t exist yet. <br><a href="index.html">Return Home</a></p>
+        <p>
+            Something went wrong or that page doesn’t exist yet. <br>
+            @Html.ActionLink("Return Home", "Index", "Home", null, new { @class = "nav-link" })
+        </p>
     </div>
 </body>
 </html>
