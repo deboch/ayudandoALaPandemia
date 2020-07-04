@@ -32,9 +32,10 @@ namespace ayudandoALaPandemia.Controllers
         [HttpGet]
         public ActionResult Detalle()
         {
+            int userId = (int)Session["id"];
             int idNecesidad = Int32.Parse(Request.Url.Segments[2].Remove(Request.Url.Segments[2].Length - 1));
             Necesidades necesidad = necesidadesServicios.ObtenerPorId(idNecesidad);
-            Usuarios usuario = registroServicios.ObtenerPorId(necesidad.IdUsuarioCreador);
+            Usuarios usuario = registroServicios.ObtenerPorId(userId);
             NecesidadesValoraciones valoracion = necesidadesServicios.ObtenerValoracionPorUsuarioNecesidad(usuario.IdUsuario, necesidad.IdNecesidad);
             NecesidadBuilder builder = new NecesidadBuilder();
             NecesidadDto necesidadDto = builder.necesidadDtoParaDetalle(necesidad, usuario, valoracion);
@@ -89,6 +90,15 @@ namespace ayudandoALaPandemia.Controllers
         [HttpPost]
         public ActionResult donacionMonetaria(DonacionesMonetarias donacionesMonetarias)
         {
+            if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
+            {
+                //TODO: Agregar validacion para confirmar que el archivo es una imagen
+                //creo un nombre significativo en este caso apellidonombre pero solo un caracter del nombre, ejemplo BatistutaG
+                string nombreSignificativo = donacionesMonetarias.ArchivoTransferencia;
+                //Guardar Imagen
+                string pathRelativoImagen = ImagenesUtility.Guardar(Request.Files[0], nombreSignificativo);
+                donacionesMonetarias.ArchivoTransferencia = pathRelativoImagen;
+            }
             necesidadesServicios.donacionMonetaria(donacionesMonetarias);
             TempData["exito"] = "Donaste con exito!!";
             return RedirectToAction("Index", "Necesidades");
@@ -115,18 +125,10 @@ namespace ayudandoALaPandemia.Controllers
         {
             int idNecesidad = Int32.Parse(Request.Url.Segments[2].Remove(Request.Url.Segments[2].Length - 1));
             Necesidades necesidad = necesidadesServicios.ObtenerPorId(idNecesidad);
+            NecesidadBuilder builder = new NecesidadBuilder();
+            NecesidadDto necesidadDto = builder.trasnformarNecesidadANecesidadDto(necesidad);
 
-            NecesidadDto necesidadDto = new NecesidadDto();
-            if (necesidad.NecesidadesDonacionesInsumos.Count > 0)
-            {
-                for (int i = 0; i < necesidad.NecesidadesDonacionesInsumos.Count; i++)
-                {
-                    InsumosDto insumoDto = new InsumosDto();
-                    necesidadDto.insumos.Add(insumoDto);
-                }
-            }
-            
-            ViewBag.Necesidad = necesidad;
+            ViewBag.necesidadDto = necesidadDto;
             return View(necesidadDto);
         }
         
@@ -135,6 +137,7 @@ namespace ayudandoALaPandemia.Controllers
         {
             int userId = (int)Session["id"];
             NecesidadBuilder builder = new NecesidadBuilder();
+            
             if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
             {
                 //TODO: Agregar validacion para confirmar que el archivo es una imagen
@@ -145,13 +148,8 @@ namespace ayudandoALaPandemia.Controllers
                 necesidadDto.foto = pathRelativoImagen;
             }
 
-            if (necesidadDto.insumos.Count == 0)
-            {
-                necesidadDto.insumos = new List<InsumosDto>();
-                InsumosDto n = new InsumosDto();
-                n.nombre = null;
-                necesidadDto.insumos.Add(n);
-            }
+            if (!ModelState.IsValid)
+                return View(necesidadDto);
 
             Necesidades necesidad = builder.toNecesidadesEntity(necesidadDto, userId);
             necesidadesServicios.Modificar(necesidad);

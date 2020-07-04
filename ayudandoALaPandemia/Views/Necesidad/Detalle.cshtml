@@ -29,9 +29,9 @@
         </div>
 
         <div class="col-md-4">
-            <h3 class="my-3">Nombre de la necesidad</h3>
+            <h3 class="my-3">@ViewBag.Necesidad.nombre</h3>
             <p>
-                - Descripción de la necesidad
+                @ViewBag.Necesidad.descripcion
             </p>
             <h3 class="my-3">Project Details</h3>
             <ul>
@@ -65,11 +65,11 @@
                 <div class="row">
                     <div id="@ViewBag.Necesidad.Id" class="idNecesidad" style="display: none"></div>
                     <div class="col-lg-4 searched-wrapper">
-                        <div class="like @(ViewBag.Necesidad.valoracion ? "active" : "not")"></div>
+                        <div class="like @(ViewBag.Necesidad.valoracion != null && ViewBag.Necesidad.valoracion ? "active" : "not")"></div>
                         <a class="btn btn-md btn-secondary btn-block btn-like" href="#">Me gusta</a>
                     </div>
                     <div class="col-lg-4 searched-wrapper">
-                        <div class="dislike @(!ViewBag.Necesidad.valoracion ? "active" : "not")"></div>
+                        <div class="dislike @(ViewBag.Necesidad.valoracion != null && !ViewBag.Necesidad.valoracion ? "active" : "not")"></div>
                         <a class="btn btn-md btn-secondary btn-block btn-dislike" href="#">No me gusta</a>
                     </div>
                     <div class="col-lg-4">
@@ -78,7 +78,7 @@
                     <div class="col-lg-4">
                         <a class="btn btn-md btn-secondary btn-block"
                            href="
-                            @(ViewBag.Necesidad.tipoDonacion == 1 ? "/necesidad/" + ViewBag.Necesidad.Id + "/donacionMonetaria"
+                            @(ViewBag.Necesidad.tipoDonacion == "1" ? "/necesidad/" + ViewBag.Necesidad.Id + "/donacionMonetaria"
                             :  "/necesidad/" + ViewBag.Necesidad.Id + "/donacionInsumos")">
                             Donar
                         </a>

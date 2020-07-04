@@ -61,8 +61,33 @@ namespace Repositorios
         public Necesidades Modificar(Necesidades necesidadModificada)
         {
             Necesidades necesidadActual = Context.Necesidades.Find(necesidadModificada.IdNecesidad);
-            necesidadActual = necesidadModificada;
-            Context.Necesidades.Add(necesidadActual);
+            necesidadActual.Nombre = necesidadModificada.Nombre;
+            necesidadActual.Descripcion = necesidadModificada.Descripcion;
+            necesidadActual.FechaFin = necesidadModificada.FechaFin;
+            necesidadActual.TelefonoContacto = necesidadModificada.TelefonoContacto;
+            necesidadActual.Foto = necesidadModificada.Foto;
+
+            foreach (var p in necesidadModificada.NecesidadesReferencias)
+            {
+                NecesidadesReferencias referenciaActual = Context.NecesidadesReferencias.Find(p.IdReferencia);
+                referenciaActual.Nombre = p.Nombre;
+                referenciaActual.Telefono = p.Telefono;
+            }
+
+            foreach (var p in necesidadModificada.NecesidadesDonacionesInsumos)
+            {
+                NecesidadesDonacionesInsumos donacionInsumoActual = Context.NecesidadesDonacionesInsumos.Find(p.IdNecesidadDonacionInsumo);
+                donacionInsumoActual.Nombre = p.Nombre;
+                donacionInsumoActual.Cantidad = p.Cantidad;
+            }
+
+            foreach (var p in necesidadModificada.NecesidadesDonacionesMonetarias)
+            {
+                NecesidadesDonacionesMonetarias donacionMonetariaActual = Context.NecesidadesDonacionesMonetarias.Find(p.IdNecesidadDonacionMonetaria);
+                donacionMonetariaActual.CBU = p.CBU;
+                donacionMonetariaActual.Dinero = p.Dinero;
+            }
+
             Context.SaveChanges();
             return necesidadModificada;
         }
@@ -118,6 +143,21 @@ namespace Repositorios
             return donacionesInsumos;
         }
 
+        public List<Denuncias> ObtenerDenunciasPorUserId(int id)
+        {
+            try
+            {
+                return Context.Denuncias
+                    .Where(b => (int)b.Usuarios.IdUsuario == (int)id)
+                    .ToList();
+
+            }
+            catch (EntityException)
+            {
+                throw new EntityException();
+            }
+        }
+
         public DonacionesMonetarias donacionMonetaria(DonacionesMonetarias donacionesMonetarias)
         {
             int id = donacionesMonetarias.IdNecesidadDonacionMonetaria;
@@ -143,9 +183,10 @@ namespace Repositorios
 
         public NecesidadesValoraciones ObtenerValoracionPorUsuarioNecesidad (int userId, int idNecesidad)
         {
-
-            NecesidadesValoraciones miValoracion = Context.NecesidadesValoraciones.Where(v => (v.IdUsuario == (int)userId && v.IdNecesidad == (int)idNecesidad)).SingleOrDefault();
-            return miValoracion;
+            return Context.NecesidadesValoraciones
+                .Where(v => v.IdUsuario == (int)userId)
+                .Where(v => v.IdNecesidad == (int)idNecesidad)
+                .FirstOrDefault();
         }
 
         public bool Valorar(int like, int userId, int idNecesidad)
@@ -189,21 +230,6 @@ namespace Repositorios
             Context.Denuncias.Add(denuncia);
             Context.SaveChanges();
             return denuncia.IdDenuncia;
-        }
-        public List<Denuncias> ObtenerDenunciasPorUserId(int id)
-        {
-            try
-            {
-                return Context.Denuncias
-
-                    .Where(b => (int)b.Usuarios.IdUsuario == (int)id)
-                    .ToList();
-
-            }
-            catch (EntityException)
-            {
-                throw new EntityException();
-            }
         }
     }
 }

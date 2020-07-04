@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Repositorios;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity.Validation;
@@ -52,50 +53,41 @@ namespace Repositorios
             Context.SaveChanges();
         }
 
-        public Usuarios Editar(Usuarios u, int id)
+        public Usuarios Modificar(Usuarios u)
         {
-            
-                Usuarios user = Context.Usuarios.Find(id);
-                user.Nombre = u.Nombre;
-                user.Apellido = u.Apellido;
-                user.FechaNacimiento = u.FechaNacimiento;
-                user.Foto = u.Foto;
-                int cont = 0;
+            Usuarios user = Context.Usuarios.Find(u.IdUsuario);
+            user.Nombre = u.Nombre;
+            user.Apellido = u.Apellido;
+            user.FechaNacimiento = u.FechaNacimiento;
+            user.Foto = u.Foto;
+            int cont = 0;
 
-                if (user.UserName == null)
-                { //verifico xq en el login no se carga el ombre ni el apellido por lo tanto es probable q una vez este nulo
-                    string usuarioPosible = u.Nombre + u.Apellido;
-                    string nombreUsuarioPosible = "";
-                    Usuarios user2 = new Usuarios();
-                    user2 = Context.Usuarios.Where(p => (string)p.UserName == usuarioPosible).FirstOrDefault();
-                    if (user2 != null)
+            if (user.UserName == null)
+            { //verifico xq en el login no se carga el ombre ni el apellido por lo tanto es probable q una vez este nulo
+                string usuarioPosible = u.Nombre + u.Apellido;
+                string nombreUsuarioPosible = "";
+                Usuarios user2 = new Usuarios();
+                user2 = Context.Usuarios.Where(p => (string)p.UserName == usuarioPosible).FirstOrDefault();
+                if (user2 != null)
+                {
+                    do
                     {
-                        do
-                        {
 
-                            cont = cont + 1;
-                            nombreUsuarioPosible = usuarioPosible + Convert.ToString(cont);
-                            user2 = Context.Usuarios.Where(p => (string)p.UserName == nombreUsuarioPosible).FirstOrDefault();
+                        cont = cont + 1;
+                        nombreUsuarioPosible = usuarioPosible + Convert.ToString(cont);
+                        user2 = Context.Usuarios.Where(p => (string)p.UserName == nombreUsuarioPosible).FirstOrDefault();
 
 
-                        } while (user2 != null);
+                    } while (user2 != null);
 
-                        user.UserName = nombreUsuarioPosible;
-                        Context.SaveChanges();
-                        return user;
-
-                    }
-                    else
-                    {
-                        user.UserName = usuarioPosible;
-                        Context.SaveChanges();
-                        return user;
-
-                    }
-
+                    user.UserName = nombreUsuarioPosible;
+                    Context.SaveChanges();
+                    return user;
 
                 }
-                else {
+                else
+                {
+                    user.UserName = usuarioPosible;
                     Context.SaveChanges();
                     return user;
                 }  
@@ -111,6 +103,14 @@ namespace Repositorios
         public List<Usuarios> obtengoUsuariosTipo1()
         {
             return Context.Usuarios.Where(o => o.TipoUsuario == 1).ToList();
+                }
+
+            }
+            else
+            {
+                Context.SaveChanges();
+                return user;
+            }
         }
 
         public Usuarios ObtenerPorId(int id)
@@ -124,11 +124,7 @@ namespace Repositorios
                 return default;
             }
         }
-        public Usuarios Modificar(Usuarios user)
-        {
-            //return managerRepository.usuarioRepository.Modificar(usuarioDto);
-            throw new NotImplementedException();
-        }
+
         public List<Usuarios> ObtenerTodos()
         {
             throw new NotImplementedException();
@@ -189,6 +185,11 @@ namespace Repositorios
                 }
             }
             return null;
+        }
+
+        public Usuarios Editar(Usuarios user, int id)
+        {
+            throw new NotImplementedException();
         }
 
         public Usuarios obtenerPorToken(string token)

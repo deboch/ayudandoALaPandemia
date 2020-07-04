@@ -13,78 +13,84 @@
         }
         @if (ViewBag.misNecesidades != null)
         {
-            <p>
-                <h2><i class="fa fa-flag-o red"></i><strong>Mis necesidades</strong></h2>
-                <div class="d-flex align-items-start justify-content-center">
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        Mis necesidades
-                    </button>
-                    <input id="active" class="activarNecesidades" type="checkbox" />
-                    <p>Mostrar solo activas</p>
-                </div>
-            </p>
-            <div class="collapse" id="collapseExample">
-                <div class="card card-body">
-                    @foreach (var p in ViewBag.misNecesidades)
-                    {
-                        <div class="row">
-                            <div class="col-md-3">
-                                <a href="#">
-                                    <img class="img-fluid rounded mb-3 mb-md-0" src="../..@p.Foto" alt="">
-                                </a>
-                            </div>
-                            <div class="col-md-5">
-                                <h3>@p.Nombre</h3>
-                                <p>@p.Descripcion</p>
-                                @if (p.Valoracion != null)
-                                {
-                                    <div class="star-ratings-sprite">
-                                        <span style="width:@p.Valoracion%" class="star-ratings-sprite-rating"></span>
-                                    </div>
-                                }
-                                <span class="badge">
-                                    @(p.TipoDonacion == 1 ? "Monetaria" : "Insumos")
-                                </span>
-
-                                <a class="btn btn-primary" href="#">
-                                    Ver
-                                    <span class="glyphicon glyphicon-chevron-right"></span>
-                                </a>
-                            </div>
+            <div id="accordion">
+                <div class="card mt-3 mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                Mis necesidades
+                            </button>
+                        </h5>
+                        <div class="box-active d-flex align-items-center mr-3">
+                            <input id="active" class="activarNecesidades mr-1" type="checkbox" />
+                            <p>Mostrar solo activas</p>
                         </div>
-                    }
+                    </div>
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card card-body card ml-3 mt-3">
+                            @foreach (var p in ViewBag.misNecesidades)
+                            {
+                                <div class="row mb-3">
+                                    <div class="col-md-3">
+                                        <a href="#">
+                                            <img class="img-fluid rounded mb-3 mb-md-0" src="../..@p.Foto" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <h3>@p.Nombre</h3>
+                                        <p>@p.Descripcion</p>
+                                        @if (p.Valoracion != null)
+                                        {
+                                            <div class="star-ratings-sprite">
+                                                <span style="width:@p.Valoracion%" class="star-ratings-sprite-rating"></span>
+                                            </div>
+                                        }
+                                        <div class="badge mb-3">
+                                            @(p.TipoDonacion == 1 ? "Monetaria" : "Insumos")
+                                        </div>
+                                        <div>
+                                            <a class="btn btn-primary" href=@(Session["email"] != null ? "/necesidad/" + @p.IdNecesidad + "/detalle" : "/login")>
+                                                Ver
+                                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
-        }
-        <h2><i class="fa fa-flag-o red"></i><strong>Las necesidades mas valoradas</strong></h2>
-        <div class="searched-wrapper">
-            <div class="row">
-                @if (ViewBag.otrasNecesidades != null)
-                {
-                    foreach (var p in ViewBag.otrasNecesidades)
+            }
+            <h2><i class="fa fa-flag-o red"></i><strong>Las necesidades mas valoradas</strong></h2>
+            <div class="searched-wrapper">
+                <div class="row">
+                    @if (ViewBag.otrasNecesidades != null)
                     {
-                        <div class="col-lg-4 mb-4">
-                            <a href=@(Session["email"] != null ? "/necesidad/" + @p.IdNecesidad + "/detalle" : "/login" ) class="card h-100">
-                                <h4 class="card-header">@p.Nombre</h4>
-                                <img src="../..@p.Foto" width="100%" height="auto" />
-                                <div class="card-body">
-                                    <p class="card-text">@p.Descripcion</p>
-                                    <span class="badge">
-                                        @(p.TipoDonacion == 1 ? "Monetaria" : "Insumos")
-                                    </span>
-                                </div>
-                                @if (p.Valoracion != null)
-                                {
-                                    <div class="star-ratings-sprite">
-                                        <span style="width:@p.Valoracion%" class="star-ratings-sprite-rating"></span>
+                        foreach (var p in ViewBag.otrasNecesidades)
+                        {
+                            <div class="col-lg-4 mb-4">
+                                <a href=@(Session["email"] != null ? "/necesidad/" + @p.IdNecesidad + "/detalle" : "/login" ) class="card h-100">
+                                    <h4 class="card-header">@p.Nombre</h4>
+                                    <img src="../..@p.Foto" width="100%" height="auto" />
+                                    <div class="card-body">
+                                        <p class="card-text">@p.Descripcion</p>
+                                        <span class="badge">
+                                            @(p.TipoDonacion == 1 ? "Monetaria" : "Insumos")
+                                        </span>
                                     </div>
-                                }
-                            </a>
-                        </div>
+                                    @if (p.Valoracion != null)
+                                    {
+                                        <div class="star-ratings-sprite">
+                                            <span style="width:@p.Valoracion%" class="star-ratings-sprite-rating"></span>
+                                        </div>
+                                    }
+                                </a>
+                            </div>
+                        }
                     }
-                }
+                </div>
             </div>
         </div>
-    </div>
 </section>
 

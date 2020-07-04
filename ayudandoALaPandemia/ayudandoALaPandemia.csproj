@@ -138,15 +138,17 @@
     <Compile Include="Controllers\NecesidadesController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\RegistroController.cs" />
-    <Compile Include="Controllers\ApiNecesidadesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\ImagenesUtility.cs" />
+    <Compile Include="Utilities\StringUtility.cs" />
     <Compile Include="ViewModels\checkboxDto.cs" />
     <Compile Include="ViewModels\InsumosDto.cs" />
     <Compile Include="ViewModels\DenunciaDto.cs" />
     <Compile Include="ViewModels\NecesidadDto.cs" />
+    <Compile Include="ViewModels\ReferenciaDto.cs" />
     <Compile Include="ViewModels\UsuarioDto.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -450,11 +452,14 @@
     <Content Include="Views\Denuncia\altaDenuncia.cshtml" />
     <Content Include="Views\Registro\activoUsuario.cshtml" />
     <Content Include="Views\Login\activarUsuario.cshtml" />
+    <Content Include="Views\Perfil\Editar.cshtml" />
     <Content Include="Views\Perfil\Index.cshtml" />
     <Content Include="Views\Perfil\MisDenuncias.cshtml" />
     <Content Include="Views\Perfil\MisDonaciones.cshtml" />
-    <Content Include="Views\Perfil\Editar.cshtml" />
     <Content Include="Views\Perfil\MisNecesidades.cshtml" />
+    <Content Include="Views\Necesidades\Index.cshtml" />
+    <Content Include="Views\Necesidad\Modificar.cshtml" />
+    <Content Include="Views\Home\acerca-de.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />

@@ -28,7 +28,7 @@
     overflow: hidden;
     text-indent: -999em;
     width: 110px;
-    margin: 0 auto;
+    margin: 0 17px 20px;
 }
 
 
@@ -56,5 +56,9 @@
 
 .navbar-dark.bg-dark .navbar-nav .dropdown-menu .nav-link {
     color: #000;
+}
+
+.collapse .card-body {
+    border: none;
 }
 

@@ -11,32 +11,47 @@ namespace ayudandoALaPandemia.ViewModels
         public NecesidadDto()
         {
             this.insumos = new List<InsumosDto>();
+            this.referencias = new List<ReferenciaDto>(){
+                new ReferenciaDto(),
+                new ReferenciaDto(),
+            };
         }
 
         [Key]
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Elija un nombre")]
         [StringLength(200)]
         public string nombre { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Agregue una descripcion")]
         public string descripcion { get; set; }
+
+        [Required(ErrorMessage = "Debe poner una fecha")]
         public DateTime fechaFin { get; set; }
+
+        [Required(ErrorMessage = "Agregue un telefono de contacto")]
         public string telefono { get; set; }
+
+        [Required]
         public string tipoDonacion { get; set; }
+
+        [Required(ErrorMessage = "Debe agregar una foto")]
         public string foto { get; set; }
+
+        public int idMonetaria { get; set; }
+
         public decimal dinero { get; set; }
+
         public string cbu { get; set; }
         public List<InsumosDto> insumos { get; set; }
-        public string referencia1Nombre { get; set; }
-        public string referencia2Nombre { get; set; }
-        public string referencia1Telefono { get; set; }
-        public string referencia2Telefono { get; set; }
+
+        public List<ReferenciaDto> referencias { get; set; }
+
         public int idUsuario { get; set; }
         public string NombreUsuario { get; set; }
         public string ApellidoUsuario { get; set; }
-        public bool valoracion { get; set; }
+        public dynamic valoracion { get; set; }
         public string NombreSignificativoImagen
         {
             get

@@ -43,7 +43,16 @@ namespace ayudandoALaPandemia.Controllers
         [HttpGet]
         public ActionResult Editar()
         {
-            return View();
+            int userId = (int)Session["id"];
+            Usuarios usuario = registroServicios.ObtenerPorId(userId);
+            UsuarioDto usuarioDto = new UsuarioDto();
+            usuarioDto.idUsuario = usuario.IdUsuario;
+            usuarioDto.nombre = usuario.Nombre;
+            usuarioDto.apellido = usuario.Apellido;
+            usuarioDto.fechaNacimiento = usuario.FechaNacimiento;
+            usuarioDto.foto = usuario.Foto;
+            ViewBag.usuarioDto = usuarioDto;
+            return View(usuarioDto);
         }
 
         [HttpPost]
@@ -60,9 +69,10 @@ namespace ayudandoALaPandemia.Controllers
             }
 
             int userId = (int)Session["id"];
+            usuarioDto.idUsuario = userId;
             UsuarioBuilder builder = new UsuarioBuilder();
             Usuarios usuarioModificado = builder.toUsuariosEntity(usuarioDto);
-            Usuarios usuarioModificado2 =  registroServicios.Editar(usuarioModificado, userId);
+            Usuarios usuarioModificado2 =  registroServicios.Modificar(usuarioModificado);
 
             Session["id"] = usuarioModificado2.IdUsuario;
             Session["username"] = usuarioModificado2.UserName;
@@ -81,7 +91,7 @@ namespace ayudandoALaPandemia.Controllers
             Usuarios usuarioActual = registroServicios.ObtenerPorId(userId);
             if(checkboxDto.activo == true)
             {
-                bool estado =checkboxDto.activo;
+                bool estado = checkboxDto.activo;
                 List<Necesidades> misNecesidadesActivas = necesidadesServicios.ObtenerNecesidadesSegunActivacion(estado,userId);
                 ViewBag.Necesidades = misNecesidadesActivas;
             }
@@ -90,8 +100,7 @@ namespace ayudandoALaPandemia.Controllers
                 List<Necesidades> misNecesidades = necesidadesServicios.ObtenerPorUserId(userId);
                 ViewBag.NecesidadesActivas = misNecesidades;
             }
-            
-            return View();
+            return View(checkboxDto);
         }
     }
 }
