@@ -13,7 +13,7 @@ namespace Servicios
 
         public List<Denuncias> listaDenuncias()
         {
-            return managerRepository.denunciasRepository.traerDenuncias().ToList();
+            return managerRepository.denunciasRepository.traerDenuncias();
         }
 
         public Denuncias buscarPorId(int id)
