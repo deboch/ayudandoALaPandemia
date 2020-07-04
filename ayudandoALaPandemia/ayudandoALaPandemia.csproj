@@ -133,6 +133,7 @@
     <Compile Include="Builder\DenunciaBuilder.cs" />
     <Compile Include="Builder\NecesidadBuilder.cs" />
     <Compile Include="Builder\UsuarioBuilder.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -140,7 +141,6 @@
     <Compile Include="Controllers\NecesidadesController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\RegistroController.cs" />
-    <Compile Include="Controllers\ApiNecesidadesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -148,8 +148,8 @@
     <Compile Include="Utilities\ImagenesUtility.cs" />
     <Compile Include="Utilities\StringUtility.cs" />
     <Compile Include="ViewModels\checkboxDto.cs" />
+    <Compile Include="ViewModels\DenunciaNecesidadDto.cs" />
     <Compile Include="ViewModels\InsumosDto.cs" />
-    <Compile Include="ViewModels\DenunciaDto.cs" />
     <Compile Include="ViewModels\NecesidadDto.cs" />
     <Compile Include="ViewModels\ReferenciaDto.cs" />
     <Compile Include="ViewModels\UsuarioDto.cs" />
@@ -1148,6 +1148,8 @@
     <Content Include="Views\Perfil\MisNecesidades.cshtml" />
     <Content Include="Views\Necesidades\Index.cshtml" />
     <Content Include="Views\Necesidad\Modificar.cshtml" />
+    <Content Include="Views\Home\acerca-de.cshtml" />
+    <Content Include="Views\Necesidad\Denunciar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />

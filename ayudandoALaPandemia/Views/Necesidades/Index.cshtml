@@ -45,11 +45,11 @@
                                                 <span style="width:@p.Valoracion%" class="star-ratings-sprite-rating"></span>
                                             </div>
                                         }
-                                        <div class="badge">
+                                        <div class="badge mb-3">
                                             @(p.TipoDonacion == 1 ? "Monetaria" : "Insumos")
                                         </div>
                                         <div>
-                                            <a class="btn btn-primary" href="#">
+                                            <a class="btn btn-primary" href=@(Session["email"] != null ? "/necesidad/" + @p.IdNecesidad + "/detalle" : "/login")>
                                                 Ver
                                                 <span class="glyphicon glyphicon-chevron-right"></span>
                                             </a>

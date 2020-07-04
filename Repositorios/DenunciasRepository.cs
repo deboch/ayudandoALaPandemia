@@ -18,5 +18,27 @@ namespace Repositorios
         {
             return Context.Denuncias.ToList();
         }
+
+        public Denuncias buscarPorId(int id)
+        {
+            return Context.Denuncias.Where(o => o.IdDenuncia == id).FirstOrDefault();
+        }
+
+        public void desestimarDenuncia(Denuncias miDenuncia)
+        {
+            miDenuncia.Estado = 0;
+            Context.SaveChanges();
+        }
+
+        public void aceptarDenuncia(Denuncias miDenuncia)
+        {
+            miDenuncia.Estado = 1;
+            Context.SaveChanges();
+        }
+
+        public List<MotivoDenuncia> obtenerTodosLosMotivos()
+        {
+            return Context.MotivoDenuncia.ToList();
+        }
     }
 }

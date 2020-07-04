@@ -20,23 +20,23 @@ namespace ayudandoALaPandemia.ViewModels
         [Key]
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Elija un nombre")]
         [StringLength(200)]
         public string nombre { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Agregue una descripcion")]
         public string descripcion { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Debe poner una fecha")]
         public DateTime fechaFin { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Agregue un telefono de contacto")]
         public string telefono { get; set; }
 
         [Required]
         public string tipoDonacion { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Debe agregar una foto")]
         public string foto { get; set; }
 
         public int idMonetaria { get; set; }

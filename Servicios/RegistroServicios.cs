@@ -74,6 +74,16 @@ namespace Servicios
             }
         }
 
+        public void hacerAdmin(int id)
+        {
+            managerRepository.usuarioRepository.hacerAdmin(id);
+        }
+
+        public List<Usuarios> obtengoUsuariosTipo1()
+        {
+            return managerRepository.usuarioRepository.obtengoUsuariosTipo1();
+        }
+
         public void activoToken(Usuarios user)
         {
             managerRepository.usuarioRepository.activoToken(user);
@@ -93,8 +103,7 @@ namespace Servicios
 
         public Usuarios Modificar(Usuarios user)
         {
-            //return managerRepository.usuarioRepository.Modificar(usuarioDto);
-            throw new NotImplementedException();
+            return managerRepository.usuarioRepository.Modificar(user);
         }
 
         public Usuarios Editar(Usuarios user, int id) {

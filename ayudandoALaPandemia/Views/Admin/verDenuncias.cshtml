@@ -1,6 +1,6 @@
 ﻿@model List<Repositorios.Denuncias>
 @{
-    ViewBag.Title = "verDenunciasAdmin";
+    ViewBag.Title = "VerDenuncias";
     Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
 
     int i = 0;
@@ -28,13 +28,20 @@
                 <th scope="row">1</th>
                 @foreach (var item in Model)
                 {
-                    <td>@i++</td>
-                    <td>@item.FechaCreacion</td>
-                    <td>@item.MotivoDenuncia</td>
-                    <td>link</td>
-                    <td>@item.Comentarios</td>
-                    <td>desestimar</td>
-                    <td>aceptar</td>
+                <td>@i++</td>
+                <td>@item.FechaCreacion</td>
+                <td>@item.MotivoDenuncia</td>
+                <a href="/Admin/linkDenucia/id?=@item.IdDenuncia"><td>link</td></a>
+                <td>@item.Comentarios</td>
+                <form action="/Admin/DesestimarDenuncia" method="post">
+                    <input type="hidden" value="@item.IdDenuncia" />
+                <td><input type="submit" />Desestimar</td>
+                </form>
+                <form action="/Admin/AceptarDenuncia" method="post">
+                    <input type="hidden" value="@item.IdDenuncia" />
+                    <td><input type="submit" />Aceptar</td>
+                </form>
+                
                 }
             </tr>
         </tbody>

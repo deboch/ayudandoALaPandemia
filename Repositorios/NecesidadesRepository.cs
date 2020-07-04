@@ -143,9 +143,19 @@ namespace Repositorios
             return donacionesInsumos;
         }
 
-        public List<Denuncias> ObtenerDenunciasPorUserId(int userId)
+        public List<Denuncias> ObtenerDenunciasPorUserId(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return Context.Denuncias
+                    .Where(b => (int)b.Usuarios.IdUsuario == (int)id)
+                    .ToList();
+
+            }
+            catch (EntityException)
+            {
+                throw new EntityException();
+            }
         }
 
         public DonacionesMonetarias donacionMonetaria(DonacionesMonetarias donacionesMonetarias)

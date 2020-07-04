@@ -11,8 +11,10 @@ namespace ayudandoALaPandemia.ViewModels
         [Key]
         public int id { get; set; }
 
+        [Required(ErrorMessage = "Agregue un nombre")]
         public string nombre { get; set; }
 
+        [Required(ErrorMessage = "Agregue un telefono")]
         public string telefono { get; set; }
     }
 }

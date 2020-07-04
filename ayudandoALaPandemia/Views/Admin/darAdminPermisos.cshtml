@@ -1,0 +1,41 @@
+﻿@model List<Repositorios.Usuarios>
+
+@{
+    ViewBag.Title = "darAdminPermisos";
+    Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
+}
+@using (Html.BeginForm("hacerAdmin", "Admin", FormMethod.Get))
+{ 
+    <div class="container-fluid">
+        <h2 class="text-center">Lista de Usuarios</h2>
+        <form>
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">UserName</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Hacer Administrador</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.UserName</td>
+                            <td>@item.Email</td>
+                            <td>@item.IdUsuario</td>
+
+                            <input type="hidden" name="id" value="@item.IdUsuario" />
+                            <td><input type="submit" value="Dar Admir" /></td>
+
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+        </form>
+    </div>
+}

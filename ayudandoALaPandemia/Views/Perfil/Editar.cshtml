@@ -4,6 +4,9 @@
     ViewBag.Title = "Editar";
     Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
 }
+@{
+    var usuarioDto = ViewBag.usuarioDto;
+}
 
     <div class="container">
         @using (Html.BeginForm("Editar", "Perfil", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -34,35 +37,35 @@
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>Nombre:</label>
-                            @Html.TextBoxFor(m => m.nombre, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.nombre, new { @Value = usuarioDto.nombre, @class = "form-control" })
                             <p class="help-block"></p>
                         </div>
                     </div>
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>Apellido:</label>
-                            @Html.TextBoxFor(m => m.apellido, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.apellido, new { @Value = usuarioDto.apellido, @class = "form-control" })
                         </div>
                     </div>
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>Fecha de nacimiento:</label>
-                            @Html.TextBoxFor(m => m.fechaNacimiento, new { type = "date", @class = "form-control" })
+                            @Html.TextBoxFor(m => m.fechaNacimiento, new { @Value = usuarioDto.fechaNacimiento.ToString("yyyy-MM-dd"), type = "date", @class = "form-control" })
                         </div>
                     </div>
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>Foto:</label>
-                            @Html.TextBoxFor(m => m.foto, new { type = "file", @class = "input-file" })
+                            @Html.TextBoxFor(m => m.foto, new { type = "file", @Value = usuarioDto.foto, @class = "input-file" })
                         </div>
                     </div>
 
                     <div id="success"></div>
                     <!-- For success/fail messages -->
                     <!--a class="btn btn-md btn-secondary"
-                       href="index">
-                        Guardar
-                    </!-a-->
+       href="index">
+        Guardar
+    </!-a-->
                     <button type="submit" class="btn btn-md btn-secondary" id="sendEdicion">Guardar</button>
 
                 </div>
@@ -70,5 +73,5 @@
             </div>
             <!-- /.row -->
         }
-        </div>
+    </div>
 <!-- /.container -->
