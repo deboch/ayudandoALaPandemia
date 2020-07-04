@@ -225,6 +225,7 @@ namespace Repositorios
             Context.SaveChanges();
             return porcentaje;
         }
+
         public int CrearDenuncia(Denuncias denuncia)
         {
             Context.Denuncias.Add(denuncia);

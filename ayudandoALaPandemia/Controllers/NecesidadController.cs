@@ -181,7 +181,6 @@ namespace ayudandoALaPandemia.Controllers
                 return View(denunciaDto);
             }
 
-            int userId = (int)Session["id"];
             int idNecesidad = Int32.Parse(Request.Url.Segments[2].Remove(Request.Url.Segments[2].Length - 1));
             denunciaDto.necesidadId = idNecesidad;
             DenunciaBuilder builder = new DenunciaBuilder();
