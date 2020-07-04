@@ -51,9 +51,9 @@ namespace Repositorios
             }
         }
 
-        public int ObtenerSumaTotalDeValoraciones()
+        public int ObtenerSumaTotalDeValoraciones(int idNecesidad)
         {
-            return Context.NecesidadesValoraciones.Where(v => v.Valoracion).Count();
+            return Context.NecesidadesValoraciones.Where(v => (v.Valoracion && v.IdNecesidad == (int)idNecesidad)).Count();
         }
 
         public int Crear(Necesidades necesidad)
@@ -118,6 +118,7 @@ namespace Repositorios
             {
                 return Context.Necesidades
                     .Where(b => (int)b.IdUsuarioCreador == (int)id)
+                    .OrderByDescending(v => v.FechaCreacion)
                     .ToList();
 
             }

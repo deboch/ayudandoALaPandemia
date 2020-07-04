@@ -19,10 +19,9 @@ namespace ServicioWeb.Models
         public int IdUsuarioCreador { get; set; }
         public int Estado { get; set; }
         public Nullable<decimal> Valoracion { get; set; }
-        public NecesidadDto()
-        {
+        public int total { get; set; }
+        public int cantidadJuntada { get; set; } 
 
-        }
         public NecesidadDto(Necesidades necesidadEntidad)
         {
             this.IdNecesidad = necesidadEntidad.IdNecesidad;
@@ -43,9 +42,8 @@ namespace ServicioWeb.Models
             {
                 this.Valoracion = necesidadEntidad.Valoracion;
             }
-
-
         }
+
         public Necesidades MapearEF()
         {
             Necesidades p = new Necesidades();
@@ -62,6 +60,7 @@ namespace ServicioWeb.Models
             p.Estado = this.Estado;
             return p;
         }
+
         public static List<Necesidades> MapearListaDTO(List<NecesidadDto> necesidadDTO)
         {
             List<Necesidades> necesidadEF = new List<Necesidades>();
@@ -73,6 +72,7 @@ namespace ServicioWeb.Models
 
             return necesidadEF;
         }
+
         public static List<NecesidadDto> MapearListaEF(List<Necesidades> NecesidadEF)
         {
             List<NecesidadDto> NecesidadDto = new List<NecesidadDto>();

@@ -19,55 +19,13 @@
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Historial de donaciones</a>
                 </h5>
             </div>
-
+            <input id="userId" type="hidden" value="@ViewBag.UserId" />
             <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
                 <div class="card-body">
-                    <div class="row"><!--
-                        @if (ViewBag.Necesidades != null)
-                        {
-
-                            foreach (var p in ViewBag.Necesidades)
-                            {
-                                <div class="col-lg-4 mb-4">
-                                    <div class="card h-100">
-                                        <h3 class="card-header">@p.Nombre</h3>
-                                        <div class="card-body">
-                                            <h2 class="font-italic">@p.FechaCreacion</h2>
-                                            @if (@p.TipoDonacion == 1)
-                                            {
-                                                <h2 class="font-italic">Monetaria</h2>
-                                            }
-                                            else
-                                            {
-                                                <h2 class="font-italic">Insumos</h2>
-                                            }
-                                        </div>
-                                        <ul class="list-group list-group-flush">
-                                            @switch (@p.Estado)
-                                            {
-                                                case 1:
-                                                    <li class="list-group-item">Activo</li>
-                                                    break;
-                                                case 2:
-                                                    <li class="list-group-item">Inactivo</li>
-                                                    break;
-                                                case 0:
-                                                    <li class="list-group-item">Inactivo</li>
-                                                    break;
-                                            }
-
-                                            <li class="list-group-item">@ViewBag.Total</li>
-
-                                            <li class="list-group-item">
-                                                <a href="#" class="btn btn-primary">Ir a detalle</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            }
-                        }-->
+                    <div id="historialInsumos" class="row">
                     </div>
-                    <!-- /.row -->
+                    <div id="historialMonetarias" class="row">
+                    </div>
                 </div>
             </div>
         </div>

@@ -225,10 +225,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\NecesidadController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DonacionesDto.cs" />
     <Compile Include="Models\InsumosDto.cs" />
     <Compile Include="Models\NecesidadDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

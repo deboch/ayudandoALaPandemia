@@ -37,7 +37,7 @@ namespace ayudandoALaPandemia.Controllers
             Necesidades necesidad = necesidadesServicios.ObtenerPorId(idNecesidad);
             Usuarios usuario = registroServicios.ObtenerPorId(userId);
             NecesidadesValoraciones valoracion = necesidadesServicios.ObtenerValoracionPorUsuarioNecesidad(usuario.IdUsuario, necesidad.IdNecesidad);
-            int totalDeMegusta = necesidadesServicios.ObtenerSumaTotalDeValoraciones();
+            int totalDeMegusta = necesidadesServicios.ObtenerSumaTotalDeValoraciones(idNecesidad);
             NecesidadBuilder builder = new NecesidadBuilder();
             NecesidadDto necesidadDto = builder.necesidadDtoParaDetalle(necesidad, usuario, valoracion);
             ViewBag.Necesidad = necesidadDto;

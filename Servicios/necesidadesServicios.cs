@@ -38,9 +38,9 @@ namespace Servicios
             return managerRepository.necesidadesRepository.ObtenerTodasMenosPorUserId(userId);
         }
 
-        public int ObtenerSumaTotalDeValoraciones()
+        public int ObtenerSumaTotalDeValoraciones(int idNecesidad)
         {
-            return managerRepository.necesidadesRepository.ObtenerSumaTotalDeValoraciones();
+            return managerRepository.necesidadesRepository.ObtenerSumaTotalDeValoraciones(idNecesidad);
         }
 
         public List<DonacionesInsumos> donacionInsumo(List<DonacionesInsumos> donacionesInsumos)

@@ -1,34 +1,77 @@
-﻿const getDonaciones = async (obj = {}) => {
+﻿$(document).ready(function () {
+    const userId = $('#userId').val();
+    getDonaciones(userId);
+});
+
+const getDonaciones = async (userId) => {
     return (
         await
             $.ajax({
                 type: 'get',
-                url: `/api/insumos`,
-                data: "{}",
+                url: `https://localhost:44301/api/necesidad`,
+                data: {
+                    userId: parseInt(userId)
+                },
                 success: function (response) {
-                    const jsonResponse = JSON.parse(response);
+                    const jsonResponse = response;
+                    const monetarias = jsonResponse.filter(function (v) { return ( v.tipoDonacion === 1 ) });
+                    const insumos = jsonResponse.filter(function (v) { return ( v.tipoDonacion === 0 ) });
+                    console.log(monetarias, insumos);
                     if (jsonResponse.length === 0) {
-                        const notFound = `<p>No se encontro ninguna donación</p>`;
-                        $('.searched-wrapper .row').empty();
-                        return $(".searched-wrapper .row").html(notFound);
+                        const notFound = `<p>No se encontro ninguna necesidad con donaciones</p>`;
+                        $('#htmlMonetarias').empty();
+                        return $("#htmlMonetarias").html(notFound);
                     }
-
-                    const html = jsonResponse.map(function (insumos) {
+                    const htmlMonetarias = monetarias.map(function (donacion) {
                         return (
-                            `<div class='col-lg-4 mb-4' >
-                            <a href='/necesidad/' + ${ insumos.IdNecesidad } + '/detalle' class='card h-100' >
-                                <h4 class='card-header'>Nombre de necesidad</h4> 
-                                <div class='card-body'>
-                                    <p class='card-text'>${insumos.idUsuario}</p> 
-                                    <p class='card-text'>${insumos.cantidad}</p>      
-                                </div> 
-                            </a>
-                        </div>`
-                        )
+                            `
+                                    <div class='col-lg-4 mb-4' >
+                                        <a href='/necesidad/' + ${ donacion.IdNecesidad} + '/detalle' class='card h-100' >
+                                            <h4 class='card-header'>${ donacion.nombre}</h4>
+                                            <div class='card-body'>
+                                                <p class='card-text'>Fecha de creacion: <strong>${donacion.fechaNecesidad}</strong></p>
+                                                <p class='card-text'>Estado: <strong>${donacion.estado == 1 ? "Activa" : "Inactiva"}</strong></p> 
+                                                <p class='card-text'>Total: <strong>${donacion.totalDonacion}</strong></p> 
+                                                <p class='card-text'>Total recaudado: <strong>${donacion.totalRecaudado}</strong></p>      
+                                            </div> 
+                                        </a>
+                                    </div>
+                                `
+                            )
                     })
-                    $('.searched-wrapper .row').empty();
-                    $('.searched-wrapper .row').html(html)
-                }/* falta ponernombre de usuario y de la necesidad, falta probar y agregar monetaria*/
+                    $('#historialMonetarias').empty();
+                    $('#historialMonetarias').html(htmlMonetarias)
+
+                    const htmlInsumos = insumos.map(function (donacion) {
+                        return (
+                        `
+                            <div class='col-lg-4 mb-4' >
+                                <a href='/necesidad/' + ${ donacion.IdNecesidad} + '/detalle' class='card h-100' >
+                                    <h4 class='card-header'>${donacion.nombre}</h4>
+                                    <div class='card-body'>
+                                        <p class='card-text'>Fecha de creacion: <strong>${donacion.fechaNecesidad}</strong></p>
+                                        <p class='card-text'>Estado: <strong>${donacion.estado == 1 ? "Activa" : "Inactiva"}</strong></p>
+                                        <h3>Insumos:</h3>
+
+                            ${donacion.listaInsumos.map(function (v) {
+                                return (
+                                    `<ul>
+                                            <li>nombre: ${v.nombre}</li>
+                                            <li>cantidadPedida: ${v.cantidadPedida}</li>
+                                            <li>totalDonado: ${v.totalDonado}</li>
+                                        </ul>`
+                                )
+                            })}
+                                    </div> 
+                                </a>
+                            </div>
+`
+                            )
+                    })
+                    
+                    $('#historialInsumos').empty();
+                    $('#historialInsumos').html(htmlInsumos)
+                }
             })
-    )
-}
+    );
+};

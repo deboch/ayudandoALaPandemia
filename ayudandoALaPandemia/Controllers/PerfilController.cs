@@ -30,13 +30,14 @@ namespace ayudandoALaPandemia.Controllers
         }
 
         [HttpGet]
-        public ActionResult MisDonaciones(Usuarios user)
+        public ActionResult MisDonaciones()
         {
             int userId = (int)Session["id"];
-            List<DonacionesInsumos> necesidadInsumos = necesidadesServicios.ObtenerDonacionesInsumosPorUserId(userId);
+            /*List<DonacionesInsumos> necesidadInsumos = necesidadesServicios.ObtenerDonacionesInsumosPorUserId(userId);
             ViewBag.NecesidadInsumos = necesidadInsumos;
             List<DonacionesMonetarias> necesidadMonetaria = necesidadesServicios.ObtenerDonacionesMonetariasPorUserId(userId);
-            ViewBag.NecesidadMonetaria = necesidadMonetaria;
+            ViewBag.NecesidadMonetaria = necesidadMonetaria;*/
+            ViewBag.UserId = userId;
             return View();
         }
 
