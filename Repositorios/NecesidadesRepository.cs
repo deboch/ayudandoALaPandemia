@@ -51,6 +51,11 @@ namespace Repositorios
             }
         }
 
+        public int ObtenerSumaTotalDeValoraciones()
+        {
+            return Context.NecesidadesValoraciones.Where(v => v.Valoracion).Count();
+        }
+
         public int Crear(Necesidades necesidad)
         {
             Context.Necesidades.Add(necesidad);
@@ -199,8 +204,7 @@ namespace Repositorios
         public NecesidadesValoraciones ObtenerValoracionPorUsuarioNecesidad (int userId, int idNecesidad)
         {
             return Context.NecesidadesValoraciones
-                .Where(v => v.IdUsuario == (int)userId)
-                .Where(v => v.IdNecesidad == (int)idNecesidad)
+                .Where(v => (v.IdUsuario == (int)userId && v.IdNecesidad == (int)idNecesidad))
                 .FirstOrDefault();
         }
 

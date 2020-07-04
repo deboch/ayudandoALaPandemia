@@ -37,9 +37,11 @@ namespace ayudandoALaPandemia.Controllers
             Necesidades necesidad = necesidadesServicios.ObtenerPorId(idNecesidad);
             Usuarios usuario = registroServicios.ObtenerPorId(userId);
             NecesidadesValoraciones valoracion = necesidadesServicios.ObtenerValoracionPorUsuarioNecesidad(usuario.IdUsuario, necesidad.IdNecesidad);
+            int totalDeMegusta = necesidadesServicios.ObtenerSumaTotalDeValoraciones();
             NecesidadBuilder builder = new NecesidadBuilder();
             NecesidadDto necesidadDto = builder.necesidadDtoParaDetalle(necesidad, usuario, valoracion);
             ViewBag.Necesidad = necesidadDto;
+            ViewBag.TotalDeMeGusta = totalDeMegusta;
             decimal cant;
             if(necesidadDto.tipoDonacion == "Insumo") { 
                 List<NecesidadesDonacionesInsumos> donacion = donacionesInsumosServicios.ObtenerPorNecesidadId(idNecesidad);
@@ -52,7 +54,7 @@ namespace ayudandoALaPandemia.Controllers
                 cant = donacionesMonetarias;
             }
             ViewBag.Total = cant;
-            return View();
+            return View(necesidadDto);
         }
 
         [HttpGet]

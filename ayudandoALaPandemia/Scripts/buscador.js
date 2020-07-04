@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     $(".searched-wrapper").on("click", ".btn-like", function (event) {
         event.preventDefault();
-        const isLike = $(".searched-wrapper").find(".like").hasClass(".active");
+        const isLike = $(".searched-wrapper").find(".like").hasClass(".isActive");
         if (!isLike) {
             const idNecesidad = $('.idNecesidad').attr('id');
             onValue(1, idNecesidad);
@@ -9,7 +9,7 @@
     });
     $(".searched-wrapper").on("click", ".btn-dislike", function (event) {
         event.preventDefault();
-        const isDislike = $(".searched-wrapper").find(".dislike").hasClass(".active");
+        const isDislike = $(".searched-wrapper").find(".dislike").hasClass(".isActive");
         if (!isDislike) {
             const idNecesidad = $('.idNecesidad').attr('id');
             onValue(0, idNecesidad);
@@ -81,11 +81,11 @@ const onValue = async (like, idNecesidad) => {
                 },
                 success: function (response) {
                     if (response == "True") {
-                        $(".searched-wrapper").find(".dislike").removeClass("active");
-                        $(".searched-wrapper").find(".like").addClass("active");
+                        $(".searched-wrapper").find(".dislike").removeClass("isActive");
+                        $(".searched-wrapper").find(".like").addClass("isActive");
                     } else {
-                        $(".searched-wrapper").find(".like").removeClass("active");
-                        $(".searched-wrapper").find(".dislike").addClass("active");
+                        $(".searched-wrapper").find(".like").removeClass("isActive");
+                        $(".searched-wrapper").find(".dislike").addClass("isActive");
                     }
                 }
             })

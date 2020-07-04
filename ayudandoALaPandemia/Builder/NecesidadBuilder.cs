@@ -81,7 +81,7 @@ namespace ayudandoALaPandemia.Builder
             }
             else
             {
-                necesidadDto.valoracion = 0;
+                necesidadDto.valoracion = null;
             }
 
             if (necesidad.TipoDonacion == 1)

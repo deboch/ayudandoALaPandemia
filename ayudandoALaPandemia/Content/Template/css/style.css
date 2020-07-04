@@ -1,20 +1,14 @@
 .like {
-    width: 20px;
-    height: 20px;
-    border: 2px solid green;
 }
 
 .dislike {
-    width: 20px;
-    height: 20px;
-    border: 2px solid red;
 }
 
-.like.active {
+.like.isActive {
     background-color: green;
 }
 
-.dislike.active {
+.dislike.isActive {
     background-color: red;
 }
 
