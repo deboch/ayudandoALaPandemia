@@ -143,9 +143,19 @@ namespace Repositorios
             return donacionesInsumos;
         }
 
-        public List<Denuncias> ObtenerDenunciasPorUserId(int userId)
+        public List<Denuncias> ObtenerDenunciasPorUserId(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return Context.Denuncias
+                    .Where(b => (int)b.Usuarios.IdUsuario == (int)id)
+                    .ToList();
+
+            }
+            catch (EntityException)
+            {
+                throw new EntityException();
+            }
         }
 
         public DonacionesMonetarias donacionMonetaria(DonacionesMonetarias donacionesMonetarias)
@@ -173,9 +183,10 @@ namespace Repositorios
 
         public NecesidadesValoraciones ObtenerValoracionPorUsuarioNecesidad (int userId, int idNecesidad)
         {
-
-            NecesidadesValoraciones miValoracion = Context.NecesidadesValoraciones.Where(v => (v.IdUsuario == (int)userId && v.IdNecesidad == (int)idNecesidad)).SingleOrDefault();
-            return miValoracion;
+            return Context.NecesidadesValoraciones
+                .Where(v => v.IdUsuario == (int)userId)
+                .Where(v => v.IdNecesidad == (int)idNecesidad)
+                .FirstOrDefault();
         }
 
         public bool Valorar(int like, int userId, int idNecesidad)

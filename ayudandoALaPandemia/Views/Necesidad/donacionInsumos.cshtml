@@ -48,7 +48,8 @@
                     }
 
                 </div>
-                @Html.TextBoxFor(m => m.idUsuario, new { @Value = @ViewBag.userId, type = "hidden", @class = "form-control" })
+                @Html.TextBoxFor(m => m.idUsuario, new { type = "hidden", @Value = @ViewBag.userId, @class = "form-control" })
+                <span style="display:none">@{int i = 0;}</span>
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -57,22 +58,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @{int i = 0;}
                         @foreach (var p in ViewBag.TotalInsumos)
                         {
-                        <tr>
-                            <td style="display: none">
-                                @Html.TextBoxFor(m => m.Id, new { @Value = @p.IdNecesidad, type = "hidden", @class = "form-control" })
-                            </td>
-                            <td style="display: none">
-                                @Html.TextBoxFor(m => m.insumos[i].id, new { @Value = @p.IdNecesidadDonacionInsumo, type = "hidden", @class = "form-control" })
-                            </td>
-                            <td>@p.Nombre</td>
-                            <td>
-                                @Html.TextBoxFor(m => m.insumos[i].cantidad, new { @class = "form-control", placeholder = "Cantidad" })
-                            </td>
-                        </tr>
-                            @(i++)
+                            <tr>
+                                <td style="display: none">
+                                    @Html.TextBoxFor(m => m.Id, new { @Value = @p.IdNecesidad, type = "hidden", @class = "form-control" })
+                                </td>
+                                <td style="display: none">
+                                    @Html.TextBoxFor(m => m.insumos[i].id, new { @Value = @p.IdNecesidadDonacionInsumo, type = "hidden", @class = "form-control" })
+                                </td>
+                                <td>@p.Nombre</td>
+                                <td>
+                                    @Html.TextBoxFor(m => m.insumos[i].cantidad, new { @class = "form-control", placeholder = "Cantidad" })
+                                </td>
+                            </tr>
+                            <span style="display:none">@(i++)</span>
                         }
                     </tbody>
                 </table>

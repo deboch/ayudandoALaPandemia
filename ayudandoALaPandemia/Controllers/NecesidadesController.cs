@@ -12,17 +12,27 @@ namespace ayudandoALaPandemia.Controllers
     public class NecesidadesController : BaseController
     {
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(string keyword)
         {
             if (Session["email"] != null)
             {
                 int userId = (int)Session["id"];
-                List<Necesidades> otrasNecesidades = necesidadesServicios.ObtenerTodasMenosPorUserId(userId);
                 List<Necesidades> misNecesidades = necesidadesServicios.ObtenerPorUserId(userId);
                 ViewBag.misNecesidades = misNecesidades.Count > 0 ? misNecesidades : null;
-                ViewBag.otrasNecesidades = otrasNecesidades.Count > 0 ? otrasNecesidades : null;
-                return View();
+
+                if (keyword != null)
+                {
+                    List<Necesidades> necesidadesBuscadas = searchServicios.ObtenerNecesidades(userId, keyword);
+                    ViewBag.otrasNecesidades = necesidadesBuscadas.Count > 0 ? necesidadesBuscadas : null;
+                }
+                else
+                {
+                    List<Necesidades> otrasNecesidades = necesidadesServicios.ObtenerTodasMenosPorUserId(userId);
+                    ViewBag.otrasNecesidades = otrasNecesidades.Count > 0 ? otrasNecesidades : null;
+                    return View();
+                }
             }
+
 
             if (Session["email"] == null)
             {
@@ -71,8 +81,8 @@ namespace ayudandoALaPandemia.Controllers
             {
                 ViewBag.Incompleto = "Completa tu perfil antes de crear una necesidad";
                 return View(necesidadDto);
-
             }
+
             if (necesidadesDelUsuario.Count >= 10)
             {
                 ViewBag.NoPermitir = "Ya posee 3 necesidades abiertas";

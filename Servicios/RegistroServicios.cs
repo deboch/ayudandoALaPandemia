@@ -103,8 +103,7 @@ namespace Servicios
 
         public Usuarios Modificar(Usuarios user)
         {
-            //return managerRepository.usuarioRepository.Modificar(usuarioDto);
-            throw new NotImplementedException();
+            return managerRepository.usuarioRepository.Modificar(user);
         }
 
         public Usuarios Editar(Usuarios user, int id) {
