@@ -10,7 +10,7 @@
             <div class="box-active d-flex align-items-center mr-3">
                 @using (Html.BeginForm("MisNecesidades", "Perfil", FormMethod.Get))
                 {
-                    <div class="d-flex align-items-center">
+                    <div class="d-flex align-items-center mt-3 mb-3">
                         @Html.CheckBoxFor(m => m.activo, new { @checked = Model.activo, onclick = "this.form.submit();" })
                         <p>Mostrar solo activas</p>
                     </div>
