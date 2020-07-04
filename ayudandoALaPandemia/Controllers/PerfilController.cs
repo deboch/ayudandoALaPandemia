@@ -91,7 +91,7 @@ namespace ayudandoALaPandemia.Controllers
             Usuarios usuarioActual = registroServicios.ObtenerPorId(userId);
             if(checkboxDto.activo == true)
             {
-                bool estado =checkboxDto.activo;
+                bool estado = checkboxDto.activo;
                 List<Necesidades> misNecesidadesActivas = necesidadesServicios.ObtenerNecesidadesSegunActivacion(estado,userId);
                 ViewBag.Necesidades = misNecesidadesActivas;
             }
@@ -100,8 +100,7 @@ namespace ayudandoALaPandemia.Controllers
                 List<Necesidades> misNecesidades = necesidadesServicios.ObtenerPorUserId(userId);
                 ViewBag.NecesidadesActivas = misNecesidades;
             }
-            
-            return View();
+            return View(checkboxDto);
         }
     }
 }
