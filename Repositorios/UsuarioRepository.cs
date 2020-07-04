@@ -187,7 +187,7 @@ namespace Repositorios
             return null;
         }
 
-        /*public Usuarios Editar(Usuarios user, int id)
+        public Usuarios Editar(Usuarios user, int id)
         {
             Usuarios usuario = Context.Usuarios.Where(v => v.IdUsuario == id).FirstOrDefault();
             usuario.Nombre = user.Nombre;
@@ -196,7 +196,7 @@ namespace Repositorios
             usuario.Foto = user.Foto;
             Context.SaveChanges();
             return user;
-        }*/
+        }
 
         public Usuarios obtenerPorToken(string token)
         {

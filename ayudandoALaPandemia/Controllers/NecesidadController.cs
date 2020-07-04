@@ -40,6 +40,18 @@ namespace ayudandoALaPandemia.Controllers
             NecesidadBuilder builder = new NecesidadBuilder();
             NecesidadDto necesidadDto = builder.necesidadDtoParaDetalle(necesidad, usuario, valoracion);
             ViewBag.Necesidad = necesidadDto;
+            decimal cant;
+            if(necesidadDto.tipoDonacion == "Insumo") { 
+                List<NecesidadesDonacionesInsumos> donacion = donacionesInsumosServicios.ObtenerPorNecesidadId(idNecesidad);
+                 cant = donacion.Count;
+            }
+            else
+            {
+                NecesidadesDonacionesMonetarias donacion = donacionesMonetariasServicios.ObtenerPorNecesidadId(idNecesidad);
+                decimal donacionesMonetarias = donacionesMonetariasServicios.ObtenerTodasLasDonaciones(donacion);
+                cant = donacionesMonetarias;
+            }
+            ViewBag.Total = cant;
             return View();
         }
 
