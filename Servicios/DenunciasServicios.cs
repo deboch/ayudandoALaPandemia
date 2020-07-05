@@ -13,7 +13,7 @@ namespace Servicios
 
         public List<Denuncias> listaDenuncias()
         {
-            return managerRepository.denunciasRepository.traerDenuncias().ToList();
+            return managerRepository.denunciasRepository.traerDenuncias();
         }
 
         public Denuncias buscarPorId(int id)
@@ -29,6 +29,11 @@ namespace Servicios
         public void aceptarDenuncia(Denuncias miDenuncia)
         {
             managerRepository.denunciasRepository.aceptarDenuncia(miDenuncia);
+        }
+
+        public List<MotivoDenuncia> obtenerTodosLosMotivos()
+        {
+            return managerRepository.denunciasRepository.obtenerTodosLosMotivos();
         }
     }
 }

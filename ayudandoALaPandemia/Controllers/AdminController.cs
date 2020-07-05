@@ -14,8 +14,9 @@ namespace ayudandoALaPandemia.Controllers
         [HttpGet]
         public ActionResult verDenuncias()
         {
-            List<Denuncias> listDenuncias = denunciasServicio.listaDenuncias();
-            return View(listDenuncias);
+            List<Denuncias> listaDenuncias = denunciasServicio.listaDenuncias();
+            ViewBag.Denuncias = listaDenuncias;
+            return View();
         }
 
         [HttpPost]
@@ -23,7 +24,6 @@ namespace ayudandoALaPandemia.Controllers
         {
             Denuncias miDenuncia = denunciasServicio.buscarPorId(id);
             denunciasServicio.desestimarDenuncia(miDenuncia);
-            
             return RedirectToAction("verDenuncias", "Admin");
         }
 
@@ -36,7 +36,6 @@ namespace ayudandoALaPandemia.Controllers
 
             return RedirectToAction("verDenuncias", "Admin");
         }
-
 
         [HttpGet]
         public ActionResult linkDenucia(int id)
@@ -58,10 +57,8 @@ namespace ayudandoALaPandemia.Controllers
         {
             Usuarios miUser = registroServicios.ObtenerPorId(id);
             registroServicios.hacerAdmin(id);
-
             return RedirectToAction("darAdminPermisos", "Admin");
         }
-
 
     }
 }

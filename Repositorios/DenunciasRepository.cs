@@ -35,5 +35,10 @@ namespace Repositorios
             miDenuncia.Estado = 1;
             Context.SaveChanges();
         }
+
+        public List<MotivoDenuncia> obtenerTodosLosMotivos()
+        {
+            return Context.MotivoDenuncia.ToList();
+        }
     }
 }
