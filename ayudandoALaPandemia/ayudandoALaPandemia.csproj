@@ -131,6 +131,7 @@
     <Compile Include="Builder\DenunciaBuilder.cs" />
     <Compile Include="Builder\NecesidadBuilder.cs" />
     <Compile Include="Builder\UsuarioBuilder.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -460,6 +461,9 @@
     <Content Include="Views\Necesidades\Index.cshtml" />
     <Content Include="Views\Necesidad\Modificar.cshtml" />
     <Content Include="Views\Home\acerca-de.cshtml" />
+    <Content Include="Views\Admin\darAdminPermisos.cshtml" />
+    <Content Include="Views\Admin\verDenuncias.cshtml" />
+    <Content Include="Views\Admin\linkDenucia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
