@@ -461,13 +461,10 @@
     <Content Include="Views\Necesidades\Index.cshtml" />
     <Content Include="Views\Necesidad\Modificar.cshtml" />
     <Content Include="Views\Home\acerca-de.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Admin\darAdminPermisos.cshtml" />
     <Content Include="Views\Admin\verDenuncias.cshtml" />
     <Content Include="Views\Admin\linkDenucia.cshtml" />
-=======
     <Content Include="Views\Necesidad\Denunciar.cshtml" />
->>>>>>> 6316219ff57c7a64904a90e741b75d1f4b2f25fd
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
