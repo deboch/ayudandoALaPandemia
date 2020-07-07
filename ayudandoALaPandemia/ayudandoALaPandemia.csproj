@@ -515,6 +515,9 @@
     <Content Include="Views\Necesidades\Index.cshtml" />
     <Content Include="Views\Necesidad\Modificar.cshtml" />
     <Content Include="Views\Home\acerca-de.cshtml" />
+    <Content Include="Views\Admin\darAdminPermisos.cshtml" />
+    <Content Include="Views\Admin\verDenuncias.cshtml" />
+    <Content Include="Views\Admin\linkDenucia.cshtml" />
     <Content Include="Views\Necesidad\Denunciar.cshtml" />
     <Content Include="Views\Admin\darAdminPermisos.cshtml" />
     <Content Include="Views\Admin\verDenuncias.cshtml" />
