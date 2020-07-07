@@ -6,7 +6,7 @@
 
     int i = 0;
 }
-@{ 
+@{
     var denuncias = ViewBag.Denuncias;
 }
 
@@ -35,20 +35,20 @@
                     <td>@i++</td>
                     <td>@item.FechaCreacion</td>
                     <td>@item.IdDenuncia</td>
-                    <td><a href="/necesidad/@item.idNecesidad/detalle">ir al detalle</a></td>
+                    <td><a href="/necesidad/@item.IdNecesidad/detalle">ir al detalle</a></td>
                     <td>@item.Comentarios</td>
                     <td>
                         @using (Html.BeginForm("DesestimarDenuncia", "Admin", FormMethod.Post))
                         {
-                            @Html.TextBox("Desestimar", null, new { type = "hidden", @Value = @item.idNecesidad, @class = "form-control" })
-                            <button type="submit" class="btn btn-md btn-secondary" id="sendEdicion">Desestimar</button>
+                            @Html.TextBoxFor(m => m.IdDenuncia, new { type = "hidden", @Value = @item.IdNecesidad, @class = "form-control" })
+                            <button type="submit" class="btn btn-md btn-secondary">Desestimar</button>
                         }
                     </td>
                     <td>
                         @using (Html.BeginForm("AceptarDenuncia", "Admin", FormMethod.Post))
                         {
-                            @Html.TextBox("Aceptar", null, new { type = "hidden", @Value = @item.idNecesidad, @class = "form-control" })
-                            <button type="submit" class="btn btn-md btn-secondary" id="sendEdicion">Aceptar</button>
+                            @Html.TextBoxFor(m => m.IdDenuncia, null, new { type = "hidden", @Value = @item.IdNecesidad, @class = "form-control" })
+                            <button type="submit" class="btn btn-md btn-secondary">Aceptar</button>
                         }
                     </td>
                 }

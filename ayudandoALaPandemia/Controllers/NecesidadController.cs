@@ -37,10 +37,24 @@ namespace ayudandoALaPandemia.Controllers
             Necesidades necesidad = necesidadesServicios.ObtenerPorId(idNecesidad);
             Usuarios usuario = registroServicios.ObtenerPorId(userId);
             NecesidadesValoraciones valoracion = necesidadesServicios.ObtenerValoracionPorUsuarioNecesidad(usuario.IdUsuario, necesidad.IdNecesidad);
+            int totalDeMegusta = necesidadesServicios.ObtenerSumaTotalDeValoraciones(idNecesidad);
             NecesidadBuilder builder = new NecesidadBuilder();
             NecesidadDto necesidadDto = builder.necesidadDtoParaDetalle(necesidad, usuario, valoracion);
             ViewBag.Necesidad = necesidadDto;
-            return View();
+            ViewBag.TotalDeMeGusta = totalDeMegusta;
+            decimal cant;
+            if(necesidadDto.tipoDonacion == "Insumo") { 
+                List<NecesidadesDonacionesInsumos> donacion = donacionesInsumosServicios.ObtenerPorNecesidadId(idNecesidad);
+                 cant = donacion.Count;
+            }
+            else
+            {
+                NecesidadesDonacionesMonetarias donacion = donacionesMonetariasServicios.ObtenerPorNecesidadId(idNecesidad);
+                decimal donacionesMonetarias = donacionesMonetariasServicios.ObtenerTodasLasDonaciones(donacion);
+                cant = donacionesMonetarias;
+            }
+            ViewBag.Total = cant;
+            return View(necesidadDto);
         }
 
         [HttpGet]
@@ -181,7 +195,6 @@ namespace ayudandoALaPandemia.Controllers
                 return View(denunciaDto);
             }
 
-            int userId = (int)Session["id"];
             int idNecesidad = Int32.Parse(Request.Url.Segments[2].Remove(Request.Url.Segments[2].Length - 1));
             denunciaDto.necesidadId = idNecesidad;
             DenunciaBuilder builder = new DenunciaBuilder();

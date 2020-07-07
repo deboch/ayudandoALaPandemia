@@ -26,13 +26,25 @@ namespace ayudandoALaPandemia.Controllers
             {
                 return View(user);
             }
+            else if (usuario.TipoUsuario == 0) 
+            {
+                Session["id"] = usuario.IdUsuario;
+                Session["email"] = usuario.Email.ToString();
+                Session["username"] = usuario.UserName;
+                Session["nombre"] = usuario.Nombre;
+                Session["apellido"] = usuario.Apellido;
+                Session["fechaNacimiento"] = usuario.FechaNacimiento;
+                Session["foto"] = usuario.Foto;
+                Session["tipo"] = usuario.TipoUsuario;
+                return RedirectToAction("Index", "Necesidades");
+            }
             else if (!usuario.Activo)
             {
                 Usuarios nuevoUsuarios = loginServicios.obtenerPorMail(usuario.Email);
                 nuevoUsuarios.Token = registroServicios.generoToken();
                 registroServicios.generoTokenNuevo(nuevoUsuarios, nuevoUsuarios.Token);
                 emailServicios.sendEmail(nuevoUsuarios.Token, nuevoUsuarios.Email);
-                return (RedirectToAction("activarUsuario","Login", new {email = nuevoUsuarios.Email }));
+                return (RedirectToAction("activarUsuario", "Login", new { email = nuevoUsuarios.Email }));
             }
             else
             {
@@ -53,6 +65,20 @@ namespace ayudandoALaPandemia.Controllers
         {
             ViewBag.email = email;
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult Administrador(string email)
+        {   
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult verDenunciasAdmin()
+        {
+            List<Denuncias> listDenuncias = denunciasServicio.listaDenuncias();
+
+            return View(listDenuncias);
         }
 
         [HttpGet]

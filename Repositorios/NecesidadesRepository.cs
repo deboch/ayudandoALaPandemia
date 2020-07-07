@@ -51,6 +51,11 @@ namespace Repositorios
             }
         }
 
+        public int ObtenerSumaTotalDeValoraciones(int idNecesidad)
+        {
+            return Context.NecesidadesValoraciones.Where(v => (v.Valoracion && v.IdNecesidad == (int)idNecesidad)).Count();
+        }
+
         public int Crear(Necesidades necesidad)
         {
             Context.Necesidades.Add(necesidad);
@@ -113,6 +118,7 @@ namespace Repositorios
             {
                 return Context.Necesidades
                     .Where(b => (int)b.IdUsuarioCreador == (int)id)
+                    .OrderByDescending(v => v.FechaCreacion)
                     .ToList();
 
             }
@@ -132,7 +138,22 @@ namespace Repositorios
         {
             return Context.Necesidades.Where(v => (int)v.IdUsuarioCreador != (int)userId).ToList();
         }
-
+        public List<DonacionesInsumos> ObtenerDonacionesInsumosPorUserId(int userId)
+        {
+            return Context.DonacionesInsumos.Where(v => (int)v.IdUsuario == (int)userId).ToList();
+        }
+        public List<DonacionesInsumos> ObtenerDonacionesInsumos()
+        {
+            return Context.DonacionesInsumos.ToList();
+        }
+        public List<DonacionesMonetarias> ObtenerDonacionesMonetariaPorUserId(int userId)
+        {
+            return Context.DonacionesMonetarias.Where(v => (int)v.IdUsuario == (int)userId).ToList();
+        }
+        public List<DonacionesMonetarias> ObtenerDonacionesMonetaria()
+        {
+            return Context.DonacionesMonetarias.ToList();
+        }
         public List<DonacionesInsumos> donacionInsumo(List<DonacionesInsumos> donacionesInsumos)
         {
             foreach (var p in donacionesInsumos)
@@ -184,8 +205,7 @@ namespace Repositorios
         public NecesidadesValoraciones ObtenerValoracionPorUsuarioNecesidad (int userId, int idNecesidad)
         {
             return Context.NecesidadesValoraciones
-                .Where(v => v.IdUsuario == (int)userId)
-                .Where(v => v.IdNecesidad == (int)idNecesidad)
+                .Where(v => (v.IdUsuario == (int)userId && v.IdNecesidad == (int)idNecesidad))
                 .FirstOrDefault();
         }
 
@@ -225,6 +245,7 @@ namespace Repositorios
             Context.SaveChanges();
             return porcentaje;
         }
+
         public int CrearDenuncia(Denuncias denuncia)
         {
             Context.Denuncias.Add(denuncia);
