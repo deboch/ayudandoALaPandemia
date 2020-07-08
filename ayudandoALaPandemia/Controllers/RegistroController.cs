@@ -37,7 +37,7 @@ namespace ayudandoALaPandemia.Controllers
                     }
                     else if(!validoMas18)
                     {
-                        ViewData["menor"] = "Tenés que ser mayor de 18 años";
+                        ViewData["menor"] = "Tenés que ser mayor de 18 años o la fecha es mayor a la de hoy";
                         return View(u);
                     }
                     else if(!pass)
