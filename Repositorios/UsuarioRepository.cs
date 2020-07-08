@@ -151,9 +151,12 @@ namespace Repositorios
 
         public void activoToken(Usuarios user)
         {
-                user.Activo = true;
-                user.Token = "000000000";
-                Context.SaveChanges();
+            Usuarios u = Context.Usuarios
+                .Where(b => (string)b.Email == (string)user.Email)
+                .FirstOrDefault();
+
+            u.Activo = true;
+            Context.SaveChanges();
         }
 
         public Usuarios obtenerUsuarioPorUserName(string userName)

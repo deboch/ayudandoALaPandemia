@@ -44,7 +44,7 @@ namespace Servicios
 
             Usuarios userMail = managerRepository.usuarioRepository.obtenerUsuario(u.Email);
 
-            if(userMail.Email == u.Email && userMail.Password == u.Password) 
+            if(userMail != null && userMail.Email == u.Email && userMail.Password == u.Password) 
             {
                 return userMail;
             }else

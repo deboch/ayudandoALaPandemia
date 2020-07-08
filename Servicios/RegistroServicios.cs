@@ -150,6 +150,9 @@ namespace Servicios
         {
             var bday = dateEnviado;
             var resta = DateTime.Today - bday;
+            if (resta.Days < 0) {
+                return false;
+            }
             var año = DateTime.MinValue.Add(resta).Year - 1;
             return año >= 18;
         }
