@@ -17,10 +17,15 @@ namespace ayudandoALaPandemia.Controllers
 
         [HttpPost]
         public ActionResult Index(Usuarios user)
-        {   
+        {
+            if (!ModelState.IsValid)
+                return View(user);
+
             Usuarios usuario = loginServicios.logear(user);
+
             if (usuario == null)
             {
+                ViewBag.Error = "Email y/o Contraseña inválidos";
                 return View(user);
             }
             else if (usuario.TipoUsuario == 0) 
@@ -41,7 +46,7 @@ namespace ayudandoALaPandemia.Controllers
                 nuevoUsuarios.Token = registroServicios.generoToken();
                 registroServicios.generoTokenNuevo(nuevoUsuarios, nuevoUsuarios.Token);
                 emailServicios.sendEmail(nuevoUsuarios.Token, nuevoUsuarios.Email);
-                return (RedirectToAction("activarUsuario", "Login", new { email = nuevoUsuarios.Email }));
+                return (RedirectToAction("activarUsuario", "Registro", new { message = nuevoUsuarios.Email }));
             }
             else
             {

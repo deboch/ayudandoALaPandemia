@@ -26,12 +26,14 @@
                         <!--input class="input100" type="password" name="pass" placeholder="Contraseña"-->
                        
                         @Html.TextBoxFor(m => m.Password, new { type = "password", @class = "input100", placeholder = "Contraseña" })
-                        <!--@Html.EditorFor(m => m.Password)
-                        @Html.ValidationMessageFor(m => m.Password)-->
+                        @Html.ValidationMessageFor(m => m.Password)
                         <span class="focus-input100"></span>
                     </div>
-                    @Html.ValidationSummary(true, "errors", new { @class = "text-danger" })
-
+                    @Html.ValidationSummary(true, "datos incorrectos", new { @class = "text-danger" })
+                    @if (ViewBag.Error != null)
+                    {
+                        <p>@ViewBag.Error</p>
+                    }
                     <div class="container-login100-form-btn">
                         <button class="login100-form-btn">
                             Iniciar sesión

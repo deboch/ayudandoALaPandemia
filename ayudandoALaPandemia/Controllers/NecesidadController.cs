@@ -34,7 +34,7 @@ namespace ayudandoALaPandemia.Controllers
         {
             if (Session["email"] == null)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Login");
             }
             int userId = (int)Session["id"];
             int idNecesidad = Int32.Parse(Request.Url.Segments[2].Remove(Request.Url.Segments[2].Length - 1));

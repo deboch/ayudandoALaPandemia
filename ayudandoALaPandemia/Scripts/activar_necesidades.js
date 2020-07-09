@@ -36,7 +36,7 @@ const activarNecesidades = async (isActive) => {
                                     `<div class='star-ratings-sprite'>
                                             <span style='width:${necesidad.Valoracion}%' class='star-ratings-sprite-rating'></span>
                                         </div>`
-                                    : null
+                                    : ''
                                     }
                                     <div class='badge'>
                                         ${necesidad.TipoDonacion == 1 ? 'Monetaria' : 'Insumos'}

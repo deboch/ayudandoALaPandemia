@@ -16,11 +16,11 @@ namespace Repositorios
         [EmailAddress(ErrorMessage = "Ingrese un mail válido")]
         public string Email { get; set; }
 
-        /*[Required(ErrorMessage = "La clave es requerido")]
-        [StringLength(50, MinimumLength = 1,ErrorMessage = "Minimo 1 máximo 8")]
+        [Required(ErrorMessage = "La clave es requerido")]
+        [StringLength(50, MinimumLength = 1, ErrorMessage = "Minimo 1 máximo 8")]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "Confirmar la clave, por favor")]
+        /*[Required(ErrorMessage = "Confirmar la clave, por favor")]
         [StringLength(50, MinimumLength = 1, ErrorMessage = "Las claves no coinciden")]
         [DataType(DataType.Password)]
         [Compare("Password")]
