@@ -54,7 +54,7 @@ namespace ayudandoALaPandemia.Controllers
         }
 
         [HttpGet]
-        public ActionResult Crear(int? countInsumos)
+        public ActionResult Crear()
         {
             if (Session["email"] == null)
             {
@@ -62,15 +62,9 @@ namespace ayudandoALaPandemia.Controllers
             }
             NecesidadDto model = new NecesidadDto();
 
-            if (countInsumos != null)
-            {
-                for (var i = 0; i < countInsumos; i++)
-                {
-                    InsumosDto insumoDto = new InsumosDto();
-                    model.insumos.Add(insumoDto);
-                }
-
-            }
+            InsumosDto insumoDto = new InsumosDto();
+            model.insumos.Add(insumoDto);
+            
             return View(model);
         }
 
