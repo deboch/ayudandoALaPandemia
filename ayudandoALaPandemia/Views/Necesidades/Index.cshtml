@@ -67,36 +67,40 @@
                     </div>
                 </div>
             </div>
-            }
-            <h2><i class="fa fa-flag-o red"></i><strong>Las necesidades mas valoradas</strong></h2>
+        }
+        @if (ViewBag.otrasNecesidades != null)
+        {
+            <h2 class="mt-4"><i class="fa fa-flag-o red"></i><strong>Las necesidades mas valoradas</strong></h2>
             <div class="searched-wrapper">
                 <div class="row">
-                    @if (ViewBag.otrasNecesidades != null)
+                    @foreach (var p in ViewBag.otrasNecesidades)
                     {
-                        foreach (var p in ViewBag.otrasNecesidades)
-                        {
-                            <div class="col-lg-4 mb-4">
-                                <a href=@(Session["email"] != null ? "/necesidad/" + @p.IdNecesidad + "/detalle" : "/login" ) class="card h-100">
-                                    <h4 class="card-header">@p.Nombre</h4>
-                                    <img src="../..@p.Foto" width="100%" height="auto" />
-                                    <div class="card-body">
-                                        <p class="card-text">@p.Descripcion</p>
-                                        <span class="badge">
-                                            @(p.TipoDonacion == 1 ? "Monetaria" : "Insumos")
-                                        </span>
-                                    </div>
-                                    @if (p.Valoracion != null)
-                                    {
-                                        <div class="star-ratings-sprite">
-                                            <span style="width:@p.Valoracion%" class="star-ratings-sprite-rating"></span>
-                                        </div>
-                                    }
-                                </a>
+                    <div class="col-lg-4 mb-4">
+                        <a href=@(Session["email"] != null ? "/necesidad/" + @p.IdNecesidad + "/detalle" : "/login" ) class="card h-100">
+                            <h4 class="card-header">@p.Nombre</h4>
+                            <img src="../..@p.Foto" width="100%" height="auto" />
+                            <div class="card-body">
+                                <p class="card-text">@p.Descripcion</p>
+                                <span class="badge">
+                                    @(p.TipoDonacion == 1 ? "Monetaria" : "Insumos")
+                                </span>
                             </div>
-                        }
+                            @if (p.Valoracion != null)
+                            {
+                                <div class="star-ratings-sprite">
+                                    <span style="width:@p.Valoracion%" class="star-ratings-sprite-rating"></span>
+                                </div>
+                            }
+                        </a>
+                    </div>
                     }
                 </div>
             </div>
-        </div>
+        }
+        else
+        {
+            <h2 class="mt-4 mb-4"><i class="fa fa-flag-o red"></i><strong>Se uno de los primeros en crear una necesidad</strong></h2>
+        }
+    </div>
 </section>
 

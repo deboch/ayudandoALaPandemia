@@ -12,16 +12,20 @@ namespace ayudandoALaPandemia.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            // carga la vista que esta en la carpeta Home
             return View();
         }
 
         [HttpPost]
         public ActionResult Index(Usuarios user)
-        {   
+        {
+            if (!ModelState.IsValid)
+                return View(user);
+
             Usuarios usuario = loginServicios.logear(user);
+
             if (usuario == null)
             {
+                ViewBag.Error = "Email y/o Contraseña inválidos";
                 return View(user);
             }
             else if (usuario.TipoUsuario == 0) 
@@ -42,7 +46,7 @@ namespace ayudandoALaPandemia.Controllers
                 nuevoUsuarios.Token = registroServicios.generoToken();
                 registroServicios.generoTokenNuevo(nuevoUsuarios, nuevoUsuarios.Token);
                 emailServicios.sendEmail(nuevoUsuarios.Token, nuevoUsuarios.Email);
-                return (RedirectToAction("activarUsuario", "Login", new { email = nuevoUsuarios.Email }));
+                return (RedirectToAction("activarUsuario", "Registro", new { message = nuevoUsuarios.Email }));
             }
             else
             {
@@ -56,13 +60,6 @@ namespace ayudandoALaPandemia.Controllers
                 Session["tipo"] = usuario.TipoUsuario;
                 return RedirectToAction("Index", "Necesidades");
             }
-        }
-
-        [HttpGet]
-        public ActionResult activarUsuario(string email)
-        {
-            ViewBag.email = email;
-            return View();
         }
 
         [HttpGet]

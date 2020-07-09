@@ -66,7 +66,10 @@ dlldata.c
 Repositorios/App.config
 Repositorios/Repositorios.csproj
 Repositorios/sysdiagrams.cs
-ayudandoALaPandemia/.vs/**/*
+ayudandoALaPandemia/.vs/
+ayudandoALaPandemia/.vs/ayudandoALaPandemia/config/applicationhost.config
+ayudandoALaPandemia/.vs/ayudandoALaPandemia/v16/.suo
+ayudandoALaPandemia/ayudandoALaPandemia.csproj.user
 
 # Chutzpah Test files
 _Chutzpah*
