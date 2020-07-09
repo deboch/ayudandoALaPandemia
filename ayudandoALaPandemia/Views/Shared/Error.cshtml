@@ -1,23 +1,21 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width" />
-    <title>Error</title>
-</head>
-<body>
-    <hgroup>
-        <h1>Error.</h1>
-        <h2>Error al procesar la solicitud.</h2>
-    </hgroup>
-    <div class="page-404">
-        <p class="text-404">404</p>
+﻿
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
+}
 
-        <h2>Aww Snap!</h2>
-        <p>
-            Something went wrong or that page doesn’t exist yet. <br>
-            @Html.ActionLink("Return Home", "Index", "Home", null, new { @class = "nav-link" })
-        </p>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-1">ERROR</h1>
+            <h3>La página no fué encontrada. Aquí hay algunos enlaces útiles:</h3>
+            <ul>
+                <li>
+                    @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })
+                </li>
+                <li>
+                    @Html.ActionLink("Iniciar sesión", "Index", "Login", null, new { @class = "nav-link" })
+                </li>    
+            </ul>
+        </div>
     </div>
-</body>
-</html>
+
