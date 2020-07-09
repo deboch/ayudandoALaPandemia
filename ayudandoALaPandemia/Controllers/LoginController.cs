@@ -18,9 +18,7 @@ namespace ayudandoALaPandemia.Controllers
 
         [HttpPost]
         public ActionResult Index(Usuarios user)
-        {
-            // esto es feo!!
-   
+        {   
             Usuarios usuario = loginServicios.logear(user);
             if (usuario == null)
             {
@@ -65,20 +63,6 @@ namespace ayudandoALaPandemia.Controllers
         {
             ViewBag.email = email;
             return View();
-        }
-
-        [HttpGet]
-        public ActionResult Administrador(string email)
-        {   
-            return View();
-        }
-
-        [HttpGet]
-        public ActionResult verDenunciasAdmin()
-        {
-            List<Denuncias> listDenuncias = denunciasServicio.listaDenuncias();
-
-            return View(listDenuncias);
         }
 
         [HttpGet]

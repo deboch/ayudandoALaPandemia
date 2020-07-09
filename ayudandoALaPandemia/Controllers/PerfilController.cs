@@ -15,13 +15,21 @@ namespace ayudandoALaPandemia.Controllers
     {
         [HttpGet]
         public ActionResult Index(Usuarios user)
-        { 
+        {
+            if (Session["email"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View(user);
         }
 
         [HttpGet]
         public ActionResult MisDenuncias(Usuarios user)
         {
+            if (Session["email"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             int userId = (int)Session["id"];
             List<Denuncias> misDenuncias = necesidadesServicios.ObtenerDenunciasPorUserId(userId);
             ViewBag.MisDenuncias = misDenuncias;
@@ -32,11 +40,11 @@ namespace ayudandoALaPandemia.Controllers
         [HttpGet]
         public ActionResult MisDonaciones()
         {
+            if (Session["email"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             int userId = (int)Session["id"];
-            /*List<DonacionesInsumos> necesidadInsumos = necesidadesServicios.ObtenerDonacionesInsumosPorUserId(userId);
-            ViewBag.NecesidadInsumos = necesidadInsumos;
-            List<DonacionesMonetarias> necesidadMonetaria = necesidadesServicios.ObtenerDonacionesMonetariasPorUserId(userId);
-            ViewBag.NecesidadMonetaria = necesidadMonetaria;*/
             ViewBag.UserId = userId;
             return View();
         }
@@ -44,6 +52,10 @@ namespace ayudandoALaPandemia.Controllers
         [HttpGet]
         public ActionResult Editar()
         {
+            if (Session["email"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             int userId = (int)Session["id"];
             Usuarios usuario = registroServicios.ObtenerPorId(userId);
             UsuarioDto usuarioDto = new UsuarioDto();
@@ -88,6 +100,10 @@ namespace ayudandoALaPandemia.Controllers
         [HttpGet]
         public ActionResult MisNecesidades(checkboxDto checkboxDto)
         {
+            if (Session["email"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             int userId = (int)Session["id"];
             Usuarios usuarioActual = registroServicios.ObtenerPorId(userId);
             if(checkboxDto.activo == true)

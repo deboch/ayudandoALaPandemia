@@ -32,6 +32,10 @@ namespace ayudandoALaPandemia.Controllers
         [HttpGet]
         public ActionResult Detalle()
         {
+            if (Session["email"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             int userId = (int)Session["id"];
             int idNecesidad = Int32.Parse(Request.Url.Segments[2].Remove(Request.Url.Segments[2].Length - 1));
             Necesidades necesidad = necesidadesServicios.ObtenerPorId(idNecesidad);
@@ -137,6 +141,10 @@ namespace ayudandoALaPandemia.Controllers
         [HttpGet]
         public ActionResult Modificar()
         {
+            if (Session["email"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             int idNecesidad = Int32.Parse(Request.Url.Segments[2].Remove(Request.Url.Segments[2].Length - 1));
             Necesidades necesidad = necesidadesServicios.ObtenerPorId(idNecesidad);
             NecesidadBuilder builder = new NecesidadBuilder();
@@ -173,6 +181,10 @@ namespace ayudandoALaPandemia.Controllers
         [HttpGet]
         public ActionResult Denunciar()
         {
+            if (Session["email"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             int userId = (int)Session["id"];
             List<MotivoDenuncia> lista = denunciasServicio.obtenerTodosLosMotivos();
             

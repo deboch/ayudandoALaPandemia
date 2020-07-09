@@ -36,7 +36,7 @@ namespace ayudandoALaPandemia.Controllers
 
             if (Session["email"] == null)
             {
-                return View("Index", "Home");
+                return RedirectToAction("Index", "Home");
             }
 
             return View();
@@ -46,6 +46,10 @@ namespace ayudandoALaPandemia.Controllers
         [HttpGet]
         public ActionResult Home(string keyword)
         {
+            if (Session["email"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
