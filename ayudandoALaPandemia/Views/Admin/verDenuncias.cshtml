@@ -27,33 +27,38 @@
                 <th scope="col">Aceptar</th>
             </tr>
         </thead>
-        <tbody>
+
+        @{
+            int counter = 0; 
+        }
+            
+        @foreach (var item in ViewBag.Denuncias)
+        {
+          counter = counter + 1;
             <tr>
-                <th scope="row">1</th>
-                @foreach (var item in ViewBag.Denuncias)
-                {
-                    <td>@i++</td>
-                    <td>@item.FechaCreacion</td>
-                    <td>@item.IdDenuncia</td>
-                    <td><a href="/necesidad/@item.IdNecesidad/detalle">ir al detalle</a></td>
-                    <td>@item.Comentarios</td>
-                    <td>
-                        @using (Html.BeginForm("DesestimarDenuncia", "Admin", FormMethod.Post))
-                        {
-                            @Html.TextBoxFor(m => m.IdDenuncia, new { type = "hidden", @Value = @item.IdNecesidad, @class = "form-control" })
-                            <button type="submit" class="btn btn-md btn-secondary">Desestimar</button>
-                        }
-                    </td>
-                    <td>
-                        @using (Html.BeginForm("AceptarDenuncia", "Admin", FormMethod.Post))
-                        {
-                            @Html.TextBoxFor(m => m.IdDenuncia, null, new { type = "hidden", @Value = @item.IdNecesidad, @class = "form-control" })
-                            <button type="submit" class="btn btn-md btn-secondary">Aceptar</button>
-                        }
-                    </td>
-                }
+                <td>@counter</td>
+                <td>@item.FechaCreacion</td>
+                <td>@item.IdDenuncia</td>
+                <td><a href="/necesidad/@item.IdNecesidad/detalle">ir al detalle</a></td>
+                <td>@item.Comentarios</td>
+                <td>
+                    @using (Html.BeginForm("DesestimarDenuncia", "Admin", FormMethod.Post))
+                    {
+                        @Html.TextBoxFor(m => m.IdDenuncia, new { type = "hidden", @Value = @item.IdNecesidad, @class = "form-control" })
+                        <button type="submit" class="btn btn-md btn-secondary">Desestimar</button>
+                    }
+                </td>
+                <td>
+                    @using (Html.BeginForm("AceptarDenuncia", "Admin", FormMethod.Post))
+                    {
+                        @Html.TextBoxFor(m => m.IdDenuncia, null, new { type = "hidden", @Value = @item.IdNecesidad, @class = "form-control" })
+                        <button type="submit" class="btn btn-md btn-secondary">Aceptar</button>
+                    }
+                </td>
             </tr>
-        </tbody>
+        }
+
+
     </table>
 </div>
 <br />

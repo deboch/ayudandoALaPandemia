@@ -19,9 +19,11 @@ namespace ayudandoALaPandemia.Controllers
             return View();
         }
 
+
         [HttpPost]
         public ActionResult DesestimarDenuncia(int id)
         {
+            // Seteo Estado=0
             Denuncias miDenuncia = denunciasServicio.buscarPorId(id);
             denunciasServicio.desestimarDenuncia(miDenuncia);
             return RedirectToAction("verDenuncias", "Admin");
@@ -30,6 +32,7 @@ namespace ayudandoALaPandemia.Controllers
         [HttpPost]
         public ActionResult AceptarDenuncia(int id)
         {
+            // Seteo Estado=1
             Denuncias miDenuncia = denunciasServicio.buscarPorId(id);
             denunciasServicio.aceptarDenuncia(miDenuncia);
             emailServicios.denunciaAceptada(miDenuncia.Usuarios.Email, miDenuncia.Necesidades.Descripcion, miDenuncia.Usuarios.UserName);
