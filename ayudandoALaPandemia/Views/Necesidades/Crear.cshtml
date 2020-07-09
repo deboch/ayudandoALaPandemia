@@ -86,36 +86,40 @@
                         </div>
                     </div>
                 </div>
-                <div id="insumos">
+                <div id="insumos" class="mb-4">
                     <label for="Insumo">Ingrese insumos</label>
-                    @{int i = 0;}
-                    @if (Model.insumos == null)
-                    {
-                        <p>Haga click para agregar insumos</p>
-                    }
-                    else
-                    {
-
-                        foreach (var p in Model.insumos)
+                    <div id="block-insumos" class="mb-2">
+                        @{int i = 0;}
+                        @if (Model.insumos == null)
                         {
-                            <p>Complete el insumo</p>
-
-                            <div class="control-group form-group">
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.insumos[i].nombre, new { type = "text", @class = "form-control", placeholder = "nombre" })
-                                </div>
-                            </div>
-                            <div class="control-group form-group">
-                                <div class="controls">
-                                    @Html.TextBoxFor(m => m.insumos[i].cantidad, new { type = "text", @class = "form-control", placeholder = "cantidad" })
-                                </div>
-                            </div>
-                            i = i + 1;
+                            <p>Haga click para agregar insumos</p>
                         }
-                    }
+                        else
+                        {
 
-                    <a href="@(Model.insumos != null ? "/necesidades/Crear?countInsumos=" + (Model.insumos.Count + 1) :  "/necesidades/Crear?countInsumos=1")" class="btn btn-primary">Agregar</a>
-
+                            foreach (var p in Model.insumos)
+                            {
+                                <p>Complete el insumo</p>
+                                <div class="block-insumo">
+                                    <div class="control-group form-group">
+                                        <div class="controls">
+                                            @Html.TextBoxFor(m => m.insumos[i].nombre, new { type = "text", @class = "form-control", placeholder = "nombre" })
+                                        </div>
+                                    </div>
+                                    <div class="control-group form-group">
+                                        <div class="controls">
+                                            @Html.TextBoxFor(m => m.insumos[i].cantidad, new { type = "text", @class = "form-control", placeholder = "cantidad" })
+                                        </div>
+                                    </div>
+                                </div>
+                                i = i + 1;
+                            }
+                        }
+                    </div>
+                    <div>
+                        <a href="javascript:void(0)" class="btn btn-primary quitar-insumo">Quitar</a>
+                        <a href="javascript:void(0)" class="btn btn-primary agregar-insumo">Agregar</a>
+                    </div>
                 </div>
                 <div class="control-group form-group">
                     <div class="controls">

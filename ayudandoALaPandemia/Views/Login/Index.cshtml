@@ -15,14 +15,14 @@
                         Iniciar sesion
                     </span>
 
-                    <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
+                    <div class="m-b-16" data-validate="Please enter username">
                         <!--input class="input100" type="text" name="username" placeholder="Usuario"-->
                         @Html.TextBoxFor(m => m.Email, new { @class = "input100", placeholder = "Email" })
                         @Html.ValidationMessageFor(m => m.Email)
                         <span class="focus-input100"></span>
                     </div>
 
-                    <div class="wrap-input100 validate-input" data-validate="Please enter password">
+                    <div class="" data-validate="Please enter password">
                         <!--input class="input100" type="password" name="pass" placeholder="Contraseña"-->
                        
                         @Html.TextBoxFor(m => m.Password, new { type = "password", @class = "input100", placeholder = "Contraseña" })
