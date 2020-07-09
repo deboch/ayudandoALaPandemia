@@ -5,6 +5,12 @@
     Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
 }
 
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        @Html.ActionLink("Necesidades", "Index", "Necesidades", null, new { @class = "breadcrumb-item" })
+    </li>
+    <li class="breadcrumb-item active">Detalle</li>
+</ol>
 <!-- Page Content -->
 <div class="container">
 
@@ -13,7 +19,7 @@
         @ViewBag.Necesidad.nombre
     </h1>
 
-
+    @if (ViewBag.Necesidad.tipoDonacion == "Insumo") {
     <!-- Portfolio Item Row -->
     <div class="row">
 
@@ -29,6 +35,7 @@
             </p>
             <ul>
                 <li>Finaliza: @ViewBag.Necesidad.fechaFin</li>
+                <li>Tipo de donación: @ViewBag.Necesidad.tipoDonacion</li>
                 <li>Contacto: @ViewBag.Necesidad.telefono</li>
                 <li>Creado por: @ViewBag.Necesidad.NombreUsuario @ViewBag.Necesidad.ApellidoUsuario </li>
                 <li>Total de donaciones: @ViewBag.Total</li>
@@ -61,7 +68,7 @@
                             <a class="btn btn-md btn-info btn-block"
                                href="
                                 @(ViewBag.Necesidad.tipoDonacion == "1" ? "/necesidad/" + ViewBag.Necesidad.Id + "/donacionMonetaria"
-                                :  "/necesidad/" + ViewBag.Necesidad.Id + "/donacionInsumos")">
+            : "/necesidad/" + ViewBag.Necesidad.Id + "/donacionInsumos")">
                                 Donar
                             </a>
                         </div>
@@ -69,6 +76,11 @@
                 </div>
             </div>
         </div>
-        </div>
-        </div>
+    </div>
+    }
+    else
+    {
+        <p>monetaria</p>
+    }
+</div>
 <!-- /.container -->

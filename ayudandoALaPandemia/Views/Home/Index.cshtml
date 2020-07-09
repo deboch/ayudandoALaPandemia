@@ -5,10 +5,6 @@
     Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
 }
 
-
-
-<!--sidebar end-->
-<!--main content start-->
 <section class="home" id="main-content">
     <section class="container">
         <h2><i class="fa fa-flag-o red"></i><strong>TU DONACIÓN CONSTRUYE</strong></h2>
@@ -29,7 +25,7 @@
                         <div class="card-body">
                             <p class="card-text">@p.Descripcion</p>
                             <span class="badge">
-                              @(p.TipoDonacion == 1 ? "Monetaria" : "Insumos")
+                                @(p.TipoDonacion == 1 ? "Monetaria" : "Insumos")
                             </span>
                         </div>
                         @if (p.Valoracion != null)

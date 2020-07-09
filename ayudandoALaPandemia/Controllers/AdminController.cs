@@ -20,17 +20,17 @@ namespace ayudandoALaPandemia.Controllers
         }
 
         [HttpPost]
-        public ActionResult DesestimarDenuncia(int id)
+        public ActionResult DesestimarDenuncia(Denuncias denuncia)
         {
-            Denuncias miDenuncia = denunciasServicio.buscarPorId(id);
+            Denuncias miDenuncia = denunciasServicio.buscarPorId(denuncia.IdDenuncia);
             denunciasServicio.desestimarDenuncia(miDenuncia);
             return RedirectToAction("verDenuncias", "Admin");
         }
 
         [HttpPost]
-        public ActionResult AceptarDenuncia(int id)
+        public ActionResult AceptarDenuncia(Denuncias denuncia)
         {
-            Denuncias miDenuncia = denunciasServicio.buscarPorId(id);
+            Denuncias miDenuncia = denunciasServicio.buscarPorId(denuncia.IdDenuncia);
             denunciasServicio.aceptarDenuncia(miDenuncia);
             emailServicios.denunciaAceptada(miDenuncia.Usuarios.Email, miDenuncia.Necesidades.Descripcion, miDenuncia.Usuarios.UserName);
 
