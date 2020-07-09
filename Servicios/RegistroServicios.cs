@@ -23,8 +23,7 @@ namespace Servicios
         public bool validoUsuarioNoExistente(Usuarios u)
         {
             var validoSiUserExiste = managerRepository.usuarioRepository.obtenerUsuario(u.Email);
-            var validoUserNameExistente = managerRepository.usuarioRepository.obtenerUsuarioPorUserName(u.UserName);
-            if(validoSiUserExiste == null && validoUserNameExistente == null)
+            if(validoSiUserExiste == null)
             {
                 return true;
             }

@@ -27,7 +27,7 @@ namespace ayudandoALaPandemia.Controllers
                 {
                     registroServicios.Crear(u);
                     emailServicios.sendEmail(u.Token,u.Email);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("activarUsuario", new { message = u.Email });
                 }
                 else{
                     if(!validoEmailYUserName)
@@ -52,6 +52,13 @@ namespace ayudandoALaPandemia.Controllers
                 }
             }
             return View(u);
+        }
+
+        [HttpGet]
+        public ActionResult activarUsuario(string message)
+        {
+            ViewBag.Email = message;
+            return View();
         }
 
         [HttpGet]

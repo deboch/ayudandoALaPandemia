@@ -10,8 +10,7 @@ namespace Repositorios
 {
     public class UsuariosMetadata
     {
-        [Required(ErrorMessage = "El nombre de usuario es requerido")]
-        public string UserName { get; set; }
+
 
         [Required(ErrorMessage = "El email es requerido")]
         [EmailAddress(ErrorMessage = "Ingrese un mail válido")]

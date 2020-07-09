@@ -12,7 +12,6 @@ namespace ayudandoALaPandemia.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            // carga la vista que esta en la carpeta Home
             return View();
         }
 
@@ -56,13 +55,6 @@ namespace ayudandoALaPandemia.Controllers
                 Session["tipo"] = usuario.TipoUsuario;
                 return RedirectToAction("Index", "Necesidades");
             }
-        }
-
-        [HttpGet]
-        public ActionResult activarUsuario(string email)
-        {
-            ViewBag.email = email;
-            return View();
         }
 
         [HttpGet]
