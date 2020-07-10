@@ -4,7 +4,12 @@
     ViewBag.Title = "donacionInsumos";
     Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
 }
-
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            @Html.ActionLink("Necesidades", "Index", "Necesidades", null, new { @class = "breadcrumb-item" })
+        </li>
+        <li class="breadcrumb-item active">Crear donación</li>
+    </ol>
 <section class="container">
     <h2>Total de lo que necesito</h2>
     <div class="row">

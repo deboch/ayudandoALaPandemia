@@ -23,14 +23,16 @@
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>Usuario:</label>
-                            <input type="text" class="form-control" id="userName" value="@Session["userName"]" readonly>
+                            @Html.TextBoxFor(m => m.username, new { @Value = usuarioDto.username, @class = "form-control", @readonly = "readonly" })
+                            <!--input type="text" class="form-control" id="userName" value="@Session["username"]" readonly-->
                             <p class="help-block"></p>
                         </div>
                     </div>
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>Email:</label>
-                            <input type="email" class="form-control" id="email" value="@Session["email"]" readonly>
+                            @Html.TextBoxFor(m => m.email, new { @Value = usuarioDto.email, @class = "form-control", @readonly = "readonly" })
+                            <!--input type="email" class="form-control" id="email" value="@Session["email"]" readonly-->
                             <p class="help-block"></p>
                         </div>
                     </div>
@@ -38,6 +40,7 @@
                         <div class="controls">
                             <label>Nombre:</label>
                             @Html.TextBoxFor(m => m.nombre, new { @Value = usuarioDto.nombre, @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.nombre)
                             <p class="help-block"></p>
                         </div>
                     </div>
@@ -45,27 +48,31 @@
                         <div class="controls">
                             <label>Apellido:</label>
                             @Html.TextBoxFor(m => m.apellido, new { @Value = usuarioDto.apellido, @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.apellido)
                         </div>
                     </div>
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>Fecha de nacimiento:</label>
                             @Html.TextBoxFor(m => m.fechaNacimiento, new { @Value = usuarioDto.fechaNacimiento.ToString("yyyy-MM-dd"), type = "date", @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.fechaNacimiento)
                         </div>
                     </div>
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>Foto:</label>
                             @Html.TextBoxFor(m => m.foto, new { type = "file", @Value = usuarioDto.foto, @class = "input-file" })
+                            @Html.ValidationMessageFor(m => m.foto)
                         </div>
                     </div>
-
+                    @Html.HiddenFor(m => m.password, new { @Value = usuarioDto.password, @class = "form-control" })
                     <div id="success"></div>
                     <!-- For success/fail messages -->
                     <!--a class="btn btn-md btn-secondary"
        href="index">
         Guardar
     </!-a-->
+
                     <button type="submit" class="btn btn-md btn-secondary" id="sendEdicion">Guardar</button>
 
                 </div>

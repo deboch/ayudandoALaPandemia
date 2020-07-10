@@ -59,11 +59,14 @@ namespace ayudandoALaPandemia.Controllers
             int userId = (int)Session["id"];
             Usuarios usuario = registroServicios.ObtenerPorId(userId);
             UsuarioDto usuarioDto = new UsuarioDto();
+            usuarioDto.username = usuario.UserName;
+            usuarioDto.email = usuario.Email;
             usuarioDto.idUsuario = usuario.IdUsuario;
             usuarioDto.nombre = usuario.Nombre;
             usuarioDto.apellido = usuario.Apellido;
             usuarioDto.fechaNacimiento = usuario.FechaNacimiento;
             usuarioDto.foto = usuario.Foto;
+            usuarioDto.password = usuario.Password;
             ViewBag.usuarioDto = usuarioDto;
             return View(usuarioDto);
         }
@@ -71,30 +74,40 @@ namespace ayudandoALaPandemia.Controllers
         [HttpPost]
         public ActionResult Editar(UsuarioDto usuarioDto)
         {
-            if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
+            if (ModelState.IsValid)
             {
-                //TODO: Agregar validacion para confirmar que el archivo es una imagen
-                //creo un nombre significativo en este caso apellidonombre pero solo un caracter del nombre, ejemplo BatistutaG
-                string nombreSignificativo = usuarioDto.NombreSignificativoImagen;
-                //Guardar Imagen
-                string pathRelativoImagen = ImagenesUtility.Guardar(Request.Files[0], nombreSignificativo);
-                usuarioDto.foto = pathRelativoImagen;
+                    if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
+                    {
+                        //TODO: Agregar validacion para confirmar que el archivo es una imagen
+                        //creo un nombre significativo en este caso apellidonombre pero solo un caracter del nombre, ejemplo BatistutaG
+                        string nombreSignificativo = usuarioDto.NombreSignificativoImagen;
+                        //Guardar Imagen
+                        string pathRelativoImagen = ImagenesUtility.Guardar(Request.Files[0], nombreSignificativo);
+                        usuarioDto.foto = pathRelativoImagen;
+                    }
+
+                    int userId = (int)Session["id"];
+                    usuarioDto.idUsuario = userId;
+                    UsuarioBuilder builder = new UsuarioBuilder();
+                    Usuarios usuarioModificado = builder.toUsuariosEntity(usuarioDto);
+                    Usuarios usuarioModificado2 = registroServicios.Modificar(usuarioModificado);
+
+                    Session["id"] = usuarioModificado2.IdUsuario;
+                    Session["username"] = usuarioModificado2.UserName;
+                    Session["nombre"] = usuarioModificado2.Nombre;
+                    Session["apellido"] = usuarioModificado2.Apellido;
+                    Session["fechaNacimiento"] = usuarioModificado2.FechaNacimiento;
+                    Session["email"] = usuarioModificado2.Email;
+                    Session["tipo"] = usuarioModificado2.TipoUsuario;
+                    Session["foto"] = usuarioModificado2.Foto;
+                   
+                    TempData["exitoPerfil"] = "Guardaste con exito!!";
+                    return RedirectToAction("Index", "Perfil");
+                
             }
-
-            int userId = (int)Session["id"];
-            usuarioDto.idUsuario = userId;
-            UsuarioBuilder builder = new UsuarioBuilder();
-            Usuarios usuarioModificado = builder.toUsuariosEntity(usuarioDto);
-            Usuarios usuarioModificado2 =  registroServicios.Modificar(usuarioModificado);
-
-            Session["id"] = usuarioModificado2.IdUsuario;
-            Session["username"] = usuarioModificado2.UserName;
-            Session["nombre"] = usuarioModificado2.Nombre;
-            Session["apellido"] = usuarioModificado2.Apellido;
-            Session["fechaNacimiento"] = usuarioModificado2.FechaNacimiento;
-
-            TempData["exito"] = "Guardaste con exito!!";
+            ViewBag.usuarioDto = usuarioDto;
             return View();
+            
         }
 
         [HttpGet]

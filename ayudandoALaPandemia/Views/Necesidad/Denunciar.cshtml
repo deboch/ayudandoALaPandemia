@@ -8,7 +8,12 @@
 @{
     var motivos = ViewBag.Motivos;
 }
-
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            @Html.ActionLink("Necesidades", "Index", "Necesidades", null, new { @class = "breadcrumb-item" })
+        </li>
+        <li class="breadcrumb-item active">Crear denuncia</li>
+    </ol>
 <div class="container">
     @using (Html.BeginForm("Denunciar", "Necesidad", FormMethod.Post))
     {

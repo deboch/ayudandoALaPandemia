@@ -4,7 +4,12 @@
     ViewBag.Title = "MisNecesidades";
     Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
 }
-
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            @Html.ActionLink("Mi perfil", "Index", "Perfil", null, new { @class = "breadcrumb-item" })
+        </li>
+        <li class="breadcrumb-item active">Mis necesidades</li>
+    </ol>
     <section id="main-content">
         <section class="container">
             <div class="box-active d-flex align-items-center mr-3">

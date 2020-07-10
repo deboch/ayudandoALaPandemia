@@ -4,6 +4,12 @@
     ViewBag.Title = "donacionMonetaria";
     Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
 }
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        @Html.ActionLink("Necesidades", "Index", "Necesidades", null, new { @class = "breadcrumb-item" })
+    </li>
+    <li class="breadcrumb-item active">Crear donación</li>
+</ol>
 <section class="container">
     <div class="row">
         @using (Html.BeginForm("donacionMonetaria", "Necesidad", FormMethod.Post))
@@ -26,7 +32,7 @@
                     @Html.TextBoxFor(m => m.Dinero, new { type = "text", @class = "form-control" })
                 </div>
             </div>
-            
+
             @Html.TextBoxFor(m => m.IdUsuario, new { @Value = @ViewBag.userId, type = "hidden", @class = "form-control" })
             @Html.TextBoxFor(m => m.IdNecesidadDonacionMonetaria, new { @Value = @ViewBag.IdNecesidadMonetaria, type = "hidden", @class = "form-control" })
 

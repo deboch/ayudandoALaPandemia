@@ -4,8 +4,12 @@
     Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
 }
 
-<h2>MisDonaciones</h2>
-
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            @Html.ActionLink("Mi perfil", "Index", "Perfil", null, new { @class = "breadcrumb-item" })
+        </li>
+        <li class="breadcrumb-item active">Mis donaciones</li>
+    </ol>
 <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->

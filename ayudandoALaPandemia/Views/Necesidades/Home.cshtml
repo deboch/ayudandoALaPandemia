@@ -4,7 +4,12 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
 }
-
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        @Html.ActionLink("Necesidades", "Index", "Necesidades", null, new { @class = "breadcrumb-item" })
+    </li>
+    <li class="breadcrumb-item active">Necesidades</li>
+</ol>
 <!--sidebar end-->
 <!--main content start-->
 <section id="main-content">

@@ -4,76 +4,85 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
 }
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            @Html.ActionLink("home", "Index", "Home", null, new { @class = "breadcrumb-item" })
+        </li>
+        <li class="breadcrumb-item active">Mi perfil</li>
+    </ol>
+    <div class="container">
 
-<div class="container">
+        <!-- Page Heading/Breadcrumbs -->
+        <h1 class="mt-4 mb-3">
+            Mi perfil
+        </h1>
+        @if (@TempData["exitoPerfil"] != null)
+        {
+            <h4>@TempData["exitoPerfil"]</h4>
+        }
+        <!-- /.row -->
+        <!-- Contact Form -->
+        <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
+        <div class="row">
+            <div class="col-lg-8 mb-4">
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Usuario:</label>
+                        <input type="text" class="form-control" id="userName" value="@Session["userName"]" readonly>
+                        <p class="help-block"></p>
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Email:</label>
+                        <input type="email" class="form-control" id="email" value="@Session["email"]" readonly>
+                        <p class="help-block"></p>
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Nombre:</label>
+                        <input type="text" class="form-control" id="nombre" value="@Session["nombre"]" readonly>
+                        <p class="help-block"></p>
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Apellido:</label>
+                        <input type="text" class="form-control" id="apellido" value="@Session["apellido"]" readonly>
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Fecha de nacimiento:</label>
+                        <input type="text" class="form-control" id="fechaNacimiento" value="@Session["fechaNacimiento"]" readonly>
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Foto:</label>
+                        @if (@Session["foto"] == null)
+                        {
+                            <label class="text-danger">Vaya a editar para cargar la foto</label>
+                        }
+                        else
+                        {
+                            <img src="../..@Session["foto"]" width="60" height="60" />
+                        }
+                    </div>
+                </div>
 
-    <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">
-        Mi perfil
-    </h1>
-    <!-- /.row -->
-    <!-- Contact Form -->
-    <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
-    <div class="row">
-        <div class="col-lg-8 mb-4">
-            <div class="control-group form-group">
-                <div class="controls">
-                    <label>Usuario:</label>
-                    <input type="text" class="form-control" id="userName" value="@Session["userName"]" readonly>
-                    <p class="help-block"></p>
-                </div>
-            </div>
-            <div class="control-group form-group">
-                <div class="controls">
-                    <label>Email:</label>
-                    <input type="email" class="form-control" id="email" value="@Session["email"]" readonly>
-                    <p class="help-block"></p>
-                </div>
-            </div>
-            <div class="control-group form-group">
-                <div class="controls">
-                    <label>Nombre:</label>
-                    <input type="text" class="form-control" id="nombre" value="@Session["nombre"]" readonly>
-                    <p class="help-block"></p>
-                </div>
-            </div>
-            <div class="control-group form-group">
-                <div class="controls">
-                    <label>Apellido:</label>
-                    <input type="text" class="form-control" id="apellido" value="@Session["apellido"]" readonly>
-                </div>
-            </div>
-            <div class="control-group form-group">
-                <div class="controls">
-                    <label>Fecha de nacimiento:</label>
-                    <input type="text" class="form-control" id="fechaNacimiento" value="@Session["fechaNacimiento"]" readonly>
-                </div>
-            </div>
-            <div class="control-group form-group">
-                <div class="controls">
-                    <label>Foto:</label>
-                    @if (@Session["foto"] == null)
-                    {
-                        <label class="text-danger">Vaya a editar para cargar la foto</label>
-                    }
-                    else
-                    {
-                        <img src="../..@Session["foto"]" width="60" height="60" />
-                    }
-                </div>
+                <div id="success"></div>
+                <!-- For success/fail messages -->
+                <a class="btn btn-md btn-secondary"
+                   href="@("Perfil/Editar/"+ Session["id"])">
+                    Editar
+                </a>
+
             </div>
 
-            <div id="success"></div>
-            <!-- For success/fail messages -->
-            <a class="btn btn-md btn-secondary"
-               href="@("Perfil/Editar/"+ Session["id"])">
-               Editar
-            </a>
-         
         </div>
+        <!-- /.row -->
 
     </div>
-    <!-- /.row -->
-
-</div>
 <!-- /.container -->

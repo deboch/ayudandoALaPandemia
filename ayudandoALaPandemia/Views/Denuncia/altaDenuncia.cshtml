@@ -4,7 +4,12 @@
 @{
     ViewBag.Title = "altaDenuncia";
 }
-
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        @Html.ActionLink("Necesidad", "Detalle", "Necesidad", null, new { @class = "breadcrumb-item" })
+    </li>
+    <li class="breadcrumb-item active">Crear denuncia</li>
+</ol>
 <!-- Page Content -->
 <div class="container">
 
@@ -36,11 +41,11 @@
                     new SelectList(Enum.GetValues(typeof(Repositorios.MotivoDenuncia))),
                     "Selecciona motivo")
                         <!--select class="form-control">
-        <option>Fraude</option>
-        <option>Indebida</option>
-        <option>Violación de derechos</option>
-        <option>Contiene información política</option>
-    </!-select-->
+                            <option>Fraude</option>
+                            <option>Indebida</option>
+                            <option>Violación de derechos</option>
+                            <option>Contiene información política</option>
+                        </!-select-->
                         <p class="help-block"></p>
                     </div>
                 </div>
