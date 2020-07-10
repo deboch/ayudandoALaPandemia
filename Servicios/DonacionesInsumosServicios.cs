@@ -29,5 +29,10 @@ namespace Servicios
 
             return cantidades;
         }
+
+        public int ObtenerTotales(int idNecesidadDonacionInsumo)
+        {
+            return managerRepository.donacionesInsumosRepository.obtenerTotalDeDonaciones(idNecesidadDonacionInsumo);
+        }
     }
 }

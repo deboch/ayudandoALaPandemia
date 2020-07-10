@@ -34,6 +34,7 @@ namespace ayudandoALaPandemia.Builder
             {
                 if (necesidadDto.dinero == 0 && necesidadDto.insumos.Count > 0)
                 {
+                    necesidadDto.insumos.RemoveAll(v => v.nombre == null);
                     foreach (var p in necesidadDto.insumos)
                     {
                         NecesidadesDonacionesInsumos necesidadDeInsumos = new NecesidadesDonacionesInsumos();
@@ -87,6 +88,10 @@ namespace ayudandoALaPandemia.Builder
             if (necesidad.TipoDonacion == 1)
             {
                 necesidadDto.tipoDonacion = "Monetaria";
+                foreach (var p in necesidad.NecesidadesDonacionesMonetarias)
+                {
+                    necesidadDto.dinero = p.Dinero;
+                }
             }
             else {
                 necesidadDto.tipoDonacion = "Insumo";

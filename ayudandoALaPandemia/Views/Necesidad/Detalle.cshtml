@@ -10,19 +10,58 @@
 
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-4 mb-3">
-        @ViewBag.Necesidad.nombre
+        @Model.nombre
     </h1>
-
-
     <!-- Portfolio Item Row -->
     <div class="row">
-
         <div class="col-md-8">
             <img class="img-fluid" src="../..@ViewBag.Necesidad.foto" width="700" height="500" />
+            <h2>Lo que va de la Necesidad</h2>
+            @if (Model.tipoDonacion == "Monetaria")
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Cantidad Juntada</th>
+                            <th scope="col">Cantidad Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#</td>
+                            <td>$ @(ViewBag.Total == 0 ? 0 : ViewBag.Total)</td>
+                            <td>$ @Model.dinero</td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Cantidad donada</th>
+                            <th scope="col">Cantidad Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var p in Model.insumos)
+                        {
+                        <tr>
+                            <td>#</td>
+                            <td>@p.nombre</td>
+                            <td>@p.cantidadDonada</td>
+                            <td>@p.cantidad</td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            }
         </div>
-
         <div class="col-md-4">
-
             <h3 class="my-3">Detalles</h3>
             <p>
                 @ViewBag.Necesidad.descripcion
@@ -31,7 +70,7 @@
                 <li>Finaliza: @ViewBag.Necesidad.fechaFin</li>
                 <li>Contacto: @ViewBag.Necesidad.telefono</li>
                 <li>Creado por: @ViewBag.Necesidad.NombreUsuario @ViewBag.Necesidad.ApellidoUsuario </li>
-                <li>Total de donaciones: @ViewBag.Total</li>
+                <!--li>Total de donaciones: @ViewBag.Total</li-->
                 <li>Total Me gusta: @ViewBag.TotalDeMeGusta</li>
             </ul>
             <div class="col-lg-12 mb-4 mt-4 card">
@@ -60,7 +99,7 @@
                         <div class="col-lg-6">
                             <a class="btn btn-md btn-info btn-block"
                                href="
-                                @(ViewBag.Necesidad.tipoDonacion == "1" ? "/necesidad/" + ViewBag.Necesidad.Id + "/donacionMonetaria"
+                                @(ViewBag.Necesidad.tipoDonacion == "Monetaria" ? "/necesidad/" + ViewBag.Necesidad.Id + "/donacionMonetaria"
                                 :  "/necesidad/" + ViewBag.Necesidad.Id + "/donacionInsumos")">
                                 Donar
                             </a>
@@ -69,6 +108,6 @@
                 </div>
             </div>
         </div>
-        </div>
-        </div>
+    </div>
+</div>
 <!-- /.container -->

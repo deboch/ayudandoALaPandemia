@@ -61,7 +61,6 @@ namespace ayudandoALaPandemia.Controllers
                 return RedirectToAction("Index");
             }
             NecesidadDto model = new NecesidadDto();
-
             InsumosDto insumoDto = new InsumosDto();
             model.insumos.Add(insumoDto);
             
@@ -81,7 +80,7 @@ namespace ayudandoALaPandemia.Controllers
                 return View(necesidadDto);
             }
 
-            if (necesidadesDelUsuario.Count >= 3)
+            if (necesidadesDelUsuario.Count >= 10)
             {
                 ViewBag.NoPermitir = "Ya posee 3 necesidades abiertas";
                 return View(necesidadDto);
@@ -99,6 +98,30 @@ namespace ayudandoALaPandemia.Controllers
 
             if (!ModelState.IsValid)
                 return View(necesidadDto);
+
+            if (necesidadDto.tipoDonacion == "1" && !(necesidadDto.dinero > 0) )
+            {
+                ViewBag.Dinero = "Debe ingresar un monto minimo";
+                return View(necesidadDto);
+            }
+
+            if (necesidadDto.tipoDonacion == "1" && necesidadDto.cbu.Length != 18 )
+            {
+                ViewBag.Cbu = "Debe ingresar un cbu valido de 18 numeros";
+                return View(necesidadDto);
+            }
+
+            if (necesidadDto.tipoDonacion == "0" && necesidadDto.insumos.Count > 0)
+            {
+                foreach (var p in necesidadDto.insumos)
+                {
+                    if (!(p.nombre != null && p.cantidad > 0))
+                    {
+                        ViewBag.Cantidad = "Debe ingresar correctamente un insumo";
+                        return View(necesidadDto);
+                    }
+                }
+            }
 
             NecesidadBuilder builder = new NecesidadBuilder();
             Necesidades nuevaNecesidad = builder.toNecesidadesEntity(necesidadDto, userId);

@@ -38,9 +38,8 @@ namespace Servicios
 
         public decimal ObtenerTodasLasDonaciones(NecesidadesDonacionesMonetarias donacion)
         {
-            decimal total = donacion.Dinero;
             decimal totalCant = managerRepository.donacionesMonetariasRepository.obtenerDinero(donacion.IdNecesidadDonacionMonetaria);
-            return total - totalCant;
+            return totalCant;
         }
 
         public List<NecesidadesDonacionesMonetarias> ObtenerTodos()

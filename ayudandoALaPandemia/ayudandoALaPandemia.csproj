@@ -177,6 +177,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Builder\DenunciaBuilder.cs" />
+    <Compile Include="Builder\DonacionMonetariaBuilder.cs" />
     <Compile Include="Builder\NecesidadBuilder.cs" />
     <Compile Include="Builder\UsuarioBuilder.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -194,8 +195,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\ImagenesUtility.cs" />
     <Compile Include="Utilities\StringUtility.cs" />
+    <Compile Include="Validators\DateValidator.cs" />
     <Compile Include="ViewModels\checkboxDto.cs" />
     <Compile Include="ViewModels\DenunciaNecesidadDto.cs" />
+    <Compile Include="ViewModels\DonacionMonetariaDto.cs" />
     <Compile Include="ViewModels\InsumosDto.cs" />
     <Compile Include="ViewModels\NecesidadDto.cs" />
     <Compile Include="ViewModels\ReferenciaDto.cs" />

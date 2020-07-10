@@ -42,6 +42,11 @@ namespace Repositorios
             }
         }
 
+        public DonacionesInsumos ObtenerTotales(int idNecesidadDonacionInsumo)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<DonacionesInsumos> ObtenerDonacionesInsumosPorUserId(int userId)
         {
             return Context.DonacionesInsumos.Where(v => v.IdUsuario == userId).ToList();
