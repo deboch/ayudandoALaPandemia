@@ -21,7 +21,9 @@
                 <div class="col-lg-4 mb-4">
                     <a href="@(Session["email"] != null ? "/necesidad/@p.IdNecesidad/detalle" : "/login" )" class="card h-100">
                         <h4 class="card-header">@p.Nombre</h4>
-                        <p>creada por: @Session["email"]</p>
+                        <!--p>Creada por: @Session["email"]</!-p-->
+                        <p>Creada por: @p.Usuarios.Email</p>
+                        <p>Finaliza: @p.FechaFin</p>
                         <img src="../..@p.Foto" width="100%" height="auto" />
                         <div class="card-body">
                             <p class="card-text">@p.Descripcion</p>

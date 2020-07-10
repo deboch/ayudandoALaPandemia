@@ -44,6 +44,7 @@
                                     </div>
                                     <div class="col-md-5">
                                         <h3>@p.Nombre</h3>
+                                        <p>Finaliza: @p.FechaFin</p>
                                         <!--p>@p.Descripcion</!-p-->
                                         @if (p.Valoracion != null)
                                         {
@@ -52,8 +53,8 @@
                                             </div>
                                         }
                                         <!--div class="badge mb-3">
-                                            @(p.TipoDonacion == 1 ? "Monetaria" : "Insumos")
-                                        </!-div-->
+        @(p.TipoDonacion == 1 ? "Monetaria" : "Insumos")
+    </!-div-->
                                         <div>
                                             <a class="btn btn-primary" href=@(Session["email"] != null ? "/necesidad/" + @p.IdNecesidad + "/detalle" : "/login")>
                                                 Ver
@@ -81,6 +82,7 @@
                             <img src="../..@p.Foto" width="100%" height="auto" />
                             <div class="card-body">
                                 <p class="card-text">@p.Descripcion</p>
+                                <p>Finaliza: @p.FechaFin</p>
                                 <span class="badge">
                                     @(p.TipoDonacion == 1 ? "Monetaria" : "Insumos")
                                 </span>
