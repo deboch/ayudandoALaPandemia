@@ -1,0 +1,39 @@
+﻿@model Repositorios.Necesidades
+
+@{
+    ViewBag.Title = "DetalleNecesidad";
+    Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
+}
+    <div class="container text-center">
+        <br />
+        <h2 class="text-center">Detalle de la necesidad</h2>
+        <br />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Creación</th>
+                    <th scope="col">Fin</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Tipo Donación</th>
+                    <th scope="col">Valoración</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.Nombre</td>
+                    <td>@Model.Descripcion</td>
+                    <td>@Model.FechaCreacion</td>
+                    <td>@Model.FechaFin</td>
+                    <td>@Model.TelefonoContacto</td>
+                    <td>@Model.TipoDonacion</td>
+                    <td>@Model.Valoracion</td>
+                </tr>
+            </tbody>
+        </table>
+        <br /><br />
+        <a class="btn btn-primary" href="~/Admin/verDenuncias">Atrás</a>
+        <a class="btn btn-success" href="~/Home/Index">Home</a>
+        <br /><br />
+    </div>
