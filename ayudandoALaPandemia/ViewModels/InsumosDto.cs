@@ -16,5 +16,7 @@ namespace ayudandoALaPandemia.ViewModels
         public string nombre { get; set; }
 
         public int cantidad { get; set; }
+
+        public int cantidadDonada { get; set; }
     }
 }

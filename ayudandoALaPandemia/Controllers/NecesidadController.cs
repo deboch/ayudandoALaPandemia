@@ -44,20 +44,33 @@ namespace ayudandoALaPandemia.Controllers
             int totalDeMegusta = necesidadesServicios.ObtenerSumaTotalDeValoraciones(idNecesidad);
             NecesidadBuilder builder = new NecesidadBuilder();
             NecesidadDto necesidadDto = builder.necesidadDtoParaDetalle(necesidad, usuario, valoracion);
-            ViewBag.Necesidad = necesidadDto;
+
             ViewBag.TotalDeMeGusta = totalDeMegusta;
             decimal cant;
+
             if(necesidadDto.tipoDonacion == "Insumo") { 
                 List<NecesidadesDonacionesInsumos> donacion = donacionesInsumosServicios.ObtenerPorNecesidadId(idNecesidad);
-                 cant = donacion.Count;
+
+                foreach (var p in donacion)
+                {
+                    InsumosDto insumosDto = new InsumosDto();
+                    int totalDonado = donacionesInsumosServicios.ObtenerTotales(p.IdNecesidadDonacionInsumo);
+                    insumosDto.cantidad = p.Cantidad;
+                    insumosDto.nombre = p.Nombre;
+                    insumosDto.cantidadDonada = totalDonado;
+                    necesidadDto.insumos.Add(insumosDto);
+                }
             }
             else
             {
                 NecesidadesDonacionesMonetarias donacion = donacionesMonetariasServicios.ObtenerPorNecesidadId(idNecesidad);
                 decimal donacionesMonetarias = donacionesMonetariasServicios.ObtenerTodasLasDonaciones(donacion);
                 cant = donacionesMonetarias;
+                ViewBag.Total = cant;
             }
-            ViewBag.Total = cant;
+            
+            ViewBag.Necesidad = necesidadDto;
+
             return View(necesidadDto);
         }
 
@@ -68,14 +81,15 @@ namespace ayudandoALaPandemia.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
+            DonacionMonetariaDto donacionMonetariaDto = new DonacionMonetariaDto();
             int idNecesidad = Int32.Parse(Request.Url.Segments[2].Remove(Request.Url.Segments[2].Length - 1));
             NecesidadesDonacionesMonetarias donacion = donacionesMonetariasServicios.ObtenerPorNecesidadId(idNecesidad);
             decimal donacionesMonetarias = donacionesMonetariasServicios.ObtenerTodasLasDonaciones(donacion);
-            ViewBag.TotalRestante = donacionesMonetarias;
-            ViewBag.Total = donacion.Dinero;
-            ViewBag.IdNecesidadMonetaria = donacion.IdNecesidadDonacionMonetaria;
-            ViewBag.userId = (int)Session["id"];
-            return View();
+            donacionMonetariaDto.totalRestante = donacion.Dinero - donacionesMonetarias;
+            donacionMonetariaDto.totalDeDinero = donacion.Dinero;
+            donacionMonetariaDto.IdNecesidadDonacionMonetaria = donacion.IdNecesidadDonacionMonetaria;
+            donacionMonetariaDto.IdUsuario = (int)Session["id"];
+            return View(donacionMonetariaDto);
         }
 
         [HttpGet]
@@ -106,18 +120,24 @@ namespace ayudandoALaPandemia.Controllers
 
 
         [HttpPost]
-        public ActionResult donacionMonetaria(DonacionesMonetarias donacionesMonetarias)
+        public ActionResult donacionMonetaria(DonacionMonetariaDto donacionMonetariaDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(donacionMonetariaDto);
+            }
             if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
             {
                 //TODO: Agregar validacion para confirmar que el archivo es una imagen
                 //creo un nombre significativo en este caso apellidonombre pero solo un caracter del nombre, ejemplo BatistutaG
-                string nombreSignificativo = donacionesMonetarias.ArchivoTransferencia;
+                string nombreSignificativo = donacionMonetariaDto.comprobante;
                 //Guardar Imagen
                 string pathRelativoImagen = ImagenesUtility.Guardar(Request.Files[0], nombreSignificativo);
-                donacionesMonetarias.ArchivoTransferencia = pathRelativoImagen;
+                donacionMonetariaDto.comprobante = pathRelativoImagen;
             }
-            necesidadesServicios.donacionMonetaria(donacionesMonetarias);
+            DonacionMonetariaBuilder builder = new DonacionMonetariaBuilder();
+            DonacionesMonetarias donacionMonetaria = builder.dtoAEntidad(donacionMonetariaDto);
+            necesidadesServicios.donacionMonetaria(donacionMonetaria);
             TempData["exito"] = "Donaste con exito!!";
             return RedirectToAction("Index", "Necesidades");
         }

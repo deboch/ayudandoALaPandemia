@@ -9,51 +9,47 @@
 @{
     var denuncias = ViewBag.Denuncias;
 }
-
-<h3 class="text-center">Denuncias</h3>
-
 <br />
-<br />
-<div class="container-fluid">
-    <table class="table text-center">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Fecha</th>
-                <th scope="col">Motivo</th>
-                <th scope="col">Link</th>
-                <th scope="col">Comentarios</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in ViewBag.Denuncias)
+    <div class="container text-center">
+        <h3 class="text-center">Denuncias</h3>
+
+        <br />
+        <br />
+        <div class="container-fluid">
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Motivo</th>
+                        <th scope="col">Link</th>
+                        <th scope="col">Comentarios</th>
+                        <th scope="col">Aceptar</th>
+                        <th scope="col">Desestimar</th>
+                    </tr>
+                </thead>
+
+                @{
+                    int counter = 0;
+                }
+
+                @foreach (var item in ViewBag.Denuncias)
                 {
-            <tr>
-                <td>@item.IdDenuncia</td>
-                <td>@item.FechaCreacion</td>
-                <td>@item.MotivoDenuncia.Descripcion</td>
-                <td><a href="/necesidad/@item.IdNecesidad/detalle">ir al detalle</a></td>
-                <td>@item.Comentarios</td>
-                <td>
-                    @using (Html.BeginForm("DesestimarDenuncia", "Admin", FormMethod.Post))
-                        {
-                    @Html.TextBoxFor(m => m.IdDenuncia, new { type = "hidden", @Value = @item.IdDenuncia, @class = "form-control" })
-                    <button type="submit" class="btn btn-md btn-secondary">Desestimar</button>
-                        }
-                </td>
-                <td>
-                    @using (Html.BeginForm("AceptarDenuncia", "Admin", FormMethod.Post))
-                        {
-                    @Html.TextBoxFor(m => m.IdDenuncia, null, new { type = "hidden", @Value = @item.IdDenuncia, @class = "form-control" })
-                    <button type="submit" class="btn btn-md btn-secondary">Aceptar</button>
-                        }
-                </td> 
-            </tr>
-             }
-        </tbody>
-    </table>
-</div>
-<br />
-<br />
+                    counter = counter + 1;
+                    <tr>
+                        <td>@counter</td>
+                        <td>@item.FechaCreacion</td>
+                        <td>@item.IdDenuncia</td>
+                        <td><a class="btn-sm btn-primary" href="/Admin/DetalleNecesidad?id=@item.IdNecesidad">Detalle</a></td>
+                        <td>@item.Comentarios</td>
+                        <td><a class="btn-sm btn-success" href="~/Admin/AceptarDenuncia?id=@item.IdDenuncia">Aceptar</a></td>
+                        <td><a class="btn-sm btn-danger" href="~/Admin//DesestimarDenuncia?id=@item.IdDenuncia">Rechazar</a></td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+        <br />
+        <a class="btn btn-info" href="~/Home/Index">Home</a>
+        <br /><br />
+    </div>

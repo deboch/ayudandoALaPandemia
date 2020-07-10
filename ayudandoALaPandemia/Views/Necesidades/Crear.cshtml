@@ -72,7 +72,10 @@
                 <div class="control-group form-group">
                     <div class="controls">
                         <label>Tipo:</label>
-                        @Html.DropDownListFor(m => m.tipoDonacion, new List<SelectListItem>() { new SelectListItem { Text = "Monetaria", Value = "1" }, new SelectListItem { Text = "Insumos", Value = "0" } }, htmlAttributes: new { id = "tipoDonacion", @class = "form-control" })
+                        @Html.DropDownListFor(m => m.tipoDonacion, new List<SelectListItem>() { 
+                            new SelectListItem { Text = "Monetaria", Value = "1", Selected = Model.tipoDonacion == "1" ? true : false }, 
+                            new SelectListItem { Text = "Insumos", Value = "0", Selected = Model.tipoDonacion == "0" ? true : false } }, 
+                            htmlAttributes: new { id = "tipoDonacion", @class = "form-control" })
                         <p class="help-block"></p>
                     </div>
                 </div>
@@ -81,13 +84,20 @@
                         <div class="controls">
                             <label>Cantidad necesitada ($):</label>
                             @Html.TextBoxFor(m => m.dinero, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.dinero)
+                            @if(ViewBag.Dinero != null)
+                            {
+                                <p>@ViewBag.Dinero</p>
+                            }
                         </div>
                     </div>
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>CBU/Alias</label>
                             @Html.TextBoxFor(m => m.cbu, new { @class = "form-control", placeholder = "Cbu" })
+                            @if (ViewBag.Cbu != null)
+                            {
+                                <p>@ViewBag.Cbu</p>
+                            }
                         </div>
                     </div>
                 </div>
@@ -118,6 +128,10 @@
                                     </div>
                                 </div>
                                 i = i + 1;
+                            }
+                            if (ViewBag.Cantidad != null)
+                            {
+                                <p>@ViewBag.Cantidad</p>
                             }
                         }
                     </div>

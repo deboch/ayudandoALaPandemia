@@ -16,7 +16,7 @@ namespace Repositorios
 
         public List<Denuncias> traerDenuncias()
         {
-            return Context.Denuncias.OrderByDescending(v => v.FechaCreacion).ToList();
+            return Context.Denuncias.Where(o => o.Estado == 3).ToList();
         }
 
         public Denuncias buscarPorId(int id)

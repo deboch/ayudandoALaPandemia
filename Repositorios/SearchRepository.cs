@@ -15,7 +15,7 @@ namespace Repositorios
             try
             {
                 return Context.Necesidades.Where(
-                    v => (v.Nombre.Contains(keyword) && !(v.IdUsuarioCreador == userId))
+                    v => ((v.Nombre.Contains(keyword) || v.Usuarios.Nombre.Contains(keyword)) && !(v.IdUsuarioCreador == userId))
                 ).OrderByDescending(v => v.FechaFin).ThenByDescending(v => v.Valoracion).ToList();
             }
             catch (System.Data.Entity.Infrastructure.DbUpdateException exception)

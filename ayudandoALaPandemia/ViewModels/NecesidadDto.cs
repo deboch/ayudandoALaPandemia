@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ayudandoALaPandemia.Validators;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -27,7 +28,8 @@ namespace ayudandoALaPandemia.ViewModels
         [Required(ErrorMessage = "Agregue una descripcion")]
         public string descripcion { get; set; }
 
-        [Required(ErrorMessage = "Debe poner una fecha")]
+        [Required(ErrorMessage = "Debe agregar una fecha")]
+        [DateValidator(ErrorMessage = "La fecha debe ser mayor a la actual")]
         public DateTime fechaFin { get; set; }
 
         [Required(ErrorMessage = "Agregue un telefono de contacto")]
@@ -38,7 +40,7 @@ namespace ayudandoALaPandemia.ViewModels
 
         [Required(ErrorMessage = "Debe agregar una foto")]
         public string foto { get; set; }
-
+        
         public int idMonetaria { get; set; }
 
         public decimal dinero { get; set; }

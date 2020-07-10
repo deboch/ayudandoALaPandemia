@@ -1,5 +1,6 @@
 ﻿using Antlr.Runtime.Tree;
 using Repositorios;
+using Repositorios.Partials;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,11 @@ namespace ayudandoALaPandemia.Controllers
             emailServicios.denunciaAceptada(miDenuncia.Usuarios.Email, miDenuncia.Necesidades.Descripcion, miDenuncia.Usuarios.UserName);
 
             return RedirectToAction("verDenuncias", "Admin");
+        } 
+
+        public ActionResult gestionDenuncia()
+        {
+            return View();
         }
 
         [HttpGet]
@@ -58,6 +64,13 @@ namespace ayudandoALaPandemia.Controllers
             Usuarios miUser = registroServicios.ObtenerPorId(id);
             registroServicios.hacerAdmin(id);
             return RedirectToAction("darAdminPermisos", "Admin");
+        }
+
+        [HttpGet]
+        public ActionResult DetalleNecesidad(int id)
+        {
+            Necesidades miNecesidad = necesidadesServicios.ObtenerPorId(id);
+            return View(miNecesidad);
         }
 
     }
