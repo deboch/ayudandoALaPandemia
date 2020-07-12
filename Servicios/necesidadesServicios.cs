@@ -30,7 +30,11 @@ namespace Servicios
 
         public List<Necesidades> ObtenerNecesidadesSegunActivacion(bool isActive, int userId)
         {
-            return managerRepository.necesidadesRepository.ObtenerNecesidadesSegunActivacion(isActive, userId);
+            if (isActive)
+            {
+                return managerRepository.necesidadesRepository.ObtenerNecesidadesSegunActivacion(isActive, userId);
+            }
+            return this.ObtenerPorUserId(userId);
         }
 
         public List<Necesidades> ObtenerTodasMenosPorUserId(int userId)

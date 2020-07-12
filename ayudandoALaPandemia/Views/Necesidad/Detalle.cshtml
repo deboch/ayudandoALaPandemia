@@ -58,9 +58,22 @@
                         {
                         <tr>
                             <td>#</td>
-                            <td>@p.nombre</td>
-                            <td>@p.cantidadDonada</td>
-                            <td>@p.cantidad</td>
+                            @if (p.finalizada == 0)
+                            {
+                                <td><strike>@p.nombre</strike></td>
+                                <td>
+                                    <strike>@p.cantidadDonada.ToString()</strike>
+                                </td>
+                                <td><strike>@p.cantidad</strike></td>
+                            }
+                            else
+                            {
+                                <td>@p.nombre</td>
+                                <td>
+                                    @p.cantidadDonada.ToString()
+                                </td>
+                                <td>@p.cantidad</td>
+                            }
                         </tr>
                         }
                     </tbody>

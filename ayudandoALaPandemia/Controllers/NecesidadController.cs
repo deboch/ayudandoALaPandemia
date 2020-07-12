@@ -58,6 +58,7 @@ namespace ayudandoALaPandemia.Controllers
                     insumosDto.cantidad = p.Cantidad;
                     insumosDto.nombre = p.Nombre;
                     insumosDto.cantidadDonada = totalDonado;
+                    insumosDto.finalizada = p.Cantidad - totalDonado;
                     necesidadDto.insumos.Add(insumosDto);
                 }
             }
@@ -102,16 +103,17 @@ namespace ayudandoALaPandemia.Controllers
             
             int idNecesidad = Int32.Parse(Request.Url.Segments[2].Remove(Request.Url.Segments[2].Length - 1));
             List<NecesidadesDonacionesInsumos> donacion = donacionesInsumosServicios.ObtenerPorNecesidadId(idNecesidad);
-            int cant = donacion.Count;
+            // int cant = donacion.Count;
             NecesidadDto model = new NecesidadDto();
+            ViewBag.Cantidades = donacionesInsumosServicios.obtenerCantidadesRestantes(donacion);
 
-            for (int i = 0; i < cant; i++)
+            foreach (var p in donacion)
             {
                 InsumosDto insumoDto = new InsumosDto();
+                insumoDto.cantidad = ViewBag.Cantidades[p.Nombre];
                 model.insumos.Add(insumoDto);
             }
             
-            ViewBag.Cantidades = donacionesInsumosServicios.obtenerCantidadesRestantes(donacion);
             ViewBag.TotalInsumos = donacion;
             ViewBag.userId = (int)Session["id"];
 

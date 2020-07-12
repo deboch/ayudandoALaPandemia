@@ -65,18 +65,27 @@
                     <tbody>
                         @foreach (var p in ViewBag.TotalInsumos)
                         {
-                            <tr>
-                                <td style="display: none">
-                                    @Html.TextBoxFor(m => m.Id, new { @Value = @p.IdNecesidad, type = "hidden", @class = "form-control" })
+                        <tr>
+                            <td style="display: none">
+                                @Html.TextBoxFor(m => m.Id, new { @Value = @p.IdNecesidad, type = "hidden", @class = "form-control" })
+                            </td>
+                            <td style="display: none">
+                                @Html.TextBoxFor(m => m.insumos[i].id, new { @Value = @p.IdNecesidadDonacionInsumo, type = "hidden", @class = "form-control" })
+                            </td>
+                            <td>@p.Nombre</td>
+                            @if (Model.insumos[i].cantidad == 0)
+                            {
+                                <td>
+                                    @Html.TextBoxFor(m => m.insumos[i].cantidad, new { @disabled = true, @class = "form-control", placeholder = "Cantidad" })
                                 </td>
-                                <td style="display: none">
-                                    @Html.TextBoxFor(m => m.insumos[i].id, new { @Value = @p.IdNecesidadDonacionInsumo, type = "hidden", @class = "form-control" })
-                                </td>
-                                <td>@p.Nombre</td>
+                            } else
+                            {
+
                                 <td>
                                     @Html.TextBoxFor(m => m.insumos[i].cantidad, new { @class = "form-control", placeholder = "Cantidad" })
                                 </td>
-                            </tr>
+                            }
+                        </tr>
                             <span style="display:none">@(i++)</span>
                         }
                     </tbody>

@@ -8,6 +8,7 @@ namespace ayudandoALaPandemia.ViewModels
 {
     public class InsumosDto
     {
+
         [Key]
         public int id { get; set; }
 
@@ -18,5 +19,7 @@ namespace ayudandoALaPandemia.ViewModels
         public int cantidad { get; set; }
 
         public int cantidadDonada { get; set; }
+        
+        public int finalizada { get; set; }
     }
 }
