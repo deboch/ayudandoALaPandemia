@@ -62,7 +62,7 @@ namespace Servicios
         {
 
             bool valoracion = managerRepository.necesidadesRepository.Valorar(like, userId, idNecesidad);
-            int calcularPorcentaje = managerRepository.necesidadesRepository.CalcularPorcentaje(idNecesidad);
+            managerRepository.necesidadesRepository.CalcularPorcentaje(idNecesidad);
             return valoracion;
         }
 

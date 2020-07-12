@@ -36,8 +36,16 @@
                     <tbody>
                         <tr>
                             <td>#</td>
-                            <td>$ @(ViewBag.Total == 0 ? 0 : ViewBag.Total)</td>
-                            <td>$ @Model.dinero</td>
+                            @if (ViewBag.Total == Model.dinero)
+                            {
+                                <td><strike>$ @ViewBag.Total</strike></td>
+                                <td><strike>$ @Model.dinero</strike></td>
+                            }
+                            else
+                            {
+                                <td>$ @(ViewBag.Total == 0 ? 0 : ViewBag.Total)</td>
+                                <td>$ @Model.dinero</td>
+                            }
                         </tr>
                     </tbody>
                 </table>
