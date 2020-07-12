@@ -18,8 +18,8 @@ const activarNecesidades = async (isActive) => {
                     const jsonResponse = JSON.parse(response);
                     if (jsonResponse.length === 0) {
                         const notFound = `<p>No se encontro ninguna necesidad</p>`;
-                        $('.collapse .card-body').empty();
-                        return $('.collapse .card-body').html(notFound);
+                        $('.misNecesidades .card-body').empty();
+                        return $('.misNecesidades .card-body').html(notFound);
                     }
                     const html = jsonResponse.map(function (necesidad) {
                         return (
@@ -51,8 +51,8 @@ const activarNecesidades = async (isActive) => {
                             </div>`
                         )
                     });
-                    $('.collapse .card-body').empty();
-                    $('.collapse .card-body').html(html)
+                    $('.misNecesidades .card-body').empty();
+                    $('.misNecesidades .card-body').html(html)
                 }
             })
     );

@@ -13,72 +13,44 @@
     <section id="main-content">
         <section class="container">
             <div class="box-active d-flex align-items-center mr-3">
-                @using (Html.BeginForm("MisNecesidades", "Perfil", FormMethod.Get))
-                {
-                    <div class="d-flex align-items-center mt-3 mb-3">
-                        @Html.CheckBoxFor(m => m.activo, new { @checked = Model.activo, onclick = "this.form.submit();" })
-                        <p>Mostrar solo activas</p>
-                    </div>
-                }
+                <div class="box-active d-flex align-items-center mr-3">
+                    <input id="active" class="activarNecesidades mr-1" type="checkbox" checked=@(ViewBag.misNecesidades != null) />
+                    <p>Mostrar solo activas</p>
+                </div>
             </div>
-
-            <div class="row">
-                @if (ViewBag.Necesidades != null)
-                {
-
-                    foreach (var p in ViewBag.Necesidades)
+            <div class="row misNecesidades">
+                <div class="card card-body card ml-3 mt-3">
+                    @foreach (var p in ViewBag.misNecesidades)
                     {
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <a href="#">
+                                    <img class="img-fluid rounded mb-3 mb-md-0" src="../..@p.Foto" alt="">
+                                </a>
+                            </div>
+                            <div class="col-md-5">
+                                <h3>@p.Nombre</h3>
 
-                        <div class="col-lg-4 mb-4">
-                            <a href=@(Session["email"] != null ? "/necesidad/" + @p.IdNecesidad + "/modificar" : "/login" ) class="card h-100">
-                                <h4 class="card-header">@p.Nombre</h4>
-                                <img src="../..@p.Foto" width="100%" height="auto" />
-                                <div class="card-body">
-                                    <p class="card-text">@p.Descripcion</p>
-                                    <span class="badge">
-                                        @(p.TipoDonacion == 1 ? "Monetaria" : "Insumos")
-                                    </span>
-                                </div>
+                                <!--p>@p.Descripcion</!-p-->
                                 @if (p.Valoracion != null)
                                 {
-                                    <div class="star-ratings-sprite">
-                                        <span style="width:@p.Valoracion%" class="star-ratings-sprite-rating"></span>
-                                    </div>
-                                }
-                            </a>
-                            <a href=@(Session["email"] != null ? "/necesidad/" + @p.IdNecesidad + "/modificar" : "/login" ) class="btn btn-primary">Editar</a>
-                        </div>
-                    }
-                }
-            </div>
-            <div class="row">
-                @if (ViewBag.NecesidadesActivas != null)
-                {
-
-                    foreach (var p in ViewBag.NecesidadesActivas)
-                    {
-                        <div class="col-lg-4 mb-4">
-                            <a href=@(Session["email"] != null ? "/necesidad/" + @p.IdNecesidad + "/modificar" : "/login" ) class="card h-100">
-                                <h4 class="card-header">@p.Nombre</h4>
-                                <img src="../..@p.Foto" width="100%" height="auto" />
-                                <div class="card-body">
-                                    <p class="card-text">@p.Descripcion</p>
-                                    <span class="badge">
-                                        @(p.TipoDonacion == 1 ? "Monetaria" : "Insumos")
-                                    </span>
+                                <div class="star-ratings-sprite">
+                                    <span style="width:@p.Valoracion%" class="star-ratings-sprite-rating"></span>
                                 </div>
-                                @if (p.Valoracion != null)
-                                {
-                                    <div class="star-ratings-sprite">
-                                        <span style="width:@p.Valoracion%" class="star-ratings-sprite-rating"></span>
-                                    </div>
-                                }
-                            </a>
-                            <a href=@(Session["email"] != null ? "/necesidad/" + @p.IdNecesidad + "/modificar" : "/login" ) class="btn btn-primary">Editar</a>
-                        </div>
-                    }
-                }
+                            }
+<!--div class="badge mb-3">
+    @(p.TipoDonacion == 1 ? "Monetaria" : "Insumos")
+</!-div-->
+<div>
+    <a class="btn btn-primary" href=@(Session["email"] != null ? "/necesidad/" + @p.IdNecesidad + "/detalle" : "/login")>
+        Ver
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+</div>
+</div>
+</div>
+}
+                </div>
             </div>
-
         </section>
     </section>

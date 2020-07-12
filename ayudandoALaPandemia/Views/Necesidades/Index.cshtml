@@ -28,11 +28,11 @@
                             </button>
                         </h5>
                         <div class="box-active d-flex align-items-center mr-3">
-                            <input id="active" class="activarNecesidades mr-1" type="checkbox" />
+                            <input id="active" class="activarNecesidades mr-1" type="checkbox" checked=@(ViewBag.misNecesidades != null) />
                             <p>Mostrar solo activas</p>
                         </div>
                     </div>
-                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div id="collapseOne" class="collapse misNecesidades show" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card card-body card ml-3 mt-3">
                             @foreach (var p in ViewBag.misNecesidades)
                             {

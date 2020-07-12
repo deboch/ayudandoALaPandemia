@@ -111,26 +111,17 @@ namespace ayudandoALaPandemia.Controllers
         }
 
         [HttpGet]
-        public ActionResult MisNecesidades(checkboxDto checkboxDto)
+        public ActionResult MisNecesidades()
         {
             if (Session["email"] == null)
             {
                 return RedirectToAction("Index", "Home");
             }
             int userId = (int)Session["id"];
-            Usuarios usuarioActual = registroServicios.ObtenerPorId(userId);
-            if(checkboxDto.activo == true)
-            {
-                bool estado = checkboxDto.activo;
-                List<Necesidades> misNecesidadesActivas = necesidadesServicios.ObtenerNecesidadesSegunActivacion(estado,userId);
-                ViewBag.Necesidades = misNecesidadesActivas;
-            }
-            else
-            {
-                List<Necesidades> misNecesidades = necesidadesServicios.ObtenerPorUserId(userId);
-                ViewBag.NecesidadesActivas = misNecesidades;
-            }
-            return View(checkboxDto);
+            bool estado = true;
+            List<Necesidades> misNecesidadesActivas = necesidadesServicios.ObtenerNecesidadesSegunActivacion(estado, userId);
+            ViewBag.misNecesidades = misNecesidadesActivas;
+            return View();
         }
     }
 }
