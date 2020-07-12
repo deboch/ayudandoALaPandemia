@@ -46,6 +46,10 @@ const activarNecesidades = async (isActive) => {
                                             Ver
                                             <span class="glyphicon glyphicon-chevron-right"></span>
                                         </a>
+                                        <a class="btn btn-primary" href='/necesidad/' + ${ necesidad.IdNecesidad } +'/modificar'>
+                                            Editar
+                                            <span class="glyphicon glyphicon-chevron-right"></span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>`

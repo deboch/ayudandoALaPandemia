@@ -20,14 +20,16 @@
             {
                 <div class="col-lg-4 mb-4">
                     <a href="@(Session["email"] != null ? "/necesidad/@p.IdNecesidad/detalle" : "/login" )" class="card h-100">
-                        <h4 class="card-header">@p.Nombre</h4>
-                        <p>creada por: @Session["email"]</p>
+                        <h3 class="card-header"><strong>"@p.Nombre"</strong></h3>
+                        <!--p>Creada por: @Session["email"]</!-p-->
                         <img src="../..@p.Foto" width="100%" height="auto" />
                         <div class="card-body">
-                            <p class="card-text">@p.Descripcion</p>
-                            <span class="badge">
+                            <p class="card-title">@p.Descripcion</p>
+                            <p class="card-text"><strong>Creada por:</strong> @p.Usuarios.Email</p>
+                            <p class="card-text"><strong>Fecha de creación:</strong> @p.FechaCreacion</p>
+                            <!--span class="badge">
                                 @(p.TipoDonacion == 1 ? "Monetaria" : "Insumos")
-                            </span>
+                            </!-span-->
                         </div>
                         @if (p.Valoracion != null)
                         {
@@ -60,3 +62,5 @@
         </div>
     </section>
 </section>
+<br />
+<br />

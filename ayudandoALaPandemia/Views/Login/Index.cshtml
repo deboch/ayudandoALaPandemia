@@ -11,10 +11,12 @@
         <div class="container-login100">
             <div class="wrap-login100">
                 <form class="login100-form validate-form p-l-55 p-r-55 p-t-178">
-                    <span class="login100-form-title">
-                        Iniciar sesion
-                    </span>
-
+                    <div class="flex-col-c p-t-170 p-b-40">
+                        <span class="login100-form-title">
+                            Ayudando a la Pandemia
+                        </span>
+                    </div>
+                    
                     <div class="m-b-16" data-validate="Please enter username">
                         <!--input class="input100" type="text" name="username" placeholder="Usuario"-->
                         @Html.TextBoxFor(m => m.Email, new { @class = "input100", placeholder = "Email" })
@@ -22,9 +24,9 @@
                         <span class="focus-input100"></span>
                     </div>
 
-                    <div class="" data-validate="Please enter password">
+                    <div class="m-b-16" data-validate="Please enter password">
                         <!--input class="input100" type="password" name="pass" placeholder="Contraseña"-->
-                       
+
                         @Html.TextBoxFor(m => m.Password, new { type = "password", @class = "input100", placeholder = "Contraseña" })
                         @Html.ValidationMessageFor(m => m.Password)
                         <span class="focus-input100"></span>
