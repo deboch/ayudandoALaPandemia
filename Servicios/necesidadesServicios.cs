@@ -81,7 +81,7 @@ namespace Servicios
                 .obtenerTotalValoraciones(idNecesidad)
                 .ToList()
                 .Count;
-            decimal porcentaje = ((decimal)valoracionesLike / (decimal)valoracionesTotal) * 100;
+            decimal porcentaje = valoracionesTotal != 0 ? ((decimal)valoracionesLike / (decimal)valoracionesTotal) * 100 : 0;
             return Decimal.Truncate(porcentaje);
         }
 
@@ -114,6 +114,11 @@ namespace Servicios
         }
         public int CrearDenuncia(Denuncias denuncia)
         {
+            List<Denuncias> denuncias = managerRepository.necesidadesRepository.ObtenerDenunciasPorNecesidad(denuncia.IdNecesidad);
+            if (denuncias.Count() >= 5)
+            {
+                managerRepository.necesidadesRepository.PasarAEstadoDeRevision(denuncia.IdNecesidad);
+            }
             return managerRepository.necesidadesRepository.CrearDenuncia(denuncia);
         }
         public List<Denuncias> ObtenerDenunciasPorUserId(int userId)

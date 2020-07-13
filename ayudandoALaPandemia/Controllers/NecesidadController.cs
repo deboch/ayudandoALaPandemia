@@ -42,8 +42,10 @@ namespace ayudandoALaPandemia.Controllers
             Usuarios usuario = registroServicios.ObtenerPorId(userId);
             NecesidadesValoraciones valoracion = necesidadesServicios.ObtenerValoracionPorUsuarioNecesidad(usuario.IdUsuario, necesidad.IdNecesidad);
             int totalDeMegusta = necesidadesServicios.ObtenerSumaTotalDeValoraciones(idNecesidad);
+            decimal porcentaje = necesidadesServicios.CalcularPorcentaje(idNecesidad);
             NecesidadBuilder builder = new NecesidadBuilder();
             NecesidadDto necesidadDto = builder.necesidadDtoParaDetalle(necesidad, usuario, valoracion);
+            necesidadDto.estrellas = porcentaje;
 
             ViewBag.TotalDeMeGusta = totalDeMegusta;
             decimal cant;
@@ -226,6 +228,11 @@ namespace ayudandoALaPandemia.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.Motivos = denunciasServicio.obtenerTodosLosMotivos().Select(v => new SelectListItem()
+                {
+                    Text = v.Descripcion,
+                    Value = v.IdMotivoDenuncia.ToString()
+                });
                 return View(denunciaDto);
             }
 

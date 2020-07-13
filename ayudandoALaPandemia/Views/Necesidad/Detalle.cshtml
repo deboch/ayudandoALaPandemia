@@ -98,6 +98,13 @@
                 <li>Tipo de donación: @ViewBag.Necesidad.tipoDonacion</li>
                 <li>Contacto: @ViewBag.Necesidad.telefono</li>
                 <li>Creado por: @ViewBag.Necesidad.NombreUsuario @ViewBag.Necesidad.ApellidoUsuario </li>
+
+                    <li>
+                        <div class="star-ratings-sprite">
+                            <span style="width:@ViewBag.Necesidad.estrellas%" class="star-ratings-sprite-rating"></span>
+                        </div>
+                    </li>
+                
                 <!--li>Total de donaciones: @ViewBag.Total</li-->
                 <li>Total Me gusta: @ViewBag.TotalDeMeGusta</li>
             </ul>

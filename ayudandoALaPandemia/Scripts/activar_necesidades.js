@@ -31,6 +31,7 @@ const activarNecesidades = async (isActive) => {
                                  </div>
                                 <div class="col-md-5">
                                     <h3>${necesidad.Nombre}</h3>
+                                    <p>Finaliza: ${necesidad.FechaFin}</p>
                                     ${necesidad.Valoracion != null ?
                                     `<div class='star-ratings-sprite'>
                                             <span style='width:${necesidad.Valoracion}%' class='star-ratings-sprite-rating'></span>
