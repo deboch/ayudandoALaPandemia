@@ -40,7 +40,7 @@
                         <td>@counter</td>
                         <td>@item.FechaCreacion</td>
                         <td>@item.IdDenuncia</td>
-                        <td><a class="btn-sm btn-primary" href="/Admin/DetalleNecesidad?id=@item.IdNecesidad">Detalle</a></td>
+                        <td><a class="btn-sm btn-primary" href="@("/necesidad/" + @item.IdNecesidad + "/detalle")">Detalle</a></td>
                         <td>@item.Comentarios</td>
                         <td><a class="btn-sm btn-success" href="~/Admin/AceptarDenuncia?id=@item.IdDenuncia">Aceptar</a></td>
                         <td><a class="btn-sm btn-danger" href="~/Admin//DesestimarDenuncia?id=@item.IdDenuncia">Rechazar</a></td>

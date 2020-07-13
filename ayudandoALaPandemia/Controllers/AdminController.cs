@@ -20,18 +20,18 @@ namespace ayudandoALaPandemia.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult DesestimarDenuncia(Denuncias denuncia)
+        [HttpGet]
+        public ActionResult DesestimarDenuncia(int id)
         {
-            Denuncias miDenuncia = denunciasServicio.buscarPorId(denuncia.IdDenuncia);
+            Denuncias miDenuncia = denunciasServicio.buscarPorId(id);
             denunciasServicio.desestimarDenuncia(miDenuncia);
             return RedirectToAction("verDenuncias", "Admin");
         }
 
-        [HttpPost]
-        public ActionResult AceptarDenuncia(Denuncias denuncia)
+        [HttpGet]
+        public ActionResult AceptarDenuncia(int id)
         {
-            Denuncias miDenuncia = denunciasServicio.buscarPorId(denuncia.IdDenuncia);
+            Denuncias miDenuncia = denunciasServicio.buscarPorId(id);
             denunciasServicio.aceptarDenuncia(miDenuncia);
             emailServicios.denunciaAceptada(miDenuncia.Usuarios.Email, miDenuncia.Necesidades.Descripcion, miDenuncia.Usuarios.UserName);
 
