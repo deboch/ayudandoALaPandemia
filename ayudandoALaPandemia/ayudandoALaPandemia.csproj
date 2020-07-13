@@ -196,6 +196,7 @@
     <Compile Include="Utilities\ImagenesUtility.cs" />
     <Compile Include="Utilities\StringUtility.cs" />
     <Compile Include="Validators\DateValidator.cs" />
+    <Compile Include="Validators\DateYearsOldValidator.cs" />
     <Compile Include="ViewModels\checkboxDto.cs" />
     <Compile Include="ViewModels\DenunciaNecesidadDto.cs" />
     <Compile Include="ViewModels\DonacionMonetariaDto.cs" />

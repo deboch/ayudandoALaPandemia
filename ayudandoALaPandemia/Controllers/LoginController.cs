@@ -18,6 +18,8 @@ namespace ayudandoALaPandemia.Controllers
         [HttpPost]
         public ActionResult Index(Usuarios user)
         {
+            string returnUrl = Request.UrlReferrer.ToString();
+
             if (!ModelState.IsValid)
                 return View(user);
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using ayudandoALaPandemia.Validators;
 
 namespace ayudandoALaPandemia.ViewModels
 {
@@ -17,7 +18,7 @@ namespace ayudandoALaPandemia.ViewModels
         [Required]
         public string apellido { get; set; }
         
-        [Range(typeof(DateTime), "1/1/2002", "1/1/2199", ErrorMessage = "Debe ser mayor de 18")]
+        [DateYearsOldValidator(ErrorMessage = "Debe ser mayor de 18")]
         public DateTime fechaNacimiento { get; set; }
         public string username { get; set; }
 

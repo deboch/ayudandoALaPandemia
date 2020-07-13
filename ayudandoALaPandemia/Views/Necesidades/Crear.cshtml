@@ -33,11 +33,15 @@
             <h3>Crear Necesidad</h3>
             @if (ViewBag.Incompleto != null)
             {
-                <p class="text-danger">@ViewBag.Incompleto</p>
+                <div class="alert alert-danger mt-4 mb-4" role="alert">
+                    <p class="text-danger">@ViewBag.Incompleto</p>
+                </div>
             }
             @if (ViewBag.NoPermitir != null)
             {
-                <p class="text-danger">@ViewBag.NoPermitir</p>
+                <div class="alert alert-danger mt-4 mb-4" role="alert">
+                    <p class="text-danger">@ViewBag.NoPermitir</p>
+                </div>
             }
             @using (Html.BeginForm("Crear", "Necesidades", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
