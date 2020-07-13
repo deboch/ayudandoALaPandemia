@@ -4,12 +4,13 @@
     ViewBag.Title = "donacionInsumos";
     Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
 }
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            @Html.ActionLink("Necesidades", "Index", "Necesidades", null, new { @class = "breadcrumb-item" })
-        </li>
-        <li class="breadcrumb-item active">Crear donación</li>
-    </ol>
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        @Html.ActionLink("Necesidades", "Index", "Necesidades", null, new { @class = "breadcrumb-item" })
+    </li>
+    <li class="breadcrumb-item active">Crear donación</li>
+</ol>
 <section class="container">
     <h2>Total de lo que necesito</h2>
     <div class="row">
@@ -63,6 +64,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr style="display: none;">@{bool flag = false; }</tr>
                         @foreach (var p in ViewBag.TotalInsumos)
                         {
                         <tr>
@@ -75,12 +77,14 @@
                             <td>@p.Nombre</td>
                             @if (Model.insumos[i].cantidad == 0)
                             {
+                                <td style="display: none">@(flag = true)</td>
                                 <td>
                                     @Html.TextBoxFor(m => m.insumos[i].cantidad, new { @disabled = true, @class = "form-control", placeholder = "Cantidad" })
                                 </td>
-                            } else
+                            }
+                            else
                             {
-
+                                <td style="display: none">@(flag = false)</td>
                                 <td>
                                     @Html.TextBoxFor(m => m.insumos[i].cantidad, new { @class = "form-control", placeholder = "Cantidad" })
                                 </td>
@@ -90,12 +94,17 @@
                         }
                     </tbody>
                 </table>
+                <div>
+                    @if (flag)
+                    {
+                        <button type="submit" disabled class="btn btn-success" id="sendMessageButton">Finalizada</button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-primary" id="sendMessageButton">Crear donación</button>
+                    }
+                </div>
 
-
-
-                <div id="success"></div>
-                <!-- For success/fail messages -->
-                <button type="submit" class="btn btn-primary" id="sendMessageButton">Crear donación</button>
             }
         </div>
     </div>

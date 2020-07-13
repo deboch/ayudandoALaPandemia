@@ -312,8 +312,16 @@ iframe {
   transition: all 0.4s;
 }
 
+.login100-form-title a {
+	color: #fff;
+}
+
+.login100-form-title a:hover {
+	color: #fff;
+}
+
 .login100-form-btn:hover {
-  background-color: #007bff;
+	background-color: #007bff;
 }
 
 
