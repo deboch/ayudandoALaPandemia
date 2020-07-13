@@ -12,11 +12,11 @@
             <div class="container">
                 @if (Session["email"] != null)
                 {
-                    @Html.ActionLink("Ayudando a la pandemia", "Index", "Necesidades", null, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Ayudando en la pandemia", "Index", "Necesidades", null, new { @class = "navbar-brand" })
                 }
                 else
                 {
-                    @Html.ActionLink("Ayudando a la pandemia", "Index", "Home", null, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Ayudando en la pandemia", "Index", "Home", null, new { @class = "navbar-brand" })
                 }
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

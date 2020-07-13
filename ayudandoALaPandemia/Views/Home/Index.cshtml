@@ -19,7 +19,7 @@
             @foreach (var p in ViewBag.Necesidades)
             {
                 <div class="col-lg-4 mb-4">
-                    <a href="@(Session["email"] != null ? "/necesidad/@p.IdNecesidad/detalle" : "/login" )" class="card h-100">
+                    <a href="@("/necesidad/" + @p.IdNecesidad + "/detalle")" class="card h-100">
                         <h3 class="card-header"><strong>"@p.Nombre"</strong></h3>
                         <!--p>Creada por: @Session["email"]</!-p-->
                         <img src="../..@p.Foto" width="100%" height="auto" />

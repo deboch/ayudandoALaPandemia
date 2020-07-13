@@ -80,7 +80,7 @@ namespace ayudandoALaPandemia.Controllers
                 return View(necesidadDto);
             }
 
-            if (necesidadesDelUsuario.Count >= 10)
+            if (necesidadesDelUsuario.Count >= 3)
             {
                 ViewBag.NoPermitir = "Ya posee 3 necesidades abiertas";
                 return View(necesidadDto);

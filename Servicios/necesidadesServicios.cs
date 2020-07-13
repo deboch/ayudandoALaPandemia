@@ -60,13 +60,13 @@ namespace Servicios
 
         public bool Valorar(int like, int userId, int idNecesidad)
         {
-
             bool valoracion = managerRepository.necesidadesRepository.Valorar(like, userId, idNecesidad);
-            managerRepository.necesidadesRepository.CalcularPorcentaje(idNecesidad);
+            decimal porcentaje = this.CalcularPorcentaje(idNecesidad);
+            managerRepository.necesidadesRepository.CalcularPorcentaje(idNecesidad, porcentaje);
             return valoracion;
         }
 
-        public int CalcularPorcentaje(int idNecesidad)
+        public decimal CalcularPorcentaje(int idNecesidad)
         {
             int valoracionesLike =
                 managerRepository
@@ -81,8 +81,8 @@ namespace Servicios
                 .obtenerTotalValoraciones(idNecesidad)
                 .ToList()
                 .Count;
-            int porcentaje = (valoracionesLike / valoracionesTotal) * 100;
-            return porcentaje;
+            decimal porcentaje = ((decimal)valoracionesLike / (decimal)valoracionesTotal) * 100;
+            return Decimal.Truncate(porcentaje);
         }
 
         public Necesidades Modificar(Necesidades necesidad)
