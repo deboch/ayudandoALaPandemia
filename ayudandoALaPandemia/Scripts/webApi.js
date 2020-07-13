@@ -8,10 +8,7 @@ const getDonaciones = async (userId) => {
         await
             $.ajax({
                 type: 'get',
-                url: `https://localhost:44301/api/necesidad`,
-                data: {
-                    userId: parseInt(userId)
-                },
+                url: "https://localhost:44301/api/necesidad/" + parseInt(userId),
                 success: function (response) {
                     const jsonResponse = response;
                     const monetarias = jsonResponse.filter(function (v) { return ( v.tipoDonacion === 1 ) });
@@ -26,7 +23,7 @@ const getDonaciones = async (userId) => {
                         return (
                             `
                                     <div class='col-lg-4 mb-4' >
-                                        <a href='/necesidad/' + ${ donacion.IdNecesidad} + '/detalle' class='card h-100' >
+                                        <a href='/necesidad/${ donacion.idNecesidad}/detalle' class='card h-100' >
                                             <h4 class='card-header'>${ donacion.nombre}</h4>
                                             <div class='card-body'>
                                                 <p class='card-text'>Fecha de creacion: <strong>${donacion.fechaNecesidad}</strong></p>

@@ -19,10 +19,10 @@ namespace ServicioWeb.Controllers
             this.managerRepository = new ManagerRepository();
         }
 
-        public List<DonacionesDto> Get(int userId)
+        public List<DonacionesDto> Get(int id)
         {
             List<DonacionesDto> lista = new List<DonacionesDto>();
-            List<Necesidades> necesidadesEF = managerRepository.necesidadesRepository.ObtenerPorUserId(userId);
+            List<Necesidades> necesidadesEF = managerRepository.necesidadesRepository.ObtenerPorUserId(id);
             
             foreach (var p in necesidadesEF)
             {
