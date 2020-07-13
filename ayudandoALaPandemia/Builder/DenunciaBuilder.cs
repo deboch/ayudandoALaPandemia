@@ -18,7 +18,7 @@ namespace ayudandoALaPandemia.Builder
             nuevaDenuncia.IdMotivo = denunciaDto.motivoDenunciaId;
             nuevaDenuncia.IdUsuario = denunciaDto.usuarioId;
             nuevaDenuncia.FechaCreacion = Convert.ToDateTime(DateTime.Now.ToString("dd-MMM-yyyy"));
-            nuevaDenuncia.Estado = 0;
+            nuevaDenuncia.Estado = 3;
             return nuevaDenuncia;
         }
     }
