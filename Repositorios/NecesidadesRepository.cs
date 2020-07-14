@@ -129,7 +129,7 @@ namespace Repositorios
             try
             {
                 return Context.Necesidades
-                    .Where(b => (int)b.IdUsuarioCreador == (int)id)
+                    .Where(v => v.Estado == 0 && v.IdUsuarioCreador == id)
                     .OrderByDescending(v => v.FechaCreacion)
                     .ToList();
 
@@ -143,7 +143,7 @@ namespace Repositorios
         public List<Necesidades> ObtenerNecesidadesSegunActivacion(bool isActive, int userId)
         {
             int estado = isActive ? 0 : 1;
-            return Context.Necesidades.Where(v => v.Estado == estado && v.IdUsuarioCreador == userId).ToList();
+            return Context.Necesidades.Where(v => (v.Estado == estado && v.IdUsuarioCreador == userId)).ToList();
         }
 
         public List<Necesidades> ObtenerTodasMenosPorUserId(int userId)

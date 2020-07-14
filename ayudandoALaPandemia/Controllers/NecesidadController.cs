@@ -28,7 +28,6 @@ namespace ayudandoALaPandemia.Controllers
             }
         }
 
-        // necesidad/{id}/detalle
         [HttpGet]
         public ActionResult Detalle()
         {

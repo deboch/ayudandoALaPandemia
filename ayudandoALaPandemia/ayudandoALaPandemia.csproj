@@ -340,7 +340,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include=".gitignore" />
-    <Content Include="Scripts\activar_necesidades.js" />
+    <Content Include="Scripts\bundles\activar_necesidades.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -461,8 +461,8 @@
     <Content Include="Content\Template\vendor\jquery\jquery.min.map" />
     <Content Include="Content\Template\vendor\jquery\jquery.slim.min.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Scripts\buscador.js" />
-    <Content Include="Scripts\crear_necesidad.js" />
+    <Content Include="Scripts\bundles\buscador.js" />
+    <Content Include="Scripts\bundles\crear_necesidad.js" />
     <Content Include="Scripts\hoverIntent.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -479,7 +479,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\webApi.js" />
+    <Content Include="Scripts\bundles\webApi.js" />
     <Content Include="template\css\style.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

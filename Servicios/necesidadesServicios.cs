@@ -15,8 +15,6 @@ namespace Servicios
 
         public int Crear(Necesidades necesidad)
         {
-            Necesidades nuevaNecesidad = new Necesidades();
-
             Usuarios usuario = managerRepository.usuarioRepository.ObtenerPorId(necesidad.IdUsuarioCreador);
             necesidad.Usuarios = usuario;
 
@@ -30,11 +28,7 @@ namespace Servicios
 
         public List<Necesidades> ObtenerNecesidadesSegunActivacion(bool isActive, int userId)
         {
-            if (isActive)
-            {
-                return managerRepository.necesidadesRepository.ObtenerNecesidadesSegunActivacion(isActive, userId);
-            }
-            return this.ObtenerPorUserId(userId);
+             return managerRepository.necesidadesRepository.ObtenerNecesidadesSegunActivacion(isActive, userId);   
         }
 
         public List<Necesidades> ObtenerTodasMenosPorUserId(int userId)

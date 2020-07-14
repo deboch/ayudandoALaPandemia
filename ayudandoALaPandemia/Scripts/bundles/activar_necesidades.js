@@ -38,7 +38,7 @@ const activarNecesidades = async (isActive) => {
                                         </div>`
                                     : ''
                                     }
-                                    <div class='badge'>
+                                    <div class='badge mb-4'>
                                         ${necesidad.TipoDonacion == 1 ? 'Monetaria' : 'Insumos'}
                                     </div>
                                     <div>
