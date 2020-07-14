@@ -12,6 +12,7 @@ namespace Servicios
         {
             var listaOrdenada = managerRepository.necesidadesRepository
                 .obtenerMasValoradas()
+                .Where(o => o.Estado != 1 && o.Estado != 3)
                 .OrderByDescending(x => x.Valoracion)
                 .Take(5)
                 .ToList();

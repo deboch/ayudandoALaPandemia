@@ -23,12 +23,14 @@ namespace Servicios
 
         public void desestimarDenuncia(Denuncias miDenuncia)
         {
-            managerRepository.denunciasRepository.desestimarDenuncia(miDenuncia);
+            Necesidades miNececidad = managerRepository.necesidadesRepository.ObtenerPorId(miDenuncia.IdNecesidad);
+            managerRepository.denunciasRepository.desestimarDenuncia(miDenuncia, miNececidad);
         }
 
         public void aceptarDenuncia(Denuncias miDenuncia)
         {
-            managerRepository.denunciasRepository.aceptarDenuncia(miDenuncia);
+            Necesidades miNececidad = managerRepository.necesidadesRepository.ObtenerPorId(miDenuncia.IdNecesidad);
+            managerRepository.denunciasRepository.aceptarDenuncia(miDenuncia, miNececidad);
         }
 
         public List<MotivoDenuncia> obtenerTodosLosMotivos()

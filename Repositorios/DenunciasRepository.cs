@@ -24,15 +24,17 @@ namespace Repositorios
             return Context.Denuncias.Where(o => o.IdDenuncia == id).FirstOrDefault();
         }
 
-        public void desestimarDenuncia(Denuncias miDenuncia)
+        public void desestimarDenuncia(Denuncias miDenuncia, Necesidades miNecesidad)
         {
             miDenuncia.Estado = 0;
+            miNecesidad.Estado = 0;
             Context.SaveChanges();
         }
 
-        public void aceptarDenuncia(Denuncias miDenuncia)
+        public void aceptarDenuncia(Denuncias miDenuncia, Necesidades miNecesidad)
         {
             miDenuncia.Estado = 1;
+            miNecesidad.Estado = 1;
             Context.SaveChanges();
         }
 
