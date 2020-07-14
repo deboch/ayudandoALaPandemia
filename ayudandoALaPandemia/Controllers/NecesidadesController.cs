@@ -71,18 +71,18 @@ namespace ayudandoALaPandemia.Controllers
         public ActionResult Crear(NecesidadDto necesidadDto)
         {
             int userId = (int)Session["id"];
-            Usuarios usuarioActual = registroServicios.ObtenerPorId(userId);
-            List<Necesidades> necesidadesDelUsuario = necesidadesServicios.ObtenerPorUserId(userId);
-            
-            if (usuarioActual.Foto == null)
-            {
-                ViewBag.Incompleto = "Completa tu perfil antes de crear una necesidad";
-                return View(necesidadDto);
-            }
+            NecesidadBuilder builder = new NecesidadBuilder();
 
-            if (necesidadesDelUsuario.Count >= 3)
+            if (!ModelState.IsValid)
+                return View(necesidadDto);
+
+            Dictionary<string, string> validaciones = necesidadesServicios.ObtenerValidaciones(userId);
+            Dictionary<string, string> validacionesNecesidadDto = builder.validarNecesidadDto(necesidadDto);
+
+            if (validaciones.Count != 0 || validacionesNecesidadDto.Count != 0)
             {
-                ViewBag.NoPermitir = "Ya posee 3 necesidades abiertas";
+                ViewBag.ValidacionesDeUsuario = validaciones;
+                ViewBag.ValidacionesNecesidadDto = validacionesNecesidadDto;
                 return View(necesidadDto);
             }
 
@@ -96,34 +96,6 @@ namespace ayudandoALaPandemia.Controllers
                 necesidadDto.foto = pathRelativoImagen;
             }
 
-            if (!ModelState.IsValid)
-                return View(necesidadDto);
-
-            if (necesidadDto.tipoDonacion == "1" && !(necesidadDto.dinero > 0) )
-            {
-                ViewBag.Dinero = "Debe ingresar un monto minimo";
-                return View(necesidadDto);
-            }
-
-            if (necesidadDto.tipoDonacion == "1" && necesidadDto.cbu.Length != 18 )
-            {
-                ViewBag.Cbu = "Debe ingresar un cbu valido de 18 numeros";
-                return View(necesidadDto);
-            }
-
-            if (necesidadDto.tipoDonacion == "0" && necesidadDto.insumos.Count > 0)
-            {
-                foreach (var p in necesidadDto.insumos)
-                {
-                    if (!(p.nombre != null && p.cantidad > 0))
-                    {
-                        ViewBag.Cantidad = "Debe ingresar correctamente un insumo";
-                        return View(necesidadDto);
-                    }
-                }
-            }
-
-            NecesidadBuilder builder = new NecesidadBuilder();
             Necesidades nuevaNecesidad = builder.toNecesidadesEntity(necesidadDto, userId);
             necesidadesServicios.Crear(nuevaNecesidad);
             

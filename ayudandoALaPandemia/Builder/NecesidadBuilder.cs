@@ -21,7 +21,7 @@ namespace ayudandoALaPandemia.Builder
             nuevaNecesidad.Foto = necesidadDto.foto;
             nuevaNecesidad.IdUsuarioCreador = userId;
             nuevaNecesidad.FechaCreacion = Convert.ToDateTime(DateTime.Now.ToString("dd-MMM-yyyy"));
-            nuevaNecesidad.Estado = 1;
+            nuevaNecesidad.Estado = 0;
 
             if (nuevaNecesidad.TipoDonacion == 1)
             {
@@ -161,6 +161,38 @@ namespace ayudandoALaPandemia.Builder
                 necesidadDto.referencias.Add(referenciaDto);
             }
             return necesidadDto;
+        }
+
+        internal Dictionary<string, string> validarNecesidadDto (NecesidadDto necesidadDto)
+        {
+            Dictionary<string, string> validacionNecesidadDto = new Dictionary<string, string>();
+            
+            if (necesidadDto.tipoDonacion == "1" && !(necesidadDto.dinero > 0))
+            {
+                validacionNecesidadDto.Add("Dinero", "Debe ingresar un monto minimo");
+            }
+
+            if (necesidadDto.cbu != null && necesidadDto.cbu.Length != 18)
+            {
+                validacionNecesidadDto.Add("Cbu", "Debe ingresar un cbu valido de 18 numeros");
+            }
+
+            if (necesidadDto.tipoDonacion == "1" && necesidadDto.cbu == null)
+            {
+                validacionNecesidadDto.Add("Cbu", "Debe ingresar un cbu");
+            }
+
+            if (necesidadDto.tipoDonacion == "0" && necesidadDto.insumos.Count > 0)
+            {
+                foreach (var p in necesidadDto.insumos)
+                {
+                    if (!(p.nombre != null && p.cantidad > 0))
+                    {
+                        validacionNecesidadDto.Add("Cantidad", "Debe ingresar correctamente un insumo");
+                    }
+                }
+            }
+            return validacionNecesidadDto;
         }
     }
 }

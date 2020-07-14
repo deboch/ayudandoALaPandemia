@@ -66,6 +66,26 @@ namespace Servicios
             return valoracion;
         }
 
+        public Dictionary<string, string> ObtenerValidaciones(int userId)
+        {
+            Dictionary<string, string> validaciones = new Dictionary<string, string>();
+
+            Usuarios usuarioActual = managerRepository.usuarioRepository.ObtenerPorId(userId);
+            List<Necesidades> necesidadesDelUsuario = this.ObtenerPorUserId(userId);
+
+            if (usuarioActual.Foto == null)
+            {
+                validaciones.Add("Incompleto", "Completa tu perfil antes de crear una necesidad");
+            }
+
+            if (necesidadesDelUsuario.Count >= 3)
+            {
+                validaciones.Add("NoPermitir", "Ya posee 3 necesidades abiertas");
+            }
+
+            return validaciones;
+        }
+
         public decimal CalcularPorcentaje(int idNecesidad)
         {
             int valoracionesLike =
