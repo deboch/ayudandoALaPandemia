@@ -142,7 +142,7 @@ namespace Repositorios
 
         public List<Necesidades> ObtenerNecesidadesSegunActivacion(bool isActive, int userId)
         {
-            int estado = isActive ? 1 : 0;
+            int estado = isActive ? 0 : 1;
             return Context.Necesidades.Where(v => v.Estado == estado && v.IdUsuarioCreador == userId).ToList();
         }
 
