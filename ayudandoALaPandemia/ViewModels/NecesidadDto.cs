@@ -38,7 +38,6 @@ namespace ayudandoALaPandemia.ViewModels
         [Required]
         public string tipoDonacion { get; set; }
 
-        [Required(ErrorMessage = "Debe agregar una foto")]
         public string foto { get; set; }
         
         public int idMonetaria { get; set; }

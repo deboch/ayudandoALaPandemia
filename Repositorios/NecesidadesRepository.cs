@@ -70,7 +70,13 @@ namespace Repositorios
             necesidadActual.Descripcion = necesidadModificada.Descripcion;
             necesidadActual.FechaFin = necesidadModificada.FechaFin;
             necesidadActual.TelefonoContacto = necesidadModificada.TelefonoContacto;
-            necesidadActual.Foto = necesidadModificada.Foto;
+            if(necesidadModificada.Foto == null)
+            {
+                necesidadActual.Foto = necesidadActual.Foto;
+            } else
+            {
+                necesidadActual.Foto = necesidadModificada.Foto;
+            }
 
             foreach (var p in necesidadModificada.NecesidadesReferencias)
             {

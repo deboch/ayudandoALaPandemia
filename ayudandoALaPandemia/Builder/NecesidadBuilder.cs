@@ -18,7 +18,10 @@ namespace ayudandoALaPandemia.Builder
             nuevaNecesidad.FechaFin = necesidadDto.fechaFin;
             nuevaNecesidad.TelefonoContacto = necesidadDto.telefono;
             nuevaNecesidad.TipoDonacion = necesidadDto.tipoDonacion == "1" ? 1 : 0;
-            nuevaNecesidad.Foto = necesidadDto.foto;
+            if (necesidadDto.foto != null)
+            {
+                nuevaNecesidad.Foto = necesidadDto.foto;
+            }
             nuevaNecesidad.IdUsuarioCreador = userId;
             nuevaNecesidad.FechaCreacion = Convert.ToDateTime(DateTime.Now.ToString("dd-MMM-yyyy"));
             nuevaNecesidad.Estado = 0;
@@ -175,6 +178,11 @@ namespace ayudandoALaPandemia.Builder
             if (necesidadDto.cbu != null && necesidadDto.cbu.Length != 18)
             {
                 validacionNecesidadDto.Add("Cbu", "Debe ingresar un cbu valido de 18 numeros");
+            }
+
+            if (necesidadDto.foto == null)
+            {
+                validacionNecesidadDto.Add("Foto", "Debe agregar una foto");
             }
 
             if (necesidadDto.tipoDonacion == "1" && necesidadDto.cbu == null)
