@@ -22,9 +22,14 @@ namespace ServicioWeb.Controllers
         public List<DonacionesDto> Get(int id)
         {
             List<DonacionesDto> lista = new List<DonacionesDto>();
-            List<Necesidades> necesidadesEF = managerRepository.necesidadesRepository.ObtenerPorUserId(id);
             
-            foreach (var p in necesidadesEF)
+            //managerRepository.donacionesMonetariasRepository.ObtenerDonacionesMonetariasUserPorId(id)[0];
+            List<Necesidades> necesidadesEF = managerRepository.donacionesInsumosRepository.ObtenerDonacionesInsumosPorUserId(id).Select(o => o.NecesidadesDonacionesInsumos).Select(o=> o.Necesidades).ToList();
+            necesidadesEF.AddRange(managerRepository.donacionesMonetariasRepository.ObtenerDonacionesMonetariasUserPorId(id).Select(o => o.NecesidadesDonacionesMonetarias).Select(o=> o.Necesidades).ToList());
+
+            //List<Necesidades> necesidadesEF = managerRepository.necesidadesRepository.ObtenerPorUserId(id);
+            
+            foreach (var p in necesidadesEF.Distinct())
             {
                 DonacionesDto donacionesDto = new DonacionesDto();
                 donacionesDto.fechaNecesidad = p.FechaCreacion;

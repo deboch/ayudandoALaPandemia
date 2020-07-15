@@ -106,7 +106,7 @@
                     <div class="controls">
                         <label for="ejemplo_archivo_1">Foto</label>
                         @Html.TextBoxFor(m => m.foto, new { type = "file", @Value = Model.foto, @class = "input-file" })
-                        @Html.ValidationMessageFor(m => m.foto)
+                        @*@Html.ValidationMessageFor(m => m.foto)*@
                     </div>
                     @if (Model.foto != null)
                     {

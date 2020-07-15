@@ -114,7 +114,13 @@ namespace ayudandoALaPandemia.Controllers
         {
             var userId = (int)Session["id"];
             List<Necesidades> necesidades = necesidadesServicios.ObtenerNecesidadesSegunActivacion(isActive, userId);
-            return JsonConvert.SerializeObject(necesidades, Formatting.Indented,
+            List<NecesidadDto> necesidadesdto = new List<NecesidadDto>();
+            NecesidadBuilder builder = new NecesidadBuilder();
+            foreach (var nec in necesidades)
+            {
+                necesidadesdto.Add(builder.trasnformarNecesidadANecesidadDto(nec));
+            }
+            return JsonConvert.SerializeObject(necesidadesdto, Formatting.Indented,
                 new JsonSerializerSettings
                 {
                     ReferenceLoopHandling = ReferenceLoopHandling.Ignore
