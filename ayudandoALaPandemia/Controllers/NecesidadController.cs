@@ -83,14 +83,10 @@ namespace ayudandoALaPandemia.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            DonacionMonetariaDto donacionMonetariaDto = new DonacionMonetariaDto();
             int idNecesidad = Int32.Parse(Request.Url.Segments[2].Remove(Request.Url.Segments[2].Length - 1));
-            NecesidadesDonacionesMonetarias donacion = donacionesMonetariasServicios.ObtenerPorNecesidadId(idNecesidad);
-            decimal donacionesMonetarias = donacionesMonetariasServicios.ObtenerTodasLasDonaciones(donacion);
-            donacionMonetariaDto.totalRestante = donacion.Dinero - donacionesMonetarias;
-            donacionMonetariaDto.totalDeDinero = donacion.Dinero;
-            donacionMonetariaDto.IdNecesidadDonacionMonetaria = donacion.IdNecesidadDonacionMonetaria;
-            donacionMonetariaDto.IdUsuario = (int)Session["id"];
+            int userId = (int)Session["id"];
+            DonacionMonetariaBuilder builder = new DonacionMonetariaBuilder();
+            DonacionMonetariaDto donacionMonetariaDto = builder.entidadADto(idNecesidad, userId);
             return View(donacionMonetariaDto);
         }
 
@@ -125,10 +121,18 @@ namespace ayudandoALaPandemia.Controllers
         [HttpPost]
         public ActionResult donacionMonetaria(DonacionMonetariaDto donacionMonetariaDto)
         {
+            DonacionMonetariaBuilder builder = new DonacionMonetariaBuilder();
+            int idNecesidad = Int32.Parse(Request.Url.Segments[2].Remove(Request.Url.Segments[2].Length - 1));
+            int userId = (int)Session["id"];
+
             if (!ModelState.IsValid)
             {
-                return View(donacionMonetariaDto);
+                DonacionMonetariaDto donacionMonetariaDtoValidada = builder.entidadADto(idNecesidad, userId);
+                donacionMonetariaDtoValidada.dinero = donacionMonetariaDto.dinero;
+                donacionMonetariaDtoValidada.comprobante = donacionMonetariaDto.comprobante;
+                return View(donacionMonetariaDtoValidada);
             }
+
             if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
             {
                 //TODO: Agregar validacion para confirmar que el archivo es una imagen
@@ -138,7 +142,7 @@ namespace ayudandoALaPandemia.Controllers
                 string pathRelativoImagen = ImagenesUtility.Guardar(Request.Files[0], nombreSignificativo);
                 donacionMonetariaDto.comprobante = pathRelativoImagen;
             }
-            DonacionMonetariaBuilder builder = new DonacionMonetariaBuilder();
+
             DonacionesMonetarias donacionMonetaria = builder.dtoAEntidad(donacionMonetariaDto);
             necesidadesServicios.donacionMonetaria(donacionMonetaria);
             TempData["exito"] = "Donaste con exito!!";
