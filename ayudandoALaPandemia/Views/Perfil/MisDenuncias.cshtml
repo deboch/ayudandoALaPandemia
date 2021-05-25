@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "MisDenuncias";
+    Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
+}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        @Html.ActionLink("Mi perfil", "Index", "Perfil", null, new { @class = "breadcrumb-item" })
+    </li>
+    <li class="breadcrumb-item active">Mis denuncias</li>
+</ol>
+
+<section id="main-content">
+
+    <section class="container">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Número de denuncia</th>
+                    <th scope="col">Comentarios
+                    <th scope="col">Estado</th>
+                    <th scope="col">Motivo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewBag.MisDenuncias != null)
+                {
+
+                    foreach (var p in ViewBag.MisDenuncias)
+                    {
+                        <tr>
+
+                            <td>@p.IdDenuncia</td>
+                            <td>@p.Comentarios</td>
+                            <th>@p.Estado</th>
+                            <td>@p.MotivoDenuncia.Descripcion</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+    </section>
+</section>
+

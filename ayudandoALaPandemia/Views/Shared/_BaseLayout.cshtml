@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "_BaseLayout";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
+    <meta name="author" content="GeeksLabs">
+    
+    <title>Ayudando a la pandemia</title>
+    @Styles.Render("~/Content/template_css")
+</head>
+<body>
+    @RenderBody()
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/bundles/buscador.js")
+    @Scripts.Render("~/Scripts/bundles/crear_necesidad.js")
+    @Scripts.Render("~/Scripts/bundles/activar_necesidades.js")
+    @Scripts.Render("~/bundles/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/bundles/webApi.js")
+    <script  src = "https://unpkg.com/ionicons@5.1.2/dist/ionicons.js" > </script >
+    <!--script src="~/Template/vendor/jquery/jquery.min.js"></!-script>
+    <script src="~/Template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script-->
+</body>
+
+</html>

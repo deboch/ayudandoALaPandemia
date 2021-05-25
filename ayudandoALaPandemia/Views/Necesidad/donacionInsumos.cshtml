@@ -1,0 +1,112 @@
+﻿@model ayudandoALaPandemia.ViewModels.NecesidadDto
+
+@{
+    ViewBag.Title = "donacionInsumos";
+    Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        @Html.ActionLink("Necesidades", "Index", "Necesidades", null, new { @class = "breadcrumb-item" })
+    </li>
+    <li class="breadcrumb-item active">Crear donación</li>
+</ol>
+<section class="container">
+    <h2>Total de lo que necesito</h2>
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre de insumo</th>
+                    <th scope="col">Cantidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in ViewBag.TotalInsumos)
+                {
+                    <tr>
+                        <td>@p.IdNecesidadDonacionInsumo</td>
+                        <td>@p.Nombre</td>
+                        <td>@p.Cantidad</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8 mb-4">
+            @using (Html.BeginForm("donacionInsumos", "Necesidad", FormMethod.Post))
+            {
+                <div class="row">
+                    @foreach (var p in ViewBag.Cantidades)
+                    {
+                        <div class="col-lg-4 mb-4">
+                            <div class="card h-100">
+                                <h3 class="card-header">@p.Key</h3>
+                                <div class="card-body">
+                                    <div class="display-4">@p.Value</div>
+                                    <div class="font-italic">cantidad restante</div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+                @Html.TextBoxFor(m => m.idUsuario, new { type = "hidden", @Value = @ViewBag.userId, @class = "form-control" })
+                <span style="display:none">@{int i = 0;}</span>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Insumo</th>
+                            <th>Cantidad a donar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="display: none;">@{bool flag = false; }</tr>
+                        @foreach (var p in ViewBag.TotalInsumos)
+                        {
+                        <tr>
+                            <td style="display: none">
+                                @Html.TextBoxFor(m => m.Id, new { @Value = @p.IdNecesidad, type = "hidden", @class = "form-control" })
+                            </td>
+                            <td style="display: none">
+                                @Html.TextBoxFor(m => m.insumos[i].id, new { @Value = @p.IdNecesidadDonacionInsumo, type = "hidden", @class = "form-control" })
+                            </td>
+                            <td>@p.Nombre</td>
+                            @if (Model.insumos[i].cantidad == 0)
+                            {
+                                <td style="display: none">@(flag = true)</td>
+                                <td>
+                                    @Html.TextBoxFor(m => m.insumos[i].cantidad, new { @disabled = true, @class = "form-control", placeholder = "Cantidad" })
+                                </td>
+                            }
+                            else
+                            {
+                                <td style="display: none">@(flag = false)</td>
+                                <td>
+                                    @Html.TextBoxFor(m => m.insumos[i].cantidad, new { @class = "form-control", placeholder = "Cantidad" })
+                                </td>
+                            }
+                        </tr>
+                            <span style="display:none">@(i++)</span>
+                        }
+                    </tbody>
+                </table>
+                <div>
+                    @if (flag)
+                    {
+                        <button type="submit" disabled class="btn btn-success" id="sendMessageButton">Finalizada</button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-primary" id="sendMessageButton">Crear donación</button>
+                    }
+                </div>
+
+            }
+        </div>
+    </div>
+</section>
+<!-- /.row -->

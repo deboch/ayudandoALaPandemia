@@ -1,0 +1,149 @@
+﻿
+@{
+    ViewBag.Title = "_NecesidadesLayout";
+}
+@{
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+
+
+    <body>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+                @if (Session["email"] != null)
+                {
+                    @Html.ActionLink("Ayudando en la pandemia", "Index", "Necesidades", null, new { @class = "navbar-brand" })
+                }
+                else
+                {
+                    @Html.ActionLink("Ayudando en la pandemia", "Index", "Home", null, new { @class = "navbar-brand" })
+                }
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        @if (Session["email"] != null)
+                        {
+                            <li class="nav-item">
+                                @using (Html.BeginForm("Index", "Necesidades", FormMethod.Get))
+                                {
+                                    @Html.TextBox("keyword", null, new { @class = "form-control", placeholder = "Buscar necesidades" })
+                                }
+                            </li>
+                        }
+                        @if (Session["email"] != null && (int)Session["tipo"] == 1)
+                        {
+                            <li class="nav-item">
+                                @Html.ActionLink("Crear Necesidad", "Crear", "Necesidades", null, new { @class = "nav-link" })
+                            </li>
+                            <!--li class="nav-item">
+                                @Html.ActionLink("Denuncias", "Login", "Denuncias", null, new { @class = "nav-link" })
+                            </!-li-->
+                        }
+                        @if (Session["email"] != null && (int)Session["tipo"] == 0)
+                        {
+                            <li class="nav-item">
+                                @Html.ActionLink("Crear Necesidad", "Crear", "Necesidades", null, new { @class = "nav-link" })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Gest. Denuncias", "verDenuncias", "Admin", null, new { @class = "nav-link" })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Usuarios", "darAdminPermisos", "Admin", null, new { @class = "nav-link" })
+                            </li>
+                }
+                        <li class="nav-item">
+                            @Html.ActionLink("Acerca de", "acerca-de", "Home", null, new { @class = "nav-link" })
+                        </li>
+                        @if (Session["email"] == null)
+                        {
+                            <li class="nav-item">
+                                @Html.ActionLink("Iniciar sesión", "Index", "Login", null, new { @class = "nav-link" })
+                            </li>
+                        }
+
+                        @if (Session["email"] != null)
+                        {
+                            <li>
+                                <ul class="dropdown">
+                                    <li class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <button class="btn btn-secondary" type="button">
+                                            @Session["email"].ToString()
+                                        </button>
+                                    </li>
+                                    <li class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <ul>
+                                            <li class="nav-item">
+                                                @Html.ActionLink("Mi Perfil", "Index", "Perfil", null, new { @class = "nav-link" })
+                                            </li>
+                                            <li class="nav-item">
+                                                @Html.ActionLink("Mis Necesidades", "MisNecesidades", "Perfil", null, new { @class = "nav-link" })
+                                            </li>
+                                            <li class="nav-item">
+                                                @Html.ActionLink("Mis Denuncias", "MisDenuncias", "Perfil", null, new { @class = "nav-link" })
+                                            </li>
+                                            <li class="nav-item">
+                                                @Html.ActionLink("Mis Donaciones", "MisDonaciones", "Perfil", null, new { @class = "nav-link" })
+                                            </li>
+                                            <li class="nav-item">
+                                                @Html.ActionLink("Salir", "Logout", "Login", null, new { @class = "nav-link" })
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <header>
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner" role="listbox">
+                    <!-- Slide One - Set the background image for this slide in the line below -->
+                    <div class="carousel-item active" style="background-image: url('../../Content/Template/img/img1.jpg')">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h3></h3>
+                            <p></p>
+                        </div>
+                    </div>
+                    <!-- Slide Two - Set the background image for this slide in the line below -->
+                    <div class="carousel-item" style="background-image: url('../../Content/Template/img/img1.jpg')
+">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h3></h3>
+                            <p></p>
+                        </div>
+                    </div>
+                    <!-- Slide Three - Set the background image for this slide in the line below -->
+                    <div class="carousel-item" style="background-image: url('../../Content/Template/img/img1.jpg')
+">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h3></h3>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </header>
+        <!--header end-->
+
+        @RenderBody()
+        <div>
+            @Html.Partial("~/Views/Shared/pv_Footer.cshtml")
+        </div>
+    </body>

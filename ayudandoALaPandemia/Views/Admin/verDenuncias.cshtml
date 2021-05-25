@@ -1,0 +1,55 @@
+﻿@model Repositorios.Denuncias
+
+@{
+    ViewBag.Title = "Ver Denuncias";
+    Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
+
+   
+}
+@{
+    var denuncias = ViewBag.Denuncias;
+}
+<br />
+    <div class="container text-center">
+        <h3 class="text-center">Denuncias</h3>
+
+        <br />
+        <br />
+        <div class="container-fluid">
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Motivo</th>
+                        <th scope="col">Link</th>
+                        <th scope="col">Comentarios</th>
+                        <th scope="col">Aceptar</th>
+                        <th scope="col">Desestimar</th>
+                    </tr>
+                </thead>
+
+                @{
+                    int counter = 0;
+                }
+
+                @foreach (var item in ViewBag.Denuncias)
+                {
+                    counter = counter + 1;
+                    <tr>
+                        <td>@counter</td>
+                        <td>@item.FechaCreacion</td>
+                        <td>@item.IdDenuncia</td>
+                        <td><a class="btn-sm btn-primary" href="@("/necesidad/" + @item.IdNecesidad + "/detalle")">Detalle</a></td>
+                        <td>@item.Comentarios</td>
+                        <td><a class="btn-sm btn-success" href="~/Admin/AceptarDenuncia?id=@item.IdDenuncia">Aceptar</a></td>
+                        <td><a class="btn-sm btn-danger" href="~/Admin//DesestimarDenuncia?id=@item.IdDenuncia">Rechazar</a></td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+        <br />
+        <a class="btn btn-info" href="~/Home/Index">Home</a>
+        <br /><br />
+    </div>

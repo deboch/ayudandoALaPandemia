@@ -1,0 +1,50 @@
+﻿@model ayudandoALaPandemia.ViewModels.DenunciaNecesidadDto
+
+@{
+    ViewBag.Title = "Denunciar";
+    Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
+}
+
+@{
+    var motivos = ViewBag.Motivos;
+}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            @Html.ActionLink("Necesidades", "Index", "Necesidades", null, new { @class = "breadcrumb-item" })
+        </li>
+        <li class="breadcrumb-item active">Crear denuncia</li>
+    </ol>
+<div class="container">
+    @using (Html.BeginForm("Denunciar", "Necesidad", FormMethod.Post))
+    {
+        <!-- Page Heading/Breadcrumbs -->
+        <h1 class="mt-4 mb-3">
+            Denunciar
+        </h1>
+        <!-- /.row -->
+        <!-- Contact Form -->
+        <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
+        <div class="row">
+            <div class="col-lg-8 mb-4">
+                @Html.TextBoxFor(m => m.usuarioId, new { type = "hidden", @Value = Model.usuarioId, @class = "form-control" })
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Elegi tu motivo:</label>
+                        @Html.DropDownListFor(m => m.motivoDenunciaId, (IEnumerable<SelectListItem>)ViewBag.Motivos, "Elige uno", new { htmlAttributes = new { @class = "form-control", placeholder = "Elige uno" } })                        
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Comentario:</label>
+                        @Html.TextBoxFor(m => m.comentarios, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.comentarios)
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-md btn-secondary" id="sendEdicion">Guardar</button>
+
+            </div>
+
+        </div>
+        <!-- /.row -->
+    }
+</div>

@@ -1,0 +1,70 @@
+﻿@model Repositorios.Denuncias
+
+
+@{
+    ViewBag.Title = "altaDenuncia";
+}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        @Html.ActionLink("Necesidad", "Detalle", "Necesidad", null, new { @class = "breadcrumb-item" })
+    </li>
+    <li class="breadcrumb-item active">Crear denuncia</li>
+</ol>
+<!-- Page Content -->
+<div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">
+        Denuncia
+        <small>Crear</small>
+    </h1>
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="index.html">Home</a>
+        </li>
+        <li class="breadcrumb-item active">Denuncia</li>
+    </ol>
+
+    <!-- Content Row -->
+    <!-- Contact Form -->
+    <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
+    <div class="row">
+        <div class="col-lg-8 mb-4">
+            <h3>Denunciar necesidad</h3>
+            <form name="sentMessage" id="contactForm" novalidate>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Motivo:</label>
+                        @Html.LabelFor(m => m.IdMotivo)
+                        @Html.DropDownListFor(m => m.IdMotivo,
+                    new SelectList(Enum.GetValues(typeof(Repositorios.MotivoDenuncia))),
+                    "Selecciona motivo")
+                        <!--select class="form-control">
+                            <option>Fraude</option>
+                            <option>Indebida</option>
+                            <option>Violación de derechos</option>
+                            <option>Contiene información política</option>
+                        </!-select-->
+                        <p class="help-block"></p>
+                    </div>
+                </div>
+
+                <div class="control-group form-group">
+                    <div class="controls">
+                        @Html.LabelFor(m => m.Comentarios)
+                        @Html.TextAreaFor(m => m.Comentarios, new { @class = "form-control" })
+                        <!--textarea rows="10" cols="100" class="form-control" id="message" maxlength="999" style="resize:none"></!-textarea-->
+                    </div>
+                </div>
+                <div id="success"></div>
+                <!-- For success/fail messages -->
+                <button type="submit" class="btn btn-primary" id="sendDenuncia">Enviar denuncia</button>
+            </form>
+        </div>
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->

@@ -1,0 +1,185 @@
+﻿@model ayudandoALaPandemia.ViewModels.NecesidadDto
+
+@{
+    ViewBag.Title = "Crear";
+    Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
+}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        @Html.ActionLink("Necesidades", "Index", "Necesidades", null, new { @class = "breadcrumb-item" })
+    </li>
+    <li class="breadcrumb-item active">Crear necesidad</li>
+</ol>
+<!-- Page Content -->
+<div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">
+        Crea una necesidad
+    </h1>
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="index.html">Home</a>
+        </li>
+        <li class="breadcrumb-item active">Necesidad</li>
+    </ol>
+
+    <!-- Content Row -->
+    <!-- Contact Form -->
+    <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
+    <div class="row">
+        <div class="col-lg-8 mb-4">
+            @if (ViewBag.ValidacionesDeUsuario != null && ViewBag.ValidacionesDeUsuario.ContainsKey("Incompleto"))
+            {
+                <div class="alert alert-danger mt-4 mb-4" role="alert">
+                    <p class="text-danger">@ViewBag.ValidacionesDeUsuario["Incompleto"]</p>
+                </div>
+            }
+            @if (ViewBag.ValidacionesDeUsuario != null && ViewBag.ValidacionesDeUsuario.ContainsKey("NoPermitir"))
+            {
+                <div class="alert alert-danger mt-4 mb-4" role="alert">
+                    <p class="text-danger">@ViewBag.ValidacionesDeUsuario["NoPermitir"]</p>
+                </div>
+            }
+            @using (Html.BeginForm("Crear", "Necesidades", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Nombre de la necesidad:</label>
+                        @Html.TextBoxFor(m => m.nombre, new { @class = "form-control", placeholder = "Nombre" })
+                        @Html.ValidationMessageFor(m => m.nombre)
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Descripción de la necesidad:</label>
+                        @Html.TextBoxFor(m => m.descripcion, new { @class = "form-control", placeholder = "Descripcion" })
+                        @Html.ValidationMessageFor(m => m.descripcion)
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Fecha fin:</label>
+                        @Html.TextBoxFor(m => m.fechaFin, new { type = "date", @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.fechaFin)
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Teléfono de contacto:</label>
+                        @Html.TextBoxFor(m => m.telefono, new { @class = "form-control", placeholder = "Telefono" })
+                        @Html.ValidationMessageFor(m => m.telefono)
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Tipo:</label>
+                        @Html.DropDownListFor(m => m.tipoDonacion, new List<SelectListItem>() { 
+                            new SelectListItem { Text = "Monetaria", Value = "1", Selected = Model.tipoDonacion == "1" ? true : false }, 
+                            new SelectListItem { Text = "Insumos", Value = "0", Selected = Model.tipoDonacion == "0" ? true : false } }, 
+                            htmlAttributes: new { id = "tipoDonacion", @class = "form-control" })
+                        <p class="help-block"></p>
+                    </div>
+                </div>
+                <div id="monetaria">
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label>Cantidad necesitada ($):</label>
+                            @Html.TextBoxFor(m => m.dinero, new { @class = "form-control" })
+                            @if(ViewBag.ValidacionesNecesidadDto != null && ViewBag.ValidacionesNecesidadDto.ContainsKey("Dinero"))
+                            {
+                                <p>@ViewBag.ValidacionesNecesidadDto["Dinero"]</p>
+                            }
+                        </div>
+                    </div>
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label>CBU/Alias</label>
+                            @Html.TextBoxFor(m => m.cbu, new { @class = "form-control", placeholder = "Cbu" })
+                            @if (ViewBag.ValidacionesNecesidadDto != null && ViewBag.ValidacionesNecesidadDto.ContainsKey("Cbu"))
+                            {
+                                <p>@ViewBag.ValidacionesNecesidadDto["Cbu"]</p>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div id="insumos" class="mb-4">
+                    <label for="Insumo">Ingrese insumos</label>
+                    <div id="block-insumos" class="mb-2">
+                        @{int i = 0;}
+                        @if (Model.insumos == null)
+                        {
+                            <p>Haga click para agregar insumos</p>
+                        }
+                        else
+                        {
+
+                            foreach (var p in Model.insumos)
+                            {
+                                <p>Complete el insumo</p>
+                                <div class="block-insumo">
+                                    <div class="control-group form-group">
+                                        <div class="controls">
+                                            @Html.TextBoxFor(m => m.insumos[i].nombre, new { type = "text", @class = "form-control", placeholder = "nombre" })
+                                        </div>
+                                    </div>
+                                    <div class="control-group form-group">
+                                        <div class="controls">
+                                            @Html.TextBoxFor(m => m.insumos[i].cantidad, new { type = "text", @class = "form-control", placeholder = "cantidad" })
+                                        </div>
+                                    </div>
+                                </div>
+                                i = i + 1;
+                            }
+                            if (ViewBag.ValidacionesNecesidadDto != null && ViewBag.ValidacionesNecesidadDto.ContainsKey("Cantidad"))
+                            {
+                                <p>@ViewBag.ValidacionesNecesidadDto["Cantidad"]</p>
+                            }
+                        }
+                    </div>
+                    <div>
+                        <a href="javascript:void(0)" class="btn btn-primary quitar-insumo">Quitar</a>
+                        <a href="javascript:void(0)" class="btn btn-primary agregar-insumo">Agregar</a>
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Foto:</label>
+                        @Html.TextBoxFor(m => m.foto, new { type = "file", @class = "input-file" })
+                        @if (ViewBag.ValidacionesNecesidadDto != null && ViewBag.ValidacionesNecesidadDto.ContainsKey("Foto"))
+                        {
+                            <p>@ViewBag.ValidacionesNecesidadDto["Foto"]</p>
+                        }
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        @{int d = 0;}
+                        @foreach (var p in Model.referencias)
+                        {
+
+                            <label class="col-md-12">Referencia:</label>
+                            <label>Nombre:</label>
+                            @Html.TextBoxFor(m => m.referencias[d].nombre, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.referencias[d].nombre)
+                            <label>Teléfono:</label>
+                            @Html.TextBoxFor(m => m.referencias[d].telefono, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.referencias[d].telefono)
+                            d = d + 1;
+                        }
+
+                    </div>
+                </div>
+                <div id="success"></div>
+                <!-- For success/fail messages -->
+                <button type="submit" class="btn btn-primary" id="sendMessageButton">Crear necesidad</button>
+            }
+
+        </div>
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->

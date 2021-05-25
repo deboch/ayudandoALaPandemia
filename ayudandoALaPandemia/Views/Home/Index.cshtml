@@ -1,31 +1,48 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+@{
+    Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
+}
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+<section class="home" id="main-content">
+    <section class="container">
+        <h2><i class="fa fa-flag-o red"></i><strong>TU DONACIÓN CONSTRUYE</strong></h2>
+        <h2 class="">
+            <small>
+                Lo recaudado será destinado para las zonas más
+                afectadas y prioritarias del país, para construir más viviendas de emergencia y para financiar proyectos
+                vinculados al acceso al agua cuando retome el trabajo en los territorios.
+            </small>
+        </h2>
+        <div class="row">
+            @foreach (var p in ViewBag.Necesidades)
+            {
+                <div class="col-lg-4 mb-4">
+                    <a href="@("/necesidad/" + @p.IdNecesidad + "/detalle")" class="card h-100">
+                        <h3 class="card-header"><strong>"@p.Nombre"</strong></h3>
+                        <!--p>Creada por: @Session["email"]</!-p-->
+                        <img src="../..@p.Foto" width="100%" height="auto" />
+                        <div class="card-body">
+                            <p class="card-title">@p.Descripcion</p>
+                            <p class="card-text"><strong>Creada por:</strong> @p.Usuarios.Email</p>
+                            <p class="card-text"><strong>Fecha de creación:</strong> @p.FechaCreacion</p>
+                            <!--span class="badge">
+                                @(p.TipoDonacion == 1 ? "Monetaria" : "Insumos")
+                            </!-span-->
+                        </div>
+                        @if (p.Valoracion != null)
+                        {
+                            <div class="star-ratings-sprite">
+                                <span style="width:@p.Valoracion%" class="star-ratings-sprite-rating"></span>
+                            </div>
+                        }
+                    </a>
+                </div>
+            }
+        </div>
+      
+    </section>
+</section>
+<br />
+<br />

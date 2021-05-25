@@ -1,0 +1,73 @@
+﻿@model ayudandoALaPandemia.ViewModels.DonacionMonetariaDto
+
+@{
+    ViewBag.Title = "donacionMonetaria";
+    Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
+}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        @Html.ActionLink("Necesidades", "Index", "Necesidades", null, new { @class = "breadcrumb-item" })
+    </li>
+    <li class="breadcrumb-item active">Crear donación</li>
+</ol>
+<section class="container">
+    <div class="row">
+        @using (Html.BeginForm("donacionMonetaria", "Necesidad", FormMethod.Post))
+        {
+            <div class="control-group form-group" id="monetarias">
+                <div class="controls">
+                    <label>Total requerido:</label>
+                    <input class="form-control" type="text" name="" disabled value="@Model.totalDeDinero">
+                </div>
+            </div>
+            <div class="control-group form-group" id="monetarias">
+                <div class="controls">
+                    <label>Total restante:</label>
+                    <input class="form-control" type="text" name="" disabled value="@Model.totalRestante">
+                </div>
+            </div>
+            <div class="control-group form-group" id="monetarias">
+                <div class="controls">
+                    <label>Total a donar ($):</label>
+                    @if (Model.totalRestante == 0)
+                    {
+                        @Html.TextBoxFor(m => m.dinero, new { @disabled = true, @Value = "", type = "text", @class = "form-control" })
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(m => m.dinero, new { @Value = "", type = "text", @class = "form-control" })
+                    }
+                    <p class="text-danger">@Html.ValidationMessageFor(m => m.dinero)</p>
+                </div>
+            </div>
+
+            @Html.TextBoxFor(m => m.IdUsuario, new { @Value = Model.IdUsuario, type = "hidden", @class = "form-control" })
+            @Html.TextBoxFor(m => m.IdNecesidadDonacionMonetaria, new { @Value = Model.IdNecesidadDonacionMonetaria, type = "hidden", @class = "form-control" })
+
+            <div class="control-group form-group" id="monetarias">
+                <div class="controls">
+                    <label for="ejemplo_archivo_1">Adjuntar comprobante de transferencia o depósito:</label>
+                    @if (Model.totalRestante == 0)
+                    {
+                        @Html.TextBoxFor(m => m.comprobante, new { @disabled = true, type = "file", @class = "form-control" })
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(m => m.comprobante, new { type = "file", @class = "form-control" })
+                    }
+                    <p class="text-danger">@Html.ValidationMessageFor(m => m.comprobante)</p>
+                </div>
+            </div>
+            <div class="mb-4">
+                @if (Model.totalRestante == 0)
+                {
+                    <button type="submit" disabled class="btn btn-success" id="sendMessageButton">Finalizada</button>
+                }
+                else
+                {
+                    <button type="submit" class="btn btn-primary" id="sendMessageButton">Donar</button>
+                }
+            </div>
+        }
+    </div>
+</section>

@@ -1,0 +1,113 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
+}
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            @Html.ActionLink("Home", "Index", "Home", null, new { @class = "breadcrumb-item" })
+        </li>
+        <li class="breadcrumb-item active">Necesidades</li>
+    </ol>
+<!--main content start-->
+<section id="main-content">
+
+    <div class="container">
+        @if (@TempData["exito"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                <h4>@TempData["exito"]</h4>
+            </div>
+        }
+        @if (ViewBag.misNecesidades != null)
+        {
+            <div id="accordion">
+                <div class="card mt-3 mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                Mis necesidades
+                            </button>
+                        </h5>
+                        <div class="box-active d-flex align-items-center mr-3">
+                            <input id="active" class="activarNecesidades mr-1" type="checkbox" checked=@(ViewBag.misNecesidades != null) />
+                            <p>Mostrar solo activas</p>
+                        </div>
+                    </div>
+                    <div id="collapseOne" class="collapse misNecesidades show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card card-body card ml-3 mt-3">
+                            @foreach (var p in ViewBag.misNecesidades)
+                            {
+                                <div class="row mb-3">
+                                    <div class="col-md-3">
+                                        <a href="#">
+                                            <img class="img-fluid rounded mb-3 mb-md-0" src="../..@p.Foto" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <h3>@p.Nombre</h3>
+                                        <p>Finaliza: @p.FechaFin</p>
+                                        @if (p.Valoracion != null)
+                                        {
+                                            <div class="star-ratings-sprite">
+                                                <span style="width:@p.Valoracion%" class="star-ratings-sprite-rating"></span>
+                                            </div>
+                                        }
+                                        <div class="badge mb-3">
+                                            @(p.TipoDonacion == 1 ? "Monetaria" : "Insumos")
+                                        </div>
+                                    <div>
+                                        <a class="btn btn-primary" href=@(Session["email"] != null ? "/necesidad/" + @p.IdNecesidad + "/detalle" : "/login")>
+                                            Ver
+                                            <span class="glyphicon glyphicon-chevron-right"></span>
+                                        </a>
+                                        <a class="btn btn-primary" href=@(Session["email"] != null ? "/necesidad/" + @p.IdNecesidad + "/modificar" : "/login" ) >
+                                            Editar
+                                            <span class="glyphicon glyphicon-chevron-right"></span>
+                                        </a>
+                                    </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        @if (ViewBag.otrasNecesidades != null)
+        {
+            <h2 class="mt-4 mb-4"><i class="fa fa-flag-o red"></i><strong>Las necesidades mas valoradas</strong></h2>
+            <div class="searched-wrapper">
+                <div class="row">
+                    @foreach (var p in ViewBag.otrasNecesidades)
+                    {
+                    <div class="col-lg-4 mb-4">
+                        <a href="@("/necesidad/" + @p.IdNecesidad + "/detalle")" class="card h-100">
+                            <h4 class="card-header">@p.Nombre</h4>
+                            <img src="../..@p.Foto" width="100%" height="auto" />
+                            <div class="card-body">
+                                <p class="card-text">@p.Descripcion</p>
+                                <p>Finaliza: @p.FechaFin</p>
+                                <span class="badge">
+                                    @(p.TipoDonacion == 1 ? "Monetaria" : "Insumos")
+                                </span>
+                            </div>
+                            @if (p.Valoracion != null)
+                            {
+                                <div class="star-ratings-sprite">
+                                    <span style="width:@p.Valoracion%" class="star-ratings-sprite-rating"></span>
+                                </div>
+                            }
+                        </a>
+                    </div>
+                    }
+                </div>
+            </div>
+        }
+        else
+        {
+            <h2 class="mt-4 mb-4 text-center"><strong>Se uno de los primeros en crear una necesidad</strong></h2>
+        }
+    </div>
+</section>
+

@@ -1,0 +1,56 @@
+﻿@model ayudandoALaPandemia.ViewModels.checkboxDto
+
+@{
+    ViewBag.Title = "MisNecesidades";
+    Layout = "~/Views/Shared/_NecesidadesLayout.cshtml";
+}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            @Html.ActionLink("Mi perfil", "Index", "Perfil", null, new { @class = "breadcrumb-item" })
+        </li>
+        <li class="breadcrumb-item active">Mis necesidades</li>
+    </ol>
+    <section id="main-content">
+        <section class="container">
+            <div class="box-active d-flex align-items-center mr-3">
+                <div class="box-active d-flex align-items-center mr-3">
+                    <input id="active" class="activarNecesidades mr-1" type="checkbox" checked=@(ViewBag.misNecesidades != null) />
+                    <p>Mostrar solo activas</p>
+                </div>
+            </div>
+            <div class="row misNecesidades">
+                <div class="card card-body card ml-3 mt-3">
+                    @foreach (var p in ViewBag.misNecesidades)
+                    {
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <a href="#">
+                                    <img class="img-fluid rounded mb-3 mb-md-0" src="../..@p.Foto" alt="">
+                                </a>
+                            </div>
+                            <div class="col-md-5">
+                                <h3>@p.Nombre</h3>
+
+                                <!--p>@p.Descripcion</!-p-->
+                                @if (p.Valoracion != null)
+                                {
+                                <div class="star-ratings-sprite">
+                                    <span style="width:@p.Valoracion%" class="star-ratings-sprite-rating"></span>
+                                </div>
+                            }
+<!--div class="badge mb-3">
+    @(p.TipoDonacion == 1 ? "Monetaria" : "Insumos")
+</!-div-->
+<div>
+    <a class="btn btn-primary" href=@(Session["email"] != null ? "/necesidad/" + @p.IdNecesidad + "/detalle" : "/login")>
+        Ver
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+</div>
+</div>
+</div>
+}
+                </div>
+            </div>
+        </section>
+    </section>

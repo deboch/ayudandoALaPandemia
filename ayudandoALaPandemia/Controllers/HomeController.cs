@@ -1,17 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using Repositorios;
 
 namespace ayudandoALaPandemia.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        public string Index()
+
+        [HttpGet]
+        public ActionResult Index()
         {
-            return "hola";
+            try
+            {
+                List<Necesidades> necesidadesMasValoradas = homeServicios.GetMasValorados();
+                ViewBag.Necesidades = necesidadesMasValoradas;
+                return View();
+            }
+            catch
+            {
+                return null;
+            }
         }
-        
+
+        [ActionName("acerca-de")]
+        public ActionResult AcercaDe() {
+            return View();
+        }
+
     }
 }

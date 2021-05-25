@@ -1,0 +1,58 @@
+.like {
+}
+
+.dislike {
+}
+
+.like.isActive {
+    background-color: green;
+}
+
+.dislike.isActive {
+    background-color: red;
+}
+
+.star-ratings-sprite {
+    padding: 0 !important;
+    display: block;
+    background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat-x;
+    font-size: 0;
+    height: 21px;
+    line-height: 0;
+    overflow: hidden;
+    text-indent: -999em;
+    width: 110px;
+    margin: 0 17px 20px;
+}
+
+
+.star-ratings-sprite-rating {
+    background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat-x;
+    background-position: 0 100%;
+    float: left;
+    height: 21px;
+    display: block;
+}
+
+.home h2 {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.home .card {
+    padding-bottom: 25px;
+}
+
+.badge {
+    color: white;
+    background-color: red;
+}
+
+.navbar-dark.bg-dark .navbar-nav .dropdown-menu .nav-link {
+    color: #000;
+}
+
+.collapse .card-body {
+    border: none;
+}
+

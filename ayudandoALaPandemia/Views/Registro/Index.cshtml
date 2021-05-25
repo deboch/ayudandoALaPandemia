@@ -1,0 +1,66 @@
+﻿@model Repositorios.Usuarios
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "Registro", FormMethod.Post))
+{
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <form class="login100-form validate-form p-l-55 p-r-55 p-t-178">
+                    <span class="login100-form-title">
+                        @Html.ActionLink("Ayudando en la pandemia", "Index", "Home", null, new { @class = "navbar-brand" })
+                    </span>
+                    <br />
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email" })
+                            @Html.ValidationMessageFor(m => m.Email)
+                        </div>
+                    </div>
+                    @if (ViewData["mailExiste"] != null)
+                    {
+                        @ViewData["mailExiste"];
+                    }
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.Password, new { type = "password", @class = "form-control", placeholder = "Clave" })
+                            @Html.ValidationMessageFor(m => m.Password)
+                        </div>
+                    </div>
+                    @if (ViewData["pass"] != null)
+                    {
+                        @ViewData["pass"];
+                    }
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.ConfirmPassword, new { type= "password", @class = "form-control", placeholder = "Confirmar Clave  " })
+                            @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                        </div>
+                    </div>
+                    @if (ViewData["confirm"] != null)
+                    {
+                        @ViewData["confirm"];
+                    }
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.FechaNacimiento, new { type = "date", @class = "form-control", placeholder = "DD/MM/AAAA" })
+                            @Html.ValidationMessageFor(m => m.FechaNacimiento)
+                        </div>
+                    </div>
+                    @if (ViewData["menor"] != null)
+                    {
+                        @ViewData["menor"];
+                    }
+                    <button class="login100-form-btn" type="submit">
+                        Crear
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+}
